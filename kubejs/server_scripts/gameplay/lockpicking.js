@@ -1,12 +1,14 @@
 
-PlayerEvents.tick(event => tickLockpick(event.player));
+PlayerEvents.tick(event => Lockpicking.tick(event.player));
+
+const Lockpicking = {}
 
 /**
  * 
  * @param {$ServerPlayer_} player 
  * @returns {integer[]|null}
  */
-function getPlayerLockpickingTime(player) {
+Lockpicking.getPlayerData = function (player) {
 	// blockX, blockY, blockZ, time
 	return player.persistentData.getIntArray("lockpicking_time");
 }
@@ -20,7 +22,7 @@ function getPlayerLockpickingTime(player) {
  * @param {integer} blockZ 
  * @param {integer} time 
  */
-function setPlayerLockpickingTime(player, blockX, blockY, blockZ, time) {
+Lockpicking.setPlayerData = function (player, blockX, blockY, blockZ, time) {
 	player.persistentData.putIntArray("lockpicking_time", [blockX, blockY, blockZ, time]);
 }
 
@@ -28,7 +30,7 @@ function setPlayerLockpickingTime(player, blockX, blockY, blockZ, time) {
  * 
  * @param {$ServerPlayer_} player 
  */
-function resetPlayerLockpickingTime(player) {
+Lockpicking.resetPlayerData = function (player) {
 	player.persistentData.remove("lockpicking_time");
 }
 
@@ -38,10 +40,10 @@ function resetPlayerLockpickingTime(player) {
  * @param {$ServerPlayer_} player 
  * @param {integer} time 
  */
-function addPlayerLockpickingTime(player, time) {
-	const data = getPlayerLockpickingTime(player);
+Lockpicking.addPlayerTime = function (player, time) {
+	const data = Lockpicking.getPlayerData(player);
 	data[3] += time;
-	setPlayerLockpickingTime(player, data[0], data[1], data[2], data[3]);
+	Lockpicking.setPlayerTime(player, data[0], data[1], data[2], data[3]);
 }
 
 
@@ -49,17 +51,28 @@ function addPlayerLockpickingTime(player, time) {
  * 
  * @param {$ServerPlayer_} player 
  */
-function tickLockpick(player) {
-	const data = getPlayerLockpickingTime(player);
+Lockpicking.tick = function (player) {
+	const data = Lockpicking.getPlayerData(player);
 
 	const attr = player.getAttribute($Attributes.BLOCK_INTERACTION_RANGE);
 	const blockInteractionRange = attr != null ? attr.getValue() : 0;
 
 	const currentBlock = getBlockPlayerIsLookingAt(player, blockInteractionRange);
 	if (currentBlock == null) {
-		if (data != null) resetPlayerLockpickingTime(player);
+		if (data != null) Lockpicking.resetPlayerData(player);
 		return;
 	}
+
+	const baseLockpickingTime = Lockpicking.getTime(BlockPosHelper.toIntArray(currentBlock));
+}
+
+
+
+/**
+ * 
+ * @param {integer[]} blockPos 
+ */
+Lockpicking.getTime = function (blockPos) {
 }
 
 
@@ -68,7 +81,7 @@ function tickLockpick(player) {
  * @param {$ServerPlayer_} player 
  * @returns {boolean}
  */
-function isSameLockpickingBlock(player) {
+Lockpicking.isSameLockpickingBlock = function (player) {
 	const data = getPlayerLockpickingTime(player);
 	const currentBlockPos = player.getBlock().getPos();
 	if (data[0] == currentBlockPos.x && data[1] == currentBlockPos.y && data[2] == currentBlockPos.z) {

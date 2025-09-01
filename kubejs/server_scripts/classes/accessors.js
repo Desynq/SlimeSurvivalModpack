@@ -24,3 +24,6 @@ const $Comparator = Java.loadClass("java.util.Comparator");
 
 
 const $Attributes = Java.loadClass("net.minecraft.world.entity.ai.attributes.Attributes");
+
+
+let $ServerPlayer = Java.loadClass("net.minecraft.server.level.ServerPlayer");
