@@ -6,3 +6,4 @@
 
 !patchouli_books/
 !patchouli_books/**
+.probe
