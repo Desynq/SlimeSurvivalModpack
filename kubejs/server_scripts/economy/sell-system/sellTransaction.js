@@ -1,4 +1,3 @@
-let $KubeResourceLocation = Java.loadClass("dev.latvian.mods.kubejs.util.KubeResourceLocation");
 /** @type {$CommandContext_<$CommandSourceStack_>} */
 SellTransaction.prototype.context = undefined;
 
@@ -14,6 +13,9 @@ SellTransaction.prototype.sellAll = undefined;
 /** @type {string} */
 SellTransaction.prototype.itemId = undefined
 
+/** @type {MarketableItem} */
+SellTransaction.prototype.mItem = undefined;
+
 /** @type {string[]} */
 SellTransaction.prototype.items = undefined;
 
@@ -24,43 +26,47 @@ SellTransaction.prototype.amountToSell = undefined;
 SellTransaction.prototype.amountSold = undefined;
 
 /** @type {number} */
-SellTransaction.prototype.itemValue = undefined
+SellTransaction.prototype.itemValue = undefined;
 
 /** @type {number} */
 SellTransaction.prototype.totalValue = undefined;
 
 
 
-function SellTransaction(context, sellAll) {
-	this.context = context;
-	this.player = this.context.source.player;
-	this.server = this.player.server;
+/**
+ * 
+ * @param {$ServerPlayer_} player
+ * @param {MarketableItem} mItem
+ * @param {number | null} amountToSell 
+ * @returns {void}
+ */
+function SellTransaction(player, mItem, amountToSell) {
+	this.player = player;
+	this.server = player.server;
 
-	this.sellAll = sellAll;
-
-	this.itemId = $Arguments.STRING.getResult(this.context, "item");
-	this.items = Object.keys(SELLABLE_ITEMS);
+	this.mItem = mItem;
+	this.itemId = mItem.getItemId();
 
 
-	if (this.items.indexOf(this.itemId) === -1) {
+	if (this.mItem == null) {
 		this.player.tell(Text.red("Sell an actual item next time."));
 		return;
 	}
 
-	if (this.sellAll) {
+	if (amountToSell == null) {
 		this.amountToSell = 2147483647;
 	}
+	else if (amountToSell <= 0) {
+		this.player.tell(Text.red("Sell an actual quantity next time."));
+		return;
+	}
 	else {
-		this.amountToSell = $Arguments.INTEGER.getResult(this.context, "amount");
-		if (this.amountToSell <= 0) {
-			this.player.tell(Text.red("Sell an actual quantity next time."));
-			return;
-		}
+		this.amountToSell = amountToSell;
 	}
 
-	this.itemValue = SellTransaction.getRealItemValue(this.server, this.itemId);
-	if (this.itemValue === null || this.itemValue === undefined) {
-		this.player.tell(Text.darkRed("Something went horribly wrong"));
+	this.itemValue = SellTransaction.getItemValue(this.server, this.mItem);
+	if (this.itemValue == null) {
+		this.player.tell(Text.red("This item cannot be sold."));
 		return;
 	}
 
@@ -82,12 +88,13 @@ SellTransaction.prototype.sellItem = function () {
 	const item = $BuiltInRegistries.ITEM.get(rl);
 	const itemCount = this.player.inventory.countItem(item);
 	this.amountSold = Math.min(this.amountToSell, itemCount);
-	this.server.runCommandSilent(`clear ${this.player.username} ${this.itemId} ${this.amountToSell}`);
-	tellOperators(this.server, this.amountSold);
 
-	if (!this.player.creative || !this.player.spectator) {
-		StockManager.addToStock(this.server, this.itemId, this.amountSold);
+	this.server.runCommandSilent(`clear ${this.player.username} ${this.itemId} ${this.amountToSell}`);
+
+	if (this.mItem.canHaveStock() && (!this.player.creative || !this.player.spectator)) {
+		StockManager.addToStock(this.server, this.mItem, this.amountSold);
 	}
+
 	this.totalValue = this.amountSold * this.itemValue;
 	PlayerMoney.add(this.server, this.player.uuid.toString(), this.totalValue);
 }
@@ -97,22 +104,26 @@ SellTransaction.prototype.sellItem = function () {
 
 /**
  * @param {$MinecraftServer_} server 
- * @param {string} item
- * @returns {number}
+ * @param {MarketableItem} mItem
+ * @returns {number | null}
  */
-SellTransaction.getRealItemValue = function (server, item) {
-	const itemEntry = SELLABLE_ITEMS[item];
-	const baseValue = itemEntry[0];
-	const percentageLoss = itemEntry[1];
-	const exponentialGroup = itemEntry[2];
+SellTransaction.getItemValue = function (server, mItem) {
+	const sellPrice = mItem.getSellPrice();
 
-	if (percentageLoss === undefined || exponentialGroup === undefined) {
-		return baseValue;
+	if (sellPrice == null) {
+		return null;
 	}
 
-	let globalAmountSold = StockManager.getStock(server, item);
+	if (!mItem.canHaveStock()) {
+		return sellPrice;
+	}
 
-	return Math.ceil(baseValue * ((1 - percentageLoss) ** (globalAmountSold / exponentialGroup)));
+	const compoundingRate = mItem.getCompoundingRate();
+	const compoundingPeriod = mItem.getCompoundingPeriod();
+
+	let stockAmount = StockManager.getStock(server, mItem);
+
+	return Math.ceil(sellPrice * ((1 - compoundingRate) ** (stockAmount / compoundingPeriod)));
 }
 
 SellTransaction.prototype.tellOutput = function () {

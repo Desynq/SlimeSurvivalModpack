@@ -1,58 +1,66 @@
-/**
- * @param {$CommandContext_<$CommandSourceStack_>} context
- * @param {$SuggestionsBuilder_} builder
- */
-function suggestSellableItem(context, builder) {
-	const items = Object.keys(SELLABLE_ITEMS);
-	for (let item of items) {
-		builder.suggest(`"${item}"`);
-	}
-	return builder.buildFuture();
-}
-
-/**
- * @param {$CommandContext_<$CommandSourceStack_>} context
- * @param {$SuggestionsBuilder_} builder
- */
-function suggestAmount(context, builder) {
-	const { source, source: { player } } = context;
-
-	builder.suggest("1");
-	builder.suggest("32");
-	builder.suggest("64");
-	return builder.buildFuture();
-}
 
 ServerEvents.commandRegistry(event => {
 	const { commands: Commands, arguments: Arguments } = event;
 
 	const itemArgument = Commands.argument("item", Arguments.STRING.create(event))
-		.suggests((context, builder) => suggestSellableItem(context, builder));
+		.suggests((context, builder) => suggestSellableItem(builder));
 
 	const amountArgument = Commands.argument("amount", Arguments.INTEGER.create(event))
-		.suggests((context, builder) => suggestAmount(context, builder));
+		.suggests((context, builder) => suggestAmount(builder));
 
 	event.register(Commands.literal("sell")
 		.then(Commands.literal("item")
 			.then(itemArgument
 				.then(amountArgument
 					.executes(context => {
+						const itemName = Arguments.STRING.getResult(context, "item");
+						const item = MarketableItem.fromName(itemName);
+
 						try {
-							new SellTransaction(context, false);
+						new SellTransaction(context.source.player, item, null);
 						}
 						catch (error) {
-							tellIfOperator(context.source.player, Text.red(error));
+							tellOperators(context.source.server, Text.darkRed(error));
 						}
 						return 1;
 					})
 				)
 				.then(Commands.literal("all")
 					.executes(context => {
-						new SellTransaction(context, true);
+						const itemName = Arguments.STRING.getResult(context, "item");
+						const item = MarketableItem.fromName(itemName);
+
+						const amount = Arguments.INTEGER.getResult(context, "amount");
+
+						new SellTransaction(context.source.player, item, amount);
 						return 1;
 					})
 				)
 			)
 		)
 	);
+
+
+
+	/**
+	 * @param {$CommandContext_<$CommandSourceStack_>} context
+	 * @param {$SuggestionsBuilder_} builder
+	 */
+	function suggestSellableItem(builder) {
+		const sellableItems = MarketableItem.getSellableItems();
+		for (let item of sellableItems) {
+			builder.suggest(`${item.getName()}`);
+		}
+		return builder.buildFuture();
+	}
+
+	/**
+	 * @param {$SuggestionsBuilder_} builder
+	 */
+	function suggestAmount(builder) {
+		builder.suggest("1");
+		builder.suggest("32");
+		builder.suggest("64");
+		return builder.buildFuture();
+	}
 });

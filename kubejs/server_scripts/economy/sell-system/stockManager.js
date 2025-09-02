@@ -1,22 +1,29 @@
 const StockManager = {
 	/**
 	 * @param {$MinecraftServer_} server
-	 * @param {string} itemName
+	 * @param {MarketableItem} item
 	 * @returns {number}
 	 */
-	getStock(server, itemName)
+	getStock(server, item)
 	{
-		return server.persistentData.getCompound('items_sold').getDouble(itemName);
+		if (!item.canHaveStock()) {
+			throw new Error("Item does not have stock.");
+		}
+		return server.persistentData.getCompound('items_sold').getDouble(item.getItemId()) ?? 0;
 	},
 
 
 	/**
 	 * @param {$MinecraftServer_} server
-	 * @param {string} itemName 
+	 * @param {MarketableItem} item 
 	 * @param {number} newAmount 
 	 */
-	updateStock(server, itemName, newAmount)
+	updateStock(server, item, newAmount)
 	{
+		if (!item.canHaveStock()) {
+			throw new Error("Item does not have stock.");
+		}
+
 		let compoundTag = server.persistentData.getCompound('items_sold');
 
 		if (compoundTag.empty)
@@ -25,19 +32,23 @@ const StockManager = {
 			compoundTag = server.persistentData.getCompound('items_sold');
 		}
 
-		compoundTag.putDouble(itemName, newAmount);
+		compoundTag.putDouble(item.getItemId(), newAmount);
 	},
 
 
 	/**
 	 * @param {$MinecraftServer_} server
-	 * @param {string} itemName 
+	 * @param {MarketableItem} item 
 	 * @param {number} amount 
 	 */
-	addToStock(server, itemName, amount)
+	addToStock(server, item, amount)
 	{
-		let stockAmount = StockManager.getStock(server, itemName);
-		StockManager.updateStock(server, itemName, stockAmount + amount);
+		if (!item.canHaveStock()) {
+			throw new Error("Item does not have stock.");
+		}
+
+		let stockAmount = StockManager.getStock(server, item);
+		StockManager.updateStock(server, item, stockAmount + amount);
 	},
 
 
@@ -47,10 +58,13 @@ const StockManager = {
 	 */
 	diminishStocks(server, percentageLost)
 	{
-		Object.keys(SELLABLE_ITEMS).forEach(itemName => {
-			let stockAmount = StockManager.getStock(server, itemName);
+		MarketableItem._instances.forEach(item => {
+			if (!item.canHaveStock()) {
+				return;
+			}
+			let stockAmount = StockManager.getStock(server, item);
 			stockAmount *= 1 - percentageLost;
-			StockManager.updateStock(server, itemName, stockAmount);
+			StockManager.updateStock(server, item, stockAmount);
 		});
 	}
 }
