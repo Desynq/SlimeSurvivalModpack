@@ -13,7 +13,9 @@ ServerEvents.tick(event => {
 	function everyDawn() {
 		percentageLost = biasedRandom(0, 0.5, 20)
 		StockManager.diminishStocks(server, percentageLost); // half lost every irl day
-		server.players !== null && server.players.toArray().forEach(player => broadcastDawn(player));
+
+		// inflation is disabled
+		// server.playerList.players.forEach(player => broadcastDawn(player));
 	}
 
 	/**
