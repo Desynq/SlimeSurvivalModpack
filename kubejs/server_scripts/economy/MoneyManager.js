@@ -1,16 +1,16 @@
 // priority: 1000
-function Money() {}
+function MoneyManager() {}
 
 /**
  * 
  * @param {number} number 
  * @returns {number}
  */
-Money.FromDollar = function (number) {
+MoneyManager.fromDollar = function (number) {
 	return number * 100;
 }
 
-Money.FromDollarWithCharm = function (number) {
+MoneyManager.fromDollarWithCharm = function (number) {
 	return (number - 0.01) * 100;
 }
 
@@ -18,7 +18,7 @@ Money.FromDollarWithCharm = function (number) {
  * @param {number} number
  * @returns {number}
  */
-Money.ToDollar = function (number) {
+MoneyManager.toDollar = function (number) {
 	return number / 100;
 }
 
@@ -27,9 +27,13 @@ Money.ToDollar = function (number) {
  * @param {number} number
  * @returns {string}
  */
-Money.ToDollarString = function (number) {
-	const moneyFormatted = Money.ToDollar(Math.abs(number)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+MoneyManager.toDollarString = function (number) {
+	const moneyFormatted = MoneyManager.toDollar(Math.abs(number)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	return `${number < 0 ? '-' : ''}${moneyFormatted}`
+}
+
+MoneyManager.toTextComponent = function (number) {
+	return Component.darkGreen("$" + MoneyManager.toDollarString(number));
 }
 
 /**
@@ -37,7 +41,7 @@ Money.ToDollarString = function (number) {
  * ex: "1.23" -> 123, "1.2" -> 120, "1" -> 100
  * @param {string} dollarString 
  */
-Money.FromSimpleDollarString = function (dollarString) {
+MoneyManager.fromSimpleDollarString = function (dollarString) {
 	const regex = /^\d+(\.\d{1,2})?$/;
 	if (!regex.test(dollarString)) {
 		return NaN;

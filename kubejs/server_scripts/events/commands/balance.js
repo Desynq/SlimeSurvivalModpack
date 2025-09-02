@@ -37,7 +37,7 @@ ServerEvents.commandRegistry(event => {
 	 */
 	function tellSelfBalance(executor) {
 		const rawBalance = PlayerMoney.get(executor.server, executor.uuid.toString());
-		executor.tell(Text.gray(`You have $${Money.ToDollarString(rawBalance)}.`));
+		executor.tell(Text.gray(`You have $${MoneyManager.toDollarString(rawBalance)}.`));
 	}
 
 	function tellOfflineBalance(executor, username) {
@@ -48,6 +48,6 @@ ServerEvents.commandRegistry(event => {
 		}
 
 		const rawBalance = PlayerMoney.get(executor.server, uuid);
-		executor.tell(Text.gray(`${username} has $${Money.ToDollarString(rawBalance)}.`));
+		executor.tell(Text.gray(`${username} has $${MoneyManager.toDollarString(rawBalance)}.`));
 	}
 });

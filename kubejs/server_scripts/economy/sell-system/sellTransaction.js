@@ -31,6 +31,9 @@ SellTransaction.prototype.itemValue = undefined;
 /** @type {number} */
 SellTransaction.prototype.totalValue = undefined;
 
+/** @type {number} */
+SellTransaction.prototype.oldBalance = null;
+
 
 
 /**
@@ -70,13 +73,16 @@ function SellTransaction(player, mItem, amountToSell) {
 		return;
 	}
 
+	this.oldBalance = PlayerMoney.get(this.server, this.player.uuid.toString()); // used for text output
 	this.sellItem();
 	this.tellOutput();
 	this.logTransaction();
 }
 
 SellTransaction.prototype.logTransaction = function () {
-	tellOperators(this.server, Text.gray(`Player ${this.player.username} sold ${this.amountSold} ${this.itemId} for ${Money.ToDollarString(this.totalValue)}`));
+	tellOperators(this.server,
+		Text.darkGray(`> Player ${this.player.username} sold ${this.amountSold} ${this.itemId} for ${MoneyManager.toDollarString(this.totalValue)}`).italic(true)
+	);
 }
 
 /**
@@ -127,13 +133,18 @@ SellTransaction.getItemValue = function (server, mItem) {
 }
 
 SellTransaction.prototype.tellOutput = function () {
-	const output =
-		`${'-'.repeat(32)}\n` +
-		`Individual Value: $${(this.itemValue / 100).toFixed(2)}\n` +
-		`Sold: ${this.amountSold}\n` +
-		`Total Value: $${(this.totalValue / 100).toFixed(2)}\n` +
-		`${'-'.repeat(32)}`
-		;
+	const cAmountSold = Component.yellow(this.amountSold + "x");
+	const cItemName = Component.gold(this.mItem.getName());
+	const cTotalValue = MoneyManager.toTextComponent(this.totalValue);
+	const cIndividualValue = MoneyManager.toTextComponent(this.itemValue);
+	const cAmountSold2 = Component.yellow(`${this.amountSold}`);
+	const cNewBalance = MoneyManager.toTextComponent(PlayerMoney.get(this.server, this.player.uuid.toString()));
+	const cOldBalance = MoneyManager.toTextComponent(this.oldBalance);
 
-	this.player.tell(output);
+	// Sold 64x baked_potato for $64.00 ($1.00 x 64).
+	// Your balance is now $100.00 (previously $46.00).
+	this.player.tell(
+		Component.join(Component.gray("Sold "), cAmountSold, Component.gray(" "), cItemName, Component.gray(" for "), cTotalValue, Component.gray(" ("), cIndividualValue, Component.gray(" x "), cAmountSold2,
+		Component.gray(").\nYour balance is now "), cNewBalance, Component.gray(" (previously "), cOldBalance, Component.gray(").")
+	));
 }

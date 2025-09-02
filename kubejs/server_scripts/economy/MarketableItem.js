@@ -70,7 +70,7 @@ MarketableItem.prototype.setCompoundingPeriod = function (compoundingPeriod) {
 }
 
 MarketableItem.prototype.setSellPrice = function (sellPrice) {
-	this._sellPrice = Money.FromDollar(sellPrice);
+	this._sellPrice = MoneyManager.fromDollar(sellPrice);
 	return this;
 }
 
