@@ -1,10 +1,10 @@
-const SellTracker = {
+const StockManager = {
 	/**
 	 * @param {$MinecraftServer_} server
 	 * @param {string} itemName
 	 * @returns {number}
 	 */
-	getSold(server, itemName)
+	getStock(server, itemName)
 	{
 		return server.persistentData.getCompound('items_sold').getDouble(itemName);
 	},
@@ -15,7 +15,7 @@ const SellTracker = {
 	 * @param {string} itemName 
 	 * @param {number} newAmount 
 	 */
-	updateSold(server, itemName, newAmount)
+	updateStock(server, itemName, newAmount)
 	{
 		let compoundTag = server.persistentData.getCompound('items_sold');
 
@@ -34,23 +34,23 @@ const SellTracker = {
 	 * @param {string} itemName 
 	 * @param {number} amount 
 	 */
-	addSold(server, itemName, amount)
+	addToStock(server, itemName, amount)
 	{
-		let currentAmount = SellTracker.getSold(server, itemName);
-		SellTracker.updateSold(server, itemName, currentAmount + amount);
+		let stockAmount = StockManager.getStock(server, itemName);
+		StockManager.updateStock(server, itemName, stockAmount + amount);
 	},
 
 
 	/**
 	 * @param {$MinecraftServer_} server
-	 * @param {number} percentageLost percentage of items lost after the method call
+	 * @param {number} percentageLost percentage of items to diminish the stocks by
 	 */
-	diminishAll(server, percentageLost)
+	diminishStocks(server, percentageLost)
 	{
-		Object.keys(SellableItems).forEach(itemName => {
-			let amountSold = SellTracker.getSold(server, itemName);
-			amountSold *= 1 - percentageLost;
-			SellTracker.updateSold(server, itemName, amountSold);
+		Object.keys(SELLABLE_ITEMS).forEach(itemName => {
+			let stockAmount = StockManager.getStock(server, itemName);
+			stockAmount *= 1 - percentageLost;
+			StockManager.updateStock(server, itemName, stockAmount);
 		});
 	}
 }

@@ -5,13 +5,14 @@ ServerEvents.tick(event => {
 	if (server.gameRules.getBoolean($GameRules.RULE_DAYLIGHT) && overworld.getDayTime() % 24000 == 1) {
 		everyDawn();
 	}
-	
+
+
+
 	let percentageLost;
 
-	
 	function everyDawn() {
 		percentageLost = biasedRandom(0, 0.5, 20)
-		SellTracker.diminishAll(server, percentageLost); // half lost every irl day
+		StockManager.diminishStocks(server, percentageLost); // half lost every irl day
 		server.players !== null && server.players.toArray().forEach(player => broadcastDawn(player));
 	}
 

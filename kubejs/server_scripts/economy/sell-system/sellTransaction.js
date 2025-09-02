@@ -86,7 +86,7 @@ SellTransaction.prototype.sellItem = function () {
 	tellOperators(this.server, this.amountSold);
 
 	if (!this.player.creative || !this.player.spectator) {
-		SellTracker.addSold(this.server, this.itemId, this.amountSold);
+		StockManager.addToStock(this.server, this.itemId, this.amountSold);
 	}
 	this.totalValue = this.amountSold * this.itemValue;
 	PlayerMoney.add(this.server, this.player.uuid.toString(), this.totalValue);
@@ -110,7 +110,7 @@ SellTransaction.getRealItemValue = function (server, item) {
 		return baseValue;
 	}
 
-	let globalAmountSold = SellTracker.getSold(server, item);
+	let globalAmountSold = StockManager.getStock(server, item);
 
 	return Math.ceil(baseValue * ((1 - percentageLoss) ** (globalAmountSold / exponentialGroup)));
 }
