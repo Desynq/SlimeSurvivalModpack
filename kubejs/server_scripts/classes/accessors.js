@@ -1,6 +1,4 @@
-/*
-net.minecraft.nbt
-*/
+// net.minecraft.nbt
 const $Tag = Java.loadClass("net.minecraft.nbt.Tag");
 const $CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
 const $StringTag = Java.loadClass('net.minecraft.nbt.StringTag');
@@ -26,4 +24,10 @@ const $Comparator = Java.loadClass("java.util.Comparator");
 const $Attributes = Java.loadClass("net.minecraft.world.entity.ai.attributes.Attributes");
 
 
-let $ServerPlayer = Java.loadClass("net.minecraft.server.level.ServerPlayer");
+const $ServerPlayer = Java.loadClass("net.minecraft.server.level.ServerPlayer");
+
+// in-house
+const $TaskScheduler = Java.loadClass("io.github.desynq.slimesurvival.util.TaskScheduler");
+
+
+const $ServerReloadedEvent = Java.loadClass("net.blay09.mods.balm.api.event.server.ServerReloadedEvent");

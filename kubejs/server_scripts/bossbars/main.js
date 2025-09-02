@@ -1,0 +1,1 @@
+const BOSSBAR_ID_DESYNQ = "slimesurvival:desynq"

@@ -15,13 +15,10 @@ ServerEvents.commandRegistry(event => {
 					.executes(context => {
 						const itemName = Arguments.STRING.getResult(context, "item");
 						const item = MarketableItem.fromName(itemName);
+						
+						const amount = Arguments.INTEGER.getResult(context, "amount");
 
-						try {
-						new SellTransaction(context.source.player, item, null);
-						}
-						catch (error) {
-							tellOperators(context.source.server, Text.darkRed(error));
-						}
+						new SellTransaction(context.source.player, item, amount);
 						return 1;
 					})
 				)
@@ -30,9 +27,7 @@ ServerEvents.commandRegistry(event => {
 						const itemName = Arguments.STRING.getResult(context, "item");
 						const item = MarketableItem.fromName(itemName);
 
-						const amount = Arguments.INTEGER.getResult(context, "amount");
-
-						new SellTransaction(context.source.player, item, amount);
+						new SellTransaction(context.source.player, item, null);
 						return 1;
 					})
 				)
