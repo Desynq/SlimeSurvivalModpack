@@ -31,3 +31,6 @@ const $TaskScheduler = Java.loadClass("io.github.desynq.slimesurvival.util.TaskS
 
 
 const $ServerReloadedEvent = Java.loadClass("net.blay09.mods.balm.api.event.server.ServerReloadedEvent");
+
+
+const $MobEffectInstance = Java.loadClass("net.minecraft.world.effect.MobEffectInstance");
