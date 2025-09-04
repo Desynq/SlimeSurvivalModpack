@@ -1,6 +1,7 @@
 let $LivingEvent$LivingJumpEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEvent$LivingJumpEvent");
 let $Player = Java.loadClass("net.minecraft.world.entity.player.Player");
 let $LivingBreatheEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingBreatheEvent");
+let $MobEffects = Java.loadClass("net.minecraft.world.effect.MobEffects");
 
 /** @type {Object.<string, long>} */
 const lastFallFlyingInLowOrbit = {};
@@ -15,7 +16,7 @@ PlayerEvents.tick(event => {
 
 		const oldTime = lastFallFlyingInLowOrbit[uuid] ?? 0;
 		const currentTime = player.level.time;
-		if (currentTime - oldTime == 1 && !cannotFallFly(player)) {
+		if (currentTime - oldTime == 1 && !cannotFallFlyInLowOrbit(player)) {
 			lastFallFlyingInLowOrbit[uuid] = currentTime;
 			player.startFallFlying();
 		}
@@ -33,8 +34,12 @@ PlayerEvents.tick(event => {
  * @param {$ServerPlayer_} player
  * @returns {boolean}
  */
-function cannotFallFly(player) {
-	return player.abilities.flying || player.onGround() || player.crouching;
+function cannotFallFlyInLowOrbit(player) {
+	return player.abilities.flying
+			|| player.onGround()
+			|| player.isPassenger()
+			|| player.hasEffect($MobEffects.LEVITATION)
+			|| player.isCrouching();
 }
 
 NetworkEvents.dataReceived("KeyPressed", event => {
