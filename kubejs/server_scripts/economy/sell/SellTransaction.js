@@ -81,7 +81,7 @@ function SellTransaction(player, mItem, amountToSell) {
 
 SellTransaction.prototype.logTransaction = function () {
 	tellOperators(this.server,
-		Text.darkGray(`> Player ${this.player.username} sold ${this.amountSold} ${this.itemId} for ${MoneyManager.toDollarString(this.totalValue)}`).italic(true)
+		Text.darkGray(`> Player ${this.player.username} sold ${this.amountSold} ${this.mItem.getName()} for ${MoneyManager.toDollarString(this.totalValue)}`).italic(true)
 	);
 }
 

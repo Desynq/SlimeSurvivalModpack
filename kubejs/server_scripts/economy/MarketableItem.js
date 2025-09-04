@@ -5,6 +5,9 @@ MarketableItem._instances = [];
 /** @type {MarketableItem[]} */
 MarketableItem._sellableInstances = [];
 
+/** @type {MarketableItem[]} */
+MarketableItem._buyableInstances = [];
+
 /** @type {Object.<string, MarketableItem>} */
 MarketableItem._instancesById = {};
 
@@ -20,6 +23,13 @@ MarketableItem.getSellableItems = function () {
 		MarketableItem._sellableInstances = MarketableItem._instances.filter(x => x._sellPrice != null);
 	}
 	return MarketableItem._sellableInstances;
+}
+
+MarketableItem.getBuyableItems = function () {
+	if (MarketableItem._buyableInstances.length == 0) {
+		MarketableItem._buyableInstances = MarketableItem._instances.filter(x => x._buyPrice != null);
+	}
+	return MarketableItem._buyableInstances;
 }
 
 /**
@@ -54,6 +64,9 @@ MarketableItem.prototype._compoundingPeriod = null;
 /** @type {number} */
 MarketableItem.prototype._sellPrice = null;
 
+/** @type {number} */
+MarketableItem.prototype._buyPrice = null;
+
 function MarketableItem(name, itemId) {
 	this._name = name;
 	this._itemId = itemId;
@@ -69,8 +82,23 @@ MarketableItem.prototype.setCompoundingPeriod = function (compoundingPeriod) {
 	return this;
 }
 
+/**
+ * 
+ * @param {number} sellPrice a decimal number (1.00 = $1.00)
+ * @returns {MarketableItem}
+ */
 MarketableItem.prototype.setSellPrice = function (sellPrice) {
 	this._sellPrice = MoneyManager.fromDollar(sellPrice);
+	return this;
+}
+
+/**
+ * 
+ * @param {number} buyPrice a decimal number (1.00 = $1.00)
+ * @returns {MarketableItem}
+ */
+MarketableItem.prototype.setBuyPrice = function (buyPrice) {
+	this._buyPrice = MoneyManager.fromDollar(buyPrice);
 	return this;
 }
 
@@ -83,6 +111,25 @@ MarketableItem.prototype.register = function () {
 
 MarketableItem.prototype.getSellPrice = function () {
 	return this._sellPrice;
+}
+
+MarketableItem.prototype.getBuyPrice = function () {
+	return this._buyPrice;
+}
+
+/**
+ * @param {$MinecraftServer_} server
+ * @returns {long | null}
+ */
+MarketableItem.prototype.getCalculatedBuyPrice = function(server) {
+	const buyPrice = this.getBuyPrice();
+
+	if (buyPrice == null) {
+		return null;
+	}
+
+	// todo: code stock integration for buy transactions when I re-enable the stock system
+	return buyPrice;
 }
 
 MarketableItem.prototype.getCompoundingRate = function () {

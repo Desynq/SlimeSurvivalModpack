@@ -67,6 +67,15 @@ new MarketableItem("netherite_ingot", "minecraft:netherite_ingot")
 	.setCompoundingPeriod(100)
 	.register();
 
+
+
+// raw ores
+new MarketableItem("raw_iron", "minecraft:raw_iron")
+	.setBuyPrice(25.00)
+	.register();
+
+
+
 // farming
 new MarketableItem("carrot", "minecraft:carrot")
 	.setSellPrice(0.20)
