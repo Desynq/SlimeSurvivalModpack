@@ -5,7 +5,7 @@ ServerEvents.commandRegistry(event => {
 	const itemArgument = Commands.argument("item", Arguments.STRING.create(event))
 		.suggests((context, builder) => suggestSellableItem(builder));
 
-	const amountArgument = Commands.argument("amount", Arguments.INTEGER.create(event))
+	const amountArgument = Commands.argument("amount", $IntegerArgumentType.integer(1))
 		.suggests((context, builder) => suggestAmount(builder));
 
 	event.register(Commands.literal("sell")
@@ -14,24 +14,34 @@ ServerEvents.commandRegistry(event => {
 				.then(amountArgument
 					.executes(context => {
 						const itemName = Arguments.STRING.getResult(context, "item");
-						const item = MarketableItem.fromName(itemName);
+						const mItem = MarketableItem.fromName(itemName);
 						
 						const amount = Arguments.INTEGER.getResult(context, "amount");
 
-						new SellTransaction(context.source.player, item, amount);
+						new SellTransaction(context.source.getPlayer(), mItem, amount);
 						return 1;
 					})
 				)
 				.then(Commands.literal("all")
 					.executes(context => {
 						const itemName = Arguments.STRING.getResult(context, "item");
-						const item = MarketableItem.fromName(itemName);
+						const mItem = MarketableItem.fromName(itemName);
 
-						new SellTransaction(context.source.player, item, null);
+						new SellTransaction(context.source.getPlayer(), mItem, null);
 						return 1;
 					})
 				)
 			)
+		)
+		.then(Commands.literal("hand")
+			.executes(context => {
+				const player = context.source.getPlayer();
+				const itemId = player.getInventory().getSelected().getItem().getId();
+				const mItem = MarketableItem.fromId(itemId);
+
+				new SellTransaction(player, mItem, 0);
+				return 1;
+			})
 		)
 	);
 

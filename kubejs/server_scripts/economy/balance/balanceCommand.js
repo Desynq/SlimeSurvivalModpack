@@ -1,8 +1,8 @@
 ServerEvents.commandRegistry(event => {
 	const { commands: Commands, arguments: Arguments } = event;
 
-	const cachedPlayerArgument = Commands.argument("target", Arguments.STRING.create(event))
-		.suggests((context, builder) => suggestCachedPlayer(context, builder));
+	const cachedPlayerArgument = $Commands.argument("target", $StringArgumentType.string())
+		.suggests((context, builder) => CustomArguments.suggestCachedPlayer(context, builder));
 
 	event.register(Commands.literal("balance")
 		.executes(context => {
@@ -18,17 +18,6 @@ ServerEvents.commandRegistry(event => {
 			})
 		)
 	);
-
-
-
-	/**
-	 * @param {$CommandContext_<$CommandSourceStack_>} context
-	 * @param {$SuggestionsBuilder_} builder
-	 */
-	function suggestCachedPlayer(context, builder) {
-		PlayerUuidUsernameBiMap.getUsernames(context.source.server).forEach(username => builder.suggest(username));
-		return builder.buildFuture();
-	}
 
 
 	/**

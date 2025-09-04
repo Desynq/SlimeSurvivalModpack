@@ -20,7 +20,7 @@ SellTransaction.prototype.mItem = undefined;
 SellTransaction.prototype.items = undefined;
 
 /** @type {number} */
-SellTransaction.prototype.amountToSell = undefined;
+SellTransaction.prototype.sellAmount = undefined;
 
 /** @type {number} */
 SellTransaction.prototype.amountSold = undefined;
@@ -40,31 +40,30 @@ SellTransaction.prototype.oldBalance = null;
  * 
  * @param {$ServerPlayer_} player
  * @param {MarketableItem} mItem
- * @param {number | null} amountToSell 
+ * @param {number | null} sellAmount 0 = sell itemstack in hand
  * @returns {void}
  */
-function SellTransaction(player, mItem, amountToSell) {
+function SellTransaction(player, mItem, sellAmount) {
 	this.player = player;
 	this.server = player.server;
 
 	this.mItem = mItem;
-	this.itemId = mItem.getItemId();
-
-
-	if (this.mItem == null) {
-		this.player.tell(Text.red("Sell an actual item next time."));
+	if (this.mItem == null) { // should only occur when doing `/sell hand` with a non-marketable item
+		this.player.tell(Text.red("Item cannot be sold."));
 		return;
 	}
 
-	if (amountToSell == null) {
-		this.amountToSell = 2147483647;
+	this.itemId = mItem.getItemId();
+
+	if (sellAmount == null) {
+		this.sellAmount = 2147483647;
 	}
-	else if (amountToSell <= 0) {
+	else if (sellAmount < 0) {
 		this.player.tell(Text.red("Sell an actual quantity next time."));
 		return;
 	}
 	else {
-		this.amountToSell = amountToSell;
+		this.sellAmount = sellAmount;
 	}
 
 	this.itemValue = SellTransaction.getItemValue(this.server, this.mItem);
@@ -90,12 +89,20 @@ SellTransaction.prototype.logTransaction = function () {
  * NONE of what's in this method can fail otherwise players can potentially gain money illegally or sell items without compensation or lose sell value
  */
 SellTransaction.prototype.sellItem = function () {
-	const rl = $ResourceLocation.parse(this.itemId);
-	const item = $BuiltInRegistries.ITEM.get(rl);
-	const itemCount = this.player.inventory.countItem(item);
-	this.amountSold = Math.min(this.amountToSell, itemCount);
+	if (this.sellAmount == 0) {
+		const selectedStack = this.player.getMainHandItem();
 
-	this.server.runCommandSilent(`clear ${this.player.username} ${this.itemId} ${this.amountToSell}`);
+		this.amountSold = selectedStack.getCount();
+		selectedStack.setCount(0);
+	}
+	else {
+		const rl = $ResourceLocation.parse(this.itemId);
+		const item = $BuiltInRegistries.ITEM.get(rl);
+		const itemCount = this.player.inventory.countItem(item);
+		this.amountSold = Math.min(this.sellAmount, itemCount);
+
+		this.server.runCommandSilent(`clear ${this.player.username} ${this.itemId} ${this.sellAmount}`);
+	}
 
 	if (this.mItem.canHaveStock() && (!this.player.creative || !this.player.spectator)) {
 		StockManager.addToStock(this.server, this.mItem, this.amountSold);

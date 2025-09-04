@@ -24,8 +24,9 @@ function BuyTransaction(player, mItem, buyAmount) {
 		return;
 	}
 
-	this.oldBalance = PlayerMoney.get(this.server, this.playerUuid);
 	this.buyItem();
+	if (this.cancel) return;
+
 	this.tellOutput();
 	this.logTransaction();
 }
@@ -34,13 +35,20 @@ function BuyTransaction(player, mItem, buyAmount) {
  * @private
  */
 BuyTransaction.prototype.buyItem = function() {
+	this.totalCost = this.itemCost * this.buyAmount;
+	this.startingBalance = PlayerMoney.get(this.server, this.playerUuid);
+	if (this.totalCost > this.startingBalance) {
+		this.player.tell(Text.red("You are broke; get more money."));
+		this.cancel = true;
+		return;
+	}
+
 	this.server.runCommandSilent(`give ${this.player.username} ${this.mItem.getItemId()} ${this.buyAmount}`);
 
 	if (this.mItem.canHaveStock() && (!this.player.creative || !this.player.spectator)) {
 		StockManager.addToStock(this.server, this.mItem, -this.buyAmount);
 	}
 
-	this.totalCost = this.itemCost * this.buyAmount;
 	PlayerMoney.add(this.server, this.playerUuid, -this.totalCost);
 }
 
@@ -50,7 +58,7 @@ BuyTransaction.prototype.buyItem = function() {
 BuyTransaction.prototype.tellOutput = function() {
 	const totalCostString = MoneyManager.toDollarString(this.totalCost);
 	const itemCostString = MoneyManager.toDollarString(this.itemCost);
-	const oldBalanceString = MoneyManager.toDollarString(this.oldBalance);
+	const oldBalanceString = MoneyManager.toDollarString(this.startingBalance);
 	const newBalanceString = MoneyManager.toDollarString(PlayerMoney.get(this.server, this.playerUuid));
 
 	this.player.tell(
