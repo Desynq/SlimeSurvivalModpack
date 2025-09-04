@@ -13,10 +13,10 @@ PlayerEvents.tick(event => {
 		return;
 	}
 
-	let concatText = texts.join(" ");
+	let concatText = texts.join(",");
 
 	if (concatText.length > 0) {
-		server.runCommandSilent(`title ${player.username} actionbar ${concatText}`);
+		server.runCommandSilent(`title ${player.username} actionbar [${concatText}]`);
 	}
 
 	ActionbarManager.resetTexts(uuid);
