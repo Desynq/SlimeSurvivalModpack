@@ -6,4 +6,7 @@
 
 !patchouli_books/
 !patchouli_books/**
-.probe
+
+!config/
+!config/puffish_skills/
+!config/puffish_skills/**
