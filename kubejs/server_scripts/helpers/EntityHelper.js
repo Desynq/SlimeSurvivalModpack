@@ -31,3 +31,13 @@ EntityHelper.isInOverworld = function (entity) {
 EntityHelper.isInLowOrbit = function (entity) {
 	return EntityHelper.isInOverworld(entity) && entity.y >= 200;
 }
+
+
+/**
+ * 
+ * @param {$Entity_} entity
+ * @returns {string}
+ */
+EntityHelper.getScoreboardName = function(entity) {
+	return entity.username ?? entity.uuid.toString();
+}
