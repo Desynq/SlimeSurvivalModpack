@@ -4,7 +4,7 @@ ServerEvents.commandRegistry(event => {
 	const cachedPlayerArgument = $Commands.argument("target", $StringArgumentType.string())
 		.suggests((context, builder) => CustomArguments.suggestCachedPlayer(context, builder));
 
-	event.register(Commands.literal("balance")
+	const node = event.register(Commands.literal("balance")
 		.executes(context => {
 			tellSelfBalance(context.source.player);
 			return 1;
@@ -18,6 +18,8 @@ ServerEvents.commandRegistry(event => {
 			})
 		)
 	);
+
+	event.register(Commands.literal("bal").redirect(node));
 
 
 	/**
