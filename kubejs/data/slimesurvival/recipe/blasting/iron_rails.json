@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:blasting",
+	"ingredient": [
+		{
+			"item": "minecraft:rail"
+		},
+		{
+			"item": "minecraft:detector_rail"
+		},
+		{
+			"item": "minecraft:activator_rail"
+		}
+	],
+	"result": {
+		"id": "minecraft:iron_nugget"
+	},
+	"experience": 0.1
+}
