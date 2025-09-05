@@ -11,3 +11,8 @@ new MarketableItem("quartz", "minecraft:quartz")
 	.setCompoundingRate(0.2)
 	.setCompoundingPeriod(400)
 	.register();
+
+new MarketableItem("emerald", "minecraft:emerald")
+	.setSellPrice(10.00)
+	.setBuyPrice(50.00)
+	.register();
