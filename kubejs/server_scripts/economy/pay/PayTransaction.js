@@ -33,7 +33,7 @@ PayTransaction.prototype.checkEnoughMoney = function()
 {
 	const executorMoney = PlayerMoney.get(this.server, this.executorUuid);
 	if (executorMoney < this.amount) {
-		executor.tell(`You'll need ${MoneyManager.toDollarString(this.amount - executorMoney)} more to pay ${this.recipientUsername} ${MoneyManager.toDollarString(this.amount)}.`);
+		this.executor.tell(`You'll need ${MoneyManager.toDollarString(this.amount - executorMoney)} more to pay ${this.recipientUsername} ${MoneyManager.toDollarString(this.amount)}.`);
 		this.cancel();
 	}
 }
