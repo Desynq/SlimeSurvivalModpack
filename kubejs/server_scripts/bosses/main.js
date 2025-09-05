@@ -1,0 +1,37 @@
+const BOSSBAR_ID_DESYNQ = "slimesurvival:desynq"
+
+
+
+
+ServerEvents.tick(event => {
+});
+
+
+
+PlayerEvents.tick(event => {
+	const { player } = event;
+	if (player.tags.contains("boss")) {
+		bossTick(player);
+	}
+});
+
+/**
+ * 
+ * @param {$LivingEntity_} bossEntity
+ */
+function bossTick(bossEntity) {
+	const server = bossEntity.server;
+	const bossbarManager = server.customBossEvents;
+
+	const bossbarId = `boss:${bossEntity.uuid.toString()}`;
+	const scoreboardName = EntityHelper.getScoreboardName(bossEntity);
+
+	if (bossbarManager.get(bossbarId) == null) {
+		server.runCommandSilent(`bossbar add ${bossbarId} ""`);
+	}
+
+	server.runCommandSilent(`bossbar set ${bossbarId} max ${Math.ceil(bossEntity.maxHealth)}`);
+	server.runCommandSilent(`bossbar set ${bossbarId} value ${Math.floor(bossEntity.health)}`);
+	server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${scoreboardName}"},{"color":"gray","text":" ${bossEntity.health.toFixed(2)}/${bossEntity.maxHealth.toFixed(2)}"}]`);
+	server.runCommandSilent(`execute at ${scoreboardName} run bossbar set ${bossbarId} players @a[distance=0..]`);
+}
