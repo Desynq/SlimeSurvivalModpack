@@ -1,4 +1,3 @@
-let $LivingEvent$LivingJumpEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEvent$LivingJumpEvent");
 let $Player = Java.loadClass("net.minecraft.world.entity.player.Player");
 let $LivingBreatheEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingBreatheEvent");
 let $MobEffects = Java.loadClass("net.minecraft.world.effect.MobEffects");

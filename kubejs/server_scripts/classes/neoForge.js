@@ -6,3 +6,8 @@ const $EventPriority  = Java.loadClass("net.neoforged.bus.api.EventPriority")
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent").$LivingIncomingDamageEvent } */
 const $LivingIncomingDamageEvent  = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent")
+
+/**
+ * @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEvent$LivingJumpEvent").$LivingEvent$LivingJumpEvent}
+ */
+const $LivingEvent$LivingJumpEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEvent$LivingJumpEvent");
