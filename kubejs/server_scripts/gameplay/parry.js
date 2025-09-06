@@ -1,7 +1,5 @@
 /** @type {typeof import("net.minecraft.world.entity.LivingEntity").$LivingEntity } */
 let $LivingEntity  = Java.loadClass("net.minecraft.world.entity.LivingEntity")
-/** @type {typeof import("net.minecraft.world.phys.Vec3").$Vec3 } */
-let $Vec3  = Java.loadClass("net.minecraft.world.phys.Vec3")
 /** @type {typeof import("net.minecraft.world.entity.projectile.AbstractArrow").$AbstractArrow } */
 let $AbstractArrow  = Java.loadClass("net.minecraft.world.entity.projectile.AbstractArrow")
 /** @type {typeof import("net.neoforged.neoforge.event.entity.player.AttackEntityEvent").$AttackEntityEvent } */
@@ -68,10 +66,8 @@ function playerParried(player, damageEvent) {
 	}
 
 	const weaknessEffect = new $MobEffectInstance("minecraft:weakness", 60, 0, false, true, true);
-	const slownessEffect = new $MobEffectInstance("minecraft:slowness", 60, 1, false, true, true);
 	const blindnessEffect = new $MobEffectInstance("minecraft:blindness", 60, 0, false, true, true);
 	attacker.addEffect(weaknessEffect);
-	attacker.addEffect(slownessEffect);
 	attacker.addEffect(blindnessEffect);
 }
 
@@ -80,12 +76,10 @@ function playerParried(player, damageEvent) {
  * @param {import("net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent").$LivingIncomingDamageEvent$$Original} damageEvent
  */
 function playerParryWhiffed(player, damageEvent) {
-	const weaknessEffect = new $MobEffectInstance("minecraft:weakness", 60, 0, false, true, true);
-	const slownessEffect = new $MobEffectInstance("minecraft:slowness", 60, 1, false, true, true);
-	const blindnessEffect = new $MobEffectInstance("minecraft:blindness", 60, 0, false, true, true);
-	player.addEffect(weaknessEffect);
+	const miningFatigueEffect = new $MobEffectInstance("minecraft:mining_fatigue", 100, 1, false, true, true);
+	const slownessEffect = new $MobEffectInstance("minecraft:slowness", 100, 1, false, true, true);
+	player.addEffect(miningFatigueEffect);
 	player.addEffect(slownessEffect);
-	player.addEffect(blindnessEffect);
 }
 
 
