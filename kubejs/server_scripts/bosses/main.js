@@ -4,6 +4,12 @@ const BOSSBAR_ID_DESYNQ = "slimesurvival:desynq"
 
 
 ServerEvents.tick(event => {
+	pruneBossbars(event.server);
+	event.server.entities.forEach(entity => {
+		if (entity instanceof $LivingEntity && entity.tags.contains("boss")) {
+			bossTick(entity);
+		}
+	});
 });
 
 
@@ -14,6 +20,26 @@ PlayerEvents.tick(event => {
 		bossTick(player);
 	}
 });
+
+
+
+/**
+ * 
+ * @param {import("net.minecraft.server.MinecraftServer").$MinecraftServer$$Original} server 
+ */
+function pruneBossbars(server) {
+	const bossbarManager = server.customBossEvents;
+	const bossbars = bossbarManager.events;
+	bossbars.forEach(bossbar => {
+		let uuid = UUID.fromString(bossbar.textId.path);
+		let entity = server.getEntityByUUID(uuid);
+		if (entity == null) {
+			bossbar.removeAllPlayers();
+			bossbars.remove(bossbar);
+		}
+	});
+}
+
 
 /**
  * 
