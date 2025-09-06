@@ -1,4 +1,3 @@
-
 PlayerEvents.tick(event => Lockpicking.tick(event.player));
 
 const Lockpicking = {}

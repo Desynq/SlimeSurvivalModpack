@@ -1,3 +1,6 @@
+/** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
+let $BuiltInRegistries  = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
+
 /** @type {$CommandContext_<$CommandSourceStack_>} */
 SellTransaction.prototype.context = undefined;
 

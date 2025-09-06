@@ -1,7 +1,9 @@
+/** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
+let $AttributeModifier$Operation  = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
+
 let $Attribute = Java.loadClass("net.minecraft.world.entity.ai.attributes.Attribute");
 let $ItemAttributeModifiers$Entry = Java.loadClass("net.minecraft.world.item.component.ItemAttributeModifiers$Entry");
 let $ItemAttributeModifiers = Java.loadClass("net.minecraft.world.item.component.ItemAttributeModifiers");
-let $AttributeModifier$Operation = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation");
 let $EquipmentSlotGroup = Java.loadClass("net.minecraft.world.entity.EquipmentSlotGroup");
 const DualWieldMechanic = {};
 
@@ -10,7 +12,7 @@ const DualWieldMechanic = {};
 DualWieldMechanic.AVG_ATTACK_UUID = UUID.fromString("7f1c4f7b-1f6e-4b8c-9e3e-03b6b9a3e6b1");
 
 /**
- * @param {$ServerPlayer_} player
+ * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player
  */
 DualWieldMechanic.getMainhandAttackDamage = function(player) {
 	const stack = player.getMainHandItem();
