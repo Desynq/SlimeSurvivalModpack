@@ -43,6 +43,15 @@ ActionbarManager.addText = function (uuid, text) {
 }
 
 /**
+ * 
+ * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player 
+ * @param {string} text 
+ */
+ActionbarManager.addSimple = function (player, text) {
+	ActionbarManager.addText(player.uuid.toString(), `"${text}"`);
+}
+
+/**
  * @param {string} uuid 
  * @returns {string[]}
  */
