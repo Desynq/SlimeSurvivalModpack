@@ -2,9 +2,7 @@
 /.probe/
 /cache/
 
-/config/*
-!/config/puffish_skills/
-!/config/puffish_skills/**
+/config/
 
 /coremods/
 /crash-reports/
