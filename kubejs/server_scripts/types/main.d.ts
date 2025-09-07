@@ -1,0 +1,2 @@
+type $CommandContext = import("com.mojang.brigadier.context.CommandContext").$CommandContext$$Original<import("net.minecraft.commands.CommandSourceStack").$CommandSourceStack$$Original>;
+type $SuggestionsBuilder = import("com.mojang.brigadier.suggestion.SuggestionsBuilder").$SuggestionsBuilder$$Original;

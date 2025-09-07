@@ -1,0 +1,48 @@
+{
+    "typescript.tsserver.maxTsServerMemory": 8192,
+    "typescript.tsserver.nodePath": "C:/Program Files/nodejs/node.exe",
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/recipe_schemas/*.json"
+            ],
+            "url": "./.vscode/recipe.json"
+        }
+    ],
+    "files.exclude": {
+        ".mixin.out/": true,
+        ".probe/": true,
+        "cache/": true,
+        "config/": true,
+        "coremods/": true,
+        "crash-reports": true,
+        "data/": true,
+        "defaultconfigs/": true,
+        "Distant_Horizons_server_data/": true,
+        "downloads/": true,
+        "dynamic-data-pack-cache/": true,
+        "dynamic-resource-pack-cache/": true,
+        "ftbbackups3/": true,
+        "kiwipacks/": true,
+        "local/": true,
+        "logs/": true,
+        "mods/": true,
+        "resourcepacks/": true,
+        "saves/": true,
+        "screenshots/": true,
+        "server-resource-packs/": true,
+        "shaderpacks/": true,
+        "spark-modernfix/": true,
+        "texturepacks/": true,
+        "command_history.txt": true,
+        "icon.png": true,
+        "options.txt": true,
+        "patchouli_data.json": true,
+        "servers.dat": true,
+        "servers.dat_old": true,
+        "usercache.json": true,
+        "usernamecache.json": true
+    },
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "typescript.validate.enable": false,
+}
