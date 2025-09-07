@@ -10,6 +10,7 @@
     "lib": ["ES2017"],
 
     "strict": true,
+    "noImplicitAny": false,
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
@@ -19,6 +20,7 @@
 
     // Pull in only the useful ProbeJS declarations
     "../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
+    "../../.probe/server/generated-server/events.d.ts"
   ],
   "exclude": [
   ]
