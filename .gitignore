@@ -15,11 +15,13 @@
 /ftbbackups3/
 
 /kubejs/documentation/
+/kubejs/server_scripts/
 
 /kiwipacks/
 /local/
 /logs/
 /mods/
+/node_modules/
 /resourcepacks/
 /saves/
 /screenshots/
@@ -27,6 +29,9 @@
 /shaderpacks/
 /spark-modernfix/
 /texturepacks/
+
+
+
 /command_history.txt
 /icon.png
 /options.txt
@@ -35,6 +40,3 @@
 /servers.dat_old
 /usercache.json
 /usernamecache.json
-/.probe
-
-.probe

@@ -3,6 +3,9 @@
         "./**/*.js",
         "./**/*.ts"
     ],
+    "exclude": [
+        "./generated/**/*.js"
+    ],
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
