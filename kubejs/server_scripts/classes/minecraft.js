@@ -9,3 +9,9 @@ const $Vec3 = Java.loadClass("net.minecraft.world.phys.Vec3")
 
 /** @type {typeof import("net.minecraft.core.component.DataComponents").$DataComponents} */
 const $DataComponents = Java.loadClass("net.minecraft.core.component.DataComponents");
+
+/** @type {typeof import("net.minecraft.world.entity.player.Player").$Player} */
+const $Player = Java.loadClass("net.minecraft.world.entity.player.Player");
+
+/** @type {typeof import("net.minecraft.world.entity.LivingEntity").$LivingEntity} */
+const $LivingEntity = Java.loadClass("net.minecraft.world.entity.LivingEntity");
