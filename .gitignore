@@ -12,8 +12,13 @@
 /defaultconfigs/
 /Distant_Horizons_server_data/
 /downloads/
+/dynamic-data-pack-cache/
 /dynamic-resource-pack-cache/
 /ftbbackups3/
+
+/kubejs/documentation/
+
+/kiwipacks/
 /local/
 /logs/
 /mods/
@@ -33,3 +38,5 @@
 /usercache.json
 /usernamecache.json
 /.probe
+
+.probe
