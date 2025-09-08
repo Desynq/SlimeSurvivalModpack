@@ -19,7 +19,7 @@ ServerEvents.commandRegistry(event => {
 
 						const amount = Arguments.INTEGER.getResult(context, "amount");
 
-						new BuyTransaction(context.source.player, mItem, amount);
+						new BuyTransaction(context.source.getPlayer(), mItem, amount);
 						return 1;
 					})
 				)

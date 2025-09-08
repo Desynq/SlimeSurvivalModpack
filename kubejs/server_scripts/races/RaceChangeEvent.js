@@ -1,7 +1,6 @@
 
 /**
- * 
- * @param {import("net.minecraft.world.entity.player.Player").$Player$$Original} player 
+ * @param {Player} player 
  * @param {string} race 
  */
 function RaceChangeEvent(player, race) {

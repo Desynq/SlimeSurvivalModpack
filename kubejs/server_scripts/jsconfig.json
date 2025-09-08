@@ -3,9 +3,6 @@
         "./**/*.js",
         "./**/*.ts"
     ],
-    "exclude": [
-        "./generated/**/*.js"
-    ],
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
@@ -16,9 +13,12 @@
         "noEmit": true,
         "assumeChangesOnlyAffectDirectDependencies": true,
         "rootDir": ".",
-        "baseUrl": "../../.probe/packages",
+        "baseUrl": "../../.probe/",
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
+
+        "strictNullChecks": true,
+
         "lib": [
             "ES2015",
             "ES2016.Array.Include",

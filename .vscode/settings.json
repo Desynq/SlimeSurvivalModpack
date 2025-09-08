@@ -11,7 +11,7 @@
     ],
     "files.exclude": {
         ".mixin.out/": true,
-        ".probe/": true,
+        ".probe/": false,
         "cache/": true,
         "config/": true,
         "coremods/": true,
