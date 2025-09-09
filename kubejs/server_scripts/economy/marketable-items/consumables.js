@@ -5,3 +5,7 @@ new MarketableItem("experience_bottle", "minecraft:experience_bottle")
 new MarketableItem("arrow", "minecraft:arrow")
 	.setBuyPrice(3.00)
 	.register();
+
+new MarketableItem("unbreaking_tome", "slimesurvival:unbreaking_tome")
+	.setBuyPrice(2000.00)
+	.register();
