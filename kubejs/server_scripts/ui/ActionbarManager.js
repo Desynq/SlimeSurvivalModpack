@@ -1,25 +1,43 @@
+
+
 PlayerEvents.tick(event => {
 	const { player, server } = event;
-
 	const uuid = player.uuid.toString();
 
 	const texts = ActionbarManager.getTexts(uuid);
-
-	if (texts.length == 0) {
-		if (ActionbarManager.justReset[uuid]) {
-			server.runCommandSilent(`title ${player.username} actionbar ""`);
-			ActionbarManager.justReset[uuid] = false;
+	if (texts.length > 0) {
+		let concatText = texts.join(",\" \",");
+		if (concatText.length > 0) {
+			server.runCommandSilent(`title ${player.username} actionbar [${concatText}]`);
+		}
+		ActionbarManager.resetTexts(uuid);
+		// If non-delayed text is shown, just decrement delayed ticks if present
+		const delayed = ActionbarManager.delayedMessages[uuid];
+		if (delayed && delayed.ticks > 0) {
+			delayed.ticks--;
+			if (delayed.ticks === 0) {
+				delete ActionbarManager.delayedMessages[uuid];
+			}
 		}
 		return;
 	}
 
-	let concatText = texts.join(",\" \",");
-
-	if (concatText.length > 0) {
-		server.runCommandSilent(`title ${player.username} actionbar [${concatText}]`);
+	// Only show delayed text if no non-delayed texts
+	const delayed = ActionbarManager.delayedMessages[uuid];
+	if (delayed && delayed.ticks > 0) {
+		server.runCommandSilent(`title ${player.username} actionbar "${delayed.text}"`);
+		delayed.ticks--;
+		if (delayed.ticks === 0) {
+			delete ActionbarManager.delayedMessages[uuid];
+			server.runCommandSilent(`title ${player.username} actionbar ""`);
+		}
+		return;
 	}
 
-	ActionbarManager.resetTexts(uuid);
+	if (ActionbarManager.justReset[uuid]) {
+		server.runCommandSilent(`title ${player.username} actionbar ""`);
+		ActionbarManager.justReset[uuid] = false;
+	}
 });
 
 
@@ -33,13 +51,32 @@ ActionbarManager.playerComponents = {};
 /** @type {Object.<string, boolean>} */
 ActionbarManager.justReset = {};
 
+/** @type {Object.<string, {text: string, ticks: number}>} */
+ActionbarManager.delayedMessages = {};
 
 /**
- * @param {string} uuid 
+ * Displays simple text on the actionbar for a set delay in ticks
+ * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player
+ * @param {string} text
+ * @param {number} delay Number of ticks to display
+ */
+ActionbarManager.setSimple = function(player, text, delay) {
+	ActionbarManager.delayedMessages[player.uuid.toString()] = {
+		text: text,
+		ticks: delay
+	};
+};
+
+
+/**
+ * @param {string | Player} arg0 string UUID or a player
  * @param {string} text must be a JSON component
  */
-ActionbarManager.addText = function (uuid, text) {
-	ObjectHelper.getOrCreateArray(ActionbarManager.playerComponents, uuid).push(text);
+ActionbarManager.addText = function(arg0, text) {
+	if (arg0 instanceof $Player) {
+		arg0 = arg0.uuid.toString();
+	}
+	ObjectHelper.getOrCreateArray(ActionbarManager.playerComponents, arg0).push(text);
 }
 
 /**
@@ -47,7 +84,7 @@ ActionbarManager.addText = function (uuid, text) {
  * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player 
  * @param {string} text 
  */
-ActionbarManager.addSimple = function (player, text) {
+ActionbarManager.addSimple = function(player, text) {
 	ActionbarManager.addText(player.uuid.toString(), `"${text}"`);
 }
 
@@ -55,11 +92,11 @@ ActionbarManager.addSimple = function (player, text) {
  * @param {string} uuid 
  * @returns {string[]}
  */
-ActionbarManager.getTexts = function (uuid) {
+ActionbarManager.getTexts = function(uuid) {
 	return ObjectHelper.getOrCreateArray(ActionbarManager.playerComponents, uuid);
 }
 
-ActionbarManager.resetTexts = function (uuid) {
+ActionbarManager.resetTexts = function(uuid) {
 	ObjectHelper.getOrCreateArray(ActionbarManager.playerComponents, uuid).length = 0;
 	ActionbarManager.justReset[uuid] = true;
 }
