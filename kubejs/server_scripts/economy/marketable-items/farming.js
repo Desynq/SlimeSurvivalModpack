@@ -1,12 +1,12 @@
 //priority: 100
 new MarketableItem("carrot", "minecraft:carrot")
-	.setSellPrice(0.20)
+	.setSellPrice(0.25)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(5000)
 	.register();
 
 new MarketableItem("baked_potato", "minecraft:baked_potato")
-	.setSellPrice(0.50)
+	.setSellPrice(1.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(10000)
 	.register();
