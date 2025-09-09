@@ -11,7 +11,7 @@
     ],
     "files.exclude": {
         ".mixin.out/": true,
-        ".probe/": false,
+        ".probe/": true,
         "cache/": true,
         "config/": true,
         "coremods/": true,
@@ -34,6 +34,8 @@
         "shaderpacks/": true,
         "spark-modernfix/": true,
         "texturepacks/": true,
+        "xaero/": true,
+        "XaeroWaypoints_BACKUP*/": true,
         "command_history.txt": true,
         "icon.png": true,
         "options.txt": true,
