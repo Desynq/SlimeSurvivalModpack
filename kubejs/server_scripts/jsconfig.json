@@ -13,12 +13,10 @@
         "noEmit": true,
         "assumeChangesOnlyAffectDirectDependencies": true,
         "rootDir": ".",
-        "baseUrl": "../../.probe/",
+        "baseUrl": "../../.probe/packages",
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
-
         "strictNullChecks": true,
-
         "lib": [
             "ES2015",
             "ES2016.Array.Include",

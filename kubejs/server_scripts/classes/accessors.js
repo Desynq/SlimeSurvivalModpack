@@ -1,5 +1,7 @@
 // net.minecraft.nbt
 const $Tag = Java.loadClass("net.minecraft.nbt.Tag");
+
+/** @type {typeof import("net.minecraft.nbt.CompoundTag").$CompoundTag} */
 const $CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
 const $StringTag = Java.loadClass('net.minecraft.nbt.StringTag');
 const $ListTag = Java.loadClass("net.minecraft.nbt.ListTag");
@@ -20,5 +22,9 @@ const $MobEffectInstance = Java.loadClass("net.minecraft.world.effect.MobEffectI
 
 
 const $StringArgumentType = Java.loadClass("com.mojang.brigadier.arguments.StringArgumentType");
+
+/** @type {typeof import("net.minecraft.commands.Commands").$Commands} */
 const $Commands = Java.loadClass("net.minecraft.commands.Commands");
+
+/** @type {typeof import("dev.latvian.mods.kubejs.command.ArgumentTypeWrappers").$ArgumentTypeWrappers} */
 const $Arguments = Java.loadClass("dev.latvian.mods.kubejs.command.ArgumentTypeWrappers");

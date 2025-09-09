@@ -1,5 +1,5 @@
 {
-    "typescript.tsserver.maxTsServerMemory": 8192,
+    "typescript.tsserver.maxTsServerMemory": 4096,
     "typescript.tsserver.nodePath": "C:/Program Files/nodejs/node.exe",
     "json.schemas": [
         {
@@ -47,4 +47,5 @@
     },
     "typescript.disableAutomaticTypeAcquisition": true,
     "typescript.validate.enable": false,
+    "typescript.surveys.enabled": false
 }
