@@ -1,5 +1,5 @@
 
-const Races = (function () {
+const Races = (function() {
 	/** @type {Race[]} */
 	const INSTANCES = [];
 
@@ -37,6 +37,7 @@ const Races = (function () {
 	return {
 		HUMAN: HUMAN,
 		SLUDGE: SLUDGE,
+		FARLANDER: FARLANDER,
 		getRaces: getRaces,
 		getDefaultRace: getDefaultRace,
 		fromId: fromId
