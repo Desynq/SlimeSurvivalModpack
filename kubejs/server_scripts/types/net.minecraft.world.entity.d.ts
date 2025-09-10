@@ -9,3 +9,7 @@ type LivingEntity = import("net.minecraft.world.entity.LivingEntity").$LivingEnt
 type Entity = import("net.minecraft.world.entity.Entity").$Entity$$Original;
 
 type ItemStack = import("net.minecraft.world.item.ItemStack").$ItemStack$$Original;
+
+type SuggestionsBuilder = import("com.mojang.brigadier.suggestion.SuggestionsBuilder").$SuggestionsBuilder$$Original;
+
+type CommandExecutionContext = import("com.mojang.brigadier.context.CommandContext").$CommandContext$$Original<import("net.minecraft.commands.CommandSourceStack").$CommandSourceStack$$Original>;
