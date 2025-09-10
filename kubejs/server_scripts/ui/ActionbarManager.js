@@ -89,6 +89,17 @@ ActionbarManager.addSimple = function(player, text) {
 }
 
 /**
+ * 
+ * @param {MinecraftServer} server 
+ * @param {string} text 
+ */
+ActionbarManager.addDebug = function(server, text) {
+	server.playerList.players.stream().filter(player => player.hasPermissions(2)).forEach(player => {
+		ActionbarManager.addSimple(player, text);
+	});
+}
+
+/**
  * @param {string} uuid 
  * @returns {string[]}
  */
