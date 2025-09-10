@@ -7,3 +7,5 @@ type ItemEntity = import("net.minecraft.world.entity.item.ItemEntity").$ItemEnti
 type LivingEntity = import("net.minecraft.world.entity.LivingEntity").$LivingEntity$$Original;
 
 type Entity = import("net.minecraft.world.entity.Entity").$Entity$$Original;
+
+type ItemStack = import("net.minecraft.world.item.ItemStack").$ItemStack$$Original;
