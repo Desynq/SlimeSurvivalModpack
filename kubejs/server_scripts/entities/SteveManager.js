@@ -1,12 +1,26 @@
 /** @type {typeof import("net.minecraft.world.entity.monster.Creeper").$Creeper } */
-let $Creeper  = Java.loadClass("net.minecraft.world.entity.monster.Creeper")
+let $Creeper = Java.loadClass("net.minecraft.world.entity.monster.Creeper")
 /** @type {typeof import("net.minecraft.world.entity.ai.targeting.TargetingConditions").$TargetingConditions } */
-let $TargetingConditions  = Java.loadClass("net.minecraft.world.entity.ai.targeting.TargetingConditions")
-ServerEvents.tick(event => SteveManager.tick(event.server));
+let $TargetingConditions = Java.loadClass("net.minecraft.world.entity.ai.targeting.TargetingConditions")
+ServerEvents.tick(event => SteveManager.allTick(event.server));
 
 const SteveManager = {};
 
-SteveManager.username = "Steve";
+const BOT_USERNAMES = ["Steve", "Alex", "Bot0", "Bot1", "Bot2", "Bot3", "Bot4", "Bot5", "Bot5", "Bot6", "Bot7", "Bot8", "Bot9"];
+
+/**
+ * 
+ * @param {MinecraftServer} server 
+ */
+SteveManager.allTick = function(server) {
+	BOT_USERNAMES.forEach(username => {
+		SteveManager.username = username;
+		SteveManager.tick(server)
+	});
+}
+
+/** @type {string} */
+SteveManager.username;
 
 
 /**
@@ -64,6 +78,9 @@ SteveManager.canTarget = function(entity) {
 	const player = entity instanceof $ServerPlayer ? entity : null;
 	if (!player) {
 		return !(entity instanceof $Creeper)
+	}
+	if (BOT_USERNAMES.map(x => x.toLowerCase()).indexOf(player.username.toLowerCase()) !== -1) {
+		return false;
 	}
 	return PlayerHelper.isSurvivalLike(player);
 }
