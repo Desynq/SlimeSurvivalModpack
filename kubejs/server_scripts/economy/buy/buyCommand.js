@@ -1,10 +1,12 @@
-let $IntegerArgumentType = Java.loadClass("com.mojang.brigadier.arguments.IntegerArgumentType");
+/** @type {typeof import("com.mojang.brigadier.arguments.IntegerArgumentType").$IntegerArgumentType } */
+let $IntegerArgumentType = Java.loadClass("com.mojang.brigadier.arguments.IntegerArgumentType")
+
 
 ServerEvents.commandRegistry(event => {
 	const { commands: Commands, arguments: Arguments } = event;
 
 	const itemArgument = Commands.argument("item", Arguments.STRING.create(event))
-		.suggests((context, builder) => suggestSellableItem(builder));
+		.suggests((context, builder) => suggestBuyableItem(context, builder));
 
 	const amountArgument = Commands.argument("amount", $IntegerArgumentType.integer(1))
 		.suggests((context, builder) => suggestAmount(builder));
@@ -13,36 +15,43 @@ ServerEvents.commandRegistry(event => {
 		.then(Commands.literal("item")
 			.then(itemArgument
 				.then(amountArgument
-					.executes(context => {
-						const itemName = Arguments.STRING.getResult(context, "item");
-						const mItem = MarketableItem.fromName(itemName);
-
-						const amount = Arguments.INTEGER.getResult(context, "amount");
-
-						new BuyTransaction(context.source.getPlayer(), mItem, amount);
-						return 1;
-					})
+					.executes(context => resolveBuyTransaction(context))
 				)
+				.executes(context => resolveBuyTransaction(context))
 			)
 		)
 	);
 
 
-
 	/**
-	 * @param {$CommandContext_<$CommandSourceStack_>} context
-	 * @param {$SuggestionsBuilder_} builder
+	 * 
+	 * @param {CommandExecutionContext} context 
 	 */
-	function suggestSellableItem(builder) {
-		const sellableItems = MarketableItem.getBuyableItems();
-		for (let item of sellableItems) {
-			builder.suggest(`${item.getName()}`);
+	function resolveBuyTransaction(context) {
+		const itemName = Arguments.STRING.getResult(context, "item");
+		const mItem = MarketableItem.fromName(itemName);
+
+		let amount = 1;
+		try {
+			amount = Arguments.INTEGER.getResult(context, "amount");
 		}
-		return builder.buildFuture();
+		catch (error) { }
+
+		new BuyTransaction(context.source.getPlayer(), mItem, amount);
+		return amount;
 	}
 
 	/**
-	 * @param {$SuggestionsBuilder_} builder
+	 * @param {CommandExecutionContext} context
+	 * @param {SuggestionsBuilder} builder
+	 */
+	function suggestBuyableItem(context, builder) {
+		const buyableItemNames = MarketableItem.getBuyableItems().map(item => item.getName());
+		return CommandHelper.getNarrowedSuggestions(builder, buyableItemNames).buildFuture();
+	}
+
+	/**
+	 * @param {SuggestionsBuilder} builder
 	 */
 	function suggestAmount(builder) {
 		builder.suggest("1");

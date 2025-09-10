@@ -14,7 +14,23 @@ const CommandHelper = (function() {
 		server.runCommandSilent(command);
 	}
 
+	/**
+	 * 
+	 * @param {SuggestionsBuilder} builder 
+	 * @param {string[]} array 
+	 */
+	function getNarrowedSuggestions(builder, array) {
+		const remaining = builder.getRemaining().toLowerCase();
+		array.forEach(name => {
+			if (name.toLowerCase().startsWith(remaining)) {
+				builder.suggest(name);
+			}
+		});
+		return builder;
+	}
+
 	return {
-		runCommandSilent: runCommandSilent
+		runCommandSilent: runCommandSilent,
+		getNarrowedSuggestions: getNarrowedSuggestions
 	}
 })();
