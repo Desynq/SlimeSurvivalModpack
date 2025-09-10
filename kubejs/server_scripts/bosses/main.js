@@ -43,21 +43,24 @@ function pruneBossbars(server) {
 
 /**
  * 
- * @param {$LivingEntity_} bossEntity
+ * @param {LivingEntity} boss
  */
-function bossTick(bossEntity) {
-	const server = bossEntity.server;
+function bossTick(boss) {
+	if (boss.tags.contains("boss.tenuem")) {
+		TenuemBoss.tick(boss);
+	}
+
+	const server = boss.server;
 	const bossbarManager = server.customBossEvents;
 
-	const bossbarId = `boss:${bossEntity.uuid.toString()}`;
-	const scoreboardName = EntityHelper.getScoreboardName(bossEntity);
+	const bossbarId = `boss:${boss.uuid.toString()}`;
 
 	if (bossbarManager.get(bossbarId) == null) {
 		server.runCommandSilent(`bossbar add ${bossbarId} ""`);
 	}
 
-	server.runCommandSilent(`bossbar set ${bossbarId} max ${Math.ceil(bossEntity.maxHealth)}`);
-	server.runCommandSilent(`bossbar set ${bossbarId} value ${Math.floor(bossEntity.health)}`);
-	server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${scoreboardName}"},{"color":"gray","text":" ${bossEntity.health.toFixed(2)}/${bossEntity.maxHealth.toFixed(2)}"}]`);
-	server.runCommandSilent(`execute at ${scoreboardName} run bossbar set ${bossbarId} players @a[distance=0..]`);
+	server.runCommandSilent(`bossbar set ${bossbarId} max ${Math.ceil(boss.maxHealth)}`);
+	server.runCommandSilent(`bossbar set ${bossbarId} value ${Math.floor(boss.health)}`);
+	server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${boss.username}"},{"color":"gray","text":" ${boss.health.toFixed(2)}/${boss.maxHealth.toFixed(2)}"}]`);
+	server.runCommandSilent(`execute at ${boss.username} run bossbar set ${bossbarId} players @a[distance=0..]`);
 }

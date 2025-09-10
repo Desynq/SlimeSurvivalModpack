@@ -9,7 +9,7 @@ const EntityHelper = {}
  * @param {string} dimension 
  * @returns {boolean}
  */
-EntityHelper.isInDimension = function (entity, dimension) {
+EntityHelper.isInDimension = function(entity, dimension) {
 	return entity.level.dimension.toString() == dimension;
 }
 
@@ -18,7 +18,7 @@ EntityHelper.isInDimension = function (entity, dimension) {
  * @param {$Entity_} entity 
  * @returns {boolean}
  */
-EntityHelper.isInOverworld = function (entity) {
+EntityHelper.isInOverworld = function(entity) {
 	return EntityHelper.isInDimension(entity, "minecraft:overworld");
 }
 
@@ -28,16 +28,6 @@ EntityHelper.isInOverworld = function (entity) {
  * @param {$Entity_} entity
  * @returns {boolean}
  */
-EntityHelper.isInLowOrbit = function (entity) {
+EntityHelper.isInLowOrbit = function(entity) {
 	return EntityHelper.isInOverworld(entity) && entity.y >= 200;
-}
-
-
-/**
- * 
- * @param {$Entity_} entity
- * @returns {string}
- */
-EntityHelper.getScoreboardName = function(entity) {
-	return entity.username ?? entity.uuid.toString();
 }
