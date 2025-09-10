@@ -6,7 +6,7 @@ const $CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
 const $StringTag = Java.loadClass('net.minecraft.nbt.StringTag');
 const $ListTag = Java.loadClass("net.minecraft.nbt.ListTag");
 
-
+/** @type {typeof import("net.minecraft.world.level.GameRules").$GameRules} */
 const $GameRules = Java.loadClass("net.minecraft.world.level.GameRules");
 
 
