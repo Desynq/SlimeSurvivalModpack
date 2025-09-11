@@ -13,3 +13,5 @@ type ItemStack = import("net.minecraft.world.item.ItemStack").$ItemStack$$Origin
 type SuggestionsBuilder = import("com.mojang.brigadier.suggestion.SuggestionsBuilder").$SuggestionsBuilder$$Original;
 
 type CommandExecutionContext = import("com.mojang.brigadier.context.CommandContext").$CommandContext$$Original<import("net.minecraft.commands.CommandSourceStack").$CommandSourceStack$$Original>;
+
+type CommandSourceStack = import("net.minecraft.commands.CommandSourceStack").$CommandSourceStack$$Original;
