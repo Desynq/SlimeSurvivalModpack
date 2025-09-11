@@ -44,7 +44,7 @@ PlayerRaceHelper.hasRace = function(player) {
  * @returns {RaceSwitchResult}
  */
 PlayerRaceHelper.canSwitchRaceFrom = function(player, currentRace) {
-	if (!PlayerHelper.isOperator(player) && currentRace !== Races.defaultRace()) {
+	if (currentRace !== Races.defaultRace()) {
 		return { success: false, code: "CANNOT_SWITCH_RACE" }
 	}
 	return { success: true, code: "SUCCESS" }
@@ -60,14 +60,14 @@ PlayerRaceHelper.canSwitchRaceFrom = function(player, currentRace) {
  * Checks to see whether the player can change their race and emits side effects
  * @param {Player} player 
  * @param {Race} chosenRace 
- * @param {boolean?} setByOperator
+ * @param {boolean} [setByOperator]
  * @returns {RaceSwitchResult}
  */
 PlayerRaceHelper.chooseRace = function(player, chosenRace, setByOperator) {
 	const currentRace = this.getRace(player);
-	let canSwitch = this.canSwitchRaceFrom(player, currentRace);
-	if (!setByOperator && !canSwitch.success) {
-		return canSwitch;
+	let canSwitchResult = PlayerRaceHelper.canSwitchRaceFrom(player, currentRace);
+	if (!setByOperator && !canSwitchResult.success) {
+		return canSwitchResult;
 	}
 	if (currentRace === chosenRace) {
 		return { success: false, code: "ALREADY_THIS_RACE" }

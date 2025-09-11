@@ -1,10 +1,6 @@
 EntityEvents.beforeHurt("minecraft:player", event => {
 	const player = event.player;
 
-	if (!PlayerRaceHelper.isRace(player, Races.FARLANDER)) {
-		return;
-	}
-
 	if (!PlayerRaceSkillHelper.hasSkill(player, FarlanderSkills.QuantumUncertainty)) {
 		return;
 	}

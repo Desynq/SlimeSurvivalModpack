@@ -10,16 +10,45 @@
 		"description": [
 			{
 				"color": "gray",
-				"text": "You cannot extinguish yourself by waiting out the fire."
+				"text": "Your oily skin makes you burn forever when lit on fire until you extinguish yourself or die."
 			}
 		],
 		"rewards": [
 			{
 				"type": "puffish_skills:tag",
 				"data": {
-					"tag": "skill.sludge.flammable"
+					"tag": "trait.flammable"
 				}
 			}
-		]
+		],
+		"metadata": {
+			"icon": "71y9endpj2zkblrg"
+		}
+	},
+	"slimeproof": {
+		"title": "Slimeproof",
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:slime_block"
+			}
+		},
+		"description": [
+			{
+				"color": "gray",
+				"text": "Your similar body chemistry to that of slimes makes you immune to their acidic properties when making contact. Slimes will still target you, however, for *different* reasons."
+			}
+		],
+		"rewards": [
+			{
+				"type": "puffish_skills:tag",
+				"data": {
+					"tag": "trait.slimeproof"
+				}
+			}
+		],
+		"metadata": {
+			"icon": "92wfba9vlwhjp6gk"
+		}
 	}
 }

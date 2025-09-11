@@ -5,8 +5,8 @@ const PlayerRaceSkillHelper = {};
  * @param {Skill} skill
  */
 PlayerRaceSkillHelper.hasSkill = function(player, skill) {
-	const tagId = skill.getTagId();
-	return player.tags.contains(tagId);
+	const traitId = skill.getTraitId();
+	return player.tags.contains(traitId);
 }
 
 

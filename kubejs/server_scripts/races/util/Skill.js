@@ -3,12 +3,12 @@
 /**
  * 
  * @param {string} skillId 
- * @param {string} tagId 
+ * @param {string} traitId 
  * @param {boolean?} isDefault
  */
-function Skill(skillId, tagId, isDefault) {
+function Skill(skillId, traitId, isDefault) {
 	this.skillId = skillId;
-	this.tagId = tagId;
+	this.traitId = traitId;
 	this.default = typeof isDefault === 'boolean' ? isDefault : false;
 }
 
@@ -16,8 +16,8 @@ Skill.prototype.getId = function() {
 	return this.skillId;
 }
 
-Skill.prototype.getTagId = function() {
-	return this.tagId;
+Skill.prototype.getTraitId = function() {
+	return this.traitId;
 }
 
 Skill.prototype.isDefault = function() {

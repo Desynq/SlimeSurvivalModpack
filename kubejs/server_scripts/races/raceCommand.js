@@ -71,7 +71,7 @@ ServerEvents.commandRegistry(event => {
 				player.tell(Text.red("You are already this race."));
 				break;
 			case "CANNOT_SWITCH_RACE":
-				player.tell(Text.red(`You cannot switch races unless your race is ${Races.defaultRace().getRaceId()} or you're an operator.`));
+				player.tell(Text.red(`You cannot choose a different race unless your race is ${Races.defaultRace().getRaceId()}.`));
 				break;
 			case "SUCCESS":
 				player.tell(Text.green(`Successfully chose ${race.getRaceId()} race.`));
