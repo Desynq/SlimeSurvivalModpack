@@ -1,21 +1,22 @@
+// @ts-nocheck
 /** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
-let $BuiltInRegistries  = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
+let $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
 /** @type {typeof import("java.util.function.BiConsumer").$BiConsumer } */
-let $BiConsumer  = Java.loadClass("java.util.function.BiConsumer")
+let $BiConsumer = Java.loadClass("java.util.function.BiConsumer")
 /** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
-let $AttributeModifier$Operation  = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
+let $AttributeModifier$Operation = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
 /** @type {typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type } */
-let $EquipmentSlot$Type  = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type")
+let $EquipmentSlot$Type = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type")
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent } */
-let $ArmorHurtEvent  = Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent")
+let $ArmorHurtEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent")
 /** @type {typeof import("net.minecraft.world.item.ArmorMaterials").$ArmorMaterials } */
-let $ArmorMaterials  = Java.loadClass("net.minecraft.world.item.ArmorMaterials")
+let $ArmorMaterials = Java.loadClass("net.minecraft.world.item.ArmorMaterials")
 /** @type {typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem } */
-let $ArmorItem  = Java.loadClass("net.minecraft.world.item.ArmorItem")
+let $ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem")
 /** @type {typeof import("net.minecraft.server.level.ServerPlayer").$ServerPlayer } */
-let $ServerPlayer  = Java.loadClass("net.minecraft.server.level.ServerPlayer")
+let $ServerPlayer = Java.loadClass("net.minecraft.server.level.ServerPlayer")
 /** @type {typeof import("net.minecraft.world.item.ItemStack").$ItemStack } */
-let $ItemStack  = Java.loadClass("net.minecraft.world.item.ItemStack")
+let $ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack")
 
 NativeEvents.onEvent($ArmorHurtEvent, event => {
 	const player = event.entity instanceof $ServerPlayer ? event.entity : null;
