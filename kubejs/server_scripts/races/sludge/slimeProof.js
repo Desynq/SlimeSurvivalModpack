@@ -2,12 +2,12 @@
 let $Slime = Java.loadClass("net.minecraft.world.entity.monster.Slime")
 
 NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
-	const player = event.entity instanceof $Player ? event.entity : null;
+	const player = event.entity instanceof $ServerPlayer ? event.entity : null;
 	if (player == null) {
 		return;
 	}
 
-	if (!PlayerRaceSkillHelper.hasSkill(player, SludgeSkills.SlimeProof)) {
+	if (!SkillHelper.hasSkill(player, Races.SLUDGE.getSkillCategoryId(), SludgeSkills.Flammable.getId())) {
 		return;
 	}
 
