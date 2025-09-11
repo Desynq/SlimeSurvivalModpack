@@ -11,7 +11,7 @@ const Races = (function() {
 		return INSTANCES;
 	}
 
-	function getDefaultRace() {
+	function defaultRace() {
 		const race = INSTANCES.find(race => race.isDefault());
 		if (race === undefined) {
 			throw new Error("No default race has been registered.");
@@ -39,7 +39,7 @@ const Races = (function() {
 		SLUDGE: SLUDGE,
 		FARLANDER: FARLANDER,
 		getRaces: getRaces,
-		getDefaultRace: getDefaultRace,
+		defaultRace: defaultRace,
 		fromId: fromId
 	}
 })();

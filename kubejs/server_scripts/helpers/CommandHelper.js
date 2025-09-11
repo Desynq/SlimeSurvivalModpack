@@ -5,7 +5,7 @@ const CommandHelper = (function() {
 	 * 
 	 * @param {MinecraftServer} server 
 	 * @param {string} command 
-	 * @param {boolean?} debug
+	 * @param {boolean} [debug]
 	 */
 	function runCommandSilent(server, command, debug) {
 		if (debug) {

@@ -13,11 +13,10 @@ EntityEvents.beforeHurt("minecraft:player", event => {
 		return;
 	}
 	const newAbsorptionValue = player.absorptionAmount - event.damage;
-	player.absorptionAmount -= event.damage; // absorptionAmount gets clamped between 0 and maxAbsorption
+	player.setAbsorptionAmount(newAbsorptionValue);
 	const postAbsorptionDamage = -Math.min(newAbsorptionValue, 0);
 
 	PlayerEntropy.addEntropy(player, postAbsorptionDamage);
-	player.tell(postAbsorptionDamage);
 	event.setDamage(0);
 });
 

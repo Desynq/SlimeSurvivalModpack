@@ -1,0 +1,11 @@
+{
+	"title": "Farlander",
+	"icon": {
+		"type": "item",
+		"data": {
+			"item": "minecraft:echo_shard"
+		}
+	},
+	"background": "textures/gui/advancements/backgrounds/end.png",
+	"unlocked_by_default": false
+}

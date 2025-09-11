@@ -1,0 +1,25 @@
+{
+	"flammable": {
+		"title": "Flammable",
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:flint_and_steel"
+			}
+		},
+		"description": [
+			{
+				"color": "gray",
+				"text": "You cannot extinguish yourself by waiting out the fire."
+			}
+		],
+		"rewards": [
+			{
+				"type": "puffish_skills:tag",
+				"data": {
+					"tag": "skill.sludge.flammable"
+				}
+			}
+		]
+	}
+}

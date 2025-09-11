@@ -1,0 +1,33 @@
+{
+	"quantum_uncertainty": {
+		"title": "Quantum Uncertainty",
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:bad_omen"
+			}
+		},
+		"description": [
+			{
+				"color": "gray",
+				"text": "Damage taken is converted to entropy and applied over time"
+			},
+			{
+				"color": "yellow",
+				"text": "\nPress [Left Shift] to see advanced information"
+			}
+		],
+		"extra_description": {
+			"color": "aqua",
+			"text": "\nEntropy is not "
+		},
+		"rewards": [
+			{
+				"type": "puffish_skills:tag",
+				"data": {
+					"tag": "skill.farlander.quantum_uncertainty"
+				}
+			}
+		]
+	}
+}

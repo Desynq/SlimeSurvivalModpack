@@ -1,15 +1,13 @@
 
 /**
  * @param {Player} player 
- * @param {string} race 
+ * @param {Race} race 
  */
 function RaceChangeEvent(player, race) {
 	this.player = player;
 	this.race = race;
 
-	this.resetSkills();
-}
-
-RaceChangeEvent.prototype.resetSkills = function() {
-
+	PlayerRaceSkillHelper.eraseOtherRaceSkillCategories(player, race);
+	PlayerRaceSkillHelper.unlockCategory(player, race.getSkillCategoryId());
+	PlayerRaceSkillHelper.unlockDefaultRaceSkills(player, race);
 }

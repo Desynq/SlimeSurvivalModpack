@@ -4,9 +4,21 @@ const PlayerRaceHelper = {}
  * @param {Player} player 
  */
 PlayerRaceHelper.getRace = function(player) {
-	const raceId = player.persistentData.getString("race");
-	const race = Races.fromId(raceId) ?? Races.getDefaultRace();
+	const raceId = player.server.persistentData.getCompound("player_races").getString(player.stringUUID);
+	const race = Races.fromId(raceId) ?? Races.defaultRace();
 	return race;
+}
+
+/**
+ * 
+ * @param {Player} player 
+ * @param {Race} race 
+ */
+PlayerRaceHelper.setRace = function(player, race) {
+	ServerDataHelper.modifyCompoundTag(player.server, "player_races", (map) => {
+		map.putString(player.stringUUID, race.getRaceId())
+	});
+	new RaceChangeEvent(player, race);
 }
 
 /**
@@ -23,49 +35,44 @@ PlayerRaceHelper.isRace = function(player, race) {
  */
 PlayerRaceHelper.hasRace = function(player) {
 	const race = this.getRace(player);
-	return race !== undefined && race !== Races.getDefaultRace();
-}
-
-/**
- * 
- * @param {Player} player 
- * @param {Race} race 
- */
-PlayerRaceHelper.setRace = function(player, race) {
-	player.persistentData.putString("race", race.getRaceId());
-	new RaceChangeEvent(player, race);
+	return race !== undefined && race !== Races.defaultRace();
 }
 
 /**
  * @param {Player} player 
  * @param {Race} currentRace
+ * @returns {RaceSwitchResult}
  */
 PlayerRaceHelper.canSwitchRaceFrom = function(player, currentRace) {
-	if (!PlayerHelper.isOperator(player) && currentRace !== Races.getDefaultRace()) {
-		return {
-			allowed: false,
-			reason: Text.red(`You must be an operator or have your race as ${Races.getDefaultRace().getRaceId()} in order to switch races`)
-		};
+	if (!PlayerHelper.isOperator(player) && currentRace !== Races.defaultRace()) {
+		return { success: false, code: "CANNOT_SWITCH_RACE" }
 	}
-	return { allowed: true }
+	return { success: true, code: "SUCCESS" }
 }
+
+/**
+ * @typedef {Object} RaceSwitchResult
+ * @property {boolean} success
+ * @property {"CANNOT_SWITCH_RACE" | "ALREADY_THIS_RACE" | "SUCCESS"} code
+ */
 
 /**
  * Checks to see whether the player can change their race and emits side effects
  * @param {Player} player 
  * @param {Race} chosenRace 
- * @param {boolean?} override
+ * @param {boolean?} setByOperator
+ * @returns {RaceSwitchResult}
  */
-PlayerRaceHelper.chooseRace = function(player, chosenRace, override) {
+PlayerRaceHelper.chooseRace = function(player, chosenRace, setByOperator) {
 	const currentRace = this.getRace(player);
 	let canSwitch = this.canSwitchRaceFrom(player, currentRace);
-	if (!override && !canSwitch.allowed) {
-		return canSwitch.reason;
+	if (!setByOperator && !canSwitch.success) {
+		return canSwitch;
 	}
 	if (currentRace === chosenRace) {
-		return Text.red("You already are this race");
+		return { success: false, code: "ALREADY_THIS_RACE" }
 	}
 
 	this.setRace(player, chosenRace);
-	return Text.green(`You are now a ${chosenRace.getRaceId()}`);
+	return { success: true, code: "SUCCESS" }
 }
