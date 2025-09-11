@@ -1,9 +1,10 @@
+// @ts-nocheck
 /** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
-let $AttributeModifier$Operation  = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
+let $AttributeModifier$Operation = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
 /** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier").$AttributeModifier } */
-let $AttributeModifier  = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier")
+let $AttributeModifier = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier")
 /** @type {typeof import("net.minecraft.world.entity.EquipmentSlot").$EquipmentSlot } */
-let $EquipmentSlot  = Java.loadClass("net.minecraft.world.entity.EquipmentSlot")
+let $EquipmentSlot = Java.loadClass("net.minecraft.world.entity.EquipmentSlot")
 const LeatherArmorValueTweak = {};
 
 LeatherArmorValueTweak.modifierId = $ResourceLocation.parse("slimesurvival:leather_armor_tweak");
