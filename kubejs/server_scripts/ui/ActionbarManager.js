@@ -80,7 +80,7 @@ ActionbarManager.addText = function(arg0, text) {
 }
 
 /**
- * 
+ * Adds quotes around the text so you don't have to.
  * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player 
  * @param {string} text 
  */
