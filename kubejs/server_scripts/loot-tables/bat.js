@@ -1,3 +1,4 @@
+// @ts-nocheck
 LootJS.modifiers(event => {
 	event
 		.addTableModifier("minecraft:entities/bat")

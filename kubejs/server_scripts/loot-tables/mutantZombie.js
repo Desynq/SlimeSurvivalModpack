@@ -1,3 +1,4 @@
+// @ts-nocheck
 LootJS.modifiers(event => {
 	event
 		.addTableModifier("mutantmonsters:entities/mutant_zombie")
