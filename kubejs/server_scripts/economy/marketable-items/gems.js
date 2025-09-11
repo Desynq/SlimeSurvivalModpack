@@ -19,5 +19,5 @@ new MarketableItem("emerald", "minecraft:emerald")
 
 new MarketableItem("lapis", "minecraft:lapis_lazuli")
 	.setSellPrice(1.00)
-	.setBuyPrice(50.00)
+	.setBuyPrice(25.00)
 	.register();
