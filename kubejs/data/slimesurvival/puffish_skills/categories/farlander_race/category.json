@@ -6,6 +6,5 @@
 			"item": "minecraft:echo_shard"
 		}
 	},
-	"background": "textures/gui/advancements/backgrounds/end.png",
-	"unlocked_by_default": false
+	"background": "textures/gui/advancements/backgrounds/end.png"
 }

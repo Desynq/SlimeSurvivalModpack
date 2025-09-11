@@ -15,3 +15,5 @@ type SuggestionsBuilder = import("com.mojang.brigadier.suggestion.SuggestionsBui
 type CommandExecutionContext = import("com.mojang.brigadier.context.CommandContext").$CommandContext$$Original<import("net.minecraft.commands.CommandSourceStack").$CommandSourceStack$$Original>;
 
 type CommandSourceStack = import("net.minecraft.commands.CommandSourceStack").$CommandSourceStack$$Original;
+
+type ServerPlayer = import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original;

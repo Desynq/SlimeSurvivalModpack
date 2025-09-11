@@ -13,17 +13,7 @@
 				"text": "Your oily skin makes you burn forever when lit on fire until you extinguish yourself or die."
 			}
 		],
-		"rewards": [
-			{
-				"type": "puffish_skills:tag",
-				"data": {
-					"tag": "trait.flammable"
-				}
-			}
-		],
-		"metadata": {
-			"icon": "71y9endpj2zkblrg"
-		}
+		"required_points": 2147483647
 	},
 	"slimeproof": {
 		"title": "Slimeproof",
@@ -39,6 +29,7 @@
 				"text": "Your similar body chemistry to that of slimes makes you immune to their acidic properties when making contact. Slimes will still target you, however, for *different* reasons."
 			}
 		],
+		"required_points": 2147483647,
 		"rewards": [
 			{
 				"type": "puffish_skills:tag",
@@ -46,9 +37,6 @@
 					"tag": "trait.slimeproof"
 				}
 			}
-		],
-		"metadata": {
-			"icon": "92wfba9vlwhjp6gk"
-		}
+		]
 	}
 }

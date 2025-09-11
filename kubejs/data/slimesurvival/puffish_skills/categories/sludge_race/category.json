@@ -6,6 +6,5 @@
 			"item": "minecraft:slime_ball"
 		}
 	},
-	"background": "textures/block/slime_block.png",
-	"unlocked_by_default": false
+	"background": "textures/block/slime_block.png"
 }
