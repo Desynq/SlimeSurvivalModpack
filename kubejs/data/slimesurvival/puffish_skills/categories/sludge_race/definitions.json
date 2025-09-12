@@ -13,7 +13,13 @@
 				"text": "Your oily skin makes you burn forever when lit on fire until you extinguish yourself or die."
 			}
 		],
-		"required_points": 2147483647
+		"required_points": 2147483647,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		}
 	},
 	"slimeproof": {
 		"title": "Slimeproof",
@@ -29,14 +35,100 @@
 				"text": "Your similar body chemistry to that of slimes makes you immune to their acidic properties when making contact. Slimes will still target you, however, for *different* reasons."
 			}
 		],
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"aregenerative": {
+		"title": "Aregenerative",
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
+			}
+		},
+		"description": [
+			{
+				"color": "gray",
+				"text": "You do not regenerate naturally through saturation."
+			}
+		],
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
 		"required_points": 2147483647,
 		"rewards": [
 			{
 				"type": "puffish_skills:tag",
 				"data": {
-					"tag": "trait.slimeproof"
+					"tag": "no_natural_regeneration"
 				}
 			}
 		]
+	},
+	"psuedopodia": {
+		"title": "Pseudopodia",
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:weakness"
+			}
+		},
+		"description": [
+			{
+				"color": "gray",
+				"text": "You lack a proper rigid structure for your arms, making you ineffective at archery.\n\n"
+			},
+			{
+				"color": "red",
+				"text": "You are inaccurate with bows and crossbows. Bow projectile speed is reduced by half."
+			}
+		],
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647,
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "puffish_attributes:bow_projectile_speed",
+					"value": -0.5,
+					"operation": "multiply_total"
+				}
+			}
+		]
+	},
+	"mitosis_1": {
+		"title": "Mitosis I",
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:regeneration"
+			}
+		},
+		"description": [
+			{
+				"color": "gray",
+				"text": "Passively regenerate 1 health every 5 seconds"
+			}
+		],
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		},
+		"required_points": 1
 	}
 }
