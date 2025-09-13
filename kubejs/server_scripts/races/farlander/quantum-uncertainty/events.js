@@ -31,7 +31,7 @@ function isFarlander(victim) {
 	if (!(victim instanceof $ServerPlayer)) {
 		return false;
 	}
-	if (!SkillHelper.hasSkill(victim, FarlanderSkills.QuantumUncertainty)) {
+	if (!SkillHelper.hasSkill(victim, FarlanderSkills.QUANTUM_UNCERTAINTY)) {
 		return false;
 	}
 	return true;
