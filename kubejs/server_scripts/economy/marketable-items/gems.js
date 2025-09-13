@@ -7,7 +7,7 @@ new MarketableItem("diamond", "minecraft:diamond")
 	.register();
 
 new MarketableItem("quartz", "minecraft:quartz")
-	.setSellPrice(0.25)
+	.setSellPrice(.75)
 	.setCompoundingRate(0.2)
 	.setCompoundingPeriod(400)
 	.register();

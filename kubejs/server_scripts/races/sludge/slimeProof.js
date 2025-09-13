@@ -7,7 +7,7 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 		return;
 	}
 
-	if (!SkillHelper.hasSkill(player, Races.SLUDGE.getSkillCategoryId(), SludgeSkills.Flammable.getId())) {
+	if (!SkillHelper.hasSkill(player, SludgeSkills.SLIMEPROOF)) {
 		return;
 	}
 

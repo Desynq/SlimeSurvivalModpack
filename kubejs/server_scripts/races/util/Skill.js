@@ -1,16 +1,21 @@
-//priority: 1
+//priority: 1000
 
 /**
- * 
+ * @param {string} categoryId
  * @param {string} skillId 
  * @param {boolean?} isDefault
  */
-function Skill(skillId, isDefault) {
+function Skill(categoryId, skillId, isDefault) {
+	this.categoryId = categoryId;
 	this.skillId = skillId;
 	this.default = typeof isDefault === 'boolean' ? isDefault : false;
 }
 
-Skill.prototype.getId = function() {
+Skill.prototype.getCategoryId = function() {
+	return this.categoryId;
+}
+
+Skill.prototype.getSkillId = function() {
 	return this.skillId;
 }
 

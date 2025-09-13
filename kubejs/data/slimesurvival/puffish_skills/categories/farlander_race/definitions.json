@@ -21,6 +21,13 @@
 			"color": "aqua",
 			"text": "\nEntropy is not "
 		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647,
 		"rewards": [
 			{
 				"type": "puffish_skills:tag",

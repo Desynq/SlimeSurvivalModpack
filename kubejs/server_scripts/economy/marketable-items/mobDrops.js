@@ -61,3 +61,8 @@ new MarketableItem("feather", "minecraft:feather")
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(512)
 	.register();
+
+new MarketableItem("gunpowder", "minecraft:gunpowder")
+	.setSellPrice(1)
+	.setBuyPrice(7.00)
+	.register();

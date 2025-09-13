@@ -1,17 +1,12 @@
-ServerEvents.loaded(event => OnLoad.run(event.server));
+ServerEvents.loaded(event => new OnLoad(event.server));
 
 
 
-const OnLoad = {};
-
-/**
- * 
- * @param {$MinecraftServer_} server 
- */
-OnLoad.run = function (server) {
+function OnLoad(server) {
+	this.server = server;
 }
 
 
 NativeEvents.onEvent($ServerReloadedEvent, event => {
-	OnLoad.run(event.server);
+	new OnLoad(event.server);
 })

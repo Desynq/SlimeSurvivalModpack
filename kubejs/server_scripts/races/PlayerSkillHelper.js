@@ -40,5 +40,5 @@ PlayerRaceSkillHelper.unlockCategory = function(player, categoryId) {
  * @param {Skill} skill 
  */
 PlayerRaceSkillHelper.unlockSkill = function(player, categoryId, skill) {
-	CommandHelper.runCommandSilent(player.server, `puffish_skills skills unlock ${player.username} ${categoryId} ${skill.getId()}`);
+	CommandHelper.runCommandSilent(player.server, `puffish_skills skills unlock ${player.username} ${categoryId} ${skill.getSkillId()}`);
 }

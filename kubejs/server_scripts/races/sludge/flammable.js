@@ -4,7 +4,7 @@ PlayerEvents.tick(event => {
 	const player = event.player;
 
 	const race = PlayerRaceHelper.getRace(player);
-	const state = SkillHelper.getState(player, Races.SLUDGE.getSkillCategoryId(), SludgeSkills.Flammable.getId());
+	const state = SkillHelper.getState(player, SludgeSkills.FLAMMABLE);
 	if (state !== $Skill$State.UNLOCKED) {
 		return;
 	}
@@ -18,13 +18,17 @@ PlayerEvents.tick(event => {
 EntityEvents.afterHurt("minecraft:player", event => {
 	const player = event.player;
 
-	if (!SkillHelper.hasSkill(player, Races.SLUDGE.getSkillCategoryId(), SludgeSkills.Flammable.getId())) {
+	if (!(player instanceof $Player)) {
+		return;
+	}
+
+	if (!SkillHelper.hasSkill(player, SludgeSkills.FLAMMABLE)) {
 		return;
 	}
 
 	ActionbarManager.addSimple(player, event.source.type().msgId());
 	const damageType = event.source.type().msgId();
-	if (["onFire", "inFire"].indexOf(damageType) === -1) {
+	if (["onFire", "inFire", "lava"].indexOf(damageType) === -1) {
 		return;
 	}
 

@@ -12,16 +12,15 @@ const SkillHelper = {};
 /**
  * 
  * @param {ServerPlayer} player 
- * @param {string} categoryId 
- * @param {string} skillId
+ * @param {Skill} skill
  */
-SkillHelper.getState = function(player, categoryId, skillId) {
+SkillHelper.getState = function(player, skill) {
 	/** @type {import("java.util.Optional").$Optional$$Original<import("net.puffish.skillsmod.api.Category").$Category$$Original>} */
-	const maybeCategory = $SkillsAPI.getCategory($ResourceLocation.parse(categoryId));
+	const maybeCategory = $SkillsAPI.getCategory($ResourceLocation.parse(skill.getCategoryId()));
 	if (maybeCategory.isEmpty()) {
 		return null;
 	}
-	const maybeSkill = maybeCategory.get().getSkill(skillId);
+	const maybeSkill = maybeCategory.get().getSkill(skill.getSkillId());
 	if (maybeSkill.isEmpty()) {
 		return null;
 	}
@@ -31,10 +30,9 @@ SkillHelper.getState = function(player, categoryId, skillId) {
 /**
  * 
  * @param {ServerPlayer} player 
- * @param {string} categoryId 
- * @param {string} skillId 
+ * @param {Skill} skill
  * @returns 
  */
-SkillHelper.hasSkill = function(player, categoryId, skillId) {
-	return SkillHelper.getState(player, categoryId, skillId) === $Skill$State.UNLOCKED;
+SkillHelper.hasSkill = function(player, skill) {
+	return SkillHelper.getState(player, skill) === $Skill$State.UNLOCKED;
 }

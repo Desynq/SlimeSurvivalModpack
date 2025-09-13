@@ -12,7 +12,7 @@ const $GameRules = Java.loadClass("net.minecraft.world.level.GameRules");
 
 const $Comparator = Java.loadClass("java.util.Comparator");
 
-
+/** @type {typeof import("net.blay09.mods.balm.api.event.server.ServerReloadedEvent").$ServerReloadedEvent} */
 const $ServerReloadedEvent = Java.loadClass("net.blay09.mods.balm.api.event.server.ServerReloadedEvent");
 
 

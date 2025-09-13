@@ -6,18 +6,32 @@ const TenuemBoss = {};
 
 /**
  * 
+ * @param {LivingEntity} entity 
+ */
+TenuemBoss.isTenuem = function(entity) {
+	return entity.getTags().contains("boss.tenuem");
+}
+
+/**
+ * 
  * @param {LivingEntity} boss 
  */
 TenuemBoss.tick = function(boss) {
+	if (boss.dead) {
+		return;
+	}
+
 	if (!boss.level.isThundering()) {
 		boss.server.runCommandSilent("weather thunder 1d");
 	}
 
 	if (boss.server.tickCount % 400 == 400 - 20) {
+		// @ts-ignore
 		boss.level.players.forEach(player => TenuemBoss.warnPlayer(player));
 	}
 
 	if (boss.server.tickCount % 400 == 0) {
+		// @ts-ignore
 		boss.level.players.forEach(player => TenuemBoss.trySmitePlayer(player));
 	}
 }
@@ -39,16 +53,17 @@ TenuemBoss.trySmitePlayer = function(player) {
 		return;
 	}
 
+	// @ts-ignore
 	const strikeZone = player.level.getHeightmapPos($Heightmap$Types.MOTION_BLOCKING, player.blockPosition());
 	tellOperators(player.server, strikeZone.toString());
 	player.server.runCommandSilent(`summon minecraft:lightning_bolt ${strikeZone.x} ${strikeZone.y} ${strikeZone.z}`);
 }
 
 EntityEvents.death("minecraft:phantom", event => {
-	const boss = event.entity.tags.contains("boss.tenuem") ? event.entity : null;
-	if (boss == null) {
+	const entity = event.entity;
+	if (!TenuemBoss.isTenuem(entity)) {
 		return;
 	}
 
-	boss.server.runCommandSilent("weather thunder 1");
+	event.server.runCommandSilent("weather thunder 1t");
 })
