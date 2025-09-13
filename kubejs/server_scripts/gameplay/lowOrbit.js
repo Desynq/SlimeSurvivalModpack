@@ -9,8 +9,7 @@ PlayerEvents.tick(event => {
 	const uuid = player.uuid.toString();
 
 	if (EntityHelper.isInLowOrbit(player)) {
-		const slowFallingEffect = new $MobEffectInstance("minecraft:slow_falling", 39, 0, true, false, true);
-		player.addEffect(slowFallingEffect);
+		applyLowOrbitSlowFalling(player);
 
 		const oldTime = lastFallFlyingInLowOrbit[uuid] ?? 0;
 		const currentTime = player.level.time;
@@ -29,15 +28,28 @@ PlayerEvents.tick(event => {
 });
 
 /**
- * @param {$ServerPlayer_} player
+ * 
+ * @param {Player} player 
+ */
+function applyLowOrbitSlowFalling(player) {
+	if (player.isFallFlying()) {
+		return;
+	}
+	// @ts-ignore
+	const slowFallingEffect = new $MobEffectInstance("minecraft:slow_falling", 39, 0, true, false, true);
+	player.addEffect(slowFallingEffect);
+}
+
+/**
+ * @param {Player} player
  * @returns {boolean}
  */
 function cannotFallFlyInLowOrbit(player) {
 	return player.abilities.flying
-			|| player.onGround()
-			|| player.isPassenger()
-			|| player.hasEffect($MobEffects.LEVITATION)
-			|| player.isCrouching();
+		|| player.onGround()
+		|| player.isPassenger()
+		|| player.hasEffect($MobEffects.LEVITATION)
+		|| player.isCrouching();
 }
 
 NetworkEvents.dataReceived("KeyPressed", event => {
