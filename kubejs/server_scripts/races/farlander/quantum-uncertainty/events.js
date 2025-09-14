@@ -25,24 +25,22 @@ EntityEvents.beforeHurt(event => {
 	victim.setAbsorptionAmount(newAbsorptionValue);
 	let postAbsorptionDamage = -Math.min(newAbsorptionValue, 0);
 
-	// @ts-ignore
-	let holder = EntropyHolder.get(victim);
-	if (holder == undefined) {
-		holder = new EntropyHolder(victim.stringUUID);
-	}
+	let holder = EntropyHolder.getOrCreate(victim);
 
-	if (attackerHasQuantumRending) {
-		let damagePercentage = EntropyHelper.getEntropyPercentageFromAttacker(victim, attacker);
-		// @ts-ignore
-		holder.pushEntropyEntry(postAbsorptionDamage * damagePercentage, attacker);
-		event.setDamage(postAbsorptionDamage * (1 - damagePercentage));
+	let rendingPercentage = attackerHasQuantumRending
+		? EntropyHelper.getEntropyPercentageFromAttacker(victim, attacker)
+		: 0;
+
+	if (rendingPercentage > 0) {
+		let rendingDamage = postAbsorptionDamage * rendingPercentage;
+		holder.pushEntropyEntry(rendingDamage, attacker);
+		postAbsorptionDamage -= rendingDamage;
 	}
-	// Farlander vs. Farlander results in double dipping because why not
 	if (isFarlander(victim)) {
-		// @ts-ignore
 		holder.pushEntropyEntry(postAbsorptionDamage, attacker);
-		event.setDamage(0);
+		postAbsorptionDamage = 0;
 	}
+	event.setDamage(postAbsorptionDamage);
 });
 
 /**
@@ -69,23 +67,17 @@ function isFromKillCommand(event) {
 
 NativeEvents.onEvent($EntityTickEvent$Pre, event => {
 	let entity = event.entity instanceof $LivingEntity ? event.entity : null;
-	if (entity == null) {
+	if (entity === null) {
 		return;
 	}
 
-	// @ts-ignore
-	let holder = EntropyHolder.get(entity);
-	if (holder == undefined) {
-		return;
-	}
-	/** @ts-ignore */
-	holder.tick(entity);
+	EntropyHolder.tick(entity, false);
 })
 
 PlayerEvents.respawned(event => {
 	// @ts-ignore
 	let holder = EntropyHolder.get(event.player);
-	if (holder == undefined) {
+	if (holder === undefined) {
 		return;
 	}
 	holder.resetEntropy();

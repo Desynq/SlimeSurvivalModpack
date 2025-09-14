@@ -31,6 +31,31 @@ EntropyHolder.get = function(entity) {
 
 /**
  * 
+ * @param {LivingEntity} entity 
+ */
+EntropyHolder.getOrCreate = function(entity) {
+	let holder = EntropyHolder.get(entity);
+	return holder !== undefined ? holder : new EntropyHolder(entity.stringUUID);
+}
+
+/**
+ * 
+ * @param {LivingEntity} entity 
+ * @param {boolean} createNew
+ */
+EntropyHolder.tick = function(entity, createNew) {
+	let holder = EntropyHolder.get(entity);
+	if (holder === undefined && !createNew) {
+		return;
+	}
+	if (holder === undefined) {
+		holder = new EntropyHolder(entity.stringUUID);
+	}
+	holder.tick(entity);
+}
+
+/**
+ * 
  * @param {float} damage 
  * @param {Entity} [attacker] 
  */
