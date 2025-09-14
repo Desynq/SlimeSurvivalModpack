@@ -95,7 +95,7 @@ ChlorineGasGrenadeTick.prototype.damageNearby = function() {
 
 	/** @type {import("java.util.List").$List$$Original<LivingEntity>} */
 	// @ts-ignore
-	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity} e */ e => !e.isInvulnerable() && e.level.dayTime() - e.persistentData.getLong("last_chlorine_damage_tick") > 20);
+	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity} e */ e => !e.isInvulnerable() && TickHelper.getGameTime(e.server) - e.persistentData.getLong("last_chlorine_damage_tick") > 20);
 	entities.forEach(e => {
 		// @ts-ignore
 		addEffect(e, "minecraft:nausea", 200, 0, false, true, true, this.entity);
@@ -109,6 +109,6 @@ ChlorineGasGrenadeTick.prototype.damageNearby = function() {
 		addEffect(e, "slimesurvival:weak_knees", 100, 3, false, true, true, this.entity);
 
 		playsound(this.level, this.position, "minecraft:entity.blaze.ambient", "master", 1, 1.75);
-		e.persistentData.putLong("last_chlorine_damage_tick", e.level.dayTime());
+		e.persistentData.putLong("last_chlorine_damage_tick", TickHelper.getGameTime(e.server));
 	});
 }
