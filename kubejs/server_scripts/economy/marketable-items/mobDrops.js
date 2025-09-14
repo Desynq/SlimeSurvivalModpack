@@ -67,7 +67,7 @@ new MarketableItem("gunpowder", "minecraft:gunpowder")
 	.setBuyPrice(7.00)
 	.register();
 
-new MarketableItem("enderpearl", "minecraft:enderpearl")
+new MarketableItem("enderpearl", "minecraft:ender_pearl")
 	.setSellPrice(10.00)
 	.setBuyPrice(150.00)
 	.register();
