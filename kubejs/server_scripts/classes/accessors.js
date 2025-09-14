@@ -10,6 +10,7 @@ const $ListTag = Java.loadClass("net.minecraft.nbt.ListTag");
 const $GameRules = Java.loadClass("net.minecraft.world.level.GameRules");
 
 
+/** @type {typeof import("java.util.Comparator").$Comparator} */
 const $Comparator = Java.loadClass("java.util.Comparator");
 
 /** @type {typeof import("net.blay09.mods.balm.api.event.server.ServerReloadedEvent").$ServerReloadedEvent} */
