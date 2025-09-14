@@ -46,6 +46,7 @@ BlockEvents.leftClicked(e => {
 				air.set('minecraft:obsidian')
 				// @ts-ignore
 				station.popItemFromFace(Item.of('minecraft:quartz', 16 * count), 'up')
+				playsound(world, e.getPlayer().getPosition(0), 'block.anvil.land', 'master', 2, 1)
 			}
 		})
 	}
