@@ -5,14 +5,6 @@ let $PlayerInteractEvent$EntityInteract = Java.loadClass("net.neoforged.neoforge
 /** @type {typeof import("net.minecraft.world.entity.item.ItemEntity").$ItemEntity } */
 let $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity")
 
-ServerEvents.tick(event => {
-	const server = event.server;
-
-	const groundedItemEntities = server.getEntities().filter(e => e.type == "minecraft:item" && e.onGround());
-	const unbreakingTomes = groundedItemEntities.filter(e => e.item.id == "slimesurvival:unbreaking_tome");
-	unbreakingTomes.forEach(tome => UnbreakingTomeTick(tome, groundedItemEntities));
-});
-
 /**
  * 
  * @param {ItemEntity} tome 
