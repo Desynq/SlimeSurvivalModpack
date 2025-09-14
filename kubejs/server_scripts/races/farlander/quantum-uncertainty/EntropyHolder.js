@@ -1,4 +1,8 @@
-
+/**
+ * @typedef {Object} EntropyEntry
+ * @property {number} damage
+ * @property {string} [uuid]
+ */
 
 /**
  * 
@@ -6,6 +10,8 @@
  */
 function EntropyHolder(uuid) {
 	this.uuid = uuid;
+	/** @type {EntropyEntry[]} */
+	this.entropyEntries = [];
 	EntropyHolder.holders[uuid] = this;
 }
 
@@ -24,23 +30,14 @@ EntropyHolder.get = function(entity) {
 }
 
 /**
- * @typedef {Object} EntropyEntry
- * @property {number} damage
- * @property {string} [uuid]
- */
-
-/** @type {EntropyEntry[]} */
-EntropyHolder.prototype.entropyEntries = [];
-
-/**
  * 
  * @param {float} damage 
- * @param {Entity} [entity] 
+ * @param {Entity} [attacker] 
  */
-EntropyHolder.prototype.pushEntropyEntry = function(damage, entity) {
+EntropyHolder.prototype.pushEntropyEntry = function(damage, attacker) {
 	this.entropyEntries.push({
 		damage: damage,
-		uuid: entity?.stringUUID
+		uuid: attacker != undefined ? attacker.stringUUID : undefined
 	});
 }
 

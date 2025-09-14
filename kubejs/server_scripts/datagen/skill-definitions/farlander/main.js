@@ -1,3 +1,5 @@
+//priority: 101
+
 const FarlanderSkillDefinitionsJson = {};
 
 const FarlanderSkills = {};

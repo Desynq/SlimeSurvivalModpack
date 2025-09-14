@@ -2,25 +2,32 @@
 
 
 EntityEvents.beforeHurt(event => {
-	let entity = event.entity;
+	let victim = event.entity;
+
+	if (!(victim instanceof $LivingEntity)) {
+		return;
+	}
 
 	// @ts-ignore
-	if (!isFarlander(entity) && !isDamageFromFarlander(entity, event.source.actual)) {
+	if (!isFarlander(victim) && !isDamageFromFarlander(victim, event.source.actual)) {
 		return;
 	}
 	if (isFromKillCommand(event)) {
 		return;
 	}
 
-	let newAbsorptionValue = entity.absorptionAmount - event.damage;
-	entity.setAbsorptionAmount(newAbsorptionValue);
+	let newAbsorptionValue = victim.absorptionAmount - event.damage;
+	victim.setAbsorptionAmount(newAbsorptionValue);
 	let postAbsorptionDamage = -Math.min(newAbsorptionValue, 0);
 
 	// @ts-ignore
-	let holder = EntropyHolder.get(entity) ?? new EntropyHolder(entity.stringUUID);
+	let holder = EntropyHolder.get(victim);
+	if (holder == undefined) {
+		holder = new EntropyHolder(victim.stringUUID);
+	}
 
 	// @ts-ignore
-	holder.pushEntropyEntry(postAbsorptionDamage, entity);
+	holder.pushEntropyEntry(postAbsorptionDamage, event.source.actual);
 	event.setDamage(0);
 });
 

@@ -1,25 +1,19 @@
 {
 	"quantum_uncertainty": {
 		"title": "Quantum Uncertainty",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "You do not take damage regularly, instead you pool damage as entropy.\n\nPooled damage decays exponentially per damage entry (-10% per entropy tick).\n\nEvery entropy tick, you take between 0 to 2x of the total entropy decayed in that tick as damage."
+			}
+		],
+		"cost": 0,
 		"icon": {
 			"type": "effect",
 			"data": {
 				"effect": "minecraft:bad_omen"
 			}
-		},
-		"description": [
-			{
-				"color": "gray",
-				"text": "Damage taken is converted to entropy and applied over time"
-			},
-			{
-				"color": "yellow",
-				"text": "\nPress [Left Shift] to see advanced information"
-			}
-		],
-		"extra_description": {
-			"color": "aqua",
-			"text": "\nEntropy is not "
 		},
 		"frame": {
 			"type": "advancement",
@@ -27,14 +21,6 @@
 				"frame": "goal"
 			}
 		},
-		"required_points": 2147483647,
-		"rewards": [
-			{
-				"type": "puffish_skills:tag",
-				"data": {
-					"tag": "skill.farlander.quantum_uncertainty"
-				}
-			}
-		]
+		"required_points": 2147483647
 	}
 }
