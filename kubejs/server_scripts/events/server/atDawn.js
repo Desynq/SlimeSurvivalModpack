@@ -11,7 +11,7 @@ ServerEvents.tick(event => {
 	let percentageLost;
 
 	function everyDawn() {
-		percentageLost = biasedRandom(0, 0.5, 20)
+		percentageLost = MathHelper.biasedRandom(0, 0.5, 20)
 		StockManager.diminishStocks(server, percentageLost); // half lost every irl day
 
 		// inflation is disabled
