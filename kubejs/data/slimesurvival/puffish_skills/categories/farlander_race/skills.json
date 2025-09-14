@@ -4,5 +4,17 @@
 		"x": 0,
 		"y": -36.95041722813605,
 		"root": true
+	},
+	"vurcdoc6hgo5gbs1": {
+		"definition": "quantum_rending",
+		"x": 64,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"gwptyt8ifed0x4ws": {
+		"definition": "quantum_delay_1",
+		"x": 64,
+		"y": 0,
+		"root": false
 	}
 }

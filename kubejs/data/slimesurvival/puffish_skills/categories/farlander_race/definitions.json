@@ -22,5 +22,67 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"quantum_rending": {
+		"title": "Quantum Rending",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "33% of damage dealt to enemies is converted to entropy damage."
+			},
+			{
+				"color": "dark_purple",
+				"text": "\n\nEntropy damage dealt to enemies decays 10% per tick."
+			},
+			{
+				"color": "dark_purple",
+				"text": "\n\nDecayed entropy does 0.5 to 2.0 damage with a median of 1.25 to enemies."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"quantum_delay_1": {
+		"title": "Quantum Delay I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Entropy pool is ticked every other tick."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:slowness"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
 	}
 }

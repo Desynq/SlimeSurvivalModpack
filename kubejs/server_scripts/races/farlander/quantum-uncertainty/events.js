@@ -1,15 +1,20 @@
+/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent$Pre").$EntityTickEvent$Pre } */
+let $EntityTickEvent$Pre = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent$Pre")
+/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent").$EntityTickEvent } */
+let $EntityTickEvent = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent")
 
 
 
 EntityEvents.beforeHurt(event => {
 	let victim = event.entity;
+	let attacker = event.source.actual;
 
 	if (!(victim instanceof $LivingEntity)) {
 		return;
 	}
 
-	// @ts-ignore
-	if (!isFarlander(victim) && !isDamageFromFarlander(victim, event.source.actual)) {
+	let attackerHasQuantumRending = EntropyHelper.isFromQuantumAttacker(victim, attacker);
+	if (!isFarlander(victim) && !attackerHasQuantumRending) {
 		return;
 	}
 	if (isFromKillCommand(event)) {
@@ -26,9 +31,18 @@ EntityEvents.beforeHurt(event => {
 		holder = new EntropyHolder(victim.stringUUID);
 	}
 
-	// @ts-ignore
-	holder.pushEntropyEntry(postAbsorptionDamage, event.source.actual);
-	event.setDamage(0);
+	if (attackerHasQuantumRending) {
+		let damagePercentage = EntropyHelper.getEntropyPercentageFromAttacker(victim, attacker);
+		// @ts-ignore
+		holder.pushEntropyEntry(postAbsorptionDamage * damagePercentage, attacker);
+		event.setDamage(postAbsorptionDamage * (1 - damagePercentage));
+	}
+	// Farlander vs. Farlander results in double dipping because why not
+	if (isFarlander(victim)) {
+		// @ts-ignore
+		holder.pushEntropyEntry(postAbsorptionDamage, attacker);
+		event.setDamage(0);
+	}
 });
 
 /**
@@ -46,16 +60,6 @@ function isFarlander(victim) {
 
 /**
  * 
- * @param {LivingEntity} victim 
- * @param {Entity} attacker 
- */
-// @ts-ignore
-function isDamageFromFarlander(victim, attacker) {
-	return false;
-}
-
-/**
- * 
  * @param {import("dev.latvian.mods.kubejs.entity.BeforeLivingEntityHurtKubeEvent").$BeforeLivingEntityHurtKubeEvent$$Original} event 
  */
 function isFromKillCommand(event) {
@@ -63,16 +67,20 @@ function isFromKillCommand(event) {
 }
 
 
+NativeEvents.onEvent($EntityTickEvent$Pre, event => {
+	let entity = event.entity instanceof $LivingEntity ? event.entity : null;
+	if (entity == null) {
+		return;
+	}
 
-PlayerEvents.tick(event => {
 	// @ts-ignore
-	let holder = EntropyHolder.get(event.player);
+	let holder = EntropyHolder.get(entity);
 	if (holder == undefined) {
 		return;
 	}
 	/** @ts-ignore */
-	holder.tick(event.player);
-});
+	holder.tick(entity);
+})
 
 PlayerEvents.respawned(event => {
 	// @ts-ignore

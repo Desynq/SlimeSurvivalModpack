@@ -35,6 +35,9 @@ EntropyHolder.get = function(entity) {
  * @param {Entity} [attacker] 
  */
 EntropyHolder.prototype.pushEntropyEntry = function(damage, attacker) {
+	if (damage <= 0) {
+		return;
+	}
 	this.entropyEntries.push({
 		damage: damage,
 		uuid: attacker != undefined ? attacker.stringUUID : undefined
@@ -49,28 +52,45 @@ EntropyHolder.prototype.resetEntropy = function() {
 	this.entropyEntries.length = 0;
 }
 
+
+
 /**
- * @param {LivingEntity} entity
+ * @param {LivingEntity} holder
  * @param {float} amount
+ * @param {EntropyEntry} entry
  */
-EntropyHolder.prototype.dealDamage = function(entity, amount) {
-	let uncertaintyDamage = Math.random() * 2 * amount;
-	let newHealth = entity.getHealth() - uncertaintyDamage;
-	if (newHealth > 0) {
-		entity.setHealth(newHealth);
+EntropyHolder.prototype.dealDamage = function(holder, amount, entry) {
+	let uncertaintyDamage;
+	if (entry.uuid !== undefined) {
+		const attacker = holder.server.getEntityByUUID(entry.uuid);
+		if (!EntropyHelper.isFromQuantumAttacker(holder, attacker)) {
+			uncertaintyDamage = Math.random() * 2 * amount;
+		}
+		else {
+			uncertaintyDamage = MathHelper.medianBiasedRandom(0, 2.0, 1.25) * amount;
+		}
 	}
 	else {
-		entity.kill();
+		uncertaintyDamage = Math.random() * 2 * amount;
+	}
+
+	let newHealth = holder.getHealth() - uncertaintyDamage;
+
+	if (newHealth > 0) {
+		holder.setHealth(newHealth);
+	}
+	else {
+		holder.kill();
 	}
 }
 
 /**
  * 
- * @param {LivingEntity} entity 
+ * @param {LivingEntity} holder 
  * @returns 
  */
-EntropyHolder.prototype.tick = function(entity) {
-	let player = entity instanceof $Player ? entity : null;
+EntropyHolder.prototype.tick = function(holder) {
+	let player = holder instanceof $Player ? holder : null;
 	if (player != null) {
 		let entropyDisplay = `{"color":"dark_purple","text":"Entropy: ${this.getTotalEntropy().toFixed(2)}"}`;
 		ActionbarManager.addText(player, entropyDisplay);
@@ -80,19 +100,35 @@ EntropyHolder.prototype.tick = function(entity) {
 		return;
 	}
 
-	let totalEntropyDecay = 0;
-	this.entropyEntries.forEach((entry, i) => {
-		let entropyDecay = entry.damage * 0.1;
+	let entropyInterval = EntropyHelper.getInterval(holder);
+	if (TickHelper.getGameTime(holder.server) - holder.persistentData.getLong("last_entropy_tick") < entropyInterval) {
+		return;
+	}
 
-		entry.damage -= entropyDecay;
-		if (entry.damage < 0.5) {
-			totalEntropyDecay += entry.damage;
-			delete this.entropyEntries[i];
-		}
-		else {
-			totalEntropyDecay += entropyDecay;
-		}
+	this.entropyEntries.forEach((entry, index) => {
+		let entropyDecay = this.decayEntry(entry, index);
+		this.dealDamage(holder, entropyDecay, entry)
 	});
 
-	this.dealDamage(entity, totalEntropyDecay);
+	CommandHelper.runCommandSilent(holder.server,
+		`execute in ${holder.level.dimension.toString()} positioned ${holder.x} ${holder.y} ${holder.z} run particle minecraft:soul ~ ~${holder.eyeHeight * 0.5} ~ 0.3 0.3 0.3 0.1 1 force @a[distance=..64]`
+	);
+	holder.persistentData.putLong("last_entropy_tick", TickHelper.getGameTime(holder.server));
+}
+
+/**
+ * @param {EntropyEntry} entry
+ * @param {integer} index
+ */
+EntropyHolder.prototype.decayEntry = function(entry, index) {
+	if (entry.damage > 0.5) {
+		let entropyDecay = entry.damage * 0.1;
+		entry.damage -= entropyDecay;
+		return entropyDecay
+	}
+	else {
+		let entropyDecay = entry.damage;
+		this.entropyEntries.splice(index, 1);
+		return entropyDecay;
+	}
 }
