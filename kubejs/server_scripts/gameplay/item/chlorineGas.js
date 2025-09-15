@@ -90,12 +90,41 @@ ChlorineGasGrenadeTick.prototype.incrementDespawnTime = function() {
 	this.entity.persistentData.putInt("despawn_timer", this.getDespawnTime() + 1);
 }
 
+/**
+ * 
+ * @param {LivingEntity} entity 
+ */
+ChlorineGasGrenadeTick.isWearingGasMask = function(entity) {
+	const customData = entity.headArmorItem.components.get($DataComponents.CUSTOM_DATA);
+	if (customData == null) {
+		return false;
+	}
+	const id = customData.copyTag().getString("id");
+	return id === "slimesurvival:gas_mask";
+}
+
+/**
+ * 
+ * @param {LivingEntity} entity 
+ */
+ChlorineGasGrenadeTick.canBeAffectedByChlorine = function(entity) {
+	if (entity instanceof $ServerPlayer) {
+		if (!PlayerHelper.isSurvivalLike(entity)) {
+			return false
+		}
+		if (ChlorineGasGrenadeTick.isWearingGasMask(entity)) {
+			return false;
+		}
+	}
+	return !entity.isInvulnerable() && TickHelper.getGameTime(entity.server) - entity.persistentData.getLong("last_chlorine_damage_tick") > 20
+}
+
 ChlorineGasGrenadeTick.prototype.damageNearby = function() {
 	const range = this.entity.getBoundingBox().inflate(4, 2, 4);
 
 	/** @type {import("java.util.List").$List$$Original<LivingEntity>} */
 	// @ts-ignore
-	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity} e */ e => !e.isInvulnerable() && TickHelper.getGameTime(e.server) - e.persistentData.getLong("last_chlorine_damage_tick") > 20);
+	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity} e */ e => ChlorineGasGrenadeTick.canBeAffectedByChlorine(e));
 	entities.forEach(e => {
 		// @ts-ignore
 		addEffect(e, "minecraft:nausea", 200, 0, false, true, true, this.entity);
