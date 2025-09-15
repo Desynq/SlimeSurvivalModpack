@@ -57,5 +57,11 @@ declare module "net.minecraft.server.level.ServerPlayer" {
 		rayTraceEntity(...args: any[]): any;
 		attackable(...args: any[]): any;
 		self(...args: any[]): any;
+
+		drop(...args: any[]): any;
+		awardStat(...args: any[]): any;
+		notify(...args: any[]): any;
+		sendData(...args: any[]): any;
+		mouseItem: any;
 	}
 }
