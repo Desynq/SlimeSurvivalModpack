@@ -13,8 +13,6 @@ let $ArmorHurtEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living
 let $ArmorMaterials = Java.loadClass("net.minecraft.world.item.ArmorMaterials")
 /** @type {typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem } */
 let $ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem")
-/** @type {typeof import("net.minecraft.server.level.ServerPlayer").$ServerPlayer } */
-let $ServerPlayer = Java.loadClass("net.minecraft.server.level.ServerPlayer")
 /** @type {typeof import("net.minecraft.world.item.ItemStack").$ItemStack } */
 let $ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack")
 
