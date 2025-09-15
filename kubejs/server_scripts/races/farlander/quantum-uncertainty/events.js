@@ -6,26 +6,25 @@ let $EntityTickEvent = Java.loadClass("net.neoforged.neoforge.event.tick.EntityT
 
 
 EntityEvents.beforeHurt(event => {
-	let victim = event.entity;
-	let attacker = event.source.actual;
+	const victim = event.entity;
+	const attacker = event.source.actual;
 
 	if (!(victim instanceof $LivingEntity)) {
 		return;
 	}
 
-	let attackerHasQuantumRending = EntropyHelper.isFromQuantumAttacker(victim, attacker);
-	if (!isFarlander(victim) && !attackerHasQuantumRending) {
+	const attackerHasQuantumRending = EntropyHelper.isFromQuantumAttacker(victim, attacker);
+	const isFarlander = victim instanceof $ServerPlayer && EntropyHelper.isFarlander(victim);
+	if (!isFarlander && !attackerHasQuantumRending) {
 		return;
 	}
 	if (isFromKillCommand(event)) {
 		return;
 	}
 
-	let newAbsorptionValue = victim.absorptionAmount - event.damage;
-	victim.setAbsorptionAmount(newAbsorptionValue);
-	let postAbsorptionDamage = -Math.min(newAbsorptionValue, 0);
+	let postAbsorptionDamage = applyAbsorptionDamage(victim, event.damage);
 
-	let holder = EntropyHolder.getOrCreate(victim);
+	const holder = EntropyHolder.getOrCreate(victim);
 
 	let rendingPercentage = attackerHasQuantumRending
 		? EntropyHelper.getEntropyPercentageFromAttacker(victim, attacker)
@@ -36,7 +35,7 @@ EntityEvents.beforeHurt(event => {
 		holder.pushEntropyEntry(rendingDamage, attacker);
 		postAbsorptionDamage -= rendingDamage;
 	}
-	if (isFarlander(victim)) {
+	if (isFarlander) {
 		holder.pushEntropyEntry(postAbsorptionDamage, attacker);
 		postAbsorptionDamage = 0;
 	}
@@ -44,16 +43,14 @@ EntityEvents.beforeHurt(event => {
 });
 
 /**
+ * 
  * @param {LivingEntity} victim 
+ * @param {float} damage 
  */
-function isFarlander(victim) {
-	if (!(victim instanceof $ServerPlayer)) {
-		return false;
-	}
-	if (!SkillHelper.hasSkill(victim, FarlanderSkills.QUANTUM_UNCERTAINTY)) {
-		return false;
-	}
-	return true;
+function applyAbsorptionDamage(victim, damage) {
+	const newAbsorptionValue = victim.absorptionAmount - damage;
+	victim.setAbsorptionAmount(newAbsorptionValue);
+	return -Math.min(newAbsorptionValue, 0);
 }
 
 /**
@@ -66,7 +63,7 @@ function isFromKillCommand(event) {
 
 
 NativeEvents.onEvent($EntityTickEvent$Pre, event => {
-	let entity = event.entity instanceof $LivingEntity ? event.entity : null;
+	const entity = event.entity instanceof $LivingEntity ? event.entity : null;
 	if (entity === null) {
 		return;
 	}
@@ -75,8 +72,7 @@ NativeEvents.onEvent($EntityTickEvent$Pre, event => {
 })
 
 PlayerEvents.respawned(event => {
-	// @ts-ignore
-	let holder = EntropyHolder.get(event.player);
+	const holder = EntropyHolder.get(event.player);
 	if (holder === undefined) {
 		return;
 	}

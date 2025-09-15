@@ -131,21 +131,48 @@ EntropyHolder.prototype.tick = function(holder) {
 	}
 
 	this.entropyEntries.forEach((entry, index) => {
-		let entropyDecay = this.decayEntry(entry, index);
+		let entropyDecay = this.decayEntry(holder, entry, index);
 		this.dealDamage(holder, entropyDecay, entry)
 	});
 
 	CommandHelper.runCommandSilent(holder.server,
 		`execute in ${holder.level.dimension.toString()} positioned ${holder.x} ${holder.y} ${holder.z} run particle minecraft:soul ~ ~${holder.eyeHeight * 0.5} ~ 0.3 0.3 0.3 0.1 1 force @a[distance=..64]`
 	);
+
+	if (holder instanceof $ServerPlayer && EntropyHelper.isFarlander(holder)) {
+		this.tryPlayFarlanderHurtSound(holder);
+		if (this.entropyEntries.length <= 0) {
+			this.tryPlayFarlanderFullDecaySound(holder);
+		}
+	}
+
 	holder.persistentData.putLong("last_entropy_tick", TickHelper.getGameTime(holder.server));
 }
 
 /**
+ * @param {ServerPlayer} player 
+ */
+EntropyHolder.prototype.tryPlayFarlanderHurtSound = function(player) {
+	if (!TickHelper.timestamp(player, "last_entropy_hurt_sound_tick", 5)) {
+		return;
+	}
+
+	playsound(player.level, player.position(), "minecraft:entity.enderman.hurt", "record", 1, 1.25);
+}
+
+/**
+ * @param {ServerPlayer} player 
+ */
+EntropyHolder.prototype.tryPlayFarlanderFullDecaySound = function(player) {
+	playsound(player.level, player.position(), "minecraft:entity.enderman.death", "record", 1, 2);
+}
+
+/**
+ * @param {LivingEntity} holder
  * @param {EntropyEntry} entry
  * @param {integer} index
  */
-EntropyHolder.prototype.decayEntry = function(entry, index) {
+EntropyHolder.prototype.decayEntry = function(holder, entry, index) {
 	if (entry.damage > 0.5) {
 		let entropyDecay = entry.damage * 0.1;
 		entry.damage -= entropyDecay;

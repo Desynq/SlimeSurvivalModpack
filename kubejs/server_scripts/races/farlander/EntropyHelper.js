@@ -15,6 +15,14 @@ EntropyHelper.isFromQuantumAttacker = function(victim, attacker) {
 }
 
 /**
+ * @param {ServerPlayer} entity 
+ * @returns {boolean}
+ */
+EntropyHelper.isFarlander = function(entity) {
+	return SkillHelper.hasSkill(entity, FarlanderSkills.QUANTUM_UNCERTAINTY);
+}
+
+/**
  * 
  * @param {LivingEntity} entity 
  */
