@@ -10,13 +10,6 @@ PlayerEvents.tick(event => {
 
 	if (EntityHelper.isInLowOrbit(player)) {
 		applyLowOrbitSlowFalling(player);
-
-		const oldTime = lastFallFlyingInLowOrbit[uuid] ?? 0;
-		const currentTime = player.level.time;
-		if (currentTime - oldTime == 1 && !cannotFallFlyInLowOrbit(player)) {
-			lastFallFlyingInLowOrbit[uuid] = currentTime;
-			player.startFallFlying();
-		}
 	}
 
 	// if (player.airSupply < player.maxAirSupply) {
@@ -59,11 +52,6 @@ NetworkEvents.dataReceived("KeyPressed", event => {
 
 	if (key != "jump") {
 		return;
-	}
-
-	if (AirborneTime.get(player) >= 5 && EntityHelper.isInLowOrbit(player)) {
-		player.startFallFlying();
-		lastFallFlyingInLowOrbit[uuid] = player.level.time;
 	}
 });
 
