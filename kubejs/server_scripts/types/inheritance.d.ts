@@ -1,7 +1,61 @@
-declare module "net.minecraft.server.level.ServerPlayer" {
-	declare class $ServerPlayer extends $Player { }
+declare module "net.minecraft.world.entity.Entity" {
+	interface $Entity extends $AttachmentHolder {
+		attackable(...args: any[]): any;
+	}
 }
 
+declare module "net.minecraft.world.entity.LivingEntity" {
+	interface $LivingEntity extends $Entity {
+		eat(...args: any[]): any;
+		swing(...args: any[]): any;
+		moveTo(...args: any[]): any;
+		startRiding(...args: any[]): any;
+		restoreFrom(...args: any[]): any;
+		teleportTo(...args: any[]): any;
+		playSound(...args: any[]): any;
+		push(...args: any[]): any;
+		onSyncedDataUpdated(...args: any[]): any;
+		attack(...args: any[]): any;
+		rayTraceEntity(...args: any[]): any;
+		attackable(...args: any[]): any;
+		self(...args: any[]): any;
+	}
+}
+
+// Patch Player overrides
 declare module "net.minecraft.world.entity.player.Player" {
-	declare class $Player extends $LivingEntity { }
+	interface $Player extends $LivingEntity {
+		eat(...args: any[]): any;
+		swing(...args: any[]): any;
+		moveTo(...args: any[]): any;
+		startRiding(...args: any[]): any;
+		restoreFrom(...args: any[]): any;
+		teleportTo(...args: any[]): any;
+		playSound(...args: any[]): any;
+		push(...args: any[]): any;
+		onSyncedDataUpdated(...args: any[]): any;
+		attack(...args: any[]): any;
+		rayTraceEntity(...args: any[]): any;
+		attackable(...args: any[]): any;
+		self(...args: any[]): any;
+	}
+}
+
+// Patch ServerPlayer overrides
+declare module "net.minecraft.server.level.ServerPlayer" {
+	interface $ServerPlayer extends $Player {
+		eat(...args: any[]): any;
+		swing(...args: any[]): any;
+		moveTo(...args: any[]): any;
+		startRiding(...args: any[]): any;
+		restoreFrom(...args: any[]): any;
+		teleportTo(...args: any[]): any;
+		playSound(...args: any[]): any;
+		push(...args: any[]): any;
+		onSyncedDataUpdated(...args: any[]): any;
+		attack(...args: any[]): any;
+		rayTraceEntity(...args: any[]): any;
+		attackable(...args: any[]): any;
+		self(...args: any[]): any;
+	}
 }
