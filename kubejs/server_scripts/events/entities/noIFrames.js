@@ -58,10 +58,10 @@ NativeEvents.onEvent("low", $LivingIncomingDamageEvent, event => {
 	if (NoIFrames.isPoison(victim, source)) {
 		return;
 	}
-	if (NoIFrames.whitelistedSources.indexOf(source.type().msgId()) !== -1) {
+	if (NoIFrames.whitelistedSources[source.type().msgId()] != undefined) {
 		return;
 	}
-	if (attackerType != null && NoIFrames.whitelistedEntities.indexOf(attackerType) !== -1) {
+	if (NoIFrames.whitelistedEntities[attackerType] != undefined) {
 		return;
 	}
 
