@@ -12,6 +12,7 @@ Parry.onLivingIncomingDamage = function(event) {
 	if (!$SwordBlockingHandler.isActiveItemStackBlocking(player)) {
 		return;
 	}
+
 	if (event.amount <= 0) {
 		return;
 	}
