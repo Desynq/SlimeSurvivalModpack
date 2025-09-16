@@ -7,20 +7,30 @@ function isMoreThanOneNonOperator(server) {
 	return ServerHelper.numberOfNonOperators(server) > 1;
 }
 
-// TODO: Add savings system for weather and seasons
-const DAYLIGHT_SAVINGS_RULES = ["doDaylightCycle", "doWeatherCycle", "doSeasonCycle"];
+/**
+ * 
+ * @param {MinecraftServer} server 
+ * @param {boolean} bool 
+ */
+function setCycleRules(server, bool) {
+	const daylightRule = server.gameRules.getRule($GameRules.RULE_DAYLIGHT);
+	const weatherRule = server.gameRules.getRule($GameRules.RULE_WEATHER_CYCLE);
+	/** @type {import("net.minecraft.world.level.GameRules$BooleanValue").$GameRules$BooleanValue$$Original} */
+	const seasonRule = server.gameRules.getRule($SereneSeasonsGameRules.RULE_DOSEASONCYCLE);
+
+	[daylightRule, weatherRule, seasonRule].forEach(rule => {
+		rule.set(bool, server);
+	});
+}
 
 PlayerEvents.loggedIn(event => {
 	const server = event.server;
 
-	if (isMoreThanOneNonOperator(server)) {
+	if (PlayerHelper.isOperator(event.player)) {
 		return;
 	}
 
-	const daylightRule = server.gameRules.getRule($GameRules.RULE_DAYLIGHT);
-	if (!daylightRule.get()) {
-		daylightRule.set(true, server);
-	}
+	setCycleRules(server, true);
 });
 
 PlayerEvents.loggedOut(event => {
@@ -30,8 +40,5 @@ PlayerEvents.loggedOut(event => {
 		return;
 	}
 
-	const daylightRule = server.gameRules.getRule($GameRules.RULE_DAYLIGHT);
-	if (daylightRule.get()) {
-		daylightRule.set(false, server);
-	}
+	setCycleRules(server, false);
 });
