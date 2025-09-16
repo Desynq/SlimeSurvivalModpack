@@ -1,10 +1,5 @@
 const CustomArguments = {};
 
-
-CustomArguments.cachedPlayerArgument = $Commands.argument("target", $StringArgumentType.string())
-	.suggests((context, builder) => CustomArguments.suggestCachedPlayer(context, builder));
-
-
 /**
  * @param {CommandExecutionContext} context
  * @param {SuggestionsBuilder} builder

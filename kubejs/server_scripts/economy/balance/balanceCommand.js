@@ -9,6 +9,7 @@ ServerEvents.commandRegistry(event => {
 			tellSelfBalance(context.source.player);
 			return 1;
 		})
+		// @ts-ignore
 		.then(cachedPlayerArgument
 			.requires(executor => executor.hasPermission(2))
 			.executes(context => {
@@ -24,10 +25,11 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {$ServerPlayer_} executor 
+	 * @param {ServerPlayer} executor 
 	 */
 	function tellSelfBalance(executor) {
 		const rawBalance = PlayerMoney.get(executor.server, executor.uuid.toString());
+		// @ts-ignore
 		executor.tell(Text.gray(`You have $${MoneyManager.toDollarString(rawBalance)}.`));
 	}
 

@@ -2,16 +2,17 @@
 
 const CommandHelper = (function() {
 	/**
-	 * 
-	 * @param {MinecraftServer} server 
+	 * Runs a command silently on the server or server level
+	 * @param {MinecraftServer | import("net.minecraft.world.level.Level").$Level$$Original} ctx 
 	 * @param {string} command 
 	 * @param {boolean} [debug]
 	 */
-	function runCommandSilent(server, command, debug) {
+	function runCommandSilent(ctx, command, debug) {
 		if (debug) {
+			const server = ctx instanceof $Level ? ctx.server : ctx;
 			tellOperators(server, command);
 		}
-		server.runCommandSilent(command);
+		ctx.runCommandSilent(command);
 	}
 
 	/**
