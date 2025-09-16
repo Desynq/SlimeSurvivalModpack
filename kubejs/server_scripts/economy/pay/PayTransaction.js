@@ -4,8 +4,7 @@
  * @param {string} recipientUsername 
  * @param {string} amountString
  */
-function PayTransaction(executor, recipientUsername, amountString)
-{
+function PayTransaction(executor, recipientUsername, amountString) {
 	this.executor = executor;
 	this.recipientUsername = recipientUsername;
 	this.server = this.executor.server;
@@ -29,8 +28,7 @@ function PayTransaction(executor, recipientUsername, amountString)
 	this.outputResult();
 }
 
-PayTransaction.prototype.checkEnoughMoney = function()
-{
+PayTransaction.prototype.checkEnoughMoney = function() {
 	const executorMoney = PlayerMoney.get(this.server, this.executorUuid);
 	if (executorMoney < this.amount) {
 		this.executor.tell(`You'll need ${MoneyManager.toDollarString(this.amount - executorMoney)} more to pay ${this.recipientUsername} ${MoneyManager.toDollarString(this.amount)}.`);
@@ -41,31 +39,27 @@ PayTransaction.prototype.checkEnoughMoney = function()
 /**
  * @declares `this.recipientStringUUID`
  */
-PayTransaction.prototype.checkRecipient = function()
-{
-	this.recipientUuid = PlayerUuidUsernameBiMap.getUuid(this.server, this.recipientUsername);
+PayTransaction.prototype.checkRecipient = function() {
+	this.recipientUuid = PlayerUUIDUsernameBiMap.getUUID(this.server, this.recipientUsername)?.toString();
 	if (this.recipientUuid == null) {
 		this.executor.tell(Text.red(`${this.recipientUsername} does not exist.`));
 		this.cancel();
 	}
 }
 
-PayTransaction.prototype.doTransaction = function()
-{
+PayTransaction.prototype.doTransaction = function() {
 	PlayerMoney.add(this.server, this.executorUuid, -this.amount);
 	PlayerMoney.add(this.server, this.recipientUuid, this.amount);
 }
 
-PayTransaction.prototype.outputResult = function()
-{
+PayTransaction.prototype.outputResult = function() {
 	const amountString = MoneyManager.toDollarString(this.amount);
 
 	/** @type {$ServerPlayer_[]} */
 	const players = this.server.playerList.players.toArray();
 
 	let recipient = players.find(player => player.uuid.toString() == this.recipientUuid);
-	if (recipient != null)
-	{
+	if (recipient != null) {
 		this.server.runCommandSilent(`tellraw ${this.executor.username} ["",{"color":"gray","text":"Paid "},{"selector":"${recipient.username}"},{"color":"yellow","text":" ${amountString}"}]`);
 		this.server.runCommandSilent(`tellraw ${recipient.username} ["",{"selector":"${this.executor.username}"},{"color":"gray","text":" paid you"},{"color":"yellow","text":" ${amountString}"}]`);
 		return;
@@ -73,7 +67,6 @@ PayTransaction.prototype.outputResult = function()
 	this.server.runCommandSilent(`tellraw ${this.executor.username} ["",{"color":"gray","text":"Paid "},{"color":"dark_gray","text":"${this.recipientUsername}"},{"color":"yellow","text":" ${amountString}"}]`);
 }
 
-PayTransaction.prototype.cancel = function()
-{
+PayTransaction.prototype.cancel = function() {
 	this.cancelled = true;
 }

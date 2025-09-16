@@ -32,13 +32,13 @@ ServerEvents.commandRegistry(event => {
 	}
 
 	function tellOfflineBalance(executor, username) {
-		const uuid = PlayerUuidUsernameBiMap.getUuid(executor.server, username);
+		const uuid = PlayerUUIDUsernameBiMap.getUUID(executor.server, username);
 		if (uuid == null) {
 			executor.tell(Text.red(`${username} has not logged onto the server and therefore has no balance.`));
 			return;
 		}
 
-		const rawBalance = PlayerMoney.get(executor.server, uuid);
+		const rawBalance = PlayerMoney.get(executor.server, uuid.toString());
 		executor.tell(Text.gray(`${username} has $${MoneyManager.toDollarString(rawBalance)}.`));
 	}
 });

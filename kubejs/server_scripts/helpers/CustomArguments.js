@@ -2,14 +2,20 @@ const CustomArguments = {};
 
 
 CustomArguments.cachedPlayerArgument = $Commands.argument("target", $StringArgumentType.string())
-		.suggests((context, builder) => CustomArguments.suggestCachedPlayer(context, builder));
+	.suggests((context, builder) => CustomArguments.suggestCachedPlayer(context, builder));
 
 
 /**
- * @param {$CommandContext_<$CommandSourceStack_>} context
- * @param {$SuggestionsBuilder_} builder
+ * @param {CommandExecutionContext} context
+ * @param {SuggestionsBuilder} builder
  */
 CustomArguments.suggestCachedPlayer = function(context, builder) {
-	PlayerUuidUsernameBiMap.getUsernames(context.source.server).forEach(username => builder.suggest(username));
+	let server = context.source.server;
+	PlayerUUIDUsernameBiMap
+		.getUsernames(server)
+		.filter(username =>
+			PlayerHelper.isOnWhitelist(server, PlayerUUIDUsernameBiMap.getUUID(server, username))
+		)
+		.forEach(username => builder.suggest(username));
 	return builder.buildFuture();
 }

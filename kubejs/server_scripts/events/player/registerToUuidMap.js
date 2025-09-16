@@ -1,5 +1,5 @@
 PlayerEvents.loggedIn(event => {
 	const { player, server } = event;
-	PlayerUuidUsernameBiMap.registerPlayer(server, player.uuid.toString(), player.username);
-	PlayerUuidUsernameBiMap.loadData(server);
+	PlayerUUIDUsernameBiMap.registerPlayer(server, player.uuid.toString(), player.username);
+	PlayerUUIDUsernameBiMap.loadData(server);
 });
