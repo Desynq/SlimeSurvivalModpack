@@ -1,5 +1,4 @@
-/** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
-let $AttributeModifier$Operation  = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
+
 
 let $Attribute = Java.loadClass("net.minecraft.world.entity.ai.attributes.Attribute");
 let $ItemAttributeModifiers$Entry = Java.loadClass("net.minecraft.world.item.component.ItemAttributeModifiers$Entry");
@@ -63,8 +62,8 @@ DualWieldMechanic.getOffhandAttackDamage = function(player) {
 
 PlayerEvents.tick(event => {
 	const { player } = event;
-	
+
 	const mhAttackDamage = DualWieldMechanic.getMainhandAttackDamage(player);
 	const ohAttackDamage = DualWieldMechanic.getOffhandAttackDamage(player);
-	const dualWieldAttackDamage = Math.sqrt((mhAttackDamage**2) + (ohAttackDamage**2));
+	const dualWieldAttackDamage = Math.sqrt((mhAttackDamage ** 2) + (ohAttackDamage ** 2));
 });

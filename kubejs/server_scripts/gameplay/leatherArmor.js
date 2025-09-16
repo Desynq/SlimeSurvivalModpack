@@ -3,8 +3,6 @@
 let $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
 /** @type {typeof import("java.util.function.BiConsumer").$BiConsumer } */
 let $BiConsumer = Java.loadClass("java.util.function.BiConsumer")
-/** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
-let $AttributeModifier$Operation = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
 /** @type {typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type } */
 let $EquipmentSlot$Type = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type")
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent } */

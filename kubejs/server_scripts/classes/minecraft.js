@@ -30,3 +30,9 @@ const $Level = Java.loadClass("net.minecraft.world.level.Level");
 
 /** @type {typeof import("net.minecraft.world.effect.MobEffects").$MobEffects} */
 const $MobEffects = Java.loadClass("net.minecraft.world.effect.MobEffects");
+
+/** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier").$AttributeModifier } */
+const $AttributeModifier = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier")
+
+/** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
+const $AttributeModifier$Operation = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")

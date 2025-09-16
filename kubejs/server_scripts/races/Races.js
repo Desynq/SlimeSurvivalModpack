@@ -6,6 +6,7 @@ const Races = (function() {
 	const HUMAN = register(new Race("human", true));
 	const SLUDGE = register(new Race("sludge"));
 	const FARLANDER = register(new Race("farlander"));
+	const CHIMERA = register(new Race("chimera"));
 
 	function getRaces() {
 		return INSTANCES;
@@ -38,6 +39,7 @@ const Races = (function() {
 		HUMAN: HUMAN,
 		SLUDGE: SLUDGE,
 		FARLANDER: FARLANDER,
+		CHIMERA: CHIMERA,
 		getRaces: getRaces,
 		defaultRace: defaultRace,
 		fromId: fromId

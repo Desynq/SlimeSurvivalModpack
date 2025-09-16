@@ -1,0 +1,26 @@
+{
+	"the_lions_share": {
+		"title": "The Lion's Share",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gold",
+				"text": "Owned living entities will have at least the same max health as you."
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:ocelot_spawn_egg"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	}
+}

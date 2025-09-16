@@ -1,0 +1,10 @@
+{
+	"title": "Chimera",
+	"icon": {
+		"type": "item",
+		"data": {
+			"item": "minecraft:goat_horn"
+		}
+	},
+	"background": "textures/block/bamboo_block.png"
+}
