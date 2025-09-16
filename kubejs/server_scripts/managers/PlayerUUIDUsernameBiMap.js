@@ -1,12 +1,13 @@
-const PlayerUUIDUsernameBiMap = {
-};
+const PlayerUUIDUsernameBiMap = {};
 
-PlayerUUIDUsernameBiMap.uuid_to_username = null;
-PlayerUUIDUsernameBiMap.username_to_uuid = null;
+/** @type {Object.<string, string>} */
+PlayerUUIDUsernameBiMap.uuid_to_username = {};
+/** @type {Object.<string, string>} */
+PlayerUUIDUsernameBiMap.username_to_uuid = {};
 
 /**
  * 
- * @param {$MinecraftServer_} server 
+ * @param {MinecraftServer} server 
  */
 PlayerUUIDUsernameBiMap.loadData = function(server) {
 	PlayerUUIDUsernameBiMap.uuid_to_username = {};
@@ -21,7 +22,7 @@ PlayerUUIDUsernameBiMap.loadData = function(server) {
 }
 
 /**
- * @param {$MinecraftServer_} server 
+ * @param {MinecraftServer} server 
  */
 PlayerUUIDUsernameBiMap.reloadData = function(server) {
 	PlayerUUIDUsernameBiMap.registerOnlinePlayers(server);
@@ -30,7 +31,7 @@ PlayerUUIDUsernameBiMap.reloadData = function(server) {
 
 /**
  * 
- * @param {$MinecraftServer_} server
+ * @param {MinecraftServer} server
  * @param {string} uuid 
  * @param {string} username 
  */
@@ -41,11 +42,11 @@ PlayerUUIDUsernameBiMap.registerPlayer = function(server, uuid, username) {
 }
 
 /**
- * @param {$MinecraftServer_} server 
+ * @param {MinecraftServer} server 
  */
 PlayerUUIDUsernameBiMap.registerOnlinePlayers = function(server) {
 	server.playerList.players.forEach(player => {
-		PlayerUUIDUsernameBiMap.registerPlayer(server, player.uuid.toString(), player.username);
+		PlayerUUIDUsernameBiMap.registerPlayer(server, player.stringUUID, player.username);
 	});
 }
 
@@ -59,7 +60,7 @@ PlayerUUIDUsernameBiMap.registerOnlinePlayers = function(server) {
  * @returns {import("java.util.UUID").$UUID$$Original | null}
  */
 PlayerUUIDUsernameBiMap.getUUID = function(server, username) {
-	if (PlayerUUIDUsernameBiMap.username_to_uuid == null) {
+	if (ObjectHelper.isEmpty(PlayerUUIDUsernameBiMap.username_to_uuid)) {
 		PlayerUUIDUsernameBiMap.reloadData(server)
 	}
 
@@ -72,7 +73,7 @@ PlayerUUIDUsernameBiMap.getUUID = function(server, username) {
  * @returns {string | null} 
  */
 PlayerUUIDUsernameBiMap.getUsername = function(server, uuid) {
-	if (PlayerUUIDUsernameBiMap.uuid_to_username == null) {
+	if (ObjectHelper.isEmpty(PlayerUUIDUsernameBiMap.uuid_to_username)) {
 		PlayerUUIDUsernameBiMap.reloadData(server)
 	}
 
@@ -84,7 +85,7 @@ PlayerUUIDUsernameBiMap.getUsername = function(server, uuid) {
  * @returns {string[]}
  */
 PlayerUUIDUsernameBiMap.getUsernames = function(server) {
-	if (PlayerUUIDUsernameBiMap.username_to_uuid == null) {
+	if (ObjectHelper.isEmpty(PlayerUUIDUsernameBiMap.username_to_uuid)) {
 		PlayerUUIDUsernameBiMap.reloadData(server)
 	}
 
