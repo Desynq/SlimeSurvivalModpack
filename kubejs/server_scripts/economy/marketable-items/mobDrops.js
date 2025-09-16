@@ -5,7 +5,7 @@ new MarketableItem("tropical_fish", "minecraft:tropical_fish")
 	.setCompoundingPeriod(100)
 	.register();
 
-new MarketableItem("slime_ball", "minecraft:slime_ball")
+new MarketableItem("slime", "minecraft:slime_ball")
 	.setSellPrice(1.00)
 	.register();
 
