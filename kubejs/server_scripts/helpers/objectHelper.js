@@ -5,7 +5,7 @@ const ObjectHelper = {};
  * @param {*} obj 
  * @param {*} key 
  */
-ObjectHelper.ensureArray = function (obj, key) {
+ObjectHelper.ensureArray = function(obj, key) {
 	if (!Array.isArray(obj[key])) {
 		obj[key] = [];
 	}
@@ -18,7 +18,12 @@ ObjectHelper.ensureArray = function (obj, key) {
  * @param {string|number} key
  * @returns {Array}
  */
-ObjectHelper.getOrCreateArray = function (obj, key) {
+ObjectHelper.getOrCreateArray = function(obj, key) {
 	ObjectHelper.ensureArray(obj, key);
 	return obj[key];
+}
+
+
+ObjectHelper.isEmpty = function(obj) {
+	return Object.keys(obj).length === 0;
 }
