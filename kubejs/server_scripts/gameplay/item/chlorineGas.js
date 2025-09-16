@@ -127,15 +127,15 @@ ChlorineGasGrenadeTick.prototype.damageNearby = function() {
 	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity} e */ e => ChlorineGasGrenadeTick.canBeAffectedByChlorine(e));
 	entities.forEach(e => {
 		// @ts-ignore
-		addEffect(e, "minecraft:nausea", 200, 0, false, true, true, this.entity);
+		LivingEntityHelper.addEffect(e, "minecraft:nausea", 200, 0, false, true, true, this.entity);
 		// @ts-ignore
-		addEffect(e, "minecraft:blindness", 100, 0, false, true, true, this.entity);
+		LivingEntityHelper.addEffect(e, "minecraft:blindness", 100, 0, false, true, true, this.entity);
 		// @ts-ignore
-		addEffect(e, "minecraft:slowness", 200, 1, false, true, true, this.entity);
+		LivingEntityHelper.addEffect(e, "minecraft:slowness", 200, 1, false, true, true, this.entity);
 		// @ts-ignore
-		addEffect(e, "minecraft:wither", 100, 2, false, true, true, this.entity);
+		LivingEntityHelper.addEffect(e, "minecraft:wither", 100, 2, false, true, true, this.entity);
 		// @ts-ignore
-		addEffect(e, "slimesurvival:weak_knees", 100, 3, false, true, true, this.entity);
+		LivingEntityHelper.addEffect(e, "slimesurvival:weak_knees", 100, 3, false, true, true, this.entity);
 
 		playsound(this.level, this.position, "minecraft:entity.blaze.ambient", "master", 1, 1.75);
 		e.persistentData.putLong("last_chlorine_damage_tick", TickHelper.getGameTime(e.server));

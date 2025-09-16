@@ -1,5 +1,4 @@
 let $LivingBreatheEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingBreatheEvent");
-let $MobEffects = Java.loadClass("net.minecraft.world.effect.MobEffects");
 
 /** @type {Object.<string, long>} */
 const lastFallFlyingInLowOrbit = {};

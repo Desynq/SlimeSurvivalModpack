@@ -21,3 +21,12 @@ const $Entity = Java.loadClass("net.minecraft.world.entity.Entity");
 
 /** @type {typeof import("net.minecraft.server.level.ServerPlayer").$ServerPlayer } */
 const $ServerPlayer = Java.loadClass("net.minecraft.server.level.ServerPlayer")
+
+/** @type {typeof import("net.minecraft.server.level.ServerLevel").$ServerLevel} */
+const $ServerLevel = Java.loadClass("net.minecraft.server.level.ServerLevel");
+
+/** @type {typeof import("net.minecraft.world.level.Level").$Level} */
+const $Level = Java.loadClass("net.minecraft.world.level.Level");
+
+/** @type {typeof import("net.minecraft.world.effect.MobEffects").$MobEffects} */
+const $MobEffects = Java.loadClass("net.minecraft.world.effect.MobEffects");
