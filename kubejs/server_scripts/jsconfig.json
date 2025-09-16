@@ -1,13 +1,15 @@
 {
     "include": [
         "./**/*.js",
-        "./**/*.ts"
+        "./**/*.ts",
+        "../types/**/*.d.ts"
     ],
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
         "allowJs": true,
         "checkJs": true,
+        "strict": false,
         "target": "ES2015",
         "disableSizeLimit": true,
         "noEmit": true,

@@ -27,6 +27,7 @@
     "include": [
         "./**/*.js",
         "./**/*.ts",
-        null
+        "../startup_scripts/**/*.global.js",
+        "../types/**/*.d.ts"
     ]
 }
