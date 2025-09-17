@@ -22,5 +22,32 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"wolf_packing": {
+		"title": "Wolf Packing",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Each pet wolf you own that is following you (not sitting) increases your max health by 1 point.\n\nCaps out at 20 pet wolves following you."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:bone"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
 	}
 }

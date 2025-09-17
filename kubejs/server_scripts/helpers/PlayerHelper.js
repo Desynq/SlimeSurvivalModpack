@@ -35,3 +35,17 @@ PlayerHelper.isOnWhitelist = function(server, uuid) {
 			.equals(uuid)
 		);
 }
+
+
+
+/**
+ * 
+ * @param {ServerPlayer} player 
+ * @returns {import("net.minecraft.world.entity.TamableAnimal").$TamableAnimal$$Original[]}
+ */
+PlayerHelper.getPetsFollowing = function(player) {
+	return player.getLevel().getEntities()
+		.stream()
+		.filter(e => e instanceof $TamableAnimal && !e.isInSittingPose() && e.getOwner() == player)
+		.toArray()
+}
