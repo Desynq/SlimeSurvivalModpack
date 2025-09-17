@@ -26,13 +26,17 @@ LionsShare.tamableTick = function(event) {
 		return;
 	}
 
+	const wasFullHealth = pet.health >= pet.maxHealth;
+	AttributeHelper.removeModifier(pet, $Attributes.MAX_HEALTH, LionsShare.MODIFIER_ID);
 	const maxHealthDiff = owner.maxHealth - pet.maxHealth;
 	if (maxHealthDiff <= 0) {
 		return;
 	}
 
-	AttributeHelper.removeModifier(pet, $Attributes.MAX_HEALTH, LionsShare.MODIFIER_ID);
-	AttributeHelper.addModifier(pet, $Attributes.MAX_HEALTH, LionsShare.MODIFIER_ID, maxHealthDiff, $AttributeModifier$Operation.ADD_VALUE)
+	AttributeHelper.addModifier(pet, $Attributes.MAX_HEALTH, LionsShare.MODIFIER_ID, maxHealthDiff, $AttributeModifier$Operation.ADD_VALUE);
+	if (wasFullHealth) {
+		pet.setHealth(pet.maxHealth);
+	}
 }
 
 
