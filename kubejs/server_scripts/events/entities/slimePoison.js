@@ -4,7 +4,7 @@ let $LivingDamageEvent$Post = Java.loadClass("net.neoforged.neoforge.event.entit
 NativeEvents.onEvent($LivingDamageEvent$Post, event => {
 	const victim = event.entity;
 	const attacker = event.source.actual;
-	if (!(attacker instanceof $Slime)) {
+	if (!(attacker instanceof $Slime && attacker.type === "minecraft:slime")) {
 		return;
 	}
 
