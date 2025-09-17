@@ -65,3 +65,10 @@ declare module "net.minecraft.server.level.ServerPlayer" {
 		mouseItem: any;
 	}
 }
+
+declare module "net.minecraft.world.entity.TamableAnimal" {
+	interface $TamableAnimal extends $Animal {
+		self(...args: any[]): any;
+		lookAt(...args: any[]): any;
+	}
+};
