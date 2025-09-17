@@ -1,3 +1,4 @@
+/** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock").$PlayerInteractEvent$RightClickBlock} */
 let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock");
 
 

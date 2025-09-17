@@ -1,5 +1,4 @@
-/** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickItem").$PlayerInteractEvent$RightClickItem } */
-let $PlayerInteractEvent$RightClickItem  = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickItem")
+
 
 
 NativeEvents.onEvent($PlayerInteractEvent$RightClickItem, event => {
@@ -16,7 +15,7 @@ NativeEvents.onEvent($PlayerInteractEvent$RightClickItem, event => {
 	if (instrumentComp == null) {
 		return;
 	}
-	
+
 	const instrumentId = instrumentComp.getKey().location();
 	switch (instrumentId) {
 		case "minecraft:seek_goat_horn":

@@ -18,7 +18,7 @@ NoIFrames.whitelistedSources = {
 	"hotFloor": true,
 	"outOfWorld": true,
 	"freeze": true,
-	"wither": true,
+	"wither": true
 };
 
 NoIFrames.whitelistedEntities = {
