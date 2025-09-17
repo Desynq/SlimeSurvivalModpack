@@ -53,6 +53,9 @@ function bossTick(boss) {
 	if (boss.tags.contains("boss.voidman")) {
 		VoidmanBoss.tick(boss);
 	}
+	if (boss instanceof $ServerPlayer && boss.tags.contains("boss.the_hunter")) {
+		TheHunter.tick(boss);
+	}
 
 	const server = boss.server;
 	const bossbarManager = server.customBossEvents;
