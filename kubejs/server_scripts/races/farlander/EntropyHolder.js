@@ -130,10 +130,7 @@ EntropyHolder.prototype.tick = function(holder) {
 		return;
 	}
 
-	this.entropyEntries.forEach((entry, index) => {
-		let entropyDecay = this.decayEntry(holder, entry, index);
-		this.dealDamage(holder, entropyDecay, entry)
-	});
+	this.tickEntries(holder);
 
 	CommandHelper.runCommandSilent(holder.server,
 		`execute in ${holder.level.dimension.toString()} positioned ${holder.x} ${holder.y} ${holder.z} run particle minecraft:soul ~ ~${holder.eyeHeight * 0.5} ~ 0.3 0.3 0.3 0.1 1 force @a[distance=..64]`
@@ -147,6 +144,18 @@ EntropyHolder.prototype.tick = function(holder) {
 	}
 
 	holder.persistentData.putLong("last_entropy_tick", TickHelper.getGameTime(holder.server));
+}
+
+/**
+ * @param {LivingEntity} holder
+ */
+EntropyHolder.prototype.tickEntries = function(holder) {
+	// walk backwards to avoid skipping entries when splicing off entries
+	for (let i = this.entropyEntries.length - 1; i >= 0; i--) {
+		let entry = this.entropyEntries[i];
+		let entropyDecay = this.decayEntry(holder, entry, i);
+		this.dealDamage(holder, entropyDecay, entry);
+	}
 }
 
 /**
