@@ -21,6 +21,15 @@ function tellOperators(server, chatComponent) {
 
 /**
  * 
+ * @param {MinecraftServer} server 
+ * @param {*} error 
+ */
+function tellError(server, error) {
+	tellOperators(server, `${error.message} ${error.stack}`);
+}
+
+/**
+ * 
  * @param {ServerPlayer} player 
  * @param {import("net.minecraft.network.chat.Component").$Component$$Type} chatComponent 
  */

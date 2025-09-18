@@ -40,3 +40,15 @@ MathHelper.medianBiasedRandom = function(min, max, median) {
 		return median + Math.random() * (max - median);
 	}
 }
+
+/**
+ * 
+ * @param {[double, double, double]} vec1 
+ * @param {[double, double, double]} vec2 
+ */
+MathHelper.distance = function(vec1, vec2) {
+	const dx = vec1[0] - vec2[0];
+	const dy = vec1[1] - vec2[1];
+	const dz = vec1[2] - vec2[2];
+	return Math.sqrt(dx * dx + dy * dy + dz * dz);
+}

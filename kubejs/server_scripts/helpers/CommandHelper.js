@@ -30,8 +30,18 @@ const CommandHelper = (function() {
 		return builder;
 	}
 
+	function sandbox(context, fn) {
+		try {
+			fn()
+		}
+		catch (error) {
+			context.source.getPlayer().tell(`${error.message} ${error.stack}`);
+		}
+	}
+
 	return {
 		runCommandSilent: runCommandSilent,
-		getNarrowedSuggestions: getNarrowedSuggestions
+		getNarrowedSuggestions: getNarrowedSuggestions,
+		sandbox: sandbox
 	}
 })();
