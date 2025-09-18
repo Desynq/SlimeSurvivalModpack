@@ -14,3 +14,6 @@ const $LivingEvent$LivingJumpEvent = Java.loadClass("net.neoforged.neoforge.even
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickItem").$PlayerInteractEvent$RightClickItem } */
 const $PlayerInteractEvent$RightClickItem = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickItem")
+
+/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent$Post").$EntityTickEvent$Post } */
+const $EntityTickEvent$Post = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent$Post")

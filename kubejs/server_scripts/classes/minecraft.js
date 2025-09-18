@@ -36,3 +36,9 @@ const $AttributeModifier = Java.loadClass("net.minecraft.world.entity.ai.attribu
 
 /** @type {typeof import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation } */
 const $AttributeModifier$Operation = Java.loadClass("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation")
+
+/** @type {typeof import("net.minecraft.world.entity.monster.Creeper").$Creeper } */
+const $Creeper = Java.loadClass("net.minecraft.world.entity.monster.Creeper");
+
+/** @type {typeof import("net.minecraft.world.item.Items").$Items } */
+const $Items = Java.loadClass("net.minecraft.world.item.Items")
