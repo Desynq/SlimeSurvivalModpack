@@ -1,25 +1,22 @@
-/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post").$LivingDamageEvent$Post } */
-let $LivingDamageEvent$Post = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post")
-
 NativeEvents.onEvent($LivingDamageEvent$Post, event => {
-	const victim = event.entity;
-	const attacker = event.source.actual;
+	let victim = event.entity;
+	let attacker = event.source.actual;
 	if (!(attacker instanceof $Slime && attacker.type === "minecraft:slime")) {
 		return;
 	}
 
-	const amplifier = Math.max(0, attacker.size - 3);
+	let amplifier = Math.max(0, attacker.size - 3);
 	// @ts-ignore
 	LivingEntityHelper.addEffect(victim, "minecraft:poison", 100, amplifier, false, true, true, attacker);
 });
 
 EntityEvents.death("minecraft:slime", event => {
-	const entity = event.entity;
+	let entity = event.entity;
 	if (!(entity instanceof $Slime) || entity.size > 1) {
 		return;
 	}
 
-	const nbt = {
+	let nbt = {
 		Radius: 1,
 		Duration: 100,
 		potion_contents: {
