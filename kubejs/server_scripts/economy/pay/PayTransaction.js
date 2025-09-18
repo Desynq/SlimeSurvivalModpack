@@ -1,6 +1,7 @@
+// @ts-nocheck
 /**
  * 
- * @param {$ServerPlayer_} executor 
+ * @param {ServerPlayer} executor 
  * @param {string} recipientUsername 
  * @param {string} amountString
  */
@@ -40,11 +41,12 @@ PayTransaction.prototype.checkEnoughMoney = function() {
  * @declares `this.recipientStringUUID`
  */
 PayTransaction.prototype.checkRecipient = function() {
-	this.recipientUuid = PlayerUUIDUsernameBiMap.getUUID(this.server, this.recipientUsername)?.toString();
-	if (this.recipientUuid == null) {
+	const uuid = PlayerUUIDUsernameBiMap.getUUID(this.server, this.recipientUsername);
+	if (uuid == null) {
 		this.executor.tell(Text.red(`${this.recipientUsername} does not exist.`));
 		this.cancel();
 	}
+	this.recipientUuid = uuid.toString();
 }
 
 PayTransaction.prototype.doTransaction = function() {

@@ -20,7 +20,7 @@ new MarketableItem("blaze_powder", "minecraft:blaze_powder")
 	.register();
 
 new MarketableItem("ghast_tear", "minecraft:ghast_tear")
-	.setSellPrice(50.00)
+	.setSellPrice(25.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(64)
 	.register();

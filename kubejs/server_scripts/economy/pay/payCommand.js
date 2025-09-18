@@ -5,13 +5,19 @@ ServerEvents.commandRegistry(event => {
 		.suggests((context, builder) => CustomArguments.suggestCachedPlayer(context, builder));
 
 	event.register(Commands.literal("pay")
+		// @ts-ignore
 		.then(cachedPlayerArgument
+			// @ts-ignore
 			.then(Commands.argument("amount", Arguments.STRING.create(event))
 				.executes(context => {
-					const username = Arguments.STRING.getResult(context, "target");
-					const amountString = Arguments.STRING.getResult(context, "amount");
-
-					new PayTransaction(context.source.getPlayer(), username, amountString);
+					try {
+						let username = Arguments.STRING.getResult(context, "target");
+						let amountString = Arguments.STRING.getResult(context, "amount");
+						new PayTransaction(context.source.getPlayer(), username, amountString);
+					}
+					catch (error) {
+						context.source.getPlayer().tell(`${error.message} ${error.stack}`)
+					}
 					return 1;
 				})
 			)

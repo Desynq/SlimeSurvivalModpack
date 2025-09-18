@@ -20,3 +20,7 @@ new MarketableItem("sand", "minecraft:sand")
 	.setSellPrice(0.05)
 	.setBuyPrice(0.50)
 	.register();
+
+new MarketableItem("clay", "minecraft:clay")
+	.setBuyPrice(0.75 * 4)
+	.register();
