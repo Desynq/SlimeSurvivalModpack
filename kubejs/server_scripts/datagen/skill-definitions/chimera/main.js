@@ -17,6 +17,8 @@ ChimeraSkills.THE_LIONS_SHARE = new SkillDefinition(CHIMERA_CATEGORY_ID, "the_li
 	.serialize(ChimeraSkillDefinitionsJson)
 	.toSkill("p9wcqr8os2f6lncd");
 
+
+
 ChimeraSkills.WOLF_PACKING = new SkillDefinition(CHIMERA_CATEGORY_ID, "wolf_packing")
 	.itemIcon("minecraft:bone")
 	.advancementFrame("task")
@@ -28,3 +30,47 @@ ChimeraSkills.WOLF_PACKING = new SkillDefinition(CHIMERA_CATEGORY_ID, "wolf_pack
 	.cost(2)
 	.serialize(ChimeraSkillDefinitionsJson)
 	.toSkill("l3j9ppm6hiiypz3l");
+
+ChimeraSkills.PACK_MARATHON = new SkillDefinition(CHIMERA_CATEGORY_ID, "pack_marathon")
+	.effectIcon("minecraft:speed")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "gray",
+		"text": "Double the movement speed of your pets when sprinting."
+	})
+	.cost(1)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("g6wrs6zee7l57gnv");
+
+ChimeraSkills.FORTITUDE_1 = new SkillDefinition(CHIMERA_CATEGORY_ID, "fortitude_1")
+	.effectIcon("minecraft:resistance")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "gray",
+		"text": "Tamed animals get Resistance I when your health is >= 50%"
+	})
+	.cost(1)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("454dhe0xb7uzqvlx");
+
+ChimeraSkills.FORTITUDE_2 = new SkillDefinition(CHIMERA_CATEGORY_ID, "fortitude_2")
+	.effectIcon("minecraft:resistance")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "gray",
+		"text": "Tamed animals get Resistance II when your health is >= 50%"
+	})
+	.cost(2)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("l8aprgz05mqjajqh");
+
+ChimeraSkills.FORTITUDE_3 = new SkillDefinition(CHIMERA_CATEGORY_ID, "fortitude_3")
+	.effectIcon("minecraft:resistance")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "gray",
+		"text": "Tamed animals get Resistance III when your health is >= 50%"
+	})
+	.cost(4)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("gcnl216n2wo0b8u5");

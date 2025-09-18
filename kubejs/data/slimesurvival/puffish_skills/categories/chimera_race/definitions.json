@@ -49,5 +49,113 @@
 				"frame": "task"
 			}
 		}
+	},
+	"pack_marathon": {
+		"title": "Pack Marathon",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Double the movement speed of your pets when sprinting."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:speed"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"fortitude_1": {
+		"title": "Fortitude I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Tamed animals get Resistance I when your health is >= 50%"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:resistance"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"fortitude_2": {
+		"title": "Fortitude II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Tamed animals get Resistance II when your health is >= 50%"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:resistance"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"fortitude_3": {
+		"title": "Fortitude III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Tamed animals get Resistance III when your health is >= 50%"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:resistance"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
 	}
 }

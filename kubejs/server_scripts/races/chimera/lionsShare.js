@@ -1,7 +1,5 @@
 /** @type {typeof import("net.minecraft.world.entity.TamableAnimal").$TamableAnimal } */
 let $TamableAnimal = Java.loadClass("net.minecraft.world.entity.TamableAnimal")
-/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent$Post").$EntityTickEvent$Post } */
-let $EntityTickEvent$Post = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent$Post")
 
 const LionsShare = {};
 

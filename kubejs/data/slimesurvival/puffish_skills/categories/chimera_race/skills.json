@@ -10,5 +10,29 @@
 		"x": 0,
 		"y": -36.95041722813605,
 		"root": false
+	},
+	"g6wrs6zee7l57gnv": {
+		"definition": "pack_marathon",
+		"x": 0,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"454dhe0xb7uzqvlx": {
+		"definition": "fortitude_1",
+		"x": 32,
+		"y": -55.42562584220407,
+		"root": false
+	},
+	"l8aprgz05mqjajqh": {
+		"definition": "fortitude_2",
+		"x": 64,
+		"y": -73.9008344562721,
+		"root": false
+	},
+	"gcnl216n2wo0b8u5": {
+		"definition": "fortitude_3",
+		"x": 96,
+		"y": -55.42562584220407,
+		"root": false
 	}
 }
