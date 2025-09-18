@@ -49,8 +49,11 @@ EntropyHelper.getEntropyPercentageFromAttacker = function(victim, attacker) {
 	if (!(attacker instanceof $ServerPlayer)) {
 		return 0.0;
 	}
+	else if (SkillHelper.hasSkill(attacker, FarlanderSkills.QUANTUM_RENDING_2)) {
+		return 2 / 3;
+	}
 	else if (SkillHelper.hasSkill(attacker, FarlanderSkills.QUANTUM_RENDING)) {
-		return 0.33;
+		return 1 / 3;
 	}
 	else {
 		return 0.0;

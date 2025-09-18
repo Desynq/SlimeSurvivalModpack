@@ -2,18 +2,36 @@
 	"m13s2aep4oet8a47": {
 		"definition": "quantum_uncertainty",
 		"x": 0,
-		"y": -36.95041722813605,
+		"y": 0,
 		"root": true
 	},
 	"vurcdoc6hgo5gbs1": {
 		"definition": "quantum_rending",
 		"x": 64,
-		"y": -73.9008344562721,
+		"y": -64,
 		"root": false
 	},
 	"gwptyt8ifed0x4ws": {
 		"definition": "quantum_delay_1",
 		"x": 64,
+		"y": 64,
+		"root": false
+	},
+	"8t8jv8hkhvrr03ym": {
+		"definition": "quantum_rending_2",
+		"x": 128,
+		"y": -64,
+		"root": false
+	},
+	"98tad3k5fkvvfnur": {
+		"definition": "quantum_delay_2",
+		"x": 128,
+		"y": 64,
+		"root": false
+	},
+	"cspxfslrz4c6380l": {
+		"definition": "quantum_relativity",
+		"x": -64,
 		"y": 0,
 		"root": false
 	}

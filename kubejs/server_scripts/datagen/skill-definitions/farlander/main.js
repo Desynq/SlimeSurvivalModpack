@@ -37,6 +37,17 @@ FarlanderSkills.QUANTUM_RENDING = new SkillDefinition(FARLANDER_CATEGORY_ID, "qu
 	.serialize(FarlanderSkillDefinitionsJson)
 	.toSkill("vurcdoc6hgo5gbs1");
 
+FarlanderSkills.QUANTUM_RENDING_2 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_rending_2")
+	.effectIcon("minecraft:wither")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "dark_purple",
+		"text": "66% of damage dealt to enemies is converted to entropy damage."
+	})
+	.cost(2)
+	.serialize(FarlanderSkillDefinitionsJson)
+	.toSkill("8t8jv8hkhvrr03ym");
+
 FarlanderSkills.QUANTUM_DELAY_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_delay_1")
 	.effectIcon("minecraft:slowness")
 	.advancementFrame("task")
@@ -47,3 +58,31 @@ FarlanderSkills.QUANTUM_DELAY_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "qu
 	.cost(1)
 	.serialize(FarlanderSkillDefinitionsJson)
 	.toSkill("gwptyt8ifed0x4ws");
+
+FarlanderSkills.QUANTUM_DELAY_2 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_delay_2")
+	.effectIcon("minecraft:slowness")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "dark_purple",
+		"text": "Entropy pool is ticked every 4 ticks."
+			+ "\n+100% Entropy decay"
+	})
+	.cost(2)
+	.serialize(FarlanderSkillDefinitionsJson)
+	.toSkill("98tad3k5fkvvfnur");
+
+FarlanderSkills.QUANTUM_RELATIVITY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_relativity")
+	.itemIcon("minecraft:clock")
+	.advancementFrame("challenge")
+	.addDescription({
+		"color": "dark_purple",
+		"text": "Temporarily lower tick rate to 10 ticks per second."
+			+ "\n- Costs 0.5 hunger point (drains saturation first, stops at 6 hunger) every tick (5 hunger points a second)."
+			+ "\n- Minimum duration 0.5 seconds."
+			+ "\n- Maximum duration of 10 seconds."
+			+ "\n- Cooldown of 5 seconds."
+			+ "\n- Requires at least 10 hunger to initiate."
+	})
+	.cost(4)
+	.serialize(FarlanderSkillDefinitionsJson)
+	.toSkill("cspxfslrz4c6380l");

@@ -58,6 +58,33 @@
 			}
 		}
 	},
+	"quantum_rending_2": {
+		"title": "Quantum Rending II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "66% of damage dealt to enemies is converted to entropy damage."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
 	"quantum_delay_1": {
 		"title": "Quantum Delay I",
 		"rewards": [],
@@ -82,6 +109,60 @@
 			"type": "advancement",
 			"data": {
 				"frame": "task"
+			}
+		}
+	},
+	"quantum_delay_2": {
+		"title": "Quantum Delay II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Entropy pool is ticked every 4 ticks.\n+100% Entropy decay"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:slowness"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"quantum_relativity": {
+		"title": "Quantum Relativity",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Temporarily lower tick rate to 10 ticks per second.\n- Costs 0.5 hunger point (drains saturation first, stops at 6 hunger) every tick (5 hunger points a second).\n- Minimum duration 0.5 seconds.\n- Maximum duration of 10 seconds.\n- Cooldown of 5 seconds.\n- Requires at least 10 hunger to initiate."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:clock"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "challenge"
 			}
 		}
 	}
