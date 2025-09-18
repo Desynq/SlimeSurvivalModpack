@@ -6,4 +6,12 @@ StartupEvents.registry("item", event => {
 		.unstackable()
 		.fireResistant()
 		.rarity("epic");
+
+	event.create("slimesurvival:crash_helmet")
+		.unstackable()
+		.rarity("rare");
+
+	event.create("slimesurvival:band_of_regeneration")
+		.unstackable()
+		.rarity("epic");
 })
