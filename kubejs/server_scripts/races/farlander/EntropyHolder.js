@@ -118,7 +118,7 @@ EntropyHolder.prototype.dealDamage = function(entity, attacker, amount) {
 		if (entity.health <= 0) {
 			entity.health = 1;
 			CommandHelper.runCommandSilent(entity.server,
-				`damage ${entity.username} 2147483647 slimesurvival:entropy`
+				`damage ${entity.username} 10 slimesurvival:entropy`
 			);
 		}
 	}
@@ -180,7 +180,7 @@ EntropyHolder.prototype.tickEntries = function(holder) {
  * @param {ServerPlayer} player 
  */
 EntropyHolder.prototype.tryPlayFarlanderHurtSound = function(player) {
-	if (!TickHelper.timestamp(player, "last_entropy_hurt_sound_tick", 5)) {
+	if (!TickHelper.updateTimestamp(player, "last_entropy_hurt_sound_tick", 5)) {
 		return;
 	}
 

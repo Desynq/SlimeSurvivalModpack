@@ -11,6 +11,21 @@ PlayerRaceHelper.getRace = function(player) {
 
 /**
  * 
+ * @param {ServerPlayer} player 
+ */
+PlayerRaceHelper.getRaceWrapper = function(player) {
+	switch (PlayerRaceHelper.getRace(player)) {
+		case Races.CHIMERA:
+			return new ChimeraPlayer(player);
+		case Races.FARLANDER:
+			return new FarlanderPlayer(player);
+		default:
+			return null;
+	}
+}
+
+/**
+ * 
  * @param {Player} player 
  * @param {Race} race 
  */

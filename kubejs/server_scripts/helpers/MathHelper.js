@@ -52,3 +52,16 @@ MathHelper.distance = function(vec1, vec2) {
 	const dz = vec1[2] - vec2[2];
 	return Math.sqrt(dx * dx + dy * dy + dz * dz);
 }
+
+/**
+ * 
+ * @param {number} value 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns 
+ */
+MathHelper.clamped = function(value, min, max) {
+	if (value < min) return min;
+	if (value > max) return max;
+	return value;
+}

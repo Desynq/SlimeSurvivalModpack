@@ -5,11 +5,11 @@
 	 * @param {ServerPlayer} player 
 	 */
 	function handleActiveAbilityKeyPress(player) {
-		let race = PlayerRaceHelper.getRace(player);
-		switch (race) {
-			case Races.CHIMERA:
-				ChimeraPrimaryAbility.onPress(player);
-				break;
+		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
+		if (raceWrapper instanceof ChimeraPlayer) {
+			SanguineConvenantAbility.onPress(raceWrapper);
+		}
+		else if (raceWrapper instanceof FarlanderPlayer) {
 		}
 	}
 

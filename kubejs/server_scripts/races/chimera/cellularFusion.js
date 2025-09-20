@@ -8,6 +8,9 @@ NativeEvents.onEvent($MobEffectEvent$Added, event => {
 
 
 	let effect = event.getEffectInstance();
+	if (!effect.getEffect().value().isBeneficial()) {
+		return
+	}
 	let pets = PlayerHelper.getPetsFollowing(entity);
 	if (pets.length == 0) return;
 	pets.forEach(pet => {

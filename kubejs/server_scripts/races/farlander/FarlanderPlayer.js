@@ -9,6 +9,3 @@ function FarlanderPlayer(player) {
 	}
 	this.player = player;
 }
-
-FarlanderPlayer.prototype.tick = function() {
-}

@@ -1,7 +1,6 @@
 
 
 /**
- * 
  * @param {ServerPlayer} player 
  */
 function ChimeraPlayer(player) {
@@ -9,8 +8,4 @@ function ChimeraPlayer(player) {
 		throw new Error(`${player.username} is not a chimera.`);
 	}
 	this.player = player;
-}
-
-ChimeraPlayer.prototype.tick = function() {
-	new ChimeraTick(this);
 }

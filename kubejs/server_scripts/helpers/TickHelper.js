@@ -20,21 +20,56 @@ TickHelper.getGameTime = function(server) {
 }
 
 
+
 /**
  * 
+ * @param {Entity} entity 
+ * @param {string} id 
+ * @returns 
+ */
+TickHelper.getTimestamp = function(entity, id) {
+	return entity.persistentData.getLong(id);
+}
+
+/**
+ * @param {Entity} entity 
+ * @param {string} id 
+ * @returns {long} Time that has passed since the timestamp was last set or the current game time if the timestamp has not been updated.
+ */
+TickHelper.getTimestampDiff = function(entity, id) {
+	return TickHelper.getGameTime(entity.server) - TickHelper.getTimestamp(entity, id);
+}
+
+/**
+ * 
+ * @param {Entity} entity 
+ * @param {string} id 
+ * @param {long} interval 
+ */
+TickHelper.hasTimestampPassed = function(entity, id, interval) {
+	return TickHelper.getTimestampDiff(entity, id) >= interval;
+}
+
+/**
+ * Sets the timestamp to the current game time
+ * @param {Entity} entity 
+ * @param {string} id 
+ */
+TickHelper.forceUpdateTimestamp = function(entity, id) {
+	entity.persistentData.putLong(id, TickHelper.getGameTime(entity.server));
+}
+
+/**
+ * Updates the timestamp to current game time if the timestamp has not been last updated since the specified interval
  * @param {Entity} entity 
  * @param {string} id
  * @param {long} interval
  * @returns {boolean} true if timestamp was successfully updated after interval passed
  */
-TickHelper.timestamp = function(entity, id, interval) {
-	const currentTimestamp = TickHelper.getGameTime(entity.server);
-	const oldTimestamp = entity.persistentData.getLong(id);
-	if (currentTimestamp - oldTimestamp < interval) {
-		return false;
-	}
-	else {
-		entity.persistentData.putLong(id, currentTimestamp);
+TickHelper.updateTimestamp = function(entity, id, interval) {
+	if (TickHelper.hasTimestampPassed(entity, id, interval)) {
+		TickHelper.forceUpdateTimestamp(entity, id);
 		return true;
 	}
+	return false;
 }

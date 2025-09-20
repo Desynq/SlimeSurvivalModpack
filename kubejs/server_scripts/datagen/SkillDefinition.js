@@ -117,18 +117,12 @@ SkillDefinition.prototype.cost = function(cost) {
 }
 
 /**
- * @param {string | DescriptionObject} description
+ * @param {Object} description
  */
 SkillDefinition.prototype.addDescription = function(description) {
 	this._data.description.push(description);
 	return this;
 }
-
-/**
- * @typedef {Object} DescriptionObject
- * @property {string} text
- * @property {string=} color
- */
 
 /**
  * 

@@ -157,5 +157,42 @@
 				"frame": "task"
 			}
 		}
+	},
+	"sanguine_covenant": {
+		"title": "Sanguine Covenant",
+		"rewards": [],
+		"description": [
+			[
+				{
+					"color": "gray",
+					"text": "Pressing ["
+				},
+				{
+					"color": "yellow",
+					"keybind": "key.slimesurvival.primary_ability"
+				},
+				{
+					"color": "gray",
+					"text": "] makes pets following not able to get damaged below your current health percentage\n\n- Lasts for 15 seconds.\n- Can be cancelled early by pressing the keybind again.\n- Also gets cancelled early if you die.\n- Has a cooldown of 60 seconds that starts once the ability ends."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:instant_damage"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "challenge"
+			}
+		}
 	}
 }

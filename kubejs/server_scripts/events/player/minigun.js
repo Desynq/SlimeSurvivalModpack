@@ -31,7 +31,7 @@ Minigun.tryFire = function(player, gun) {
 		return;
 	}
 
-	if (!TickHelper.timestamp(player, "minigun_fire_cooldown", 1)) {
+	if (!TickHelper.updateTimestamp(player, "minigun_fire_cooldown", 1)) {
 		return;
 	}
 

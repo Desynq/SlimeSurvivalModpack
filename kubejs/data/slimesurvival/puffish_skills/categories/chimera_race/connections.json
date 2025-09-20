@@ -1,6 +1,6 @@
 {
 	"normal": {
-		"unidirectional": [
+		"bidirectional": [
 			[
 				"p9wcqr8os2f6lncd",
 				"l3j9ppm6hiiypz3l"
@@ -20,6 +20,10 @@
 			[
 				"l8aprgz05mqjajqh",
 				"gcnl216n2wo0b8u5"
+			],
+			[
+				"l8aprgz05mqjajqh",
+				"53sa7a8z55jcy314"
 			]
 		]
 	}

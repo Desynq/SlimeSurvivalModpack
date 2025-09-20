@@ -74,3 +74,28 @@ ChimeraSkills.FORTITUDE_3 = new SkillDefinition(CHIMERA_CATEGORY_ID, "fortitude_
 	.cost(4)
 	.serialize(ChimeraSkillDefinitionsJson)
 	.toSkill("gcnl216n2wo0b8u5");
+
+ChimeraSkills.SANGUINE_COVENANT = new SkillDefinition(CHIMERA_CATEGORY_ID, "sanguine_covenant")
+	.effectIcon("minecraft:instant_damage")
+	.advancementFrame("challenge")
+	.addDescription([
+		{
+			"color": "gray",
+			"text": "Pressing ["
+		},
+		{
+			"color": "yellow",
+			"keybind": "key.slimesurvival.primary_ability"
+		},
+		{
+			"color": "gray",
+			"text": "] makes pets following not able to get damaged below your current health percentage"
+				+ "\n\n- Lasts for 15 seconds."
+				+ "\n- Can be cancelled early by pressing the keybind again."
+				+ "\n- Also gets cancelled early if you die."
+				+ "\n- Has a cooldown of 60 seconds that starts once the ability ends."
+		}
+	])
+	.cost(4)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("53sa7a8z55jcy314")

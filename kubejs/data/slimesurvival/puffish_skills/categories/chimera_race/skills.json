@@ -19,20 +19,26 @@
 	},
 	"454dhe0xb7uzqvlx": {
 		"definition": "fortitude_1",
-		"x": 32,
-		"y": -55.42562584220407,
+		"x": 64,
+		"y": -36.95041722813605,
 		"root": false
 	},
 	"l8aprgz05mqjajqh": {
 		"definition": "fortitude_2",
-		"x": 64,
-		"y": -73.9008344562721,
+		"x": 96,
+		"y": -18.475208614068023,
 		"root": false
 	},
 	"gcnl216n2wo0b8u5": {
 		"definition": "fortitude_3",
+		"x": 128,
+		"y": -36.95041722813605,
+		"root": false
+	},
+	"53sa7a8z55jcy314": {
+		"definition": "sanguine_covenant",
 		"x": 96,
-		"y": -55.42562584220407,
+		"y": -92.37604307034012,
 		"root": false
 	}
 }
