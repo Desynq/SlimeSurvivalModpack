@@ -3,6 +3,7 @@ new MarketableItem("experience_bottle", "minecraft:experience_bottle")
 	.register();
 
 new MarketableItem("arrow", "minecraft:arrow")
+	.setSellPrice(2.00)
 	.setBuyPrice(3.00)
 	.register();
 
