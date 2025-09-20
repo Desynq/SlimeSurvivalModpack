@@ -2,61 +2,73 @@
 	"s9il1r95zp4fg5vl": {
 		"definition": "flammable",
 		"x": 32,
-		"y": -32,
+		"y": 64,
 		"root": true
 	},
 	"hi8bub7iluizrm0t": {
 		"definition": "slimeproof",
-		"x": -32,
-		"y": 32,
+		"x": -64,
+		"y": 0,
 		"root": true
 	},
 	"1eo7ddidgilk3911": {
 		"definition": "aregenerative",
-		"x": -32,
-		"y": -32,
+		"x": 0,
+		"y": -64,
 		"root": true
 	},
 	"qmbylqinpxjxvjgv": {
 		"definition": "pseudopodia",
-		"x": 32,
-		"y": 32,
+		"x": -32,
+		"y": 64,
 		"root": true
 	},
 	"cdw1xwwww7rsxbvx": {
 		"definition": "mitosis",
-		"x": -96,
-		"y": -32,
+		"x": 0,
+		"y": -96,
 		"root": false
 	},
 	"xj64dsjei37hvgax": {
 		"definition": "mitotic_acceleration_1",
-		"x": -128,
-		"y": -64,
+		"x": 0,
+		"y": -128,
 		"root": false
 	},
 	"lsce7nkfd76wytmm": {
 		"definition": "mitotic_acceleration_2",
-		"x": -160,
-		"y": -96,
+		"x": 0,
+		"y": -160,
 		"root": false
 	},
 	"64ckkk2rx7hfvkqq": {
 		"definition": "mitotic_acceleration_3",
-		"x": -192,
-		"y": -128,
+		"x": 0,
+		"y": -192,
 		"root": false
 	},
 	"y2fpcywmblqtu859": {
 		"definition": "mitotic_acceleration_4",
-		"x": -224,
-		"y": -160,
+		"x": 0,
+		"y": -224,
 		"root": false
 	},
 	"4yjkeqmp04gygc04": {
 		"definition": "apoptosis",
-		"x": -64,
+		"x": -32,
+		"y": -128,
+		"root": false
+	},
+	"7mb8epyl7aobm9ub": {
+		"definition": "congealed_1",
+		"x": 64,
 		"y": 0,
+		"root": true
+	},
+	"u3dd2zdz5jy3xufx": {
+		"definition": "phagocytosis",
+		"x": -32,
+		"y": -64,
 		"root": false
 	}
 }

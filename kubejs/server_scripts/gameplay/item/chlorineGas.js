@@ -134,8 +134,6 @@ ChlorineGasGrenadeTick.prototype.damageNearby = function() {
 		LivingEntityHelper.addEffect(e, "minecraft:slowness", 200, 1, false, true, true, this.entity);
 		// @ts-ignore
 		LivingEntityHelper.addEffect(e, "minecraft:wither", 100, 2, false, true, true, this.entity);
-		// @ts-ignore
-		LivingEntityHelper.addEffect(e, "slimesurvival:weak_knees", 100, 3, false, true, true, this.entity);
 
 		playsound(this.level, this.position, "minecraft:entity.blaze.ambient", "master", 1, 1.75);
 		e.persistentData.putLong("last_chlorine_damage_tick", TickHelper.getGameTime(e.server));

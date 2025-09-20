@@ -29,6 +29,7 @@ NoIFrames.whitelistedEntities = {
 	"tconstruct:ender_slime": true,
 	"tconstruct:terracube": true,
 	"twilightforest:maze_slime": true,
+	"cataclysm:netherite_monstrosity": true,
 };
 
 NoIFrames.ATTACK_STRENGTH_THRESHOLD = 0.5;

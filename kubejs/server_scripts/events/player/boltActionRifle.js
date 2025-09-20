@@ -1,7 +1,4 @@
-/** @type {typeof import("net.minecraft.world.item.Items").$Items } */
-let $Items = Java.loadClass("net.minecraft.world.item.Items")
-/** @type {typeof import("net.minecraft.world.entity.projectile.Arrow").$Arrow } */
-let $Arrow = Java.loadClass("net.minecraft.world.entity.projectile.Arrow")
+
 const BoltActionRifle = {};
 
 /**
@@ -39,34 +36,40 @@ BoltActionRifle.tryFire = function(player, gun) {
 
 /**
  * 
- * @param {ServerPlayer} player 
- * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} gun
+ * @param {ServerPlayer} shooter 
+ * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} weapon
  */
-BoltActionRifle.fire = function(player, gun) {
-	player.server.runCommandSilent(`clear ${player.username} minecraft:iron_nugget 1`);
+BoltActionRifle.fire = function(shooter, weapon) {
+	shooter.server.runCommandSilent(`clear ${shooter.username} minecraft:iron_nugget 1`);
 
-	playsound(player.level, player.position(), "minecraft:entity.firework_rocket.large_blast", "master", 16, 1);
-
-	const eyePos = player.getEyePosition();
+	playsound(shooter.level, shooter.position(), "minecraft:entity.firework_rocket.large_blast", "master", 16, 1);
 
 	const arrowStack = new $ItemStack($Items.ARROW);
+	/** @type {import("net.minecraft.world.item.ArrowItem").$ArrowItem$$Original} */
 	// @ts-ignore
-	const arrow = new $Arrow(player.level, player, arrowStack, gun);
-	arrow.setNoGravity(true);
+	const arrowItem = $Items.ARROW;
 
 	// @ts-ignore
-	arrow.setPos(eyePos);
-	arrow.shootFromRotation(player, player.xRot, player.yRot, 0, 10, 0);
+	const arrow = arrowItem.createArrow(shooter.level, arrowStack, shooter, weapon);
 
 	const tag = new $CompoundTag();
 	arrow.saveWithoutId(tag);
 
-	// tag.putByte("PierceLevel", 10);
+	tag.putByte("pickup", 2);
+	tag.putByte("PierceLevel", 10);
+	tag.putDouble("damage", 3);
 
 	arrow.load(tag);
 
+	const speed = Velocity.get(shooter);
+	// const shootingFirework = shooter.level.entities.stream().anyMatch(e => e instanceof $FireworkRocketEntity && e.ownedBy(shooter))
+	// let spread = shooter.fallFlying && !shootingFirework ? 0 : speed * 50;
+	let spread = speed * 50;
+	shooter.tell(spread.toString());
+	arrow.shootFromRotation(shooter, shooter.xRot, shooter.yRot, 0, 20, spread);
+
 	// @ts-ignore
-	player.level.addFreshEntity(arrow);
+	shooter.level.addFreshEntity(arrow);
 }
 
 

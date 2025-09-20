@@ -7,7 +7,7 @@ NativeEvents.onEvent($ArrowLooseEvent, event => {
 		return;
 	}
 
-	$TaskScheduler.scheduleTask(player.server, 1, () => ApplyCrossbowRecoil(player));
+	// $TaskScheduler.scheduleTask(player.server, 1, () => ApplyCrossbowRecoil(player));
 });
 
 /**

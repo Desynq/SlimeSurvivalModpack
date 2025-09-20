@@ -52,3 +52,15 @@ SludgeSkills.PSEUDOPODIA = new SkillDefinition(SludgeSkillsCategoryId, "pseudopo
 	.addAttributeReward("puffish_attributes:bow_projectile_speed", -0.5, "multiply_total")
 	.serialize(SludgeDefinitionsJson)
 	.toSkill("qmbylqinpxjxvjgv");
+
+SludgeSkills.CONGEALED_1 = new SkillDefinition(SludgeSkillsCategoryId, "congealed_1")
+	.advancementFrame("goal")
+	.effectIcon("minecraft:health_boost")
+	.addDescription({
+		"color": "green",
+		"text": "+10 Max Health"
+	})
+	.rootSkill()
+	.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
+	.serialize(SludgeDefinitionsJson)
+	.toSkill("7mb8epyl7aobm9ub");

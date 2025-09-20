@@ -26,7 +26,6 @@ EntityEvents.afterHurt("minecraft:player", event => {
 		return;
 	}
 
-	ActionbarManager.addSimple(player, event.source.type().msgId());
 	const damageType = event.source.type().msgId();
 	if (["onFire", "inFire", "lava"].indexOf(damageType) === -1) {
 		return;

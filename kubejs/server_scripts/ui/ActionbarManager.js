@@ -8,7 +8,7 @@ PlayerEvents.tick(event => {
 	if (texts.length > 0) {
 		let concatText = texts.join(",\" \",");
 		if (concatText.length > 0) {
-			server.runCommandSilent(`title ${player.username} actionbar [${concatText}]`);
+			CommandHelper.runCommandSilent(server, `title ${player.username} actionbar [${concatText}]`);
 		}
 		ActionbarManager.resetTexts(uuid);
 		// If non-delayed text is shown, just decrement delayed ticks if present
@@ -25,7 +25,7 @@ PlayerEvents.tick(event => {
 	// Only show delayed text if no non-delayed texts
 	const delayed = ActionbarManager.delayedMessages[uuid];
 	if (delayed && delayed.ticks > 0) {
-		server.runCommandSilent(`title ${player.username} actionbar "${delayed.text}"`);
+		CommandHelper.runCommandSilent(server, `title ${player.username} actionbar [${delayed.text}]`);
 		delayed.ticks--;
 		if (delayed.ticks === 0) {
 			delete ActionbarManager.delayedMessages[uuid];
@@ -57,7 +57,7 @@ ActionbarManager.delayedMessages = {};
 /**
  * Displays simple text on the actionbar for a set delay in ticks
  * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player
- * @param {string} text
+ * @param {string} text stringified JSON component
  * @param {number} delay Number of ticks to display
  */
 ActionbarManager.setSimple = function(player, text, delay) {

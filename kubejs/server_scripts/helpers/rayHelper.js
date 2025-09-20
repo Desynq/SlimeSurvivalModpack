@@ -1,4 +1,4 @@
-let $HitResult$Type = Java.loadClass("net.minecraft.world.phys.HitResult$Type");
+
 let $ClipContext$Fluid = Java.loadClass("net.minecraft.world.level.ClipContext$Fluid");
 let $ClipContext$Block = Java.loadClass("net.minecraft.world.level.ClipContext$Block");
 let $ClipContext = Java.loadClass("net.minecraft.world.level.ClipContext");

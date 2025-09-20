@@ -12,18 +12,21 @@ let $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity")
  */
 function UnbreakingTomeTick(tome, otherItemEntities) {
 	/** @type {Array<[double, ItemEntity]>} */
-	let itemdis = []
+	let itemEntitiesSorted = []
 	for (let i = 0; i < otherItemEntities.length; i++) {
-		let theitem = otherItemEntities[i];
-		if (theitem === tome) { continue };
-		let dis = tome.position().distanceTo(theitem.position());
-		itemdis.push([dis, theitem]);
+		let closestItem = otherItemEntities[i];
+		if (closestItem === tome) {
+			continue;
+		};
+		// @ts-ignore
+		let dis = tome.position().distanceTo(closestItem.position());
+		itemEntitiesSorted.push([dis, closestItem]);
 	}
 
-	itemdis.sort((a, b) => a[0] - b[0]);
+	itemEntitiesSorted.sort((a, b) => a[0] - b[0]);
 
-	let target = itemdis[0][1];
-	let targetdis = itemdis[0][0];
+	let target = itemEntitiesSorted[0][1];
+	let targetdis = itemEntitiesSorted[0][0];
 	if (targetdis > 10) { return };
 
 	setItemUnbreakable(target.item);
@@ -36,5 +39,7 @@ function UnbreakingTomeTick(tome, otherItemEntities) {
  */
 function setItemUnbreakable(item) {
 	const unbreakable = new $Unbreakable(true);
+
+	// @ts-ignore
 	item.set($DataComponents.UNBREAKABLE, unbreakable);
 }

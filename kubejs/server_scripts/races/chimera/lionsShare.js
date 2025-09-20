@@ -3,7 +3,7 @@ let $TamableAnimal = Java.loadClass("net.minecraft.world.entity.TamableAnimal")
 
 const LionsShare = {};
 
-LionsShare.MODIFIER_ID = $ResourceLocation.parse("slimesurvival:lions_share");
+LionsShare.MODIFIER_ID = "slimesurvival:lions_share";
 
 /**
  * 
@@ -31,7 +31,7 @@ LionsShare.tamableTick = function(event) {
 		return;
 	}
 
-	AttributeHelper.addModifier(pet, $Attributes.MAX_HEALTH, LionsShare.MODIFIER_ID, maxHealthDiff, $AttributeModifier$Operation.ADD_VALUE);
+	AttributeHelper.addModifier(pet, $Attributes.MAX_HEALTH, LionsShare.MODIFIER_ID, maxHealthDiff, "add_value");
 	if (wasFullHealth) {
 		pet.setHealth(pet.maxHealth);
 	}

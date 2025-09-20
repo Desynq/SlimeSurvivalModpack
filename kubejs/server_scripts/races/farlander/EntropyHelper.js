@@ -32,12 +32,36 @@ EntropyHelper.getInterval = function(entity) {
 	if (player == null) {
 		return 1;
 	}
-	else if (SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_DELAY_1)) {
-		return 2;
+
+	const tier = SkillHelper.getSkillTier(player,
+		FarlanderSkills.QUANTUM_DELAY_1,
+		FarlanderSkills.QUANTUM_DELAY_2,
+	);
+
+	switch (tier) {
+		case 1:
+			return 2;
+		case 2:
+			return 4;
+		default:
+			return 1;
 	}
-	else {
-		return 1;
+}
+
+/**
+ * @param {LivingEntity} entity 
+ */
+EntropyHelper.getDecayPercentage = function(entity) {
+	const player = entity instanceof $ServerPlayer ? entity : null;
+	let percentage = 0.1;
+	if (player == null) {
+		return percentage;
 	}
+
+	if (SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_DELAY_2)) {
+		percentage *= 1.5;
+	}
+	return percentage;
 }
 
 /**

@@ -18,7 +18,9 @@ EntityEvents.beforeHurt(event => {
 	if (!isFarlander && !attackerHasQuantumRending) {
 		return;
 	}
-	if (isFromKillCommand(event)) {
+
+	const blacklistedDamageSources = ["genericKill", "slimesurvival.entropy"]
+	if (ArrayHelper.includes(blacklistedDamageSources, event.source.getType())) {
 		return;
 	}
 
@@ -51,14 +53,6 @@ function applyAbsorptionDamage(victim, damage) {
 	const newAbsorptionValue = victim.absorptionAmount - damage;
 	victim.setAbsorptionAmount(newAbsorptionValue);
 	return -Math.min(newAbsorptionValue, 0);
-}
-
-/**
- * 
- * @param {import("dev.latvian.mods.kubejs.entity.BeforeLivingEntityHurtKubeEvent").$BeforeLivingEntityHurtKubeEvent$$Original} event 
- */
-function isFromKillCommand(event) {
-	return event.source.type().msgId() === "genericKill";
 }
 
 

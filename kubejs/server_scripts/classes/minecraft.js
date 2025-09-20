@@ -42,3 +42,22 @@ const $Creeper = Java.loadClass("net.minecraft.world.entity.monster.Creeper");
 
 /** @type {typeof import("net.minecraft.world.item.Items").$Items } */
 const $Items = Java.loadClass("net.minecraft.world.item.Items")
+
+/** @type {typeof import("net.minecraft.world.entity.projectile.FireworkRocketEntity").$FireworkRocketEntity } */
+const $FireworkRocketEntity = Java.loadClass("net.minecraft.world.entity.projectile.FireworkRocketEntity")
+
+/** @type {typeof import("net.minecraft.world.entity.projectile.Arrow").$Arrow } */
+const $Arrow = Java.loadClass("net.minecraft.world.entity.projectile.Arrow")
+
+/** @type {typeof import("net.minecraft.world.phys.HitResult$Type").$HitResult$Type } */
+const $HitResult$Type = Java.loadClass("net.minecraft.world.phys.HitResult$Type");
+
+// @ts-ignore
+/** @type {typeof import("net.minecraft.core.registries.Registries").$Registries} */
+const $Registries = Java.loadClass("net.minecraft.core.registries.Registries");
+
+/** @type {typeof import("net.minecraft.resources.ResourceKey").$ResourceKey } */
+const $ResourceKey = Java.loadClass("net.minecraft.resources.ResourceKey");
+
+/** @type {typeof import("net.minecraft.world.damagesource.DamageSource").$DamageSource } */
+const $DamageSource = Java.loadClass("net.minecraft.world.damagesource.DamageSource");

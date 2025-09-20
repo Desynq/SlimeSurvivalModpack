@@ -17,3 +17,9 @@ const $PlayerInteractEvent$RightClickItem = Java.loadClass("net.neoforged.neofor
 
 /** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent$Post").$EntityTickEvent$Post } */
 const $EntityTickEvent$Post = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent$Post")
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingFallEvent").$LivingFallEvent } */
+const $LivingFallEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingFallEvent");
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.ProjectileImpactEvent").$ProjectileImpactEvent} */
+const $ProjectileImpactEvent = Java.loadClass("net.neoforged.neoforge.event.entity.ProjectileImpactEvent");

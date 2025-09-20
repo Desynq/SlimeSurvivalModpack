@@ -5,7 +5,8 @@ const Parry = {};
  * @param {import("net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent").$LivingIncomingDamageEvent$$Original} event
  */
 Parry.onLivingIncomingDamage = function(event) {
-	const player = event.entity instanceof $Player ? event.entity : null;
+	let player = event.entity instanceof $Player ? event.entity : null;
+
 	if (player == null) {
 		return;
 	}

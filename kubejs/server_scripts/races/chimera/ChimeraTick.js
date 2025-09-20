@@ -15,7 +15,7 @@ function ChimeraTick(chimera) {
 }
 
 ChimeraTick.prototype.tickWolfPacking = function() {
-	const MODIFIER_ID = $ResourceLocation.parse("slimesurvival:wolf_packing");
+	const MODIFIER_ID = "slimesurvival:wolf_packing";
 
 	AttributeHelper.removeModifier(this.player, $Attributes.MAX_HEALTH, MODIFIER_ID);
 
@@ -29,11 +29,11 @@ ChimeraTick.prototype.tickWolfPacking = function() {
 		return;
 	}
 
-	AttributeHelper.addModifier(this.player, $Attributes.MAX_HEALTH, MODIFIER_ID, healthToAdd, $AttributeModifier$Operation.ADD_VALUE);
+	AttributeHelper.addModifier(this.player, $Attributes.MAX_HEALTH, MODIFIER_ID, healthToAdd, "add_value");
 }
 
 ChimeraTick.prototype.tickPackMarathon = function() {
-	const MODIFIER_ID = $ResourceLocation.parse("slimesurvival:pack_marathon");
+	const MODIFIER_ID = "slimesurvival:pack_marathon";
 
 	this.petsFollowing.forEach(pet => {
 		AttributeHelper.removeModifier(pet, $Attributes.MOVEMENT_SPEED, MODIFIER_ID);
@@ -44,7 +44,7 @@ ChimeraTick.prototype.tickPackMarathon = function() {
 	}
 
 	this.petsFollowing.forEach(pet => {
-		AttributeHelper.addModifier(pet, $Attributes.MOVEMENT_SPEED, MODIFIER_ID, 1, $AttributeModifier$Operation.ADD_MULTIPLIED_TOTAL);
+		AttributeHelper.addModifier(pet, $Attributes.MOVEMENT_SPEED, MODIFIER_ID, 1, "add_multiplied_total");
 	});
 }
 

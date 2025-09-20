@@ -1,0 +1,10 @@
+{
+	"title": "Random",
+	"icon": {
+		"type": "item",
+		"data": {
+			"item": "minecraft:blaze_rod"
+		}
+	},
+	"background": "textures/gui/advancements/backgrounds/stone.png"
+}

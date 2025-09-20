@@ -1,8 +1,6 @@
-let $CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
-let $Minecraft = Java.loadClass("net.minecraft.client.Minecraft");
-let $ScreenEvent$KeyPressed$Pre = Java.loadClass("net.neoforged.neoforge.client.event.ScreenEvent$KeyPressed$Pre");
 
-let $CrawlClient = Java.loadClass("ru.fewizz.crawl.client.CrawlClient")
+
+
 
 
 
@@ -27,7 +25,7 @@ function JumpKeyPress() {
 
 let wasCrawlDown = false;
 function CrawlKeyPress() {
-	/** @type {$KeyMapping_} */
+	/** @type {import("net.minecraft.client.KeyMapping").$KeyMapping$$Original} */
 	const key = $CrawlClient.key;
 	const isCrawlDown = key.down;
 

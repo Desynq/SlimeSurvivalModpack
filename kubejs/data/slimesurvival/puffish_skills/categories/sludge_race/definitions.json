@@ -124,6 +124,39 @@
 		},
 		"required_points": 2147483647
 	},
+	"congealed_1": {
+		"title": "Congealed I",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.max_health",
+					"value": 10,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			{
+				"color": "green",
+				"text": "+10 Max Health"
+			}
+		],
+		"cost": 0,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:health_boost"
+			}
+		},
+		"required_points": 2147483647
+	},
 	"mitosis": {
 		"title": "Mitosis",
 		"rewards": [],
@@ -247,6 +280,27 @@
 			"type": "effect",
 			"data": {
 				"effect": "minecraft:speed"
+			}
+		}
+	},
+	"phagocytosis": {
+		"title": "Phagocytosis",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You can eat food 25% faster"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_carrot"
 			}
 		}
 	}

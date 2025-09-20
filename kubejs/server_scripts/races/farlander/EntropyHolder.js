@@ -80,15 +80,18 @@ EntropyHolder.prototype.resetEntropy = function() {
 
 
 /**
- * @param {LivingEntity} holder
+ * @param {LivingEntity} entity
  * @param {float} amount
  * @param {EntropyEntry} entry
  */
-EntropyHolder.prototype.dealDamage = function(holder, amount, entry) {
+EntropyHolder.prototype.calculateAndDealDamage = function(entity, amount, entry) {
+	if (entity.health <= 0) {
+		return;
+	}
 	let uncertaintyDamage;
-	if (entry.uuid !== undefined) {
-		const attacker = holder.server.getEntityByUUID(entry.uuid);
-		if (!EntropyHelper.isFromQuantumAttacker(holder, attacker)) {
+	let attacker = entry.uuid == undefined ? null : entity.server.getEntityByUUID(entry.uuid);
+	if (attacker != null) {
+		if (!EntropyHelper.isFromQuantumAttacker(entity, attacker)) {
 			uncertaintyDamage = Math.random() * 2 * amount;
 		}
 		else {
@@ -99,13 +102,28 @@ EntropyHolder.prototype.dealDamage = function(holder, amount, entry) {
 		uncertaintyDamage = Math.random() * 2 * amount;
 	}
 
-	let newHealth = holder.getHealth() - uncertaintyDamage;
+	// @ts-ignore
+	this.dealDamage(entity, attacker, uncertaintyDamage);
+}
 
-	if (newHealth > 0) {
-		holder.setHealth(newHealth);
+/**
+ * 
+ * @param {LivingEntity} entity 
+ * @param {LivingEntity | null} attacker 
+ * @param {float} amount 
+ */
+EntropyHolder.prototype.dealDamage = function(entity, attacker, amount) {
+	try {
+		entity.health -= amount;
+		if (entity.health <= 0) {
+			entity.health = 1;
+			CommandHelper.runCommandSilent(entity.server,
+				`damage ${entity.username} 2147483647 slimesurvival:entropy`
+			);
+		}
 	}
-	else {
-		holder.kill();
+	catch (error) {
+		tellError(entity.server, error);
 	}
 }
 
@@ -154,7 +172,7 @@ EntropyHolder.prototype.tickEntries = function(holder) {
 	for (let i = this.entropyEntries.length - 1; i >= 0; i--) {
 		let entry = this.entropyEntries[i];
 		let entropyDecay = this.decayEntry(holder, entry, i);
-		this.dealDamage(holder, entropyDecay, entry);
+		this.calculateAndDealDamage(holder, entropyDecay, entry);
 	}
 }
 
@@ -177,13 +195,13 @@ EntropyHolder.prototype.tryPlayFarlanderFullDecaySound = function(player) {
 }
 
 /**
- * @param {LivingEntity} holder
+ * @param {LivingEntity} entity
  * @param {EntropyEntry} entry
  * @param {integer} index
  */
-EntropyHolder.prototype.decayEntry = function(holder, entry, index) {
+EntropyHolder.prototype.decayEntry = function(entity, entry, index) {
 	if (entry.damage > 0.5) {
-		let entropyDecay = entry.damage * 0.1;
+		let entropyDecay = entry.damage * EntropyHelper.getDecayPercentage(entity);
 		entry.damage -= entropyDecay;
 		return entropyDecay
 	}

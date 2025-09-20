@@ -44,16 +44,6 @@ function cannotFallFlyInLowOrbit(player) {
 		|| player.isCrouching();
 }
 
-NetworkEvents.dataReceived("KeyPressed", event => {
-	const player = event.player;
-	const uuid = player.uuid.toString();
-	const key = event.data.getString("key");
-
-	if (key != "jump") {
-		return;
-	}
-});
-
 // NativeEvents.onEvent($LivingBreatheEvent, event => {
 // 	const { entity } = event;
 // 	if (entity instanceof $Player && EntityHelper.isInLowOrbit(entity) && PlayerHelper.isSurvivalLike(entity)) {

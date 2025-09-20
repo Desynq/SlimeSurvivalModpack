@@ -1,0 +1,25 @@
+{
+	"rend": {
+		"name": "Rend",
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Your swings tear armour asunder."
+			}
+		],
+		"cost": 0,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:cracked_stone_bricks"
+			}
+		},
+		"rewards": []
+	}
+}
