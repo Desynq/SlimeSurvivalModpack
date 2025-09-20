@@ -11,4 +11,6 @@ PlayerEvents.tick(event => {
 		new ChimeraTick(racePlayer);
 		SanguineConvenantAbility.onTick(racePlayer);
 	}
+	else if (racePlayer instanceof FarlanderPlayer) {
+	}
 });

@@ -73,3 +73,14 @@ TickHelper.updateTimestamp = function(entity, id, interval) {
 	}
 	return false;
 }
+
+
+
+/**
+ * @param {MinecraftServer} server
+ * @param {integer} ticks 
+ * @returns 
+ */
+TickHelper.toSeconds = function(server, ticks) {
+	return (ticks / TickHelper.getTickRate(server)).toFixed(1);
+}

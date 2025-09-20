@@ -72,9 +72,3 @@ PlayerEvents.respawned(event => {
 	}
 	holder.resetEntropy();
 });
-
-PlayerEvents.tick(event => {
-	if (event.player instanceof $ServerPlayer && PlayerRaceHelper.isRace(event.player, Races.FARLANDER)) {
-		new FarlanderPlayer(event.player).tick();
-	}
-});

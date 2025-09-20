@@ -116,9 +116,9 @@ EntropyHolder.prototype.dealDamage = function(entity, attacker, amount) {
 	try {
 		entity.health -= amount;
 		if (entity.health <= 0) {
-			entity.health = 1;
+			entity.health = 0.0001;
 			CommandHelper.runCommandSilent(entity.server,
-				`damage ${entity.username} 10 slimesurvival:entropy`
+				`damage ${entity.username} 1 slimesurvival:entropy`
 			);
 		}
 	}

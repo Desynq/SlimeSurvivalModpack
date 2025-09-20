@@ -98,4 +98,37 @@ ChimeraSkills.SANGUINE_COVENANT = new SkillDefinition(CHIMERA_CATEGORY_ID, "sang
 	])
 	.cost(4)
 	.serialize(ChimeraSkillDefinitionsJson)
-	.toSkill("53sa7a8z55jcy314")
+	.toSkill("53sa7a8z55jcy314");
+
+ChimeraSkills.COVENANT_RESTORATION = new SkillDefinition(CHIMERA_CATEGORY_ID, "covenant_restoration")
+	.effectIcon("minecraft:instant_health")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "green",
+		"text": "All pets following you are restored to your current health percentage once Sanguine Convenant gets cancelled or ends."
+	})
+	.cost(2)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("mdxmlh3ln8lruyo2");
+
+ChimeraSkills.PERFECT_COVENANT = new SkillDefinition(CHIMERA_CATEGORY_ID, "perfect_covenant")
+	.itemIcon("minecraft:diamond")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "green",
+		"text": "Cooldown is reduced by 50% if the ability ends and you're at max health.\n- Does not proc if the ability is cancelled early."
+	})
+	.cost(1)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("i9m0vussyk8rd1fn");
+
+ChimeraSkills.FALL_PROTECTION = new SkillDefinition(CHIMERA_CATEGORY_ID, "fall_protection")
+	.itemIcon("minecraft:feather")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "green",
+		"text": "Pets following you don't take fall damage"
+	})
+	.cost(1)
+	.serialize(ChimeraSkillDefinitionsJson)
+	.toSkill("hzdfphadlqrhhv7a");

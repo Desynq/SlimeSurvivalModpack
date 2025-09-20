@@ -1,7 +1,4 @@
 
-
-
-
 const SanguineConvenantAbility = (function() {
 
 	const ToggleController = (function() {
@@ -37,7 +34,11 @@ const SanguineConvenantAbility = (function() {
 		 * @param {ChimeraPlayer} chimera 
 		 */
 		function getMax(chimera) {
-			return 1200;
+			let max = 1200;
+			if (PerfectCovenant.hasProcced(chimera)) {
+				max *= 0.5;
+			}
+			return max;
 		}
 
 		/**
@@ -132,6 +133,14 @@ const SanguineConvenantAbility = (function() {
 		}
 
 		/**
+		 * @param {ChimeraPlayer} chimera 
+		 */
+		function displayCooldown(chimera) {
+			const timeLeft = CooldownController.getMax(chimera) - CooldownController.getCurr(chimera);
+			ActionbarManager.addSimple(chimera.player, `Covenant CD: ${TickHelper.toSeconds(chimera.player.server, timeLeft)}`);
+		}
+
+		/**
 		 * 
 		 * @param {ChimeraPlayer} chimera 
 		 */
@@ -156,11 +165,10 @@ const SanguineConvenantAbility = (function() {
 			abilityDisabled: abilityDisabled,
 			abilityEnabled: abilityEnabled,
 			updateUI: updateUI,
-			errorToggledWhileOnCooldown: errorToggledWhileOnCooldown
+			errorToggledWhileOnCooldown: errorToggledWhileOnCooldown,
+			displayCooldown: displayCooldown
 		}
 	})();
-
-
 
 	/**
 	 * 
@@ -178,14 +186,76 @@ const SanguineConvenantAbility = (function() {
 
 		ToggleController.toggle(chimera);
 		if (ToggleController.isToggled(chimera)) {
+			PerfectCovenant.deproc(chimera);
 			DurationController.update(chimera);
 			Sfx.abilityEnabled(chimera);
 		}
 		else {
-			CooldownController.update(chimera);
-			Sfx.abilityDisabled(chimera);
+			handleAbilityCancel(chimera);
 		}
 	}
+
+	/**
+	 * 
+	 * @param {ChimeraPlayer} chimera 
+	 */
+	function handleAbilityCancel(chimera) {
+		handleCovenantRestoration(chimera);
+		CooldownController.update(chimera);
+		Sfx.abilityDisabled(chimera);
+	}
+
+	/**
+	 * 
+	 * @param {ChimeraPlayer} chimera 
+	 */
+	function handleAbilityExpiration(chimera) {
+		handleCovenantRestoration(chimera);
+		handlePerfectCovenant(chimera);
+		CooldownController.update(chimera);
+		ToggleController.toggle(chimera);
+		Sfx.abilityDisabled(chimera);
+	}
+
+	/**
+	 * 
+	 * @param {ChimeraPlayer} chimera 
+	 */
+	function handleDeathDuringAbility(chimera) {
+		CooldownController.update(chimera);
+		ToggleController.toggle(chimera);
+		Sfx.abilityDisabled(chimera);
+	}
+
+	/**
+	 * 
+	 * @param {ChimeraPlayer} chimera 
+	 */
+	function handleCovenantRestoration(chimera) {
+		if (!SkillHelper.hasSkill(chimera.player, ChimeraSkills.COVENANT_RESTORATION)) {
+			return;
+		}
+
+		PlayerHelper.getPetsFollowing(chimera.player).forEach(pet => {
+			pet.health = pet.maxHealth;
+		})
+	}
+
+	/**
+	 * 
+	 * @param {ChimeraPlayer} chimera 
+	 */
+	function handlePerfectCovenant(chimera) {
+		if (!SkillHelper.hasSkill(chimera.player, ChimeraSkills.PERFECT_COVENANT)) {
+			return;
+		}
+		if (chimera.player.health < chimera.player.maxHealth) {
+			return;
+		}
+		PerfectCovenant.proc(chimera);
+	}
+
+
 
 	/**
 	 * 
@@ -200,12 +270,17 @@ const SanguineConvenantAbility = (function() {
 	 */
 	function onTick(chimera) {
 		if (!ToggleController.isToggled(chimera)) {
+			if (!CooldownController.hasPassed(chimera)) {
+				Sfx.displayCooldown(chimera);
+			}
 			return;
 		}
-		if (chimera.player.isDeadOrDying() || DurationController.hasPassed(chimera)) {
-			CooldownController.update(chimera);
-			ToggleController.toggle(chimera);
-			Sfx.abilityDisabled(chimera);
+		if (chimera.player.isDeadOrDying()) {
+			handleDeathDuringAbility(chimera);
+			return;
+		}
+		if (DurationController.hasPassed(chimera)) {
+			handleAbilityExpiration(chimera);
 			return;
 		}
 
@@ -218,28 +293,3 @@ const SanguineConvenantAbility = (function() {
 		isToggled: ToggleController.isToggled
 	}
 })();
-
-NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
-	const pair = PetHelper.getPetOwnerPair(event.getEntity(), $ServerPlayer);
-	if (!pair) {
-		return;
-	}
-	const { pet, owner } = pair;
-	const chimera = PlayerRaceHelper.getRaceWrapper(owner);
-	if (!(chimera instanceof ChimeraPlayer)) {
-		return;
-	}
-
-	if (!SkillHelper.hasSkill(owner, ChimeraSkills.SANGUINE_COVENANT)) {
-		return;
-	}
-
-	if (!SanguineConvenantAbility.isToggled(chimera)) {
-		return;
-	}
-
-	const damage = event.getAmount();
-	const minPossibleHealth = pet.maxHealth * (owner.health / owner.maxHealth);
-	const newDamage = MathHelper.clamped(damage, 0, pet.health - minPossibleHealth);
-	event.setAmount(newDamage);
-});

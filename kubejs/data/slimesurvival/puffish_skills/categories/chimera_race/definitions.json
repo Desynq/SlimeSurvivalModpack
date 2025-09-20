@@ -194,5 +194,86 @@
 				"frame": "challenge"
 			}
 		}
+	},
+	"covenant_restoration": {
+		"title": "Covenant Restoration",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "All pets following you are restored to your current health percentage once Sanguine Convenant gets cancelled or ends."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:instant_health"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"perfect_covenant": {
+		"title": "Perfect Covenant",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Cooldown is reduced by 50% if the ability ends and you're at max health.\n- Does not proc if the ability is cancelled early."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:diamond"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"fall_protection": {
+		"title": "Fall Protection",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Pets following you don't take fall damage"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:feather"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
 	}
 }

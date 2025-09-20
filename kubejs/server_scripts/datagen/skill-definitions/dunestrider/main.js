@@ -7,12 +7,12 @@
 // BUT DONT TOUCH THE SKILLS IM GONNA CODE THEM JUST MAKE THE PUFFISH WORK PLZ
 // ALSO RENAME IT TO SOMETHING MORE THEMATIC. RANDOM DGAF SO NOWS YOUR TIME TO SHINE
 
-const RandomSkillDefinitionsJson = {};
+const DunestriderSkillDefinitionsJson = {};
 
-const RANDOM_CATEGORY_ID = "slimesurvival:random_race";
-const RandomSkills = {};
+const DUNESTRIDER_CATEGORY_ID = "slimesurvival:dunestrider_race";
+const DunestriderSkills = {};
 
-RandomSkills.REND = new SkillDefinition(RANDOM_CATEGORY_ID, "rend")
+DunestriderSkills.REND = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "rend")
 	.itemIcon("minecraft:cracked_stone_bricks")
 	.advancementFrame("goal")
 	.addDescription({
@@ -20,5 +20,5 @@ RandomSkills.REND = new SkillDefinition(RANDOM_CATEGORY_ID, "rend")
 		"text": "Your swings tear armour asunder."
 	})
 	.rootSkill()
-	.serialize(RandomSkillDefinitionsJson)
+	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("9f2xq7v6b1p4z8rw")

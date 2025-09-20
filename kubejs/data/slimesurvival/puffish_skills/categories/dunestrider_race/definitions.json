@@ -1,6 +1,7 @@
 {
 	"rend": {
-		"name": "Rend",
+		"title": "Rend",
+		"rewards": [],
 		"description": [
 			{
 				"color": "dark_red",
@@ -8,18 +9,18 @@
 			}
 		],
 		"cost": 0,
-		"frame": {
-			"type": "advancement",
-			"data": {
-				"frame": "goal"
-			}
-		},
 		"icon": {
 			"type": "item",
 			"data": {
 				"item": "minecraft:cracked_stone_bricks"
 			}
 		},
-		"rewards": []
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
 	}
 }
