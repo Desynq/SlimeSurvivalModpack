@@ -7,7 +7,7 @@ let $EntityType = Java.loadClass("net.minecraft.world.entity.EntityType")
 
 const NoIFrames = {};
 
-NoIFrames.whitelistedSources = {
+NoIFrames.blacklistedSources = {
 	"inFire": true,
 	"onFire": true,
 	"lava": true,
@@ -18,7 +18,8 @@ NoIFrames.whitelistedSources = {
 	"hotFloor": true,
 	"outOfWorld": true,
 	"freeze": true,
-	"wither": true
+	"wither": true,
+	"cataclysm.abyssal_burn": true
 };
 
 NoIFrames.whitelistedEntities = {
@@ -59,7 +60,7 @@ NativeEvents.onEvent("low", $LivingIncomingDamageEvent, event => {
 	if (NoIFrames.isPoison(victim, source)) {
 		return;
 	}
-	if (NoIFrames.whitelistedSources[source.type().msgId()] != undefined) {
+	if (NoIFrames.blacklistedSources[source.type().msgId()] != undefined) {
 		return;
 	}
 	if (NoIFrames.whitelistedEntities[attackerType] != undefined) {
@@ -108,5 +109,5 @@ NativeEvents.onEvent("lowest", $LivingKnockBackEvent, event => {
 
 
 EntityEvents.beforeHurt("minecraft:player", event => {
-	debugTell(event.entity, event.source.type().msgId());
+	debugTell(event.entity, event.source.getType());
 });

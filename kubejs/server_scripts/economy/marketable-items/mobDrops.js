@@ -71,3 +71,7 @@ new MarketableItem("enderpearl", "minecraft:ender_pearl")
 	.setSellPrice(10.00)
 	.setBuyPrice(150.00)
 	.register();
+
+new MarketableItem("lacrima", "cataclysm:lacrima")
+	.setSellPrice(10.00)
+	.register();	

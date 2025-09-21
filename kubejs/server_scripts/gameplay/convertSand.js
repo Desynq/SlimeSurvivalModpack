@@ -1,3 +1,4 @@
+
 BlockEvents.rightClicked(event => {
 	let item = event.getItem();
 	let block = event.getBlock();
@@ -8,6 +9,7 @@ BlockEvents.rightClicked(event => {
 	let player = event.getPlayer();
 	let pos = block.getPos();
 	world.setBlock(pos, Blocks.SOUL_SAND, 0);
-	CommandHelper.runCommandSilent(world, `clear ${player.getUsername()} minecraft:ghast_tear 1`);
+
+	item.setCount(item.count - 1);
 	playsound(world, pos, 'minecraft:block.sand.fall', 'block', 1, 1);
 });

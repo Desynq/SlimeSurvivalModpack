@@ -61,3 +61,6 @@ const $ResourceKey = Java.loadClass("net.minecraft.resources.ResourceKey");
 
 /** @type {typeof import("net.minecraft.world.damagesource.DamageSource").$DamageSource } */
 const $DamageSource = Java.loadClass("net.minecraft.world.damagesource.DamageSource");
+
+/** @type {typeof import("net.minecraft.world.InteractionHand").$InteractionHand } */
+const $InteractionHand = Java.loadClass("net.minecraft.world.InteractionHand")

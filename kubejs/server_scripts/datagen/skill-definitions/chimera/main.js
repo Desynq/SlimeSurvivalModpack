@@ -11,7 +11,7 @@ ChimeraSkills.THE_LIONS_SHARE = new SkillDefinition(CHIMERA_CATEGORY_ID, "the_li
 	.advancementFrame("goal")
 	.addDescription({
 		"color": "gold",
-		"text": "Owned living entities will have at least the same max health as you."
+		"text": "Owned living entities will have at least the same max health as you.\n\nEffects you get also spread to your followers."
 	})
 	.rootSkill()
 	.serialize(ChimeraSkillDefinitionsJson)

@@ -33,7 +33,7 @@ SludgeSkills.AREGENERATIVE = new SkillDefinition(SludgeSkillsCategoryId, "aregen
 		"text": "You do not regenerate naturally through saturation."
 	})
 	.rootSkill()
-	.addTagReward("no_natural_regeneration")
+	.addTagReward("sludge.no_natural_regeneration")
 	.serialize(SludgeDefinitionsJson)
 	.toSkill("1eo7ddidgilk3911");
 

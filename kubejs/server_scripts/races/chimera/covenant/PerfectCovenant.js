@@ -1,4 +1,4 @@
-
+// priority: 1
 const PerfectCovenant = (function() {
 	const KEY = "chimera.perfect_covenant.proc"
 
@@ -6,6 +6,12 @@ const PerfectCovenant = (function() {
 	 * @param {ChimeraPlayer} chimera 
 	 */
 	function proc(chimera) {
+		if (!SkillHelper.hasSkill(chimera.player, ChimeraSkills.PERFECT_COVENANT)) {
+			return;
+		}
+		if (chimera.player.health < chimera.player.maxHealth) {
+			return;
+		}
 		chimera.player.persistentData.putBoolean(KEY, true);
 	}
 

@@ -16,6 +16,7 @@ function SkillDefinition(categoryId, definitionId) {
 	};
 }
 
+
 /**
  * @param {string} id 
  */
@@ -33,6 +34,18 @@ SkillDefinition.convertIdToTitle = function(id) {
 
 	// put it all together
 	return numberPart ? `${name} ${toRoman(parseInt(numberPart, 10))}` : name;
+}
+
+/**
+ * Copies the SkillDefinition and all of its data.
+ * You must provide a new definitionId so it can be serialized differently.
+ * @returns 
+ */
+SkillDefinition.prototype.copy = function(definitionId) {
+	let copy = new SkillDefinition(this._categoryId, definitionId);
+	copy._data = this._data;
+	copy._data.title = SkillDefinition.convertIdToTitle(definitionId);
+	return copy;
 }
 
 /**
@@ -97,6 +110,9 @@ SkillDefinition.prototype.advancementFrame = function(frameType) {
 	return this;
 }
 
+/**
+ * Overrides .cost()
+ */
 SkillDefinition.prototype.rootSkill = function() {
 	this._data.required_points = 2147483647;
 	this.isRoot = true;
@@ -105,9 +121,11 @@ SkillDefinition.prototype.rootSkill = function() {
 
 /**
  * Should be called after adding descriptions.
+ * Overrides .rootSkill()
  * @param {integer} cost 
  */
 SkillDefinition.prototype.cost = function(cost) {
+	this.isRoot = false;
 	this._data.cost = cost;
 	this.addDescription({
 		"color": "dark_green",
@@ -117,10 +135,28 @@ SkillDefinition.prototype.cost = function(cost) {
 }
 
 /**
+ * @param {integer} amount how many skills connected to the skill are needed to unlock it
+ * @returns 
+ */
+SkillDefinition.prototype.requiredSkills = function(amount) {
+	this._data.required_skills = amount;
+	return this;
+}
+
+/**
  * @param {Object} description
  */
 SkillDefinition.prototype.addDescription = function(description) {
 	this._data.description.push(description);
+	return this;
+}
+
+/**
+ * Resets the description. Useful when wanting to override a template's description.
+ * Keep in mind that you will have to call .cost() again otherwise the cost will not display in the description.
+ */
+SkillDefinition.prototype.resetDescription = function() {
+	this._data.description.length = 0;
 	return this;
 }
 

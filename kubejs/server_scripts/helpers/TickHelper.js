@@ -60,6 +60,15 @@ TickHelper.forceUpdateTimestamp = function(entity, id) {
 }
 
 /**
+ * Sets timestamp to -Long.MAX_VALUE so that hasTimestampPassed() always returns true
+ * @param {Entity} entity 
+ * @param {string} id 
+ */
+TickHelper.resetTimestamp = function(entity, id) {
+	entity.persistentData.putLong(id, $Long.MIN_VALUE)
+}
+
+/**
  * Updates the timestamp to current game time if the timestamp has not been last updated since the specified interval
  * @param {Entity} entity 
  * @param {string} id

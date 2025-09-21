@@ -1,5 +1,3 @@
-/** @type {typeof import("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Added").$MobEffectEvent$Added } */
-let $MobEffectEvent$Added = Java.loadClass("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Added")
 NativeEvents.onEvent($MobEffectEvent$Added, event => {
 	let entity = event.getEntity();
 	if (!(entity instanceof $ServerPlayer)) return;

@@ -1,11 +1,11 @@
 {
-	"rend": {
-		"title": "Rend",
+	"rend_1": {
+		"title": "Rend I",
 		"rewards": [],
 		"description": [
 			{
-				"color": "dark_red",
-				"text": "Your swings tear armour asunder."
+				"color": "red",
+				"text": "You have a knack for chipping armour.\n\n- Plus 20% Armor shred for 1.5s"
 			}
 		],
 		"cost": 0,
@@ -22,5 +22,457 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"rend_2": {
+		"title": "Rend II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "red",
+				"text": "You're deft at sundering armor.\n\n- Plus 40% Armor shred for 1.5s"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:cracked_stone_bricks"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"rend_3": {
+		"title": "Rend III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "red",
+				"text": "You shred armor.\n\n- Plus 60% Armor shred for 1.5s"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:cracked_stone_bricks"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"rend_4": {
+		"title": "Rend IV",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Armor buckles at your name.\n\n- 80% Armor shred for 1.5s"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 6 points"
+			}
+		],
+		"cost": 6,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:cracked_deepslate_bricks"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"rend_5": {
+		"title": "Rend V",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "You tear through all.\n\n- 100% Armor shred for 1.5s"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 8 points"
+			}
+		],
+		"cost": 8,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:cracked_nether_bricks"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"tread": {
+		"title": "Tread",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.step_height",
+					"value": 0.5,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			{
+				"color": "yellow",
+				"text": "You skate across the landscape easier than most.\n\n- Plus 0.5 step height"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:leather_boots"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"deft": {
+		"title": "Deft",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.movement_efficiency",
+					"value": 20,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			{
+				"color": "yellow",
+				"text": "Adaption for the nomadic lifestyle of the Sinking Dunes.\n\n- Extra speed on sand.\nBlocks like soul sand don't slow you as much."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:sand"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"demean_1": {
+		"title": "Demean I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "red",
+				"text": "The prideful gait of the powerful disgusts you.\n\n- Plus 2% Max health damage on-hit to targets >75% HP"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:netherite_sword"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"demean_2": {
+		"title": "Demean II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "red",
+				"text": "Stripping people of their ego is your specialty.\n\n- Plus 3% Max health damage on-hit to targets >50% HP"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:netherite_sword"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"demean_3": {
+		"title": "Demean III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Plus 5% Max health damage on-hit to targets >33% HP"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 8 points"
+			}
+		],
+		"cost": 8,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:netherite_sword"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"hysteria_1": {
+		"title": "Hysteria I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "yellow",
+				"text": "When things look rough, you feel lucky.\n\n- Gain movement speed per enemy targeting you.\n(Capped at 2x base speed)"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "mowziesmobs:umvuthana_mask_fury"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"hysteria_2": {
+		"title": "Hysteria II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "yellow",
+				"text": "Intense battle is your homestead.\n\n- Gain movement speed and attack speed per enemy targeting you.\n(Capped at 2x base speed)"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "mowziesmobs:umvuthana_mask_fury"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"hysteria_3": {
+		"title": "Hysteria III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gold",
+				"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nGain 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "mowziesmobs:umvuthana_mask_fury"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"robinhood": {
+		"title": "Robinhood",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Take from the strong, give to the weak!\n\n- You deal 50% less damage to enemies with significantly less health than you."
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:barrier"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"scavenger": {
+		"title": "Scavenger",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You eat what you can get in the Dunes.\n\n- Effects W.I.P"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:rotten_flesh"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"heavenlyrestriction": {
+		"title": "Heavenly Restriction",
+		"rewards": [
+			{
+				"type": "puffish_skills:tag",
+				"data": {
+					"tag": "no_natural_regeneration"
+				}
+			}
+		],
+		"description": [
+			{
+				"color": "white",
+				"text": "Make a pact with the war god in return for knowledge of true power.\n\n- You lose all natural regeneration. Pain is virtue."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:chain"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		},
+		"required_skills": 3
+	},
+	"furantur_1": {
+		"title": "Furantur I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Soak in the blood.\n\n- Gain 2.5% lifesteal on-hit."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:redstone"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
 	}
 }

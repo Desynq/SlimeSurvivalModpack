@@ -19,6 +19,8 @@ PlayerRaceHelper.getRaceWrapper = function(player) {
 			return new ChimeraPlayer(player);
 		case Races.FARLANDER:
 			return new FarlanderPlayer(player);
+		case Races.DUNESTRIDER:
+			return new DunestriderPlayer(player);
 		default:
 			return null;
 	}

@@ -5,12 +5,14 @@ spawnTable.chicken = new Map([
 ]);
 
 spawnTable.zombie = new Map([
-	['rottencreatures:zombie_lackey', 25.00],
+	['rottencreatures:zombie_lackey', 20.00],
 	['minecraft:zombie_villager', 50.00],
+	['rottencreatures:frostbitten', 5.00],
+	['rottencreatures:burned', 5.00]
 ]);
 
 spawnTable.skeleton = new Map([
-	['rottencreatures:skeleton_lackey', 25.00],
+	['rottencreatures:skeleton_lackey', 20.00],
 ]);
 
 spawnTable.slime = new Map([
@@ -20,8 +22,8 @@ spawnTable.slime = new Map([
 	['cataclysm:aptrgangr', 0.05],
 	['mowziesmobs:lantern', 10.00],
 	['minecraft:armadillo', .50],
-	['cataclysm:kobolediator', 0.50],
-	['cataclysm:cindaria', 2.50],
+	['cataclysm:kobolediator', 0.05],
+	['cataclysm:cindaria', 0.25],
 ]);
 // cataclysm:koboleton
 spawnTable.koboleton = new Map([

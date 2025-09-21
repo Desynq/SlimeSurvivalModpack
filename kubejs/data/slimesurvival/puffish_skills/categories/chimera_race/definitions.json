@@ -5,7 +5,7 @@
 		"description": [
 			{
 				"color": "gold",
-				"text": "Owned living entities will have at least the same max health as you."
+				"text": "Owned living entities will have at least the same max health as you.\n\nEffects you get also spread to your followers."
 			}
 		],
 		"cost": 0,

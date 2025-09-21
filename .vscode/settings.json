@@ -27,6 +27,7 @@
         "local/": true,
         "logs/": true,
         "mods/": true,
+        "node_modules/": true,
         "resourcepacks/": true,
         "saves/": true,
         "screenshots/": true,

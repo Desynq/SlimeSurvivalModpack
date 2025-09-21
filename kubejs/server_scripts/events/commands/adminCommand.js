@@ -1,25 +1,49 @@
-ServerEvents.commandRegistry(event => {
 
-	const nodes = {};
 
-	nodes["/admin"] = $Commands.literal("admin");
+(function() {
 
-	nodes["/admin summon"] = $Commands.literal("summon")
-		// @ts-ignore
-		.then($Commands.literal("voidman")
-			.executes(context => {
-				summonVoidman(context.source.level, context.source.position)
-				return 1;
-			})
+	/**
+	 * 
+	 * @param {ServerPlayer} player 
+	 */
+	function giveVoidCore(player) {
+		const comps = `item_name='{"color":"dark_purple","text":"The Void Core"}'`
+			+ `,curios:attribute_modifiers=[`
+			+ `{type:"minecraft:generic.gravity",amount:-0.75,operation:"add_multiplied_total",id:"slimesurvival:void_core",slot:"necklace"}`
+			+ `,{type:"minecraft:generic.fall_damage_multiplier",amount:-1,operation:"add_multiplied_total",id:"slimesurvival:void_core",slot:"necklace"}`
+			+ `,{type:"minecraft:generic.movement_speed",amount:0.5,operation:"add_multiplied_total",id:"slimesurvival:void_core",slot:"necklace"}`
+			+ `]`
+			+ `,max_stack_size=1`;
+
+		CommandHelper.runCommandSilent(player.server,
+			`give ${player.username} cataclysm:void_eye[${comps}]`
 		);
+	}
 
-	nodes["/admin"]
+	/**
+	 * 
+	 * @param {ServerPlayer} player 
+	 * @param {import("net.minecraft.world.item.Item").$Item$$Original} item 
+	 * @param {import("net.minecraft.core.component.DataComponentPatch").$DataComponentPatch$$Original} components
+	 */
+	function giveItem(player, item, components) {
+		const stack = new $ItemStack(item);
+		stack.applyComponentsAndValidate(components);
 		// @ts-ignore
-		.then(nodes["/admin summon"]);
+		const inventoryFull = !player.getInventory().add(stack);
+		if (inventoryFull && stack.isEmpty()) {
+			/** @type {import("net.minecraft.world.entity.item.ItemEntity").$ItemEntity$$Original} */
+			const itemEntity = player.drop(stack, false);
+			if (itemEntity != null) {
+				itemEntity.makeFakeItem();
+			}
 
-	// @ts-ignore
-	event.register(nodes["/admin"]);
-
+			player.containerMenu.broadcastChanges();
+		}
+		else {
+			const itemEntity = player.drop(stack, false);
+		}
+	}
 
 
 	/**
@@ -51,4 +75,39 @@ ServerEvents.commandRegistry(event => {
 		};
 		CommandHelper.runCommandSilent(level.server, `execute in ${dimension} run summon mutantmonsters:mutant_enderman ${x} ${y} ${z} ${JSON.stringify(nbt)}`, true);
 	}
-});
+
+
+
+	ServerEvents.commandRegistry(event => {
+		const nodes = {};
+
+		nodes["/admin"] = $Commands.literal("admin");
+
+		nodes["/admin summon"] = $Commands.literal("summon")
+			// @ts-ignore
+			.then($Commands.literal("voidman")
+				.executes(context => {
+					summonVoidman(context.source.level, context.source.position)
+					return 1;
+				})
+			);
+
+		nodes["/admin give"] = $Commands.literal("give")
+			// @ts-ignore
+			.then($Commands.literal("void_core")
+				.executes(context => {
+					giveVoidCore(context.getSource().getPlayer());
+					return 1;
+				})
+			);
+
+		nodes["/admin"]
+			// @ts-ignore
+			.then(nodes["/admin summon"])
+			// @ts-ignore
+			.then(nodes["/admin give"]);
+
+		// @ts-ignore
+		event.register(nodes["/admin"]);
+	});
+})();

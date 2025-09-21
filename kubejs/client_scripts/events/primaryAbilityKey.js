@@ -1,3 +1,4 @@
+// priority: 0
 
 const PRIMARY_ABILITY_KEY = new KJSKeybind(
 	"Primary Ability",
@@ -5,6 +6,10 @@ const PRIMARY_ABILITY_KEY = new KJSKeybind(
 	GLFW.GLFW_KEY_G,
 	"key.categories.slimesurvival"
 );
+
+KeyBindJSEvents.register(event => {
+	PRIMARY_ABILITY_KEY.register(event);
+});
 
 ClientEvents.tick(event => {
 	const keyMapping = PRIMARY_ABILITY_KEY.getKeyMapping();
@@ -15,8 +20,4 @@ ClientEvents.tick(event => {
 	const payload = new $CompoundTag();
 	payload.putString("key", keyMapping.getName());
 	Client.player.sendData("KeyPressed", payload);
-});
-
-KeyBindJSEvents.register(event => {
-	PRIMARY_ABILITY_KEY.register(event);
 });

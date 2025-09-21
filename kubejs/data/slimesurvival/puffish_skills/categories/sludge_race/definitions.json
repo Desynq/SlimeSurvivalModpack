@@ -62,7 +62,7 @@
 			{
 				"type": "puffish_skills:tag",
 				"data": {
-					"tag": "no_natural_regeneration"
+					"tag": "sludge.no_natural_regeneration"
 				}
 			}
 		],

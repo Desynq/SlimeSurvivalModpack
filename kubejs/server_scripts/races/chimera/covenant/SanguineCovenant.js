@@ -1,4 +1,4 @@
-
+// priority: 0
 const SanguineConvenantAbility = (function() {
 
 	const ToggleController = (function() {
@@ -65,11 +65,20 @@ const SanguineConvenantAbility = (function() {
 			TickHelper.forceUpdateTimestamp(chimera.player, KEY);
 		}
 
+		/**
+		 * 
+		 * @param {ChimeraPlayer} chimera 
+		 */
+		function reset(chimera) {
+			TickHelper.resetTimestamp(chimera.player, KEY);
+		}
+
 		return {
 			getMax: getMax,
 			hasPassed: hasPassed,
 			getCurr: getCurr,
-			update: update
+			update: update,
+			reset: reset
 		}
 	})();
 
@@ -158,7 +167,7 @@ const SanguineConvenantAbility = (function() {
 			const max = CooldownController.getMax(chimera);
 			const curr = CooldownController.getCurr(chimera);
 			// @ts-ignore
-			chimera.player.tell(Text.red(`Cannot active Sanguine Convenant while on cooldown. (${max - curr} ticks left)`));
+			chimera.player.tell(Text.red(`Cannot activate Sanguine Convenant while on cooldown. (${max - curr} ticks left)`));
 		}
 
 		return {
@@ -186,6 +195,7 @@ const SanguineConvenantAbility = (function() {
 
 		ToggleController.toggle(chimera);
 		if (ToggleController.isToggled(chimera)) {
+			CooldownController.reset(chimera);
 			PerfectCovenant.deproc(chimera);
 			DurationController.update(chimera);
 			Sfx.abilityEnabled(chimera);
@@ -211,7 +221,8 @@ const SanguineConvenantAbility = (function() {
 	 */
 	function handleAbilityExpiration(chimera) {
 		handleCovenantRestoration(chimera);
-		handlePerfectCovenant(chimera);
+		PerfectCovenant.proc(chimera);
+
 		CooldownController.update(chimera);
 		ToggleController.toggle(chimera);
 		Sfx.abilityDisabled(chimera);
@@ -239,20 +250,6 @@ const SanguineConvenantAbility = (function() {
 		PlayerHelper.getPetsFollowing(chimera.player).forEach(pet => {
 			pet.health = pet.maxHealth;
 		})
-	}
-
-	/**
-	 * 
-	 * @param {ChimeraPlayer} chimera 
-	 */
-	function handlePerfectCovenant(chimera) {
-		if (!SkillHelper.hasSkill(chimera.player, ChimeraSkills.PERFECT_COVENANT)) {
-			return;
-		}
-		if (chimera.player.health < chimera.player.maxHealth) {
-			return;
-		}
-		PerfectCovenant.proc(chimera);
 	}
 
 

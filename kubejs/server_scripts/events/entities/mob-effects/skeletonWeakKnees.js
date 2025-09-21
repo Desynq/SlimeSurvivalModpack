@@ -8,6 +8,8 @@ NativeEvents.onEvent($LivingDamageEvent$Post, event => {
 		let victim = event.entity;
 		let attacker = event.source.actual;
 		if (attacker == null) return;
+		// 
+		if (event.getNewDamage() == 0) return;
 		let entityType = $BuiltInRegistries.ENTITY_TYPE.getKey(attacker.getEntityType()).toString();
 		if (!(skeletons.includes(entityType))) {
 			return;
