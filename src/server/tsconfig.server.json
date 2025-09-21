@@ -15,8 +15,12 @@
 	},
 	"include": [
 		"./**/*.ts",
-		// Pull in only the useful ProbeJS declarations
+		"./**/*.js",
+		"./**/*.d.ts",
+		"../../kubejs/types/**/*.d.ts",
+		// Pull in only the useful ProbeJS declarations i thought comments didnt work in json buddy
 		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
+		"../../.probe/server/generated-server/primitives.d.ts"
 	],
 	"exclude": []
 }

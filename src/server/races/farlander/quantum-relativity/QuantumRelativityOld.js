@@ -1,4 +1,4 @@
-const QuantumRelativityAbility = (function() {
+const OldQuantumRelativityAbilityOld = (function() {
 
 	const ToggleController = (function() {
 		const KEY = "farlander.quantum_relativity.toggle";
@@ -22,7 +22,7 @@ const QuantumRelativityAbility = (function() {
 		return {
 			isToggled: isToggled,
 			toggle: toggle
-		}
+		};
 	})();
 
 
@@ -75,7 +75,7 @@ const QuantumRelativityAbility = (function() {
 			getCurr: getCurr,
 			update: update,
 			reset: reset
-		}
+		};
 	})();
 
 	const DurationController = (function() {
@@ -117,7 +117,7 @@ const QuantumRelativityAbility = (function() {
 			hasPassed: hasPassed,
 			getCurr: getCurr,
 			update: update
-		}
+		};
 	})();
 
 
@@ -172,7 +172,7 @@ const QuantumRelativityAbility = (function() {
 			updateUI: updateUI,
 			errorToggledWhileOnCooldown: errorToggledWhileOnCooldown,
 			displayCooldown: displayCooldown
-		}
+		};
 	})();
 
 	/**
