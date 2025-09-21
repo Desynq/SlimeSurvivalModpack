@@ -1,5 +1,5 @@
 {
-	"health+5%": {
+	"health": {
 		"title": "+5% Max Health",
 		"icon": {
 			"type": "effect",
@@ -18,7 +18,7 @@
 			}
 		]
 	},
-	"attack_damage+5%": {
+	"attack_damage": {
 		"title": "+5% Attack Damage",
 		"icon": {
 			"type": "effect",
@@ -37,8 +37,8 @@
 			}
 		]
 	},
-	"attack_speed+5%": {
-		"title": "+5% Attack Speed",
+	"attack_speed": {
+		"title": "+2.5% Attack Speed",
 		"icon": {
 			"type": "item",
 			"data": {
@@ -50,14 +50,14 @@
 				"type": "puffish_skills:attribute",
 				"data": {
 					"attribute": "generic.attack_speed",
-					"value": 0.05,
+					"value": 0.025,
 					"operation": "multiply_base"
 				}
 			}
 		]
 	},
-	"movement_speed+5%": {
-		"title": "+5% Movement Speed",
+	"movement_speed": {
+		"title": "+2.5% Movement Speed",
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -69,7 +69,7 @@
 				"type": "puffish_skills:attribute",
 				"data": {
 					"attribute": "generic.movement_speed",
-					"value": 0.05,
+					"value": 0.025,
 					"operation": "multiply_base"
 				}
 			}
