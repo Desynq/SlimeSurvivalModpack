@@ -46,7 +46,7 @@ const SanguineConvenantAbility = (function() {
 		 * @param {ChimeraPlayer} chimera 
 		 */
 		function hasPassed(chimera) {
-			return TickHelper.hasTimestampPassed(chimera.player, KEY, getMax(chimera));
+			return TickHelper.hasTimestampElapsed(chimera.player, KEY, getMax(chimera));
 		}
 
 		/**
@@ -97,7 +97,7 @@ const SanguineConvenantAbility = (function() {
 		 * @param {ChimeraPlayer} chimera 
 		 */
 		function hasPassed(chimera) {
-			return TickHelper.hasTimestampPassed(chimera.player, KEY, getMax(chimera));
+			return TickHelper.hasTimestampElapsed(chimera.player, KEY, getMax(chimera));
 		}
 
 		/**

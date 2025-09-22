@@ -139,13 +139,76 @@
 			}
 		}
 	},
+	"heat_death": {
+		"title": "Heat Death",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Pressing"
+			},
+			[
+				{
+					"color": "gray",
+					"text": " ["
+				},
+				{
+					"color": "yellow",
+					"keybind": "key.slimesurvival.secondary_ability"
+				},
+				{
+					"color": "gray",
+					"text": "] "
+				}
+			],
+			{
+				"color": "dark_red",
+				"text": "will clear all of your current entropy.\n\n- Cooldown of 3 minutes."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 6 points"
+			}
+		],
+		"cost": 6,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "endermanoverhaul:crimson_pearl"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "challenge"
+			}
+		}
+	},
 	"quantum_relativity": {
 		"title": "Quantum Relativity",
 		"rewards": [],
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Temporarily lower tick rate to 10 ticks per second.\n- Costs 0.5 hunger point (drains saturation first, stops at 6 hunger) every tick (5 hunger points a second).\n- Minimum duration 0.5 seconds.\n- Maximum duration of 10 seconds.\n- Cooldown of 5 seconds.\n- Requires at least 10 hunger to initiate."
+				"text": "Pressing"
+			},
+			[
+				{
+					"color": "gray",
+					"text": " ["
+				},
+				{
+					"color": "yellow",
+					"keybind": "key.slimesurvival.primary_ability"
+				},
+				{
+					"color": "gray",
+					"text": "] "
+				}
+			],
+			{
+				"color": "dark_purple",
+				"text": "will temporarily lower tick rate to 10 ticks per second.\n- Can be cancelled early.\n- Maximum duration of 20 ticks.\n- Cooldown of 5 seconds."
 			},
 			{
 				"color": "dark_green",
@@ -163,6 +226,114 @@
 			"type": "advancement",
 			"data": {
 				"frame": "challenge"
+			}
+		}
+	},
+	"time_dilation_1": {
+		"title": "Time Dilation I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Quantum Relativity now lasts for 40 ticks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:popped_chorus_fruit"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"time_dilation_2": {
+		"title": "Time Dilation II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Quantum Relativity now lasts for 60 ticks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 3 points"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:popped_chorus_fruit"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"time_dilation_3": {
+		"title": "Time Dilation III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Quantum Relativity now lasts for 80 ticks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:popped_chorus_fruit"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"time_dilation_4": {
+		"title": "Time Dilation IV",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Quantum Relativity now lasts for 100 ticks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:popped_chorus_fruit"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
 			}
 		}
 	}

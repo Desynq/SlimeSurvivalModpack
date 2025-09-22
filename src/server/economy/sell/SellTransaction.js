@@ -1,5 +1,5 @@
 /** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
-let $BuiltInRegistries  = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
+let $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
 
 /** @type {$CommandContext_<$CommandSourceStack_>} */
 SellTransaction.prototype.context = undefined;
@@ -69,7 +69,7 @@ function SellTransaction(player, mItem, sellAmount) {
 		this.sellAmount = sellAmount;
 	}
 
-	this.itemValue = SellTransaction.getItemValue(this.server, this.mItem);
+	this.itemValue = SellTransaction.getItemValue(this.server, this.mItem, this.player);
 	if (this.itemValue == null) {
 		this.player.tell(Text.red("This item cannot be sold."));
 		return;
@@ -81,7 +81,7 @@ function SellTransaction(player, mItem, sellAmount) {
 	this.logTransaction();
 }
 
-SellTransaction.prototype.logTransaction = function () {
+SellTransaction.prototype.logTransaction = function() {
 	tellOperators(this.server,
 		Text.darkGray(`> Player ${this.player.username} sold ${this.amountSold} ${this.mItem.getName()} for ${MoneyManager.toDollarString(this.totalValue)}`).italic(true)
 	);
@@ -91,7 +91,7 @@ SellTransaction.prototype.logTransaction = function () {
  * Applies changes to the player and the server in order to simulate selling the item
  * NONE of what's in this method can fail otherwise players can potentially gain money illegally or sell items without compensation or lose sell value
  */
-SellTransaction.prototype.sellItem = function () {
+SellTransaction.prototype.sellItem = function() {
 	if (this.sellAmount == 0) {
 		const selectedStack = this.player.getMainHandItem();
 
@@ -117,18 +117,20 @@ SellTransaction.prototype.sellItem = function () {
 
 
 
-
 /**
- * @param {$MinecraftServer_} server 
+ * @param {MinecraftServer} server 
  * @param {MarketableItem} mItem
+ * @param {ServerPlayer} player
  * @returns {number | null}
  */
-SellTransaction.getItemValue = function (server, mItem) {
-	const sellPrice = mItem.getSellPrice();
+SellTransaction.getItemValue = function(server, mItem, player) {
+	let sellPrice = mItem.getSellPrice();
 
 	if (sellPrice == null) {
 		return null;
 	}
+
+	sellPrice = SellTransaction.getItemValueRace(server, mItem, player, sellPrice);
 
 	if (!mItem.canHaveStock()) {
 		return sellPrice;
@@ -142,7 +144,33 @@ SellTransaction.getItemValue = function (server, mItem) {
 	return Math.ceil(sellPrice * ((1 - compoundingRate) ** (stockAmount / compoundingPeriod)));
 }
 
-SellTransaction.prototype.tellOutput = function () {
+/**
+ * 
+ * @param {MinecraftServer} server 
+ * @param {MarketableItem} mItem 
+ * @param {ServerPlayer} player 
+ * @param {number} sellPrice the item's default sell price
+ * @returns {number}
+ */
+SellTransaction.getItemValueRace = function(server, mItem, player, sellPrice) {
+	if (PlayerRaceHelper.isRace(player, Races.DUNESTRIDER)) {
+		if (!(SkillHelper.hasSkill(player, DunestriderSkills.SCAVENGER))) return sellPrice;
+		let scavengerItems = [
+			'minecraft:slime_ball',
+			'minecraft:rotten_flesh',
+			'minecraft:spider_eye',
+			'minecraft:arrow',
+			'minecraft:string',
+			'minecraft:ender_pearl',
+			'cataclysm:lacrima',
+			'minecraft:feather'
+		]
+		if (scavengerItems.includes(mItem.getItemId())) return sellPrice * 2;
+	}
+	return sellPrice;
+}
+
+SellTransaction.prototype.tellOutput = function() {
 	const cAmountSold = Component.yellow(this.amountSold + "x");
 	const cItemName = Component.gold(this.mItem.getName());
 	const cTotalValue = MoneyManager.toTextComponent(this.totalValue);
@@ -155,6 +183,6 @@ SellTransaction.prototype.tellOutput = function () {
 	// Your balance is now $100.00 (previously $46.00).
 	this.player.tell(
 		Component.join(Component.gray("Sold "), cAmountSold, Component.gray(" "), cItemName, Component.gray(" for "), cTotalValue, Component.gray(" ("), cIndividualValue, Component.gray(" x "), cAmountSold2,
-		Component.gray(").\nYour balance is now "), cNewBalance, Component.gray(" (previously "), cOldBalance, Component.gray(").")
-	));
+			Component.gray(").\nYour balance is now "), cNewBalance, Component.gray(" (previously "), cOldBalance, Component.gray(").")
+		));
 }

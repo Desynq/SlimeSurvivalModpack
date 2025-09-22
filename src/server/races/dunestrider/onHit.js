@@ -1,12 +1,37 @@
 
 (function() {
+
 	/**
 	 * 
 	 * @param {LivingEntity} victim 
-	 * @param {DunestriderPlayer} dunestrider 
+	 * @param {ServerPlayer} player 
 	 */
-	function tickRend(victim, dunestrider) {
-		let skillLvl = SkillHelper.getSkillTier(dunestrider.player, DunestriderSkills.REND_1, DunestriderSkills.REND_2, DunestriderSkills.REND_3, DunestriderSkills.REND_4, DunestriderSkills.REND_5)
+	function tickFirstStrike(victim, player) {
+		if (!SkillHelper.hasSkill(player, DunestriderSkills.FIRST_STRIKE)) return;
+
+		if (TickHelper.tryUpdateTimestamp(victim, "dunestrider.first_strike", 600)) {
+			LivingEntityHelper.addEffect(player, 'minecraft:strength', 80, 1, false, true, true, player)
+			return;
+		}
+	}
+
+	/**
+	 * 
+	 * @param {LivingEntity} victim 
+	 * @param {ServerPlayer} player 
+	 */
+	function tickMomentum(victim, player) {
+		if (!SkillHelper.hasSkill(player, DunestriderSkills.MOMENTUM)) return;
+		TickHelper.forceUpdateTimestamp(victim, 'dunestrider.momentum');
+	}
+
+	/**
+	 * 
+	 * @param {LivingEntity} victim 
+	 * @param {ServerPlayer} player
+	 */
+	function tickRend(victim, player) {
+		let skillLvl = SkillHelper.getSkillTier(player, DunestriderSkills.REND_1, DunestriderSkills.REND_2, DunestriderSkills.REND_3, DunestriderSkills.REND_4, DunestriderSkills.REND_5)
 		if (skillLvl == 0) {
 			return;
 		}
@@ -16,7 +41,7 @@
 			victim,
 			'cataclysm:blazing_brand',
 			30, amplifier, false, false, false,
-			dunestrider.player
+			player
 		);
 	}
 
@@ -30,14 +55,10 @@
 			return;
 		}
 
-		let dunestrider = PlayerRaceHelper.getRaceWrapper(attacker);
-		if (!(dunestrider instanceof DunestriderPlayer)) {
-			return;
-		}
 		if (victim.isBlocking()) return;
 		if (!event.getSource().isDirect()) return;
 
-		tickRend(victim, dunestrider);
+		tickRend(victim, attacker);
 
 		let finalDmg = event.getDamage();
 		if ((SkillHelper.hasSkill(attacker, DunestriderSkills.DEMEAN_1))) {
@@ -65,6 +86,9 @@
 			finalDmg = dmg + extraDmg;
 		}
 
+		tickFirstStrike(victim, attacker);
+		tickMomentum(victim, attacker);
+
 		if ((SkillHelper.hasSkill(attacker, DunestriderSkills.ROBINHOOD))) {
 			let victimMaxHealth = victim.getMaxHealth();
 			let playerMaxHealth = attacker.getMaxHealth();
@@ -72,11 +96,44 @@
 				finalDmg = finalDmg * 0.5
 			}
 		}
+
 		if ((SkillHelper.hasSkill(attacker, DunestriderSkills.FURANTUR_1))) {
-			let heal = finalDmg * 0.025;
+			let skillLvl = SkillHelper.getSkillTier(attacker, DunestriderSkills.FURANTUR_1, DunestriderSkills.FURANTUR_2, DunestriderSkills.FURANTUR_3, DunestriderSkills.FURANTUR_4, DunestriderSkills.FURANTUR_5);
+			let stealPercent = 0;
+			switch (skillLvl) {
+				case 1:
+					stealPercent = 0.025;
+				case 2:
+					stealPercent = 0.050;
+				case 3:
+					stealPercent = 0.075;
+				case 4:
+					stealPercent = 0.100;
+				case 5:
+					stealPercent = 0.150;
+			}
+			let heal = finalDmg * stealPercent;
 			let health = attacker.getHealth();
 			attacker.setHealth(health + heal);
 		}
 		event.setDamage(finalDmg);
 	});
+
+	EntityEvents.beforeHurt(event => {
+		let victim = event.getEntity();
+		if (!(victim instanceof $ServerPlayer)) {
+			return;
+		}
+		if (!(PlayerRaceHelper.isRace(victim, Races.DUNESTRIDER))) return;
+		if (!(SkillHelper.hasSkill(victim, DunestriderSkills.MOMENTUM))) return;
+		let attacker = event.getSource().getActual();
+		if (!(TickHelper.hasTimestampElapsed(attacker, "dunestrider.momentum", 300))) return;
+		LivingEntityHelper.addEffect(victim, 'minecraft:slowness', 160, 0, false, true, true, attacker);
+		let dmg = event.getDamage();
+		dmg = dmg * 2.0;
+		event.setDamage(dmg);
+
+	});
+
 })();
+

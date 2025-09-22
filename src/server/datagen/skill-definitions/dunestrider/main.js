@@ -92,6 +92,18 @@ DunestriderSkills.DEFT = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "deft")
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("w8k3z1v6b9p2x7qm");
 
+DunestriderSkills.LIGHT_FOOTED = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "light_footed")
+	.itemIcon("minecraft:wind_charge")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "yellow",
+		"text": "Eat or be eaten, hit or get hit. Keep out of reach.\n\n- Your rolls recharge twice as fast."
+	})
+	.addAttributeReward('combat_roll:recharge', 20, "addition")
+	.cost(2)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("x7F9kLm2Qw8VzR1T");
+
 DunestriderSkills.DEMEAN_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demean_1")
 	.itemIcon("minecraft:netherite_sword")
 	.advancementFrame("task")
@@ -174,15 +186,36 @@ DunestriderSkills.SCAVENGER = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "scav
 	.advancementFrame("goal")
 	.addDescription({
 		"color": "green",
-		"text": "You eat what you can get in the Dunes.\n\n- Effects W.I.P"
+		"text": "Survivals not easy in the Dunes.\n\n- Sell certain mob drops for more."
 	})
 	.rootSkill()
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("rab5481jrf51h598");
 
-DunestriderSkills.HEAVENLYRESTRICTION = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "heavenlyrestriction")
+DunestriderSkills.MOMENTUM = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "momentum")
+	.itemIcon("minecraft:string")
+	.advancementFrame("goal")
+	.addDescription({
+		"color": "gray",
+		"text": "Me? Stopped in my tracks?..\n\n- When struck by an enemy that you haven't damaged in the last 30 seconds, take 2x damage and gain slowness I"
+	})
+	.rootSkill()
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("v8czm1qxdu3lke9r");
+
+DunestriderSkills.FIRST_STRIKE = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "first_strike")
+	.itemIcon("minecraft:cobweb")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "gray",
+		"text": "Victory goes to the swift.\n\n- Deal increased damage for a small burst after damaging an enemy for the first time.\n(30s cooldown)"
+	})
+	.cost(2)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("t5bnqz7lwxr3umke");
+
+DunestriderSkills.HEAVENLY_RESTRICTION = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "heavenly_restriction")
 	.itemIcon("minecraft:chain")
-	.title("Heavenly Restriction")
 	.advancementFrame("task")
 	.addDescription({
 		"color": "white",
@@ -204,6 +237,51 @@ DunestriderSkills.FURANTUR_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "fur
 	.cost(2)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("idFW1923jf01l3o6");
+
+DunestriderSkills.FURANTUR_2 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "furantur_2")
+	.itemIcon("minecraft:redstone")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "dark_red",
+		"text": "You hemorrhage your foes and relish it.\n\n- Gain 5.0% lifesteal on-hit."
+	})
+	.cost(3)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("g7xq2n4mdbv5czlu");
+
+DunestriderSkills.FURANTUR_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "furantur_3")
+	.itemIcon("minecraft:redstone")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "dark_red",
+		"text": "Spread the red. You're a festival of death.\n\n- Gain 7.5% lifesteal on-hit."
+	})
+	.cost(4)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("r1kz8jwmq5tl2hce");
+
+DunestriderSkills.FURANTUR_4 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "furantur_4")
+	.itemIcon("minecraft:redstone")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "dark_red",
+		"text": "Drink their blood.\n\n- Gain 10% lifesteal on-hit."
+	})
+	.cost(5)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("n9dfv3upxbz4eaym");
+
+DunestriderSkills.FURANTUR_5 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "furantur_5")
+	.title("Ares")
+	.itemIcon("illagerinvasion:unusual_dust")
+	.advancementFrame("challenge")
+	.addDescription({
+		"color": "dark_red",
+		"text": "Something inside of you needs violence.\nYou don't dare disobey.\n\n- Heal for 20% of your enemies max hp on kill.\n15% lifesteal on-hit."
+	})
+	.cost(10)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("l2mpxq7wrn0cegti");
 
 
 

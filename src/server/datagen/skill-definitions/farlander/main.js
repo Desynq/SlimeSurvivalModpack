@@ -71,18 +71,70 @@ FarlanderSkills.QUANTUM_DELAY_2 = new SkillDefinition(FARLANDER_CATEGORY_ID, "qu
 	.serialize(FarlanderSkillDefinitionsJson)
 	.toSkill("98tad3k5fkvvfnur");
 
+
+
+FarlanderSkills.HEAT_DEATH = new SkillDefinition(FARLANDER_CATEGORY_ID, "heat_death")
+	.itemIcon("endermanoverhaul:crimson_pearl")
+	.advancementFrame("challenge")
+	.addDescription({
+		"color": "dark_red",
+		"text": "Pressing"
+	})
+	.addKeybindDescription("key.slimesurvival.secondary_ability")
+	.addDescription({
+		"color": "dark_red",
+		"text": "will clear all of your current entropy."
+			+ "\n\n- Cooldown of 3 minutes."
+	})
+	.cost(6)
+	.serialize(FarlanderSkillDefinitionsJson)
+	.toSkill("smunmehdt68srjgt");
+
+
+
+// Quantum Relativity Skills
+
 FarlanderSkills.QUANTUM_RELATIVITY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_relativity")
 	.itemIcon("minecraft:clock")
 	.advancementFrame("challenge")
 	.addDescription({
 		"color": "dark_purple",
-		"text": "Temporarily lower tick rate to 10 ticks per second."
-			+ "\n- Costs 0.5 hunger point (drains saturation first, stops at 6 hunger) every tick (5 hunger points a second)."
-			+ "\n- Minimum duration 0.5 seconds."
-			+ "\n- Maximum duration of 10 seconds."
+		"text": "Pressing"
+	})
+	.addKeybindDescription("key.slimesurvival.primary_ability")
+	.addDescription({
+		"color": "dark_purple",
+		"text": "will temporarily lower tick rate to 10 ticks per second."
+			+ "\n- Can be cancelled early."
+			+ "\n- Maximum duration of 20 ticks."
 			+ "\n- Cooldown of 5 seconds."
-			+ "\n- Requires at least 10 hunger to initiate."
 	})
 	.cost(4)
 	.serialize(FarlanderSkillDefinitionsJson)
 	.toSkill("cspxfslrz4c6380l");
+
+/**
+ * 
+ * @param {integer} tier 
+ * @param {integer} time 
+ * @param {integer} cost 
+ * @param {string} skillId 
+ * @returns 
+ */
+function createTimeDilationSkill(tier, time, cost, skillId) {
+	return new SkillDefinition(FARLANDER_CATEGORY_ID, `time_dilation_${tier}`)
+		.itemIcon("minecraft:popped_chorus_fruit")
+		.advancementFrame("task")
+		.addDescription({
+			"color": "dark_purple",
+			"text": `Quantum Relativity now lasts for ${time} ticks.`
+		})
+		.cost(cost)
+		.serialize(FarlanderSkillDefinitionsJson)
+		.toSkill(skillId);
+}
+
+FarlanderSkills.TIME_DILATION_1 = createTimeDilationSkill(1, 40, 4, "cyegh5wlrtb4sgkj");
+FarlanderSkills.TIME_DILATION_2 = createTimeDilationSkill(2, 60, 3, "39kjaql5l1rklarp");
+FarlanderSkills.TIME_DILATION_3 = createTimeDilationSkill(3, 80, 2, "w00u8zs19gzuq4rv");
+FarlanderSkills.TIME_DILATION_4 = createTimeDilationSkill(4, 100, 2, "9tmcgff92ez7n8rp");

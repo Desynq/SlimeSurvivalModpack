@@ -27,7 +27,7 @@ BoltActionRifle.tryFire = function(player, gun) {
 		return;
 	}
 
-	if (!TickHelper.updateTimestamp(player, "bolt_action_rifle_fire_cooldown", 20)) {
+	if (!TickHelper.tryUpdateTimestamp(player, "bolt_action_rifle_fire_cooldown", 20)) {
 		return;
 	}
 

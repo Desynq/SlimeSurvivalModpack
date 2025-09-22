@@ -54,9 +54,9 @@ PlayerEvents.tick(event => {
 
 	if ((SkillHelper.hasSkill(player, DunestriderSkills.DEFT))) {
 		let pos = {};
-		pos.x = player.getX() - 1;
-		pos.y = player.getY() - 1;
-		pos.z = player.getZ();
+		pos.x = player.getPosition(0).x() - 1;
+		pos.y = player.getPosition(0).y() - 1;
+		pos.z = player.getPosition(0).z() - 1;
 		let standingOn = player.level.getBlock([pos.x, pos.y, pos.z])
 		if (standingOn.getId() == "minecraft:sand") {
 			player.modifyAttribute($Attributes.MOVEMENT_SPEED, 'dunestridersandspeed', .5, $AttributeModifier$Operation.ADD_MULTIPLIED_TOTAL)
@@ -70,6 +70,12 @@ EntityEvents.death(event => {
 	let player = event.getSource().getActual();
 	if (!(player instanceof $ServerPlayer)) return;
 	if (!(PlayerRaceHelper.isRace(player, Races.DUNESTRIDER))) return;
-	if (!(SkillHelper.hasSkill(player, DunestriderSkills.HYSTERIA_3))) return;
-	if (player.persistentData.getBoolean('dunestrider.hysteriamax')) { player.setSaturation(player.saturation + 1) }
+	if ((SkillHelper.hasSkill(player, DunestriderSkills.HYSTERIA_3))) {
+		if (player.persistentData.getBoolean('dunestrider.hysteriamax')) { player.setSaturation(player.saturation + 1) };
+	}
+	if ((SkillHelper.hasSkill(player, DunestriderSkills.FURANTUR_5))) {
+		let victimMaxHealth = event.getEntity().getMaxHealth();
+		let heal = victimMaxHealth * 0.020;
+		player.setHealth(player.getHealth() + heal);
+	};
 })

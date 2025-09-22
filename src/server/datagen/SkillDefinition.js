@@ -60,9 +60,14 @@ SkillDefinition.prototype.serialize = function(json) {
 /**
  * 
  * @param {string} skillId 
+ * @param {SkillRegistry} [registry]
  */
-SkillDefinition.prototype.toSkill = function(skillId) {
-	return new Skill(this._categoryId, skillId, this.isRoot == true);
+SkillDefinition.prototype.toSkill = function(skillId, registry) {
+	const skill = new Skill(this._categoryId, skillId, this.isRoot == true);
+	if (registry) {
+		registry.register(this._definitionId, skill);
+	}
+	return skill;
 }
 
 SkillDefinition.prototype.title = function(title) {
@@ -148,6 +153,27 @@ SkillDefinition.prototype.requiredSkills = function(amount) {
  */
 SkillDefinition.prototype.addDescription = function(description) {
 	this._data.description.push(description);
+	return this;
+}
+
+/**
+ * @param {string} key 
+ */
+SkillDefinition.prototype.addKeybindDescription = function(key) {
+	this._data.description.push([
+		{
+			"color": "gray",
+			"text": " ["
+		},
+		{
+			"color": "yellow",
+			"keybind": key
+		},
+		{
+			"color": "gray",
+			"text": "] "
+		}
+	]);
 	return this;
 }
 

@@ -180,7 +180,7 @@ EntropyHolder.prototype.tickEntries = function(holder) {
  * @param {ServerPlayer} player 
  */
 EntropyHolder.prototype.tryPlayFarlanderHurtSound = function(player) {
-	if (!TickHelper.updateTimestamp(player, "last_entropy_hurt_sound_tick", 5)) {
+	if (!TickHelper.tryUpdateTimestamp(player, "last_entropy_hurt_sound_tick", 5)) {
 		return;
 	}
 

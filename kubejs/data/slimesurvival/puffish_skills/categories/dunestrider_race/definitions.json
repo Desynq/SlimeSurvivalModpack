@@ -203,6 +203,42 @@
 			}
 		}
 	},
+	"light_footed": {
+		"title": "Light Footed",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "combat_roll:recharge",
+					"value": 20,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			{
+				"color": "yellow",
+				"text": "Eat or be eaten, hit or get hit. Keep out of reach.\n\n- Your rolls recharge twice as fast."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:wind_charge"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
 	"demean_1": {
 		"title": "Demean I",
 		"rewards": [],
@@ -395,7 +431,7 @@
 		"description": [
 			{
 				"color": "green",
-				"text": "You eat what you can get in the Dunes.\n\n- Effects W.I.P"
+				"text": "Survivals not easy in the Dunes.\n\n- Sell certain mob drops for more."
 			}
 		],
 		"cost": 0,
@@ -413,7 +449,58 @@
 		},
 		"required_points": 2147483647
 	},
-	"heavenlyrestriction": {
+	"momentum": {
+		"title": "Momentum",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Me? Stopped in my tracks?..\n\n- When struck by an enemy that you haven't damaged in the last 30 seconds, take 2x damage and gain slowness I"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:string"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"first_strike": {
+		"title": "First Strike",
+		"rewards": [],
+		"description": [
+			{
+				"color": "gray",
+				"text": "Victory goes to the swift.\n\n- Deal increased damage for a small burst after damaging an enemy for the first time.\n(30s cooldown)"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:cobweb"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"heavenly_restriction": {
 		"title": "Heavenly Restriction",
 		"rewards": [
 			{
@@ -472,6 +559,114 @@
 			"type": "advancement",
 			"data": {
 				"frame": "task"
+			}
+		}
+	},
+	"furantur_2": {
+		"title": "Furantur II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "You hemorrhage your foes and relish it.\n\n- Gain 5.0% lifesteal on-hit."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 3 points"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:redstone"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"furantur_3": {
+		"title": "Furantur III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Spread the red. You're a festival of death.\n\n- Gain 7.5% lifesteal on-hit."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 4 points"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:redstone"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"furantur_4": {
+		"title": "Furantur IV",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Drink their blood.\n\n- Gain 10% lifesteal on-hit."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 5 points"
+			}
+		],
+		"cost": 5,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:redstone"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"furantur_5": {
+		"title": "Ares",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Something inside of you needs violence.\nYou don't dare disobey.\n\n- Heal for 20% of your enemies max hp on kill.\n15% lifesteal on-hit."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 10 points"
+			}
+		],
+		"cost": 10,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "illagerinvasion:unusual_dust"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "challenge"
 			}
 		}
 	}

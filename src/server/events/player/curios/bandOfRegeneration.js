@@ -16,7 +16,7 @@ PlayerEvents.tick(event => {
 		return;
 	}
 
-	if (!TickHelper.updateTimestamp(player, "band_of_regeneration_cooldown", 20)) {
+	if (!TickHelper.tryUpdateTimestamp(player, "band_of_regeneration_cooldown", 20)) {
 		return;
 	}
 

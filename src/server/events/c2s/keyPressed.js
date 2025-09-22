@@ -10,6 +10,7 @@
 			SanguineConvenantAbility.onPress(raceWrapper);
 		}
 		else if (raceWrapper instanceof FarlanderPlayer) {
+			QuantumRelativityAbility.onPress(player);
 		}
 	}
 

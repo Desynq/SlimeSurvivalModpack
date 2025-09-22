@@ -10,6 +10,9 @@
 			"ES2017"
 		],
 		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"noFallthroughCasesInSwitch": true,
 		"skipLibCheck": true,
 		"moduleResolution": "node"
 	},
@@ -19,8 +22,10 @@
 		"./**/*.d.ts",
 		"../../kubejs/types/**/*.d.ts",
 		// Pull in only the useful ProbeJS declarations i thought comments didnt work in json buddy
+		// this one is special lol just like you
 		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
-		"../../.probe/server/generated-server/primitives.d.ts"
+		"../../.probe/server/generated-server/primitives.d.ts",
+		"../../.probe/server/generated-server/bindings.d.ts",
 	],
 	"exclude": []
 }

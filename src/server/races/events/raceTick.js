@@ -6,11 +6,12 @@ PlayerEvents.tick(event => {
 		return;
 	}
 
-	let racePlayer = PlayerRaceHelper.getRaceWrapper(event.player);
-	if (racePlayer instanceof ChimeraPlayer) {
-		new ChimeraTick(racePlayer);
-		SanguineConvenantAbility.onTick(racePlayer);
+	let playerRaceWrapper = PlayerRaceHelper.getRaceWrapper(event.player);
+	if (playerRaceWrapper instanceof ChimeraPlayer) {
+		new ChimeraTick(playerRaceWrapper);
+		SanguineConvenantAbility.onTick(playerRaceWrapper);
 	}
-	else if (racePlayer instanceof FarlanderPlayer) {
+	else if (playerRaceWrapper instanceof FarlanderPlayer) {
+		QuantumRelativityAbility.onTick(event.player);
 	}
 });

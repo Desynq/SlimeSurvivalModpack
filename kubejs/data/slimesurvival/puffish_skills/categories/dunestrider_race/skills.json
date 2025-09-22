@@ -41,6 +41,12 @@
 		"y": 32,
 		"root": false
 	},
+	"x7F9kLm2Qw8VzR1T": {
+		"definition": "light_footed",
+		"x": -64,
+		"y": -32,
+		"root": false
+	},
 	"2n8xq5v3b1p6z7wh": {
 		"definition": "demean_1",
 		"x": 64,
@@ -89,8 +95,20 @@
 		"y": -80,
 		"root": true
 	},
+	"v8czm1qxdu3lke9r": {
+		"definition": "momentum",
+		"x": 32,
+		"y": -80,
+		"root": true
+	},
+	"t5bnqz7lwxr3umke": {
+		"definition": "first_strike",
+		"x": 32,
+		"y": -112,
+		"root": false
+	},
 	"od48m4hf7r9le2mv": {
-		"definition": "heavenlyrestriction",
+		"definition": "heavenly_restriction",
 		"x": 160,
 		"y": 0,
 		"root": false
@@ -98,6 +116,30 @@
 	"idFW1923jf01l3o6": {
 		"definition": "furantur_1",
 		"x": 192,
+		"y": 0,
+		"root": false
+	},
+	"g7xq2n4mdbv5czlu": {
+		"definition": "furantur_2",
+		"x": 224,
+		"y": -32,
+		"root": false
+	},
+	"r1kz8jwmq5tl2hce": {
+		"definition": "furantur_3",
+		"x": 256,
+		"y": 0,
+		"root": false
+	},
+	"n9dfv3upxbz4eaym": {
+		"definition": "furantur_4",
+		"x": 224,
+		"y": 32,
+		"root": false
+	},
+	"l2mpxq7wrn0cegti": {
+		"definition": "furantur_5",
+		"x": 224,
 		"y": 0,
 		"root": false
 	}

@@ -34,5 +34,35 @@
 		"x": -64,
 		"y": 0,
 		"root": false
+	},
+	"cyegh5wlrtb4sgkj": {
+		"definition": "time_dilation_1",
+		"x": -32,
+		"y": -32,
+		"root": false
+	},
+	"39kjaql5l1rklarp": {
+		"definition": "time_dilation_2",
+		"x": -64,
+		"y": -64,
+		"root": false
+	},
+	"w00u8zs19gzuq4rv": {
+		"definition": "time_dilation_3",
+		"x": -32,
+		"y": -96,
+		"root": false
+	},
+	"9tmcgff92ez7n8rp": {
+		"definition": "time_dilation_4",
+		"x": -64,
+		"y": -128,
+		"root": false
+	},
+	"smunmehdt68srjgt": {
+		"definition": "heat_death",
+		"x": 64,
+		"y": 0,
+		"root": false
 	}
 }

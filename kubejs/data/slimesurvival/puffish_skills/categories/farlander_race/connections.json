@@ -1,6 +1,6 @@
 {
 	"normal": {
-		"unidirectional": [
+		"bidirectional": [
 			[
 				"m13s2aep4oet8a47",
 				"vurcdoc6hgo5gbs1"
@@ -18,8 +18,28 @@
 				"98tad3k5fkvvfnur"
 			],
 			[
+				"cspxfslrz4c6380l",
+				"m13s2aep4oet8a47"
+			],
+			[
+				"cspxfslrz4c6380l",
+				"cyegh5wlrtb4sgkj"
+			],
+			[
+				"cyegh5wlrtb4sgkj",
+				"39kjaql5l1rklarp"
+			],
+			[
+				"39kjaql5l1rklarp",
+				"w00u8zs19gzuq4rv"
+			],
+			[
+				"w00u8zs19gzuq4rv",
+				"9tmcgff92ez7n8rp"
+			],
+			[
 				"m13s2aep4oet8a47",
-				"cspxfslrz4c6380l"
+				"smunmehdt68srjgt"
 			]
 		]
 	}

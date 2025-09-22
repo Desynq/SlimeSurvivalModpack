@@ -6,8 +6,25 @@ const TickHelper = {};
  * 
  * @param {MinecraftServer} server 
  */
-TickHelper.getTickRate = function(server) {
+TickHelper.getDefaultTickRate = function(server) {
 	return 20;
+}
+
+/**
+ * 
+ * @param {MinecraftServer} server 
+ * @param {integer} newTickRate 
+ */
+TickHelper.setTickRate = function(server, newTickRate) {
+	CommandHelper.runCommandSilent(server, `tick rate ${newTickRate}`);
+}
+
+/**
+ * 
+ * @param {MinecraftServer} server 
+ */
+TickHelper.resetTickRate = function(server) {
+	CommandHelper.runCommandSilent(server, `tick rate ${TickHelper.getDefaultTickRate(server)}`);
 }
 
 /**
@@ -25,7 +42,7 @@ TickHelper.getGameTime = function(server) {
  * 
  * @param {Entity} entity 
  * @param {string} id 
- * @returns 
+ * @returns 0 if timestamp has not been set for entity
  */
 TickHelper.getTimestamp = function(entity, id) {
 	return entity.persistentData.getLong(id);
@@ -46,8 +63,18 @@ TickHelper.getTimestampDiff = function(entity, id) {
  * @param {string} id 
  * @param {long} interval 
  */
-TickHelper.hasTimestampPassed = function(entity, id, interval) {
+TickHelper.hasTimestampElapsed = function(entity, id, interval) {
 	return TickHelper.getTimestampDiff(entity, id) >= interval;
+}
+
+/**
+ * 
+ * @param {Entity} entity 
+ * @param {string} id 
+ * @param {long} interval 
+ */
+TickHelper.hasTimestampJustElapsed = function(entity, id, interval) {
+	return TickHelper.getTimestampDiff(entity, id) === interval;
 }
 
 /**
@@ -60,7 +87,7 @@ TickHelper.forceUpdateTimestamp = function(entity, id) {
 }
 
 /**
- * Sets timestamp to -Long.MAX_VALUE so that hasTimestampPassed() always returns true
+ * Sets timestamp to Long.MIN_VALUE so that hasTimestampPassed() always returns true
  * @param {Entity} entity 
  * @param {string} id 
  */
@@ -69,14 +96,14 @@ TickHelper.resetTimestamp = function(entity, id) {
 }
 
 /**
- * Updates the timestamp to current game time if the timestamp has not been last updated since the specified interval
+ * Updates the timestamp to current game time if it has elapsed
  * @param {Entity} entity 
  * @param {string} id
  * @param {long} interval
- * @returns {boolean} true if timestamp was successfully updated after interval passed
+ * @returns {boolean} true if timestamp was successfully updated after elapsing
  */
-TickHelper.updateTimestamp = function(entity, id, interval) {
-	if (TickHelper.hasTimestampPassed(entity, id, interval)) {
+TickHelper.tryUpdateTimestamp = function(entity, id, interval) {
+	if (TickHelper.hasTimestampElapsed(entity, id, interval)) {
 		TickHelper.forceUpdateTimestamp(entity, id);
 		return true;
 	}
@@ -91,5 +118,5 @@ TickHelper.updateTimestamp = function(entity, id, interval) {
  * @returns 
  */
 TickHelper.toSeconds = function(server, ticks) {
-	return (ticks / TickHelper.getTickRate(server)).toFixed(1);
+	return (ticks / TickHelper.getDefaultTickRate(server)).toFixed(1);
 }
