@@ -34,6 +34,6 @@ EntityEvents.death("minecraft:player", event => {
 
 	player.getLevel().getPlayers()
 		.stream()
-		.filter(p => p instanceof $ServerPlayer && p.tags.contains("boss.the_hunter"))
-		.forEach(/** @param {ServerPlayer} p */ p => p.setHealth(Math.min(p.maxHealth, p.health + 25)))
+		.filter(p => p instanceof $ServerPlayer && p.tags.contains("boss.the_hunter") && p.health > 0 && !p.isDeadOrDying())
+		.forEach(/** @param {ServerPlayer} p */ p => p.setHealth(Math.min(p.maxHealth, p.health + 50)));
 });

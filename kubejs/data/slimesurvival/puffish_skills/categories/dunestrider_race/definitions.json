@@ -380,7 +380,7 @@
 		"description": [
 			{
 				"color": "gold",
-				"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nGain 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
+				"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nFill 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
 			},
 			{
 				"color": "dark_green",

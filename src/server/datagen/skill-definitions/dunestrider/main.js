@@ -164,7 +164,7 @@ DunestriderSkills.HYSTERIA_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "hys
 	.advancementFrame("task")
 	.addDescription({
 		"color": "gold",
-		"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nGain 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
+		"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nFill 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
 	})
 	.cost(4)
 	.serialize(DunestriderSkillDefinitionsJson)

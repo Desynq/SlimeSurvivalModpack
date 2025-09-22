@@ -60,16 +60,6 @@ const MitosisSkillTree = {
 		.cost(4)
 		.serialize(SludgeDefinitionsJson)
 		.toSkill("y2fpcywmblqtu859"),
-
-	PHAGOCYTOSIS: new SkillDefinition(SludgeSkillsCategoryId, "phagocytosis")
-		.itemIcon("minecraft:golden_carrot")
-		.addDescription({
-			"color": "green",
-			"text": "You can eat food 25% faster"
-		})
-		.cost(2)
-		.serialize(SludgeDefinitionsJson)
-		.toSkill("u3dd2zdz5jy3xufx")
 };
 
 SludgeSkills.MITOSIS = MitosisSkillTree.MITOSIS;

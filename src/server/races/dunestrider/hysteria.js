@@ -71,7 +71,10 @@ EntityEvents.death(event => {
 	if (!(player instanceof $ServerPlayer)) return;
 	if (!(PlayerRaceHelper.isRace(player, Races.DUNESTRIDER))) return;
 	if ((SkillHelper.hasSkill(player, DunestriderSkills.HYSTERIA_3))) {
-		if (player.persistentData.getBoolean('dunestrider.hysteriamax')) { player.setSaturation(player.saturation + 1) };
+		if (player.persistentData.getBoolean('dunestrider.hysteriamax')) {
+			let extraSat = player.getSaturation() >= 10 ? 0 : player.getSaturation() + 1;
+			player.setSaturation(extraSat)
+		};
 	}
 	if ((SkillHelper.hasSkill(player, DunestriderSkills.FURANTUR_5))) {
 		let victimMaxHealth = event.getEntity().getMaxHealth();

@@ -1,9 +1,4 @@
-/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Tick").$LivingEntityUseItemEvent$Tick } */
-let $LivingEntityUseItemEvent$Tick = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Tick")
-/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Start").$LivingEntityUseItemEvent$Start } */
-let $LivingEntityUseItemEvent$Start = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Start")
-/** @type {typeof import("io.github.desynq.slimesurvival.event.PlayerEatEffectEvent").$PlayerEatEffectEvent } */
-let $PlayerEatEffectEvent = Java.loadClass("io.github.desynq.slimesurvival.event.PlayerEatEffectEvent")
+
 
 const BAD_FOOD_TYPES = [
 	'minecraft:rotten_flesh',

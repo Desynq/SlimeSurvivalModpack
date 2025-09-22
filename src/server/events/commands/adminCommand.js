@@ -23,6 +23,35 @@
 	/**
 	 * 
 	 * @param {ServerPlayer} player 
+	 */
+	function giveCursedHand(player) {
+		const comps = `item_name='{"color":"dark_aqua","text":"Cursed Hand"}'`
+			+ `,custom_data={id:cursed_hand}`
+			+ ``;
+		CommandHelper.runCommandSilent(player.server,
+			`give ${player.username} mutantmonsters:endersoul_hand[${comps}]`
+		);
+	}
+
+	/**
+	 * 
+	 * @param {ServerPlayer} player 
+	 */
+	function giveCursedAthame(player) {
+		const comps = `item_name='{"color":"dark_aqua","text":"Cursed Athame"}'`
+			+ `,custom_data={id:cursed_athame}`
+			+ `,attribute_modifiers=[`
+			+ `{type:"minecraft:generic.attack_damage",amount:5,operation:"add_value",id:"slimesurvival:cursed_athame",slot:"mainhand"}`
+			+ `,{type:"minecraft:generic.attack_speed",amount:2147483647,operation:"add_value",id:"slimesurvival:cursed_athame",slot:"mainhand"}`
+			+ `]`;
+		CommandHelper.runCommandSilent(player.server,
+			`give ${player.username} cataclysm:athame[${comps}]`
+		);
+	}
+
+	/**
+	 * 
+	 * @param {ServerPlayer} player 
 	 * @param {import("net.minecraft.world.item.Item").$Item$$Original} item 
 	 * @param {import("net.minecraft.core.component.DataComponentPatch").$DataComponentPatch$$Original} components
 	 */
@@ -97,6 +126,20 @@
 			.then($Commands.literal("void_core")
 				.executes(context => {
 					giveVoidCore(context.getSource().getPlayer());
+					return 1;
+				})
+			)
+			// @ts-ignore
+			.then($Commands.literal("cursed_hand")
+				.executes(context => {
+					giveCursedHand(context.getSource().getPlayer());
+					return 1;
+				})
+			)
+			// @ts-ignore
+			.then($Commands.literal("cursed_athame")
+				.executes(context => {
+					giveCursedAthame(context.getSource().getPlayer());
 					return 1;
 				})
 			);

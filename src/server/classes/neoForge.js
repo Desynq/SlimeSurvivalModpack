@@ -1,3 +1,5 @@
+// priority: 1000
+
 /** @type {typeof import("net.neoforged.neoforge.common.NeoForge").$NeoForge} */
 const $NeoForge = Java.loadClass("net.neoforged.neoforge.common.NeoForge");
 
@@ -26,3 +28,12 @@ const $ProjectileImpactEvent = Java.loadClass("net.neoforged.neoforge.event.enti
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Added").$MobEffectEvent$Added } */
 const $MobEffectEvent$Added = Java.loadClass("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Added")
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Tick").$LivingEntityUseItemEvent$Tick } */
+const $LivingEntityUseItemEvent$Tick = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Tick");
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Start").$LivingEntityUseItemEvent$Start } */
+const $LivingEntityUseItemEvent$Start = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Start");
+
+/** @type {typeof import("io.github.desynq.slimesurvival.event.PlayerEatEffectEvent").$PlayerEatEffectEvent } */
+const $PlayerEatEffectEvent = Java.loadClass("io.github.desynq.slimesurvival.event.PlayerEatEffectEvent");

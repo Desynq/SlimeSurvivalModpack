@@ -6,7 +6,7 @@ const HeatDeathAbility = new (class extends BaseAbility {
 
 	protected readonly cooldownController = new TimestampController(
 		"farlander.heat_death.cooldown",
-		(player: ServerPlayer) => 1200 * 3
+		(player: ServerPlayer) => 1200 * 0.5
 	);
 
 	protected readonly ui = new (class implements IBaseAbilityUI {

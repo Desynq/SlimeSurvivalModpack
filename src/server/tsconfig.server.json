@@ -5,12 +5,12 @@
 		"noEmitOnError": true,
 		"allowJs": true,
 		"target": "ES5",
-		"module": "commonjs",
+		"module": "none",
 		"lib": [
 			"ES2017"
 		],
 		"strict": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"strictNullChecks": true,
 		"noFallthroughCasesInSwitch": true,
 		"skipLibCheck": true,
@@ -23,8 +23,16 @@
 		"../../kubejs/types/**/*.d.ts",
 		// Pull in only the useful ProbeJS declarations i thought comments didnt work in json buddy
 		// this one is special lol just like you
+		"../../.probe/packages/generated-package/net.neoforged.neoforge.event.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
+		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
+		"../../.probe/packages/generated-package/net.minecraft.world.level.d.ts",
+		"../../.probe/packages/generated-package/net.minecraft.world.item.d.ts",
+		"../../.probe/packages/generated-package/net.minecraft.core.d.ts",
+		"../../.probe/packages/generated-package/fuzs.mutantmonsters.world.item.d.ts",
+		"../../.probe/packages/generated-package/java.util.d.ts",
 		"../../.probe/server/generated-server/primitives.d.ts",
+		"../../.probe/server/generated-server/events.d.ts",
 		"../../.probe/server/generated-server/bindings.d.ts",
 	],
 	"exclude": []

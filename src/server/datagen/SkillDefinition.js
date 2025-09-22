@@ -60,13 +60,9 @@ SkillDefinition.prototype.serialize = function(json) {
 /**
  * 
  * @param {string} skillId 
- * @param {SkillRegistry} [registry]
  */
-SkillDefinition.prototype.toSkill = function(skillId, registry) {
+SkillDefinition.prototype.toSkill = function(skillId) {
 	const skill = new Skill(this._categoryId, skillId, this.isRoot == true);
-	if (registry) {
-		registry.register(this._definitionId, skill);
-	}
 	return skill;
 }
 
@@ -116,9 +112,11 @@ SkillDefinition.prototype.advancementFrame = function(frameType) {
 }
 
 /**
- * Overrides .cost()
+ * Makes skill unlock by default
+ * Overrides .cost().
  */
 SkillDefinition.prototype.rootSkill = function() {
+	this.advancementFrame("goal");
 	this._data.required_points = 2147483647;
 	this.isRoot = true;
 	return this;

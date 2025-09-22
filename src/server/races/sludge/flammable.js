@@ -4,10 +4,7 @@ PlayerEvents.tick(event => {
 	const player = event.player;
 
 	const race = PlayerRaceHelper.getRace(player);
-	const state = SkillHelper.getState(player, SludgeSkills.FLAMMABLE);
-	if (state !== $Skill$State.UNLOCKED) {
-		return;
-	}
+	if (!SkillHelper.hasSkill(player, SludgeSkills.FLAMMABLE)) return;
 
 	if (player.isOnFire()) {
 		player.setRemainingFireTicks(100);

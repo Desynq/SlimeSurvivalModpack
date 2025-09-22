@@ -56,6 +56,27 @@
 		},
 		"required_points": 2147483647
 	},
+	"natural_economist": {
+		"title": "Natural Economist",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You can sell slime for $2.00 instead of $1.00."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:emerald"
+			}
+		}
+	},
 	"aregenerative": {
 		"title": "Aregenerative",
 		"rewards": [
@@ -156,6 +177,144 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"congealed_2": {
+		"title": "Congealed II",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.max_health",
+					"value": 5,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			{
+				"color": "green",
+				"text": "+5 Max Health"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:health_boost"
+			}
+		}
+	},
+	"antivenom": {
+		"title": "Antivenom",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You are immune to poison."
+			}
+		],
+		"cost": 0,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "mowziesmobs:poison_resist"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"phagocytosis": {
+		"title": "Phagocytosis",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You can eat food 25% faster"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_carrot"
+			}
+		}
+	},
+	"phagocytosis_2": {
+		"title": "Phagocytosis II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You can eat food 50% faster"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 1 point"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_carrot"
+			}
+		}
+	},
+	"phagocytosis_3": {
+		"title": "Phagocytosis III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You can eat food 75% faster"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_carrot"
+			}
+		}
+	},
+	"phagocytosis_4": {
+		"title": "Phagocytosis IV",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "You can eat food 100% faster"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 2 points"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_carrot"
+			}
+		}
 	},
 	"mitosis": {
 		"title": "Mitosis",
@@ -280,27 +439,6 @@
 			"type": "effect",
 			"data": {
 				"effect": "minecraft:speed"
-			}
-		}
-	},
-	"phagocytosis": {
-		"title": "Phagocytosis",
-		"rewards": [],
-		"description": [
-			{
-				"color": "green",
-				"text": "You can eat food 25% faster"
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
-			}
-		],
-		"cost": 2,
-		"icon": {
-			"type": "item",
-			"data": {
-				"item": "minecraft:golden_carrot"
 			}
 		}
 	}
