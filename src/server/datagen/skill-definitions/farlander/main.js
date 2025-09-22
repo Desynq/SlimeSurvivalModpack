@@ -86,7 +86,7 @@ FarlanderSkills.HEAT_DEATH = new SkillDefinition(FARLANDER_CATEGORY_ID, "heat_de
 		"text": "will clear all of your current entropy."
 			+ "\n\n- Cooldown of 3 minutes."
 	})
-	.cost(6)
+	.cost(4)
 	.serialize(FarlanderSkillDefinitionsJson)
 	.toSkill("smunmehdt68srjgt");
 
@@ -138,3 +138,18 @@ FarlanderSkills.TIME_DILATION_1 = createTimeDilationSkill(1, 40, 4, "cyegh5wlrtb
 FarlanderSkills.TIME_DILATION_2 = createTimeDilationSkill(2, 60, 3, "39kjaql5l1rklarp");
 FarlanderSkills.TIME_DILATION_3 = createTimeDilationSkill(3, 80, 2, "w00u8zs19gzuq4rv");
 FarlanderSkills.TIME_DILATION_4 = createTimeDilationSkill(4, 100, 2, "9tmcgff92ez7n8rp");
+
+FarlanderSkills.EVENT_HORIZON = new SkillDefinition(FARLANDER_CATEGORY_ID, "event_horizon")
+	.itemIcon("endermanoverhaul:summoner_pearl")
+	.addDescription({
+		"color": "dark_aqua",
+		"text": "Enemies that die from your entropy damage while Quantum Relativity is active heal you based on how much entropy damage they took over their lifespan."
+	})
+	.addDescription({
+		"color": "dark_red",
+		"text": "\n\n- Requires Quantum Relativity and Quantum Rending."
+	})
+	.requiredSkills(2)
+	.cost(3)
+	.serialize(FarlanderSkillDefinitionsJson)
+	.toSkill("9xh6zujl18y1wm7k");

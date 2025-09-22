@@ -13,5 +13,6 @@ PlayerEvents.tick(event => {
 	}
 	else if (playerRaceWrapper instanceof FarlanderPlayer) {
 		QuantumRelativityAbility.onTick(event.player);
+		HeatDeathAbility.onTick(event.player);
 	}
 });

@@ -72,3 +72,14 @@ PlayerEvents.respawned(event => {
 	}
 	holder.resetEntropy();
 });
+
+EntityEvents.death(event => {
+	if (event.getSource().getType() !== "slimesurvival.entropy") {
+		return;
+	}
+
+	let attacker = event.getSource().getActual();
+	if (!attacker) {
+		return;
+	}
+});

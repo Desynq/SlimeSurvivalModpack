@@ -117,9 +117,9 @@ EntropyHolder.prototype.dealDamage = function(entity, attacker, amount) {
 		entity.health -= amount;
 		if (entity.health <= 0) {
 			entity.health = 0.0001;
-			CommandHelper.runCommandSilent(entity.server,
-				`damage ${entity.username} 1 slimesurvival:entropy`
-			);
+			let reg = entity.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow($ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy"));
+			// @ts-ignore
+			entity.attack(new DamageSource(reg, attacker, attacker), 1.0);
 		}
 	}
 	catch (error) {

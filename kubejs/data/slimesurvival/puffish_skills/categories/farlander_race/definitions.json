@@ -167,10 +167,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 6 points"
+				"text": "\n\nCost: 4 points"
 			}
 		],
-		"cost": 6,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -336,5 +336,31 @@
 				"frame": "task"
 			}
 		}
+	},
+	"event_horizon": {
+		"title": "Event Horizon",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_aqua",
+				"text": "Enemies that die from your entropy damage while Quantum Relativity is active heal you based on how much entropy damage they took over their lifespan."
+			},
+			{
+				"color": "dark_red",
+				"text": "\n\n- Requires Quantum Relativity and Quantum Rending."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\nCost: 3 points"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "endermanoverhaul:summoner_pearl"
+			}
+		},
+		"required_skills": 2
 	}
 }

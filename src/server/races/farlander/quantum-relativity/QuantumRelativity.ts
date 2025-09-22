@@ -1,7 +1,10 @@
 
-const QuantumRelativityAbility = new (class implements IRaceAbility {
 
-	public constructor() { }
+const QuantumRelativityAbility = new (class extends ToggleableAbility {
+
+	public constructor() {
+		super();
+	}
 
 	protected readonly toggleController = new ToggleController("farlander.quantum_relativity.toggle");
 
@@ -34,7 +37,7 @@ const QuantumRelativityAbility = new (class implements IRaceAbility {
 		}
 	);
 
-	protected readonly ui = new (class implements CooldownAbilityUI {
+	protected readonly ui = new (class implements IToggleableAbilityUI {
 		constructor(
 			private readonly cooldown: TimestampController,
 			private readonly duration: TimestampController
@@ -78,90 +81,41 @@ const QuantumRelativityAbility = new (class implements IRaceAbility {
 
 
 
-	private activateAbility(player: ServerPlayer): void {
-		this.cooldownController.reset(player);
-		this.durationController.update(player);
-		this.ui.abilityEnabled(player);
-
+	protected onActivate(player: ServerPlayer): void {
+		super.onActivate(player);
 		TickHelper.setTickRate(player.server, 10);
 	}
 
-	private disableAbility(player: ServerPlayer): void {
-		this.cooldownController.update(player);
-		this.ui.abilityDisabled(player);
-
+	protected onDeactivate(player: ServerPlayer): void {
+		super.onDeactivate(player);
 		TickHelper.resetTickRate(player.server);
 	}
 
-	private cancelAbility(player: ServerPlayer): void {
-		this.disableAbility(player);
+	private onOutOfHunger(player: ServerPlayer): void {
+		this.onDeactivate(player);
 	}
 
-	private handleDeathWhileActive(player: ServerPlayer): void {
-		this.toggleController.toggle(player);
-		this.disableAbility(player);
-	}
-
-	private handleAbilityExpiration(player: ServerPlayer): void {
-		this.toggleController.toggle(player);
-		this.disableAbility(player);
-	}
-
-	private handleOutOfHunger(player: ServerPlayer): void {
-		this.toggleController.toggle(player);
-		this.disableAbility(player);
-	}
-
-
-
-	public onPress(player: ServerPlayer): void {
+	public onPress(player: ServerPlayer): boolean {
 		if (!SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_RELATIVITY)) {
-			return;
+			return false;
 		}
-
-		if (!this.cooldownController.hasPassed(player)) {
-			this.ui.displayCooldownWarning(player);
-			return;
-		}
-
 		if (player.foodLevel <= 6) {
 			this.ui.displayFoodWarning(player);
-			return;
+			return false;
 		}
-
-		if (this.toggleController.toggle(player)) {
-			this.activateAbility(player);
-		}
-		else {
-			this.cancelAbility(player);
-		}
+		return super.onPress(player);
 	}
 
-	public onTick(player: ServerPlayer): void {
-		if (!this.toggleController.isToggled(player)) {
-			if (!this.cooldownController.hasPassed(player)) {
-				this.ui.displayCooldown(player);
-			}
-			else if (this.cooldownController.hasJustPassed(player)) {
-				this.ui.alertCooldownOver(player);
-			}
-			return;
-		}
-		if (player.isDeadOrDying()) {
-			this.handleDeathWhileActive(player);
-			return;
-		}
-		if (this.durationController.hasPassed(player)) {
-			this.handleAbilityExpiration(player);
-			return;
-		}
+	public onTick(player: ServerPlayer): boolean {
+		if (!super.onTick(player)) return false;
 
 		player.causeFoodExhaustion(1);
 		if (player.foodLevel <= 6) {
-			this.handleOutOfHunger(player);
-			return;
+			this.onOutOfHunger(player);
+			return false;
 		}
 
 		this.ui.updateUI(player);
+		return true;
 	}
 })();
