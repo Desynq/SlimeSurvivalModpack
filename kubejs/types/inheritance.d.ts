@@ -72,3 +72,18 @@ declare module "net.minecraft.world.entity.TamableAnimal" {
 		lookAt(...args: any[]): any;
 	}
 };
+
+declare module "net.minecraft.network.chat.MutableComponent" {
+	interface $MutableComponent extends $Component$$Type {
+		color(...args: any[]): any;
+		bold: any;
+		italic: any;
+		underlined: any;
+		strikethrough: any;
+		obfuscated: any;
+		insertion: any;
+		font: any;
+		click: any;
+		hover: any;
+	}
+}

@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 ServerEvents.commandRegistry(event => {
 	const { commands: Commands, arguments: Arguments } = event;
 
@@ -14,32 +14,37 @@ ServerEvents.commandRegistry(event => {
 				.then(amountArgument
 					.executes(context => {
 						const itemName = Arguments.STRING.getResult(context, "item");
-						const mItem = MarketableItem.fromName(itemName);
-						
+						const marketableItem = MarketableItem.fromName(itemName);
+
 						const amount = Arguments.INTEGER.getResult(context, "amount");
 
-						new SellTransaction(context.source.getPlayer(), mItem, amount);
+						trySellTransaction(context.getSource().getPlayer(), marketableItem, amount);
 						return 1;
 					})
 				)
 				.then(Commands.literal("all")
 					.executes(context => {
 						const itemName = Arguments.STRING.getResult(context, "item");
-						const mItem = MarketableItem.fromName(itemName);
-
-						new SellTransaction(context.source.getPlayer(), mItem, null);
+						const marketableItem = MarketableItem.fromName(itemName);
+						trySellTransaction(context.getSource().getPlayer(), marketableItem, null);
 						return 1;
 					})
 				)
+				.executes(context => {
+					const itemName = Arguments.STRING.getResult(context, "item");
+					const marketableItem = MarketableItem.fromName(itemName);
+					trySellTransaction(context.getSource().getPlayer(), marketableItem, null);
+					return 1;
+				})
 			)
 		)
 		.then(Commands.literal("hand")
 			.executes(context => {
 				const player = context.source.getPlayer();
 				const itemId = player.getInventory().getSelected().getItem().getId();
-				const mItem = MarketableItem.fromId(itemId);
+				const marketableItem = MarketableItem.fromId(itemId);
 
-				new SellTransaction(player, mItem, 0);
+				trySellTransaction(context.getSource().getPlayer(), marketableItem, 0);
 				return 1;
 			})
 		)
@@ -67,5 +72,21 @@ ServerEvents.commandRegistry(event => {
 		builder.suggest("32");
 		builder.suggest("64");
 		return builder.buildFuture();
+	}
+
+	/**
+	 * 
+	 * @param {ServerPlayer} player 
+	 * @param {MarketableItem} marketableItem 
+	 * @param {number | null} sellAmount 
+	 */
+	function trySellTransaction(player, marketableItem, sellAmount) {
+		try {
+			let receipt = new SellTransaction(player, marketableItem, sellAmount).getReceipt();
+			SellUI.outputReceipt(player, receipt);
+		}
+		catch (error) {
+			SellUI.outputError(player, error);
+		}
 	}
 });

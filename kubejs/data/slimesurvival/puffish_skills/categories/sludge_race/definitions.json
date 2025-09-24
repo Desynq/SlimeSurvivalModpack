@@ -62,7 +62,7 @@
 		"description": [
 			{
 				"color": "green",
-				"text": "You can sell slime for $2.00 instead of $1.00."
+				"text": "You can sell slime for double money."
 			},
 			{
 				"color": "dark_green",
@@ -73,7 +73,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:emerald"
+				"item": "minecraft:slime_ball"
 			}
 		}
 	},

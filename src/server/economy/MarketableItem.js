@@ -14,18 +14,18 @@ MarketableItem._instancesById = {};
 /** @type {Object.<string, MarketableItem} */
 MarketableItem._instancesByName = {}
 
-MarketableItem.getItems = function () {
+MarketableItem.getItems = function() {
 	return MarketableItem._instances;
 }
 
-MarketableItem.getSellableItems = function () {
+MarketableItem.getSellableItems = function() {
 	if (MarketableItem._sellableInstances.length == 0) {
 		MarketableItem._sellableInstances = MarketableItem._instances.filter(x => x._sellPrice != null);
 	}
 	return MarketableItem._sellableInstances;
 }
 
-MarketableItem.getBuyableItems = function () {
+MarketableItem.getBuyableItems = function() {
 	if (MarketableItem._buyableInstances.length == 0) {
 		MarketableItem._buyableInstances = MarketableItem._instances.filter(x => x._buyPrice != null);
 	}
@@ -36,7 +36,7 @@ MarketableItem.getBuyableItems = function () {
  * @param {string | null} itemId
  * @returns {MarketableItem | undefined}
  */
-MarketableItem.fromId = function (itemId) {
+MarketableItem.fromId = function(itemId) {
 	return MarketableItem._instancesById[itemId];
 }
 
@@ -45,7 +45,7 @@ MarketableItem.fromId = function (itemId) {
  * @param {string | null} itemName 
  * @returns {MarketableItem | undefined}
  */
-MarketableItem.fromName = function (itemName) {
+MarketableItem.fromName = function(itemName) {
 	return MarketableItem._instancesByName[itemName];
 }
 
@@ -72,12 +72,12 @@ function MarketableItem(name, itemId) {
 	this._itemId = itemId;
 }
 
-MarketableItem.prototype.setCompoundingRate = function (compoundingRate) {
+MarketableItem.prototype.setCompoundingRate = function(compoundingRate) {
 	this._compoundingRate = compoundingRate;
 	return this;
 }
 
-MarketableItem.prototype.setCompoundingPeriod = function (compoundingPeriod) {
+MarketableItem.prototype.setCompoundingPeriod = function(compoundingPeriod) {
 	this._compoundingPeriod = compoundingPeriod;
 	return this;
 }
@@ -87,7 +87,7 @@ MarketableItem.prototype.setCompoundingPeriod = function (compoundingPeriod) {
  * @param {number} sellPrice a decimal number (1.00 = $1.00)
  * @returns {MarketableItem}
  */
-MarketableItem.prototype.setSellPrice = function (sellPrice) {
+MarketableItem.prototype.setSellPrice = function(sellPrice) {
 	this._sellPrice = MoneyManager.fromDollar(sellPrice);
 	return this;
 }
@@ -97,23 +97,23 @@ MarketableItem.prototype.setSellPrice = function (sellPrice) {
  * @param {number} buyPrice a decimal number (1.00 = $1.00)
  * @returns {MarketableItem}
  */
-MarketableItem.prototype.setBuyPrice = function (buyPrice) {
+MarketableItem.prototype.setBuyPrice = function(buyPrice) {
 	this._buyPrice = MoneyManager.fromDollar(buyPrice);
 	return this;
 }
 
-MarketableItem.prototype.register = function () {
+MarketableItem.prototype.register = function() {
 	MarketableItem._instances.push(this);
 	MarketableItem._instancesById[this._itemId] = this;
 	MarketableItem._instancesByName[this._name] = this;
 	return this;
 }
 
-MarketableItem.prototype.getSellPrice = function () {
+MarketableItem.prototype.getSellPrice = function() {
 	return this._sellPrice;
 }
 
-MarketableItem.prototype.getBuyPrice = function () {
+MarketableItem.prototype.getBuyPrice = function() {
 	return this._buyPrice;
 }
 
@@ -132,23 +132,22 @@ MarketableItem.prototype.getCalculatedBuyPrice = function(server) {
 	return buyPrice;
 }
 
-MarketableItem.prototype.getCompoundingRate = function () {
+MarketableItem.prototype.getCompoundingRate = function() {
 	return this._compoundingRate;
 }
 
-MarketableItem.prototype.getCompoundingPeriod = function () {
+MarketableItem.prototype.getCompoundingPeriod = function() {
 	return this._compoundingPeriod;
 }
 
-MarketableItem.prototype.getName = function () {
+MarketableItem.prototype.getName = function() {
 	return this._name;
 }
 
-MarketableItem.prototype.getItemId = function () {
+MarketableItem.prototype.getItemId = function() {
 	return this._itemId;
 }
 
-MarketableItem.prototype.canHaveStock = function () {
-	return false; // disabled for now
+MarketableItem.prototype.canHaveStock = function() {
 	return this._compoundingRate != null && this._compoundingPeriod != null;
 }

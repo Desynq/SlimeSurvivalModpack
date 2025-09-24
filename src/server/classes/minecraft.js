@@ -64,3 +64,6 @@ const $DamageSource = Java.loadClass("net.minecraft.world.damagesource.DamageSou
 
 /** @type {typeof import("net.minecraft.world.InteractionHand").$InteractionHand } */
 const $InteractionHand = Java.loadClass("net.minecraft.world.InteractionHand")
+
+/** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
+const $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries");

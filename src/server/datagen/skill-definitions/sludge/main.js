@@ -30,14 +30,14 @@ SludgeSkills.SLIMEPROOF = new SkillDefinition(SludgeSkillsCategoryId, "slimeproo
 	.toSkill("hi8bub7iluizrm0t");
 
 SludgeSkills.NATURAL_ECONOMIST = new SkillDefinition(SludgeSkillsCategoryId, "natural_economist")
-	.itemIcon("minecraft:emerald")
+	.itemIcon("minecraft:slime_ball")
 	.addDescription({
 		"color": "green",
-		"text": "You can sell slime for $2.00 instead of $1.00."
+		"text": "You can sell slime for double money."
 	})
 	.cost(1)
 	.serialize(SludgeDefinitionsJson)
-	.toSkill("");
+	.toSkill("psd4irgsit6fn85w");
 
 
 

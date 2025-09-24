@@ -1,6 +1,4 @@
 // @ts-nocheck
-/** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
-let $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries")
 /** @type {typeof import("java.util.function.BiConsumer").$BiConsumer } */
 let $BiConsumer = Java.loadClass("java.util.function.BiConsumer")
 /** @type {typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type } */
