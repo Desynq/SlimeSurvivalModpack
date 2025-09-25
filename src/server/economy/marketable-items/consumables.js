@@ -7,6 +7,10 @@ new MarketableItem("arrow", "minecraft:arrow")
 	.setBuyPrice(3.00)
 	.register();
 
+new MarketableItem("mending_book", "minecraft:enchanted_book[stored_enchantments={levels:{mending:1}}]")
+	.setBuyPrice(500.00)
+	.register();
+
 new MarketableItem("unbreaking_tome", "slimesurvival:unbreaking_tome")
 	.setBuyPrice(2000.00)
 	.register();

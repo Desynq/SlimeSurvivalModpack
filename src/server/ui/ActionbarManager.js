@@ -2,7 +2,8 @@
 
 PlayerEvents.tick(event => {
 	const { player, server } = event;
-	const uuid = player.uuid.toString();
+	/** @type {string} */ // @ts-ignore
+	const uuid = player.stringUUID;
 
 	const texts = ActionbarManager.getTexts(uuid);
 	if (texts.length > 0) {
@@ -57,11 +58,12 @@ ActionbarManager.delayedMessages = {};
 /**
  * Displays simple text on the actionbar for a set delay in ticks
  * @param {import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original} player
- * @param {string} text stringified JSON component
- * @param {number} delay Number of ticks to display
+ * @param {string} text Stringified JSON component such as `{"text":"hello world"}`
+ * @param {number} delay Number of ticks to display for
  */
 ActionbarManager.setSimple = function(player, text, delay) {
-	ActionbarManager.delayedMessages[player.uuid.toString()] = {
+	// @ts-ignore
+	ActionbarManager.delayedMessages[player.stringUUID] = {
 		text: text,
 		ticks: delay
 	};

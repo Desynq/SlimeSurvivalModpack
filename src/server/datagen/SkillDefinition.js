@@ -66,6 +66,34 @@ SkillDefinition.prototype.toSkill = function(skillId) {
 	return skill;
 }
 
+/**
+ * Finds the first skill to match the definition id or returns a skill with no skill id
+ * @returns {Skill}
+ */
+SkillDefinition.prototype.findSkill = function() {
+	const category = this._categoryId.split(":")[1];
+	const json = JsonIO.read(`kubejs/data/slimesurvival/puffish_skills/categories/${category}/skills.json`);
+	const match = Object.entries(json)
+		.find(([k, v]) => v.definition === this._definitionId);
+	if (match) {
+		const [id, obj] = match;
+		return this.toSkill(id);
+	}
+	else {
+		console.warn(`Could not find skill for definition: ${this._definitionId} in category: ${this._categoryId}`);
+		return this.toSkill("");
+	}
+}
+
+/**
+ * Serializes the skill definition.
+ * @param {*} json
+ * @returns {Skill} The first skill it finds in `skills.json` with a matching definition id or a skill with no skill id.
+ */
+SkillDefinition.prototype.serializeIntoSkill = function(json) {
+	return this.serialize(json).findSkill();
+}
+
 SkillDefinition.prototype.title = function(title) {
 	this._data.title = title;
 	return this;

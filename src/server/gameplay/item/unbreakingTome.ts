@@ -1,18 +1,17 @@
 /** @type {typeof import("net.minecraft.world.item.component.Unbreakable").$Unbreakable } */
-let $Unbreakable = Java.loadClass("net.minecraft.world.item.component.Unbreakable")
+let $Unbreakable = Java.loadClass("net.minecraft.world.item.component.Unbreakable");
 /** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$EntityInteract").$PlayerInteractEvent$EntityInteract } */
-let $PlayerInteractEvent$EntityInteract = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$EntityInteract")
+let $PlayerInteractEvent$EntityInteract = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$EntityInteract");
 /** @type {typeof import("net.minecraft.world.entity.item.ItemEntity").$ItemEntity } */
-let $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity")
+let $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity");
 
 /**
  * 
  * @param {ItemEntity} tome 
  * @param {ItemEntity[]} otherItemEntities
  */
-function UnbreakingTomeTick(tome, otherItemEntities) {
-	/** @type {Array<[double, ItemEntity]>} */
-	let itemEntitiesSorted = []
+function UnbreakingTomeTick(tome: ItemEntity, otherItemEntities: ItemEntity[]) {
+	let itemEntitiesSorted: [double, ItemEntity][] = [];
 	for (let i = 0; i < otherItemEntities.length; i++) {
 		let closestItem = otherItemEntities[i];
 		if (closestItem === tome) {
@@ -27,10 +26,17 @@ function UnbreakingTomeTick(tome, otherItemEntities) {
 
 	let target = itemEntitiesSorted[0][1];
 	let targetdis = itemEntitiesSorted[0][0];
-	if (targetdis > 10) { return };
+	if (targetdis > 10) { return; };
 
+	let targetEnchants = target.getItem()?.getComponents()?.get($DataComponents.ENCHANTMENTS);
+	if (!targetEnchants) return;
+	const perchanceMending = tome.level.registryAccess().registryOrThrow($Registries.ENCHANTMENT).getHolder("minecraft:mending");
+	if (!perchanceMending.isPresent()) return;
+	const actualMending = perchanceMending.get();
+	targetEnchants.getLevel(actualMending);
+	if (targetEnchants.getLevel(actualMending) <= 0) return;
 	setItemUnbreakable(target.item);
-	tome.kill()
+	tome.kill();
 }
 
 /**

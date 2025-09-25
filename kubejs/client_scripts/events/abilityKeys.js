@@ -1,38 +1,41 @@
 // priority: 0
 
-const PRIMARY_ABILITY_KEY = new KJSKeybind(
-	"Primary Ability",
-	"key.slimesurvival.primary_ability",
-	GLFW.GLFW_KEY_G,
-	"key.categories.slimesurvival"
-);
+/** @type {typeof import("net.neoforged.neoforge.common.util.Lazy").$Lazy} */
+let $Lazy = Java.loadClass("net.neoforged.neoforge.common.util.Lazy");
 
-const SECONDARY_ABILITY_KEY = new KJSKeybind(
-	"Secondary Ability",
+/** @type {typeof import("net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent").$RegisterKeyMappingsEvent} */
+let $RegisterKeyMappingsEvent = Java.loadClass("net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent");
+
+const PRIMARY_ABILITY_KEY = $Lazy.of(() => new $KeyMapping(
+	"key.slimesurvival.primary_ability",
+	$InputConstants$Type.KEYSYM,
+	GLFW.GLFW_KEY_Q,
+	"key.categories.slimesurvival"
+));
+const SECONDARY_ABILITY_KEY = $Lazy.of(() => new $KeyMapping(
 	"key.slimesurvival.secondary_ability",
+	$InputConstants$Type.KEYSYM,
+	GLFW.GLFW_KEY_E,
+	"key.categories.slimesurvival"
+));
+const TERTIARY_ABILITY_KEY = $Lazy.of(() => new $KeyMapping(
+	"key.slimesurvival.tertiary_ability",
+	$InputConstants$Type.KEYSYM,
 	GLFW.GLFW_KEY_R,
 	"key.categories.slimesurvival"
-);
+));
 
-const TERTIARY_ABILITY_KEY = new KJSKeybind(
-	"Tertiary Ability",
-	"key.slimesurvival.tertiary_ability",
-	GLFW.GLFW_KEY_H,
-	"key.categories.slimesurvival"
-);
+const KEYS = [PRIMARY_ABILITY_KEY, SECONDARY_ABILITY_KEY, TERTIARY_ABILITY_KEY];
 
-KeyBindJSEvents.register(event => {
-	PRIMARY_ABILITY_KEY.register(event);
-	SECONDARY_ABILITY_KEY.register(event);
-	TERTIARY_ABILITY_KEY.register(event);
+NativeEvents.onEvent($RegisterKeyMappingsEvent, event => {
+	KEYS.forEach(key => event.register(key.get()));
 });
 
 ClientEvents.tick(event => {
-	[PRIMARY_ABILITY_KEY, SECONDARY_ABILITY_KEY, TERTIARY_ABILITY_KEY].forEach(key => {
-		let keyMapping = key.getKeyMapping();
-		if (keyMapping.consumeClick()) {
+	KEYS.map(key => key.get()).forEach(key => {
+		if (key.consumeClick()) {
 			let payload = new $CompoundTag();
-			payload.putString("key", keyMapping.getName());
+			payload.putString("key", key.getName());
 			Client.player.sendData("KeyPressed", payload);
 		}
 	});

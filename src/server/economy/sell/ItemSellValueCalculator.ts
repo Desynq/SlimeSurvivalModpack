@@ -34,7 +34,6 @@ class ItemSellValueCalculator {
 
 		if (SkillHelper.hasSkill(this.player, DunestriderSkills.SCAVENGER)) {
 			let scavengerItems = [
-				'minecraft:slime_ball',
 				'minecraft:rotten_flesh',
 				'minecraft:spider_eye',
 				'minecraft:arrow',

@@ -1,10 +1,9 @@
-(function() {
 
-	/**
-	 * 
-	 * @param {ServerPlayer} player 
-	 */
-	function handlePrimaryAbilityKeyPress(player) {
+
+
+namespace KeyPressedPacketListener {
+
+	function handlePrimaryAbilityKeyPress(player: ServerPlayer) {
 		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
 		if (raceWrapper instanceof ChimeraPlayer) {
 			SanguineConvenantAbility.onPress(raceWrapper);
@@ -14,14 +13,20 @@
 		}
 	}
 
-	/**
-	 * 
-	 * @param {ServerPlayer} player 
-	 */
-	function handleSecondaryAbilityKeyPress(player) {
+	function handleSecondaryAbilityKeyPress(player: ServerPlayer) {
 		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
 		if (raceWrapper instanceof FarlanderPlayer) {
 			HeatDeathAbility.onPress(player);
+		}
+	}
+
+	function handleTertiaryAbilityKeyPress(player: ServerPlayer) {
+		switch (PlayerRaceHelper.getRace(player)) {
+			case Races.SLUDGE:
+				SludgeCytoplasm.CytoplasmDisabler.onPress(player);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -39,8 +44,11 @@
 			case "key.slimesurvival.secondary_ability":
 				handleSecondaryAbilityKeyPress(player);
 				break;
+			case "key.slimesurvival.tertiary_ability":
+				handleTertiaryAbilityKeyPress(player);
+				break;
 			default:
 				break;
 		}
 	});
-})();
+}

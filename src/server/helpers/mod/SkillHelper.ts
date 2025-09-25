@@ -7,7 +7,7 @@ let $Skill$State = Java.loadClass("net.puffish.skillsmod.api.Skill$State");
 /** @type {typeof import("net.puffish.skillsmod.api.SkillsAPI").$SkillsAPI$$Original} */
 let $SkillsAPI = Java.loadClass("net.puffish.skillsmod.api.SkillsAPI");
 
-interface PlayerWithSkillTier {
+interface SkillTierHolder {
 	player: ServerPlayer;
 	tier: integer;
 }
@@ -41,7 +41,7 @@ class SkillHelper {
 			: null;
 	}
 
-	public static asPlayerWithSkillTier(entity: unknown, ...skills: Skill[]): PlayerWithSkillTier | null {
+	public static asPlayerWithSkillTier(entity: unknown, ...skills: Skill[]): SkillTierHolder | null {
 		if (!(entity instanceof $ServerPlayer)) return null;
 
 		const tier = this.getSkillTier(entity, ...skills);

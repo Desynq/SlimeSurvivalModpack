@@ -22,7 +22,7 @@ const MitosisSkillTree = {
 		.toSkill("4yjkeqmp04gygc04"),
 
 	MITOTIC_ACCELERATION_1: new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_1")
-		.effectIcon("minecraft:speed")
+		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
 			"text": "Mitosis now occurs every 4 seconds."
@@ -32,7 +32,7 @@ const MitosisSkillTree = {
 		.toSkill("xj64dsjei37hvgax"),
 
 	MITOTIC_ACCELERATION_2: new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_2")
-		.effectIcon("minecraft:speed")
+		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
 			"text": "Mitosis now occurs every 3 seconds."
@@ -42,7 +42,7 @@ const MitosisSkillTree = {
 		.toSkill("lsce7nkfd76wytmm"),
 
 	MITOTIC_ACCELERATION_3: new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_3")
-		.effectIcon("minecraft:speed")
+		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
 			"text": "Mitosis now occurs every 2 seconds."
@@ -52,7 +52,7 @@ const MitosisSkillTree = {
 		.toSkill("64ckkk2rx7hfvkqq"),
 
 	MITOTIC_ACCELERATION_4: new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_4")
-		.effectIcon("minecraft:speed")
+		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
 			"text": "Mitosis now occurs every second."
