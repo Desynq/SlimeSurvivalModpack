@@ -37,7 +37,7 @@ NoIFrames.ATTACK_STRENGTH_THRESHOLD = 0.5;
 NoIFrames.KNOCKBACK_STRENGTH_THRESHOLD = 0.75;
 
 /**
- * @param {LivingEntity} victim
+ * @param {LivingEntity_} victim
  * @param {import("net.minecraft.world.damagesource.DamageSource").$DamageSource$$Original} source 
  */
 NoIFrames.isPoison = function(victim, source) {

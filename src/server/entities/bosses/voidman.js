@@ -5,7 +5,7 @@ const VoidmanBoss = {};
 
 /**
  * 
- * @param {LivingEntity} entity 
+ * @param {LivingEntity_} entity 
  */
 VoidmanBoss.isVoidman = function(entity) {
 	return entity.getTags().contains("boss.voidman");
@@ -13,7 +13,7 @@ VoidmanBoss.isVoidman = function(entity) {
 
 /**
  * 
- * @param {LivingEntity} boss 
+ * @param {LivingEntity_} boss 
  */
 VoidmanBoss.tick = function(boss) {
 	if (boss.dead) {
@@ -39,7 +39,7 @@ EntityEvents.death("minecraft:player", event => {
 		return;
 	}
 
-	player.level.entities.filter(e => e instanceof $LivingEntity && VoidmanBoss.isVoidman(e)).forEach(/** @param {LivingEntity} voidman */ voidman => {
+	player.level.entities.filter(e => e instanceof $LivingEntity && VoidmanBoss.isVoidman(e)).forEach(/** @param {LivingEntity_} voidman */ voidman => {
 		voidman.setHealth(Math.min(voidman.health + 50, voidman.maxHealth));
 	});
 });

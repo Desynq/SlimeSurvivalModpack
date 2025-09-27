@@ -44,7 +44,7 @@ function pruneBossbars(server) {
 
 /**
  * 
- * @param {LivingEntity} boss
+ * @param {LivingEntity_} boss
  */
 function bossTick(boss) {
 	if (boss.tags.contains("boss.tenuem")) {

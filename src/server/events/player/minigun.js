@@ -21,7 +21,7 @@ Minigun.isMinigun = function(stack) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} gun
  */
 Minigun.tryFire = function(player, gun) {
@@ -41,7 +41,7 @@ Minigun.tryFire = function(player, gun) {
 
 /**
  * 
- * @param {ServerPlayer} shooter 
+ * @param {ServerPlayer_} shooter 
  * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} weapon
  */
 Minigun.fire = function(shooter, weapon) {
@@ -74,7 +74,7 @@ Minigun.fire = function(shooter, weapon) {
 }
 
 /**
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 Minigun.isFiring = function(player) {
 	return player.persistentData.getBoolean("minigun_firing");
@@ -82,7 +82,7 @@ Minigun.isFiring = function(player) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 Minigun.toggleFiring = function(player) {
 	player.persistentData.putBoolean("minigun_firing", !Minigun.isFiring(player));

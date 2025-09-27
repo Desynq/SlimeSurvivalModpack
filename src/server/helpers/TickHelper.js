@@ -10,6 +10,8 @@ TickHelper.getDefaultTickRate = function(server) {
 	return 20;
 }
 
+TickHelper.defaultTickRate = 20;
+
 /**
  * 
  * @param {MinecraftServer} server 

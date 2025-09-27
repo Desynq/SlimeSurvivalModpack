@@ -60,7 +60,7 @@ MathHelper.distance = function(vec1, vec2) {
  * @param {number} max 
  * @returns 
  */
-MathHelper.clamped = function(value, min, max) {
+MathHelper.clamped = function(min, max, value) {
 	if (value < min) return min;
 	if (value > max) return max;
 	return value;

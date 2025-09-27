@@ -5,16 +5,16 @@
  */
 class ItemSellValueCalculator {
 
-	public static calculate(server: MinecraftServer, mItem: MarketableItem, player: ServerPlayer): number {
+	public static calculate(server: MinecraftServer, mItem: MarketableItem, player: ServerPlayer_): number {
 		return new this(server, mItem, player).sellPrice;
 	}
 
 	private readonly server: MinecraftServer;
 	private readonly mItem: MarketableItem;
-	private readonly player: ServerPlayer;
+	private readonly player: ServerPlayer_;
 	private sellPrice: number;
 
-	private constructor(server: MinecraftServer, mItem: MarketableItem, player: ServerPlayer) {
+	private constructor(server: MinecraftServer, mItem: MarketableItem, player: ServerPlayer_) {
 		this.server = server;
 		this.mItem = mItem;
 		this.player = player;

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * 
- * @param {ServerPlayer} executor 
+ * @param {ServerPlayer_} executor 
  * @param {string} recipientUsername 
  * @param {string} amountString
  */

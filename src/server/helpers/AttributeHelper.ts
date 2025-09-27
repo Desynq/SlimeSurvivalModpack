@@ -11,7 +11,7 @@ namespace AttributeHelper {
 		return opt.get();
 	}
 
-	export function removeModifier(entity: LivingEntity, attribute: _AttributeHolder | string, modifierId: string) {
+	export function removeModifier(entity: LivingEntity_, attribute: _AttributeHolder | string, modifierId: string) {
 		if (typeof attribute === "string") {
 			let maybeAttribute = asAttributeHolder(attribute);
 			if (!maybeAttribute) {
@@ -27,7 +27,7 @@ namespace AttributeHelper {
 		attrInstance["removeModifier(net.minecraft.resources.ResourceLocation)"](rl);
 	}
 
-	export function addModifier(entity: LivingEntity, attribute: _AttributeHolder | string, modifierId: string, value: double, operation: _AttributeModifierOperation) {
+	export function addModifier(entity: LivingEntity_, attribute: _AttributeHolder | string, modifierId: string, value: double, operation: _AttributeModifierOperation) {
 		if (typeof attribute === "string") {
 			let maybeAttribute = asAttributeHolder(attribute);
 			if (!maybeAttribute) {

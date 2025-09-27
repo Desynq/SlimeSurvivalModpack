@@ -1,12 +1,12 @@
 const TheHunter = {};
 
 /**
- * @param {ServerPlayer} boss
+ * @param {ServerPlayer_} boss
  */
 TheHunter.tick = function(boss) {
 	boss.level.getPlayers()
 		.stream()
-		.filter(/** @param {ServerPlayer} p */ p => !p.tags.contains("boss.the_hunter") && !p.isCrouching() && PlayerHelper.isSurvivalLike(p))
+		.filter(/** @param {ServerPlayer_} p */ p => !p.tags.contains("boss.the_hunter") && !p.isCrouching() && PlayerHelper.isSurvivalLike(p))
 		.forEach(p => {
 			// @ts-ignore
 			LivingEntityHelper.addEffect(p, "minecraft:glowing", 20, 0, false, true, true, boss);
@@ -35,5 +35,5 @@ EntityEvents.death("minecraft:player", event => {
 	player.getLevel().getPlayers()
 		.stream()
 		.filter(p => p instanceof $ServerPlayer && p.tags.contains("boss.the_hunter") && p.health > 0 && !p.isDeadOrDying())
-		.forEach(/** @param {ServerPlayer} p */ p => p.setHealth(Math.min(p.maxHealth, p.health + 50)));
+		.forEach(/** @param {ServerPlayer_} p */ p => p.setHealth(Math.min(p.maxHealth, p.health + 50)));
 });

@@ -8,12 +8,12 @@ let $Skill$State = Java.loadClass("net.puffish.skillsmod.api.Skill$State");
 let $SkillsAPI = Java.loadClass("net.puffish.skillsmod.api.SkillsAPI");
 
 interface SkillTierHolder {
-	player: ServerPlayer;
+	player: ServerPlayer_;
 	tier: integer;
 }
 
 class SkillHelper {
-	private static getState(player: ServerPlayer, skill: Skill) {
+	private static getState(player: ServerPlayer_, skill: Skill) {
 		const maybeCategory = $SkillsAPI.getCategory(
 			$ResourceLocation.parse(skill.getCategoryId())
 		);
@@ -25,17 +25,17 @@ class SkillHelper {
 		return maybeSkill.get().getState(player);
 	}
 
-	public static hasSkill(player: ServerPlayer, skill: Skill): boolean {
+	public static hasSkill(player: ServerPlayer_, skill: Skill): boolean {
 		return this.getState(player, skill) === $Skill$State.UNLOCKED;
 	}
 
-	public static asPlayerWithSkill(entity: unknown, skill: Skill): ServerPlayer | null {
+	public static asPlayerWithSkill(entity: unknown, skill: Skill): ServerPlayer_ | null {
 		return entity instanceof $ServerPlayer && this.hasSkill(entity, skill)
 			? entity
 			: null;
 	}
 
-	public static asPlayerWithSkills(entity: unknown, ...skills: Skill[]): ServerPlayer | null {
+	public static asPlayerWithSkills(entity: unknown, ...skills: Skill[]): ServerPlayer_ | null {
 		return entity instanceof $ServerPlayer && skills.every(skill => SkillHelper.hasSkill(entity, skill))
 			? entity
 			: null;
@@ -48,7 +48,7 @@ class SkillHelper {
 		return { player: entity, tier };
 	}
 
-	public static getSkillTier(player: ServerPlayer, ...skills: Skill[]): integer {
+	public static getSkillTier(player: ServerPlayer_, ...skills: Skill[]): integer {
 		for (let i = skills.length - 1; i >= 0; i--) {
 			if (this.hasSkill(player, skills[i])) {
 				return i + 1;

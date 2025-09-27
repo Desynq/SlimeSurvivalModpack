@@ -76,7 +76,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 * @param {MarketableItem} marketableItem 
 	 * @param {number | null} sellAmount 
 	 */

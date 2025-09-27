@@ -11,7 +11,7 @@ PlayerRaceHelper.getRace = function(player) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 PlayerRaceHelper.getRaceWrapper = function(player) {
 	switch (PlayerRaceHelper.getRace(player)) {

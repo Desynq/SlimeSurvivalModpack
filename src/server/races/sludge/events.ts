@@ -1,7 +1,7 @@
 
 namespace SludgeEvents {
 
-	function asAntivenomPlayer(entity: unknown): ServerPlayer | null {
+	function asAntivenomPlayer(entity: unknown): ServerPlayer_ | null {
 		return entity instanceof $ServerPlayer && SkillHelper.hasSkill(entity, SludgeSkills.ANTIVENOM)
 			? entity
 			: null;

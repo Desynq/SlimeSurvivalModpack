@@ -9,7 +9,7 @@ Velocity.lastPositions = {};
 
 /**
  * 
- * @param {ServerPlayer} player
+ * @param {ServerPlayer_} player
  */
 Velocity.get = function(player) {
 	const v = Velocity.velocities[player.stringUUID];
@@ -18,7 +18,7 @@ Velocity.get = function(player) {
 
 /**
  * 
- * @param {ServerPlayer} player
+ * @param {ServerPlayer_} player
  */
 Velocity.set = function(player) {
 	let lastPos = Velocity.lastPositions[player.stringUUID];

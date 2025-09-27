@@ -19,7 +19,7 @@ class InvalidSellQuantityError extends Error {
  * @throws {InvalidSellQuantityError}
  */
 class SellTransaction {
-	private readonly player: ServerPlayer;
+	private readonly player: ServerPlayer_;
 	private readonly server: MinecraftServer;
 	private readonly mItem: MarketableItem;
 	private readonly itemId: string;
@@ -29,7 +29,7 @@ class SellTransaction {
 	private amountSold: number = 0;
 	private totalValue: number = 0;
 
-	public constructor(player: ServerPlayer, mItem: MarketableItem | null, sellAmount?: number) {
+	public constructor(player: ServerPlayer_, mItem: MarketableItem | null, sellAmount?: number) {
 		this.player = player;
 		this.server = player.server;
 

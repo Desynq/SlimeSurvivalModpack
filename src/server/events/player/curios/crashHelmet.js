@@ -2,7 +2,7 @@
 
 	/**
 	 * 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 */
 	function isFlyingWithCrashHelmet(player) {
 		return PlayerHelper.wasLastFallFlying(player, 2) && PlayerHelper.hasCuriosEquipped(player, "slimesurvival:crash_helmet");

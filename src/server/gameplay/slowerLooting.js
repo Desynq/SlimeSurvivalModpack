@@ -8,7 +8,7 @@ let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforg
 (function() {
 	/**
 	 * 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 */
 	function isBeingTargeted(player) {
 		const aabb = player.getBoundingBox().inflate(16, 16, 16);
@@ -19,7 +19,7 @@ let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforg
 	/**
 	 * 
 	 * @param {import("net.minecraft.world.entity.Mob").$Mob$$Original} mob 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 * @returns 
 	 */
 	function isTargeting(mob, player) {
@@ -28,7 +28,7 @@ let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforg
 
 	/**
 	 * 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 * @param {import("dev.latvian.mods.kubejs.level.LevelBlock").$LevelBlock$$Original} block 
 	 */
 	function canOpen(player, block) {

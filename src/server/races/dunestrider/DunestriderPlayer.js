@@ -1,5 +1,5 @@
 /**
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 function DunestriderPlayer(player) {
 	if (!PlayerRaceHelper.isRace(player, Races.DUNESTRIDER)) {

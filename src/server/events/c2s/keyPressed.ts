@@ -3,7 +3,7 @@
 
 namespace KeyPressedPacketListener {
 
-	function handlePrimaryAbilityKeyPress(player: ServerPlayer) {
+	function handlePrimaryAbilityKeyPress(player: ServerPlayer_) {
 		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
 		if (raceWrapper instanceof ChimeraPlayer) {
 			SanguineConvenantAbility.onPress(raceWrapper);
@@ -13,14 +13,14 @@ namespace KeyPressedPacketListener {
 		}
 	}
 
-	function handleSecondaryAbilityKeyPress(player: ServerPlayer) {
+	function handleSecondaryAbilityKeyPress(player: ServerPlayer_) {
 		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
 		if (raceWrapper instanceof FarlanderPlayer) {
 			HeatDeathAbility.onPress(player);
 		}
 	}
 
-	function handleTertiaryAbilityKeyPress(player: ServerPlayer) {
+	function handleTertiaryAbilityKeyPress(player: ServerPlayer_) {
 		switch (PlayerRaceHelper.getRace(player)) {
 			case Races.SLUDGE:
 				SludgeCytoplasm.CytoplasmDisabler.onPress(player);

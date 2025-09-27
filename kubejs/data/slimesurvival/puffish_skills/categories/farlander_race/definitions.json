@@ -167,10 +167,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\nCost: 2 points"
 			}
 		],
-		"cost": 4,
+		"cost": 2,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -208,14 +208,14 @@
 			],
 			{
 				"color": "dark_purple",
-				"text": "will temporarily lower tick rate to 10 ticks per second.\n- Can be cancelled early.\n- Maximum duration of 20 ticks.\n- Cooldown of 5 seconds."
+				"text": "will temporarily lower tick rate to 10 ticks per second.\n- Can be cancelled early.\n- Maximum duration of 10 ticks.\n- Cooldown of 5 seconds."
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\nCost: 3 points"
 			}
 		],
-		"cost": 4,
+		"cost": 3,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -235,14 +235,14 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Quantum Relativity now lasts for 40 ticks."
+				"text": "Quantum Relativity now lasts for 20 ticks."
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\nCost: 1 point"
 			}
 		],
-		"cost": 4,
+		"cost": 1,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -262,14 +262,14 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Quantum Relativity now lasts for 60 ticks."
+				"text": "Quantum Relativity now lasts for 40 ticks."
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 3 points"
+				"text": "\n\nCost: 2 points"
 			}
 		],
-		"cost": 3,
+		"cost": 2,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -289,7 +289,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Quantum Relativity now lasts for 80 ticks."
+				"text": "Quantum Relativity now lasts for 60 ticks."
 			},
 			{
 				"color": "dark_green",
@@ -316,7 +316,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Quantum Relativity now lasts for 100 ticks."
+				"text": "Quantum Relativity now lasts for 80 ticks."
 			},
 			{
 				"color": "dark_green",

@@ -3,8 +3,8 @@
 
 	/**
 	 * 
-	 * @param {LivingEntity} victim 
-	 * @param {ServerPlayer} player 
+	 * @param {LivingEntity_} victim 
+	 * @param {ServerPlayer_} player 
 	 */
 	function tickFirstStrike(victim, player) {
 		if (!SkillHelper.hasSkill(player, DunestriderSkills.FIRST_STRIKE)) return;
@@ -17,8 +17,8 @@
 
 	/**
 	 * 
-	 * @param {LivingEntity} victim 
-	 * @param {ServerPlayer} player 
+	 * @param {LivingEntity_} victim 
+	 * @param {ServerPlayer_} player 
 	 */
 	function tickMomentum(victim, player) {
 		if (!SkillHelper.hasSkill(player, DunestriderSkills.MOMENTUM)) return;
@@ -27,8 +27,8 @@
 
 	/**
 	 * 
-	 * @param {LivingEntity} victim 
-	 * @param {ServerPlayer} player
+	 * @param {LivingEntity_} victim 
+	 * @param {ServerPlayer_} player
 	 */
 	function tickRend(victim, player) {
 		let skillLvl = SkillHelper.getSkillTier(player, DunestriderSkills.REND_1, DunestriderSkills.REND_2, DunestriderSkills.REND_3, DunestriderSkills.REND_4, DunestriderSkills.REND_5)

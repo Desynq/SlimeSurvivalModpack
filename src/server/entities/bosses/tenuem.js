@@ -6,7 +6,7 @@ const TenuemBoss = {};
 
 /**
  * 
- * @param {LivingEntity} entity 
+ * @param {LivingEntity_} entity 
  */
 TenuemBoss.isTenuem = function(entity) {
 	return entity.getTags().contains("boss.tenuem");
@@ -14,7 +14,7 @@ TenuemBoss.isTenuem = function(entity) {
 
 /**
  * 
- * @param {LivingEntity} boss 
+ * @param {LivingEntity_} boss 
  */
 TenuemBoss.tick = function(boss) {
 	if (boss.dead) {

@@ -1,12 +1,12 @@
 // priority: 1000
 
 interface IToggleableAbilityUI {
-	abilityEnabled(player: ServerPlayer): void;
-	abilityDisabled(player: ServerPlayer): void;
-	alertCooldownOver(player: ServerPlayer): void;
-	displayCooldown(player: ServerPlayer): void;
-	updateUI(player: ServerPlayer): void;
-	displayCooldownWarning(player: ServerPlayer): void;
+	abilityEnabled(player: ServerPlayer_): void;
+	abilityDisabled(player: ServerPlayer_): void;
+	alertCooldownOver(player: ServerPlayer_): void;
+	displayCooldown(player: ServerPlayer_): void;
+	updateUI(player: ServerPlayer_): void;
+	displayCooldownWarning(player: ServerPlayer_): void;
 }
 
 abstract class ToggleableAbility extends BaseAbility {
@@ -15,12 +15,12 @@ abstract class ToggleableAbility extends BaseAbility {
 	protected abstract readonly ui: IToggleableAbilityUI;
 
 	// Hooks for subclasses
-	protected onActivate(player: ServerPlayer): void {
+	protected onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
 		this.durationController.update(player);
 		this.toggleController.toggle(player);
 	}
-	protected onDeactivate(player: ServerPlayer): void {
+	protected onDeactivate(player: ServerPlayer_): void {
 		this.cooldownController.update(player);
 		this.ui.abilityDisabled(player);
 		this.toggleController.toggle(player);
@@ -29,29 +29,29 @@ abstract class ToggleableAbility extends BaseAbility {
 	/**
 	 * Occurs when the player toggles on the ability and has no cooldown
 	 */
-	protected onInitiate(player: ServerPlayer) {
+	protected onInitiate(player: ServerPlayer_) {
 		this.onActivate(player);
 	}
 	/**
 	 * Occurs when the player toggles off the ability and has no cooldown
 	 */
-	protected onCancel(player: ServerPlayer): void {
+	protected onCancel(player: ServerPlayer_): void {
 		this.onDeactivate(player);
 	}
 	/**
 	 * Occurs when the player's ability duration runs out while the ability is active
 	 */
-	protected onExpire(player: ServerPlayer): void {
+	protected onExpire(player: ServerPlayer_): void {
 		this.onDeactivate(player);
 	}
 	/**
 	 * Occurs when the player dies while the ability is active
 	 */
-	protected onDeath(player: ServerPlayer): void {
+	protected onDeath(player: ServerPlayer_): void {
 		this.onDeactivate(player);
 	}
 
-	public onPress(player: ServerPlayer): boolean {
+	public onPress(player: ServerPlayer_): boolean {
 		if (!super.onPress(player)) {
 			return false;
 		}
@@ -65,7 +65,7 @@ abstract class ToggleableAbility extends BaseAbility {
 		return true;
 	}
 
-	public onTick(player: ServerPlayer): boolean {
+	public onTick(player: ServerPlayer_): boolean {
 		if (!this.toggleController.isToggled(player)) {
 			if (!this.cooldownController.hasPassed(player)) {
 				this.ui.displayCooldown(player);

@@ -22,7 +22,9 @@ namespace ZombieSlowness {
 			// @ts-ignore
 			LivingEntityHelper.addEffect(victim, "minecraft:slowness", 100, 0, false, true, true, attacker);
 		} catch (error) {
-			tellOperators(event.entity.server, `${error.message} + ${error.stack}`);
+			if (error instanceof Error) {
+				tellOperators(event.entity.server, `${error.message} + ${error.stack}`);
+			}
 		}
 	});
 }

@@ -1,7 +1,7 @@
 const Mitosis = {};
 
 /**
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 Mitosis.getMitoticAccelerationLevel = function(player) {
 	/** @type {[integer, Skill][]} */
@@ -21,7 +21,7 @@ Mitosis.getMitoticAccelerationLevel = function(player) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 Mitosis.getMitosisInterval = function(player) {
 	switch (Mitosis.getMitoticAccelerationLevel(player)) {
@@ -39,7 +39,7 @@ Mitosis.getMitosisInterval = function(player) {
 }
 
 PlayerEvents.tick(event => {
-	/** @type {ServerPlayer} */
+	/** @type {ServerPlayer_} */
 	// @ts-ignore
 	const player = event.player;
 

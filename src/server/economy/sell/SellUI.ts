@@ -1,6 +1,6 @@
 
 class SellUI {
-	public static outputReceipt(player: ServerPlayer, receipt: SellReceipt) {
+	public static outputReceipt(player: ServerPlayer_, receipt: SellReceipt) {
 		const text = (msg: string) => Component.of(msg);
 		const yellow = (msg: string) => Component.yellow(msg);
 		const gold = (msg: string) => Component.gold(msg);
@@ -25,7 +25,7 @@ class SellUI {
 		);
 	}
 
-	public static outputError(player: ServerPlayer, error: UnsellableItemError | InvalidSellQuantityError) {
+	public static outputError(player: ServerPlayer_, error: UnsellableItemError | InvalidSellQuantityError) {
 		if (error instanceof UnsellableItemError) {
 			player.tell(Text.red("Item cannot be sold"));
 		}

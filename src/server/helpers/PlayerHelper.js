@@ -40,7 +40,7 @@ PlayerHelper.isOnWhitelist = function(server, uuid) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @returns {import("net.minecraft.world.entity.TamableAnimal").$TamableAnimal$$Original[]}
  */
 PlayerHelper.getPetsFollowing = function(player) {
@@ -52,7 +52,7 @@ PlayerHelper.getPetsFollowing = function(player) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @param {string} itemId 
  */
 PlayerHelper.hasCuriosEquipped = function(player, itemId) {
@@ -61,7 +61,7 @@ PlayerHelper.hasCuriosEquipped = function(player, itemId) {
 }
 
 /**
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 PlayerHelper.shouldBeAbleToHeal = function(player) {
 	return player.health > 0 && player.health < player.maxHealth && !player.isDeadOrDying();
@@ -75,7 +75,7 @@ PlayerHelper.wasLastFallFlying = (function() {
 
 	/**
 	 * 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 * @param {long} ticks
 	 */
 	function wasLastFallFlying(player, ticks) {

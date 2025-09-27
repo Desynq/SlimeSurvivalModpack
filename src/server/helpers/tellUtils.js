@@ -1,6 +1,6 @@
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 function canReceiveOperatorMessages(player) {
 	return player.permissionLevel >= 2;
@@ -30,7 +30,7 @@ function tellError(server, error) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @param {import("net.minecraft.network.chat.Component").$Component$$Type} chatComponent 
  */
 function tellIfOperator(player, chatComponent) {

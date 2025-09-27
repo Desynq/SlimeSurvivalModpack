@@ -92,7 +92,7 @@ ChlorineGasGrenadeTick.prototype.incrementDespawnTime = function() {
 
 /**
  * 
- * @param {LivingEntity} entity 
+ * @param {LivingEntity_} entity 
  */
 ChlorineGasGrenadeTick.isWearingGasMask = function(entity) {
 	const customData = entity.headArmorItem.components.get($DataComponents.CUSTOM_DATA);
@@ -105,7 +105,7 @@ ChlorineGasGrenadeTick.isWearingGasMask = function(entity) {
 
 /**
  * 
- * @param {LivingEntity} entity 
+ * @param {LivingEntity_} entity 
  */
 ChlorineGasGrenadeTick.canBeAffectedByChlorine = function(entity) {
 	if (entity instanceof $ServerPlayer) {
@@ -122,9 +122,9 @@ ChlorineGasGrenadeTick.canBeAffectedByChlorine = function(entity) {
 ChlorineGasGrenadeTick.prototype.damageNearby = function() {
 	const range = this.entity.getBoundingBox().inflate(4, 2, 4);
 
-	/** @type {import("java.util.List").$List$$Original<LivingEntity>} */
+	/** @type {import("java.util.List").$List$$Original<LivingEntity_>} */
 	// @ts-ignore
-	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity} e */ e => ChlorineGasGrenadeTick.canBeAffectedByChlorine(e));
+	const entities = this.level.getEntitiesOfClass($LivingEntity, range, /** @param {LivingEntity_} e */ e => ChlorineGasGrenadeTick.canBeAffectedByChlorine(e));
 	entities.forEach(e => {
 		// @ts-ignore
 		LivingEntityHelper.addEffect(e, "minecraft:nausea", 200, 0, false, true, true, this.entity);

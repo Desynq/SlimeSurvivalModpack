@@ -7,15 +7,15 @@ class AbilityToggle {
 		this.toggleController = toggleController;
 	}
 
-	protected toggleOn(player: ServerPlayer) {
+	protected toggleOn(player: ServerPlayer_) {
 		this.toggleController.toggle(player);
 	}
 
-	protected toggleOff(player: ServerPlayer) {
+	protected toggleOff(player: ServerPlayer_) {
 		this.toggleController.toggle(player);
 	}
 
-	public onPress(player: ServerPlayer): void {
+	public onPress(player: ServerPlayer_): void {
 		if (!this.toggleController.isToggled(player)) {
 			this.toggleOn(player);
 		}
@@ -24,7 +24,7 @@ class AbilityToggle {
 		}
 	}
 
-	public isToggleActive(player: ServerPlayer): boolean {
+	public isToggleActive(player: ServerPlayer_): boolean {
 		return this.toggleController.isToggled(player);
 	}
 }

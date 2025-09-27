@@ -1,6 +1,6 @@
 // @ts-nocheck
 PlayerEvents.tick(event => {
-	/** @type {Player & ServerPlayer} */
+	/** @type {Player & ServerPlayer_} */
 	const player = event.player;
 
 	const race = PlayerRaceHelper.getRace(player);

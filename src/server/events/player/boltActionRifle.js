@@ -17,7 +17,7 @@ BoltActionRifle.isBoltActionRifle = function(item) {
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} gun
  */
 BoltActionRifle.tryFire = function(player, gun) {
@@ -36,7 +36,7 @@ BoltActionRifle.tryFire = function(player, gun) {
 
 /**
  * 
- * @param {ServerPlayer} shooter 
+ * @param {ServerPlayer_} shooter 
  * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} weapon
  */
 BoltActionRifle.fire = function(shooter, weapon) {

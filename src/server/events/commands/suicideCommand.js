@@ -5,7 +5,7 @@ ServerEvents.commandRegistry(event => {
 		.executes(c => kill(c.getSource().getPlayer()))
 	);
 
-	/**@param {ServerPlayer} player */
+	/**@param {ServerPlayer_} player */
 	let kill = (player) => {
 		player.getServer().runCommandSilent(`kill ${player.getUsername()}`)
 		return 1;

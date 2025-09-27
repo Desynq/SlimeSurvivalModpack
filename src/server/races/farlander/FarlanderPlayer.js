@@ -1,7 +1,7 @@
 
 /**
  * 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  */
 function FarlanderPlayer(player) {
 	if (!PlayerRaceHelper.isRace(player, Races.FARLANDER)) {

@@ -6,7 +6,7 @@ const HeatDeathAbility = new (class extends BaseAbility {
 
 	protected readonly cooldownController = new TimestampController(
 		"farlander.heat_death.cooldown",
-		(player: ServerPlayer) => 1200 * 0.5
+		(player: ServerPlayer_) => 1200 * 0.5
 	);
 
 	protected readonly ui = new (class implements IBaseAbilityUI {
@@ -14,20 +14,20 @@ const HeatDeathAbility = new (class extends BaseAbility {
 			private readonly cooldown: TimestampController,
 		) { }
 
-		public abilityEnabled(player: ServerPlayer): void {
+		public abilityEnabled(player: ServerPlayer_): void {
 			playsoundAll(player.server, "minecraft:entity.wither.death", "master", 2, 2);
 		}
 
-		public alertCooldownOver(player: ServerPlayer): void {
+		public alertCooldownOver(player: ServerPlayer_): void {
 			playsound(player.level, player.position(), "minecraft:item.firecharge.use", "master", 2, 0.5);
 		}
 
-		public displayCooldown(player: ServerPlayer): void {
+		public displayCooldown(player: ServerPlayer_): void {
 			const timeLeft = this.cooldown.getMax(player) - this.cooldown.getCurr(player);
 			ActionbarManager.addSimple(player, `Heat Death CD: ${TickHelper.toSeconds(player.server, timeLeft)}`);
 		}
 
-		public displayCooldownWarning(player: ServerPlayer): void {
+		public displayCooldownWarning(player: ServerPlayer_): void {
 			const max = this.cooldown.getMax(player);
 			const curr = this.cooldown.getCurr(player);
 			// @ts-ignore
@@ -37,13 +37,13 @@ const HeatDeathAbility = new (class extends BaseAbility {
 
 
 
-	protected onActivate(player: ServerPlayer): void {
+	protected onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
 		this.cooldownController.update(player);
 		EntropyHolder.get(player)?.resetEntropy();
 	}
 
-	public onPress(player: ServerPlayer): boolean {
+	public onPress(player: ServerPlayer_): boolean {
 		if (!SkillHelper.hasSkill(player, FarlanderSkills.HEAT_DEATH)) {
 			return false;
 		}

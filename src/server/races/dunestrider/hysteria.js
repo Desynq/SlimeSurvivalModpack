@@ -1,14 +1,14 @@
 /**
  * 
  * @param {import("net.minecraft.world.entity.Mob").$Mob$$Original} mob 
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @returns {Boolean}
 */
 function isTargeting(mob, player) {
 	return mob.getTarget() == player;
 }
 /**
- * @param {ServerPlayer} player 
+ * @param {ServerPlayer_} player 
  * @returns {integer}
 */
 function targetedByNum(player) {

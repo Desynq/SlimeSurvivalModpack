@@ -1,12 +1,8 @@
 
 
-(function() {
+namespace AdminCommand {
 
-	/**
-	 * 
-	 * @param {ServerPlayer} player 
-	 */
-	function giveVoidCore(player) {
+	function giveVoidCore(player: ServerPlayer_) {
 		const comps = `item_name='{"color":"dark_purple","text":"The Void Core"}'`
 			+ `,curios:attribute_modifiers=[`
 			+ `{type:"minecraft:generic.gravity",amount:-0.75,operation:"add_multiplied_total",id:"slimesurvival:void_core",slot:"necklace"}`
@@ -20,11 +16,7 @@
 		);
 	}
 
-	/**
-	 * 
-	 * @param {ServerPlayer} player 
-	 */
-	function giveCursedHand(player) {
+	function giveCursedHand(player: ServerPlayer_) {
 		const comps = `item_name='{"color":"dark_aqua","text":"Cursed Hand"}'`
 			+ `,custom_data={id:cursed_hand}`
 			+ ``;
@@ -33,11 +25,7 @@
 		);
 	}
 
-	/**
-	 * 
-	 * @param {ServerPlayer} player 
-	 */
-	function giveCursedAthame(player) {
+	function giveCursedAthame(player: ServerPlayer_) {
 		const comps = `item_name='{"color":"dark_aqua","text":"Cursed Athame"}'`
 			+ `,custom_data={id:cursed_athame}`
 			+ `,attribute_modifiers=[`
@@ -51,7 +39,7 @@
 
 	/**
 	 * 
-	 * @param {ServerPlayer} player 
+	 * @param {ServerPlayer_} player 
 	 * @param {import("net.minecraft.world.item.Item").$Item$$Original} item 
 	 * @param {import("net.minecraft.core.component.DataComponentPatch").$DataComponentPatch$$Original} components
 	 */
@@ -105,8 +93,6 @@
 		CommandHelper.runCommandSilent(level.server, `execute in ${dimension} run summon mutantmonsters:mutant_enderman ${x} ${y} ${z} ${JSON.stringify(nbt)}`, true);
 	}
 
-
-
 	ServerEvents.commandRegistry(event => {
 		const nodes = {};
 
@@ -116,10 +102,14 @@
 			// @ts-ignore
 			.then($Commands.literal("voidman")
 				.executes(context => {
-					summonVoidman(context.source.level, context.source.position)
+					summonVoidman(context.source.level, context.source.position);
 					return 1;
 				})
 			);
+
+		SummonableRegistry.forEach(s => {
+			nodes["/admin summon"].then(s.getNode());
+		});
 
 		nodes["/admin give"] = $Commands.literal("give")
 			// @ts-ignore
@@ -153,4 +143,4 @@
 		// @ts-ignore
 		event.register(nodes["/admin"]);
 	});
-})();
+}

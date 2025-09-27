@@ -2,7 +2,7 @@
 
 class SellReceipt {
 	public constructor(
-		public readonly player: ServerPlayer,
+		public readonly player: ServerPlayer_,
 		public readonly itemName: string,
 		public readonly amountSold: number,
 		public readonly itemValue: number,

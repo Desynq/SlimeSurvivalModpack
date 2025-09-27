@@ -25,7 +25,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {ServerPlayer} executor 
+	 * @param {ServerPlayer_} executor 
 	 */
 	function tellSelfBalance(executor) {
 		const rawBalance = PlayerMoney.get(executor.server, executor.uuid.toString());

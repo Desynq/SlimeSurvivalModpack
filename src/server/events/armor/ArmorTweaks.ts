@@ -75,7 +75,7 @@ namespace ArmorTweaks {
 
 
 	PlayerEvents.tick(event => {
-		const player = event.getPlayer() as ServerPlayer;
+		const player = event.getPlayer() as ServerPlayer_;
 
 		LeatherArmorValueTweak.calculateTweak(player);
 	});

@@ -4,7 +4,7 @@ const $CriticalHitEvent: typeof import("net.neoforged.neoforge.event.entity.play
 
 namespace SludgeMotion {
 
-	function getMotionDamage(player: ServerPlayer): double | null {
+	function getMotionDamage(player: ServerPlayer_): double | null {
 		const tier = SkillHelper.getSkillTier(player,
 			SludgeSkills.MOTION_1,
 			SludgeSkills.MOTION_2,
@@ -36,26 +36,26 @@ namespace SludgeMotion {
 	const MOTION_KEY = "sludge.motion";
 	const MOTION_TIMESTAMP = "sludge.motion.last";
 
-	function getMotion(player: ServerPlayer): integer {
+	function getMotion(player: ServerPlayer_): integer {
 		return player.persistentData.getInt(MOTION_KEY);
 	}
 
-	function incrementMotion(player: ServerPlayer): void {
+	function incrementMotion(player: ServerPlayer_): void {
 		player.persistentData.putInt(MOTION_KEY, getMotion(player) + 1);
 	}
 
-	function updateMotionTimestamp(player: ServerPlayer): void {
+	function updateMotionTimestamp(player: ServerPlayer_): void {
 		TickHelper.forceUpdateTimestamp(player, MOTION_TIMESTAMP);
 	}
 
-	function motionExpired(player: ServerPlayer): boolean {
+	function motionExpired(player: ServerPlayer_): boolean {
 		const interval = SkillHelper.hasSkill(player, SludgeSkills.MOTION_4)
 			? 20
 			: 40;
 		return TickHelper.hasTimestampElapsed(player, MOTION_TIMESTAMP, interval);
 	}
 
-	function resetMotion(player: ServerPlayer): void {
+	function resetMotion(player: ServerPlayer_): void {
 		player.persistentData.remove(MOTION_KEY);
 	}
 
@@ -85,7 +85,7 @@ namespace SludgeMotion {
 	});
 
 	PlayerEvents.tick(event => {
-		const player = event.getPlayer() as ServerPlayer;
+		const player = event.getPlayer() as ServerPlayer_;
 
 		if (getMotion(player) > 0 && motionExpired(player)) {
 			playsound(player.level, player.position(), "minecraft:entity.blaze.death", "master", 1, 2);
@@ -94,7 +94,7 @@ namespace SludgeMotion {
 	});
 
 	EntityEvents.afterHurt("minecraft:player", event => {
-		const player = event.getEntity() as ServerPlayer;
+		const player = event.getEntity() as ServerPlayer_;
 
 		if (getMotion(player) <= 0) return;
 		if (SkillHelper.hasSkill(player, SludgeSkills.INERTIA)) {

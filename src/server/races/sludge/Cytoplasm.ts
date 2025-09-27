@@ -4,7 +4,7 @@ namespace SludgeCytoplasm {
 
 	const MODIFIER_KEY = "sludge.cytoplasm_slowdown";
 
-	function getSlowdownPercentage(player: ServerPlayer, cytoplasmTier: integer): float {
+	function getSlowdownPercentage(player: ServerPlayer_, cytoplasmTier: integer): float {
 		if (SkillHelper.hasSkill(player, SludgeSkills.CYTOSKELETON)) {
 			return 0.0;
 		}
@@ -23,7 +23,7 @@ namespace SludgeCytoplasm {
 	}
 
 	PlayerEvents.tick(event => {
-		const player = event.getPlayer() as ServerPlayer;
+		const player = event.getPlayer() as ServerPlayer_;
 
 		const tier = SkillHelper.getSkillTier(player,
 			SludgeSkills.CYTOPLASM_1,

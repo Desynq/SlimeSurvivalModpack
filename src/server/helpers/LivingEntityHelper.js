@@ -2,7 +2,7 @@ const LivingEntityHelper = {};
 
 /**
  * 
- * @param {LivingEntity} entity 
+ * @param {LivingEntity_} entity 
  * @param {string} id 
  * @param {integer} duration 
  * @param {integer} amplifier 
