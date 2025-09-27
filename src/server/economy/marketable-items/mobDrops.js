@@ -63,8 +63,8 @@ new MarketableItem("feather", "minecraft:feather")
 	.register();
 
 new MarketableItem("gunpowder", "minecraft:gunpowder")
-	.setSellPrice(1.00)
-	.setBuyPrice(7.00)
+	.setSellPrice(2.50)
+	.setBuyPrice(5.00)
 	.register();
 
 new MarketableItem("enderpearl", "minecraft:ender_pearl")
@@ -73,5 +73,17 @@ new MarketableItem("enderpearl", "minecraft:ender_pearl")
 	.register();
 
 new MarketableItem("lacrima", "cataclysm:lacrima")
-	.setSellPrice(10.00)
-	.register();	
+	.setSellPrice(20.00)
+	.register();
+
+new MarketableItem("pink_wool", "minecraft:pink_wool")
+	.setSellPrice(15.00)
+	.register();
+
+new MarketableItem("frozen_rotten_flesh", "rottencreatures:frozen_rotten_flesh")
+	.setSellPrice(1.50)
+	.register();
+
+new MarketableItem("magma_rotten_flesh", "rottencreatures:magma_rotten_flesh")
+	.setSellPrice(1.50)
+	.register();

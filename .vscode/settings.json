@@ -17,6 +17,7 @@
         "coremods/": true,
         "crash-reports": true,
         "data/": true,
+        "debug/": true,
         "defaultconfigs/": true,
         "Distant_Horizons_server_data/": true,
         "downloads/": true,
@@ -48,8 +49,6 @@
     },
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.tsconfig": "src/server/tsconfig.server.json",
     "typescript.disableAutomaticTypeAcquisition": true,
-    "typescript.validate.enable": true,
-    "typescript.surveys.enabled": false
+    "typescript.validate.enable": true
 }

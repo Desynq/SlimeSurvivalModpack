@@ -73,6 +73,8 @@ declare module "net.minecraft.world.entity.TamableAnimal" {
 	}
 };
 
+
+
 declare module "net.minecraft.network.chat.MutableComponent" {
 	interface $MutableComponent extends $Component$$Type {
 		color(...args: any[]): any;

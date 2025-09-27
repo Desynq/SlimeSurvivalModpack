@@ -67,3 +67,6 @@ const $InteractionHand = Java.loadClass("net.minecraft.world.InteractionHand")
 
 /** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
 const $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries");
+
+/** @type {typeof import("net.minecraft.world.entity.item.ItemEntity").$ItemEntity } */
+const $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity");

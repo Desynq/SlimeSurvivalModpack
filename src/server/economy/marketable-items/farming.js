@@ -1,6 +1,6 @@
 //priority: 100
 new MarketableItem("carrot", "minecraft:carrot")
-	.setSellPrice(0.25)
+	.setSellPrice(0.50)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(5000)
 	.register();
@@ -12,9 +12,13 @@ new MarketableItem("baked_potato", "minecraft:baked_potato")
 	.register();
 
 new MarketableItem("wheat", "minecraft:wheat")
-	.setSellPrice(0.75)
+	.setSellPrice(0.50)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(2500)
+	.register();
+
+new MarketableItem("bread", "minecraft:bread")
+	.setSellPrice(2.00)
 	.register();
 
 new MarketableItem("honey_bottle", "minecraft:honey_bottle")
@@ -24,7 +28,7 @@ new MarketableItem("honey_bottle", "minecraft:honey_bottle")
 	.register();
 
 new MarketableItem("honeycomb", "minecraft:honeycomb")
-	.setSellPrice(50.0)
+	.setSellPrice(20.0)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(100)
 	.register();
@@ -42,13 +46,27 @@ new MarketableItem("pumpkin", "minecraft:pumpkin")
 	.register();
 
 new MarketableItem("cactus", "minecraft:cactus")
-	.setSellPrice(1.00)
+	.setSellPrice(0.75)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(5000)
 	.register();
 
 new MarketableItem("nether_wart", "minecraft:nether_wart")
-	.setSellPrice(1.00)
+	.setSellPrice(2.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(500)
+	.register();
+
+new MarketableItem("sweet_berry", "minecraft:sweet_berries")
+	.setSellPrice(0.50)
+	.setCompoundingRate(0.5)
+	.setCompoundingPeriod(500)
+	.register();
+
+new MarketableItem("milk", "minecraft:milk_bucket")
+	.setSellPrice(50.00)
+	.register();
+
+new MarketableItem("cake", "minecraft:cake")
+	.setSellPrice(200.00)
 	.register();

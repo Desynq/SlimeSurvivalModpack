@@ -8,7 +8,13 @@ StartupEvents.registry("item", event => {
 	event.create("slimesurvival:unbreaking_tome")
 		.unstackable()
 		.fireResistant()
+		.glow(true)
 		.rarity("epic");
+
+	event.create("slimesurvival:lesser_unbreaking_tome")
+		.unstackable()
+		.fireResistant()
+		.rarity("epic")
 
 	event.create("slimesurvival:crash_helmet")
 		.unstackable()

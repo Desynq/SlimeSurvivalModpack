@@ -40,3 +40,9 @@ const $PlayerEatEffectEvent = Java.loadClass("io.github.desynq.slimesurvival.eve
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Remove").$MobEffectEvent$Remove} */
 const $MobEffectEvent$Remove = Java.loadClass("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Remove");
+
+/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent").$EntityTickEvent } */
+const $EntityTickEvent = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent")
+
+/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent$Pre").$EntityTickEvent$Pre } */
+const $EntityTickEvent$Pre = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent$Pre")

@@ -118,7 +118,7 @@ MarketableItem.prototype.getBuyPrice = function() {
 }
 
 /**
- * @param {$MinecraftServer_} server
+ * @param {MinecraftServer} server
  * @returns {long | null}
  */
 MarketableItem.prototype.getCalculatedBuyPrice = function(server) {

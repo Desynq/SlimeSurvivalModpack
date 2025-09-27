@@ -1,7 +1,3 @@
-/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent$Pre").$EntityTickEvent$Pre } */
-let $EntityTickEvent$Pre = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent$Pre")
-/** @type {typeof import("net.neoforged.neoforge.event.tick.EntityTickEvent").$EntityTickEvent } */
-let $EntityTickEvent = Java.loadClass("net.neoforged.neoforge.event.tick.EntityTickEvent")
 
 
 

@@ -1,15 +1,10 @@
 let $LivingEquipmentChangeEvent: typeof import("net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent").$LivingEquipmentChangeEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent");
 
-/** @type {typeof import("java.util.function.BiConsumer").$BiConsumer } */
-let $BiConsumer = Java.loadClass("java.util.function.BiConsumer");
-/** @type {typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type } */
-let $EquipmentSlot$Type = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type");
-/** @type {typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent } */
+let $BiConsumer: typeof import("java.util.function.BiConsumer").$BiConsumer = Java.loadClass("java.util.function.BiConsumer");
+let $EquipmentSlot$Type: typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type");
 let $ArmorHurtEvent: typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent");
-/** @type {typeof import("net.minecraft.world.item.ArmorMaterials").$ArmorMaterials } */
-let $ArmorMaterials = Java.loadClass("net.minecraft.world.item.ArmorMaterials");
-/** @type {typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem } */
-let $ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem");
+let $ArmorMaterials: typeof import("net.minecraft.world.item.ArmorMaterials").$ArmorMaterials = Java.loadClass("net.minecraft.world.item.ArmorMaterials");
+let $ArmorItem: typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem");
 
 let $ItemStack: typeof import("net.minecraft.world.item.ItemStack").$ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack");
 
@@ -48,16 +43,9 @@ namespace ArmorTweaks {
 			}
 		});
 
-		/**
-		 * @param {import("net.minecraft.world.item.ItemStack").$ItemStack$$Original} stack 
-		 */
-		function isArmorMaterialLeather(stack) {
+		function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
 			const item = stack.getItem();
-			const armorItem = item instanceof $ArmorItem ? item : null;
-			if (armorItem == null) {
-				return false;
-			}
-			return armorItem.getMaterial() == $ArmorMaterials.LEATHER;
+			return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
 		}
 	});
 
