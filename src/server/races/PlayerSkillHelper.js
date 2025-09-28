@@ -10,7 +10,7 @@ PlayerRaceSkillHelper.eraseOtherRaceSkillCategories = function(player, excludedR
 	Races.getRaces().filter(race => race !== excludedRace).forEach(race => {
 		player.server.runCommandSilent(`puffish_skills category erase ${player.username} ${race.getSkillCategoryId()}`);
 	});
-}
+};
 
 /**
  * 
@@ -22,7 +22,7 @@ PlayerRaceSkillHelper.unlockDefaultRaceSkills = function(player, race) {
 	defaultSkills.forEach(skill => {
 		PlayerRaceSkillHelper.unlockSkill(player, race.getSkillCategoryId(), skill);
 	});
-}
+};
 
 /**
  * 
@@ -31,7 +31,7 @@ PlayerRaceSkillHelper.unlockDefaultRaceSkills = function(player, race) {
  */
 PlayerRaceSkillHelper.unlockCategory = function(player, categoryId) {
 	player.server.runCommandSilent(`puffish_skills category unlock ${player.username} ${categoryId}`);
-}
+};
 
 /**
  * 
@@ -41,4 +41,14 @@ PlayerRaceSkillHelper.unlockCategory = function(player, categoryId) {
  */
 PlayerRaceSkillHelper.unlockSkill = function(player, categoryId, skill) {
 	CommandHelper.runCommandSilent(player.server, `puffish_skills skills unlock ${player.username} ${categoryId} ${skill.getSkillId()}`);
+};
+
+/**
+ * 
+ * @param {Player_} player 
+ * @param {integer} amount 
+ */
+PlayerRaceSkillHelper.addSkillPoint = function(player, amount) {
+	const race = PlayerRaceHelper.getRace(player);
+	CommandHelper.runCommandSilent(player.server, `puffish_skills experience add ${player.username} ${race.getSkillCategoryId()} ${amount}`);
 }

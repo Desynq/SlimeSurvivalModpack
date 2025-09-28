@@ -37,8 +37,10 @@ namespace ArmorTweaks {
 				// @ts-ignore
 				let added = player.inventory.add(stack);
 				if (!added) {
-					player.drop(stack, false);
+					player.drop(stack.copy(), false);
 				}
+				player.inventory.setChanged();
+				player.containerMenu.broadcastChanges();
 			}
 		});
 
@@ -56,7 +58,7 @@ namespace ArmorTweaks {
 		let fromStack = event.from;
 		let toStack = event.to;
 
-		if (player instanceof $ServerPlayer && slot.armor && !toStack.isEmpty() && toStack.damageableItem && toStack.damageValue >= toStack.maxDamage - 1) {
+		if (player instanceof $ServerPlayer && slot.armor && !toStack.isEmpty() && toStack.damageableItem && toStack.damageValue >= toStack.maxDamage - 1 && !isArmorMaterialLeather(toStack)) {
 			// @ts-ignore
 			let added = player.inventory.add(toStack);
 			if (!added) {

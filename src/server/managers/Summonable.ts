@@ -54,10 +54,21 @@ class Summonable {
 	}
 
 	public getNode() {
-		return $Commands.literal(this.name).executes(context => {
-			this.summon(context.source.level, context.source.position);
-			return 1;
-		});
+		return $Commands.literal(this.name)
+			.executes(context => {
+				this.summon(context.source.level, context.source.position);
+				return 1;
+			})
+			// @ts-ignore
+			.then($Commands.argument("amount", $IntegerArgumentType.integer())
+				.executes(context => {
+					// @ts-ignore
+					for (let i = 0; i < $IntegerArgumentType.getInteger(context, "amount"); i++) {
+						this.summon(context.source.level, context.source.position);
+					}
+					return 1;
+				})
+			);
 	}
 
 	public summon(
@@ -76,6 +87,15 @@ class Summonable {
 
 
 namespace Summonables {
+	const SLIMIFIED_ARMOR = [
+		{},
+		{},
+		{},
+		{
+			id: "minecraft:slime_block",
+			count: 1
+		}
+	];
 	export const SLIMIFIED_ZOMBIE = Summonable.create("slimified_zombie", "minecraft:zombie", {
 		PersistenceRequired: true,
 		attributes: [
@@ -84,7 +104,50 @@ namespace Summonables {
 				base: 0.3
 			}
 		],
+		ArmorItems: SLIMIFIED_ARMOR,
+		ArmorDropChances: [0.0, 0.0, 0.0, 1.0],
 		CustomName: '{"color":"dark_green","text":"Slimified Zombie"}'
 	});
-	SLIMIFIED_ZOMBIE.setMaxHealth(40);
+	SLIMIFIED_ZOMBIE.setMaxHealth(40.0);
+
+	export const SLIMIFIED_SKELETON = Summonable.create("slimified_skeleton", "minecraft:skeleton", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.movement_speed",
+				base: 0.3
+			}
+		],
+		ArmorItems: SLIMIFIED_ARMOR,
+		HandItems: [
+			{},
+			{
+				id: "minecraft:bow",
+				count: 1
+			}
+		],
+		CustomName: '{"color":"dark_green","text":"Slimified Skeleton"}'
+	});
+	SLIMIFIED_SKELETON.setMaxHealth(40.0);
+
+	export const THE_COLOSSUS = Summonable.create("the_colossus", "minecraft:slime", {
+		PersistenceRequired: true,
+		Size: 10,
+		attributes: [
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 0.3
+			}
+		],
+		ArmorItems: SLIMIFIED_ARMOR,
+		HandItems: [
+			{},
+			{
+				id: "minecraft:bow",
+				count: 1
+			}
+		],
+		CustomName: '{"color":"dark_green","text":"Slimified Skeleton"}'
+	});
+	SLIMIFIED_SKELETON.setMaxHealth(40.0);
 }

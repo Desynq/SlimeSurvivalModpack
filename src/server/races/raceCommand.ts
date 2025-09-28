@@ -2,16 +2,12 @@
 ServerEvents.commandRegistry(event => {
 	const { commands: Commands, arguments: Arguments } = event;
 
-	const raceArgument = Commands.argument("race", Arguments.STRING.create(event))
-		.suggests((context, builder) => suggestRace(builder));
-
-	const playerArgument = Commands.argument("player", Arguments.PLAYER.create(event));
-
 	const nodes = {};
 	nodes["/race"] = Commands.literal("race");
 
 	nodes["/race choose"] = Commands.literal("choose")
-		.then(raceArgument
+		.then(Commands.argument("race", Arguments.STRING.create(event))
+			.suggests((context, builder) => suggestRace(builder))
 			.executes(context => {
 				try {
 					let player = context.source.getPlayer();
@@ -29,8 +25,9 @@ ServerEvents.commandRegistry(event => {
 
 	nodes["/race set"] = Commands.literal("set")
 		.requires(executor => executor.hasPermission(2))
-		.then(playerArgument
-			.then(raceArgument
+		.then(Commands.argument("player", Arguments.PLAYER.create(event))
+			.then(Commands.argument("race", Arguments.STRING.create(event))
+				.suggests((context, builder) => suggestRace(builder))
 				.executes(context => {
 					let player = Arguments.PLAYER.getResult(context, "player");
 					let race = Races.fromId(Arguments.STRING.getResult(context, "race"));
@@ -41,9 +38,26 @@ ServerEvents.commandRegistry(event => {
 			)
 		);
 
+	nodes["/race points"] = Commands.literal("points")
+		.requires(context => context.getPlayer().hasPermissions(2))
+		.then(Commands.literal("add")
+			.then(Commands.argument("player", Arguments.PLAYER.create(event))
+				.then(Commands.argument("amount", Arguments.INTEGER.create(event))
+					.executes(context => {
+						let player: ServerPlayer_ = Arguments.PLAYER.getResult(context, "player");
+						let amount = Arguments.INTEGER.getResult(context, "amount");
+						PlayerRaceSkillHelper.addSkillPoint(player, amount);
+						context.source.getPlayer().tell(`Gave ${player.username} ${amount} ${PlayerRaceHelper.getRace(player).getRaceId()} skill points.`);
+						return 1;
+					})
+				)
+			)
+		);
+
 	nodes["/race"]
 		.then(nodes["/race choose"])
-		.then(nodes["/race set"]);
+		.then(nodes["/race set"])
+		.then(nodes["/race points"]);
 
 	event.register(nodes["/race"]);
 

@@ -77,15 +77,12 @@ namespace UnbreakingTome {
 		tome.kill();
 	}
 
-	/**
-	 * 
-	 * @param {ItemStack_} item 
-	 */
-	function setItemUnbreakable(item) {
+	function setItemUnbreakable(item: ItemStack_) {
 		const unbreakable = new $Unbreakable(true);
 
 		// @ts-ignore
 		item.set($DataComponents.UNBREAKABLE, unbreakable);
+		item.setDamage(0);
 	}
 
 	function executeAnimation(tome: ItemEntity, target: ItemEntity) {
