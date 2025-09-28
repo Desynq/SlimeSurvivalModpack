@@ -4,14 +4,14 @@ const PlayerHelper = {}
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  */
 PlayerHelper.isSurvivalLike = function(player) {
 	return !player.creative && !player.spectator;
 }
 
 /**
- * @param {Player} player
+ * @param {Player_} player
  */
 PlayerHelper.isOperator = function(player) {
 	return player.permissionLevel >= 2;
@@ -20,7 +20,7 @@ PlayerHelper.isOperator = function(player) {
 
 
 /**
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @param {import("java.util.UUID").$UUID$$Original | null} uuid
  */
 PlayerHelper.isOnWhitelist = function(server, uuid) {

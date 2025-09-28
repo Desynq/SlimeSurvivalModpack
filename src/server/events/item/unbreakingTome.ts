@@ -79,7 +79,7 @@ namespace UnbreakingTome {
 
 	/**
 	 * 
-	 * @param {ItemStack} item 
+	 * @param {ItemStack_} item 
 	 */
 	function setItemUnbreakable(item) {
 		const unbreakable = new $Unbreakable(true);

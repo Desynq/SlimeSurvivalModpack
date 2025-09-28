@@ -7,7 +7,7 @@ PlayerUUIDUsernameBiMap.username_to_uuid = {};
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 PlayerUUIDUsernameBiMap.loadData = function(server) {
 	PlayerUUIDUsernameBiMap.uuid_to_username = {};
@@ -22,7 +22,7 @@ PlayerUUIDUsernameBiMap.loadData = function(server) {
 }
 
 /**
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 PlayerUUIDUsernameBiMap.reloadData = function(server) {
 	PlayerUUIDUsernameBiMap.registerOnlinePlayers(server);
@@ -31,7 +31,7 @@ PlayerUUIDUsernameBiMap.reloadData = function(server) {
 
 /**
  * 
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @param {string} uuid 
  * @param {string} username 
  */
@@ -42,7 +42,7 @@ PlayerUUIDUsernameBiMap.registerPlayer = function(server, uuid, username) {
 }
 
 /**
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 PlayerUUIDUsernameBiMap.registerOnlinePlayers = function(server) {
 	server.playerList.players.forEach(player => {
@@ -55,7 +55,7 @@ PlayerUUIDUsernameBiMap.registerOnlinePlayers = function(server) {
 
 
 /**
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @param {string} username
  * @returns {import("java.util.UUID").$UUID$$Original | null}
  */
@@ -68,7 +68,7 @@ PlayerUUIDUsernameBiMap.getUUID = function(server, username) {
 }
 
 /**
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @param {string} uuid
  * @returns {string | null} 
  */
@@ -81,7 +81,7 @@ PlayerUUIDUsernameBiMap.getUsername = function(server, uuid) {
 }
 
 /**
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @returns {string[]}
  */
 PlayerUUIDUsernameBiMap.getUsernames = function(server) {

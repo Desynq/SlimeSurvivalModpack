@@ -1,7 +1,7 @@
 const PlayerMoney = {};
 
 /**
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {string} uuid 
  * @returns {number}
  */
@@ -10,7 +10,7 @@ PlayerMoney.get = function(server, uuid) {
 }
 
 /**
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {string} uuid 
  * @param {number} amount 
  */
@@ -25,7 +25,7 @@ PlayerMoney.set = function(server, uuid, amount) {
 }
 
 /**
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {string} uuid 
  * @param {number} amount 
  */

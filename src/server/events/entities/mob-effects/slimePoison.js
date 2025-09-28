@@ -32,5 +32,5 @@ EntityEvents.death("minecraft:slime", event => {
 			]
 		}
 	};
-	CommandHelper.runCommandSilent(entity.level, `summon area_effect_cloud ${entity.x} ${entity.y} ${entity.z} ${JsonIO.toString(nbt)}`);
+	CommandHelper.runCommandSilent(entity.level, `summon area_effect_cloud ${entity.x} ${entity.y} ${entity.z} ${JSON.stringify(nbt)}`);
 });

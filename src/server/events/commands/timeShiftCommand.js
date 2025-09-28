@@ -20,7 +20,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {CommandSourceStack} source
+	 * @param {CommandSourceStack_} source
 	 * @param {integer} targetTimeOfDay 
 	 */
 	function shiftTime(source, targetTimeOfDay) {

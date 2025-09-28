@@ -4,3 +4,5 @@ type RecipeInput_ = import("net.minecraft.world.item.crafting.RecipeInput").$Rec
 type ServerLevel_ = import("net.minecraft.server.level.ServerLevel").$ServerLevel$$Original;
 
 type Vec3_ = import("net.minecraft.world.phys.Vec3").$Vec3$$Original;
+
+type Level_ = import("net.minecraft.world.level.Level").$Level$$Original;

@@ -21,7 +21,7 @@ PlayerEvents.tick(event => {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  */
 function applyLowOrbitSlowFalling(player) {
 	if (player.isFallFlying()) {
@@ -33,7 +33,7 @@ function applyLowOrbitSlowFalling(player) {
 }
 
 /**
- * @param {Player} player
+ * @param {Player_} player
  * @returns {boolean}
  */
 function cannotFallFlyInLowOrbit(player) {

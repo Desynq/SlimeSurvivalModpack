@@ -38,7 +38,7 @@ TenuemBoss.tick = function(boss) {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  */
 TenuemBoss.warnPlayer = function(player) {
 	player.server.runCommandSilent(`execute as ${player.username} at @s run playsound minecraft:item.trident.thunder master @s ${player.x} ${player.y} ${player.z} 4 0.5`);
@@ -46,7 +46,7 @@ TenuemBoss.warnPlayer = function(player) {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  */
 TenuemBoss.trySmitePlayer = function(player) {
 	if (!PlayerHelper.isSurvivalLike(player) || !player.onGround()) {

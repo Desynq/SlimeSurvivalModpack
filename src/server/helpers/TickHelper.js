@@ -4,7 +4,7 @@ const TickHelper = {};
 // todo: make this get actual server tick rate
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 TickHelper.getDefaultTickRate = function(server) {
 	return 20;
@@ -14,7 +14,7 @@ TickHelper.defaultTickRate = 20;
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {integer} newTickRate 
  */
 TickHelper.setTickRate = function(server, newTickRate) {
@@ -23,7 +23,7 @@ TickHelper.setTickRate = function(server, newTickRate) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 TickHelper.resetTickRate = function(server) {
 	CommandHelper.runCommandSilent(server, `tick rate ${TickHelper.getDefaultTickRate(server)}`);
@@ -31,7 +31,7 @@ TickHelper.resetTickRate = function(server) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @returns 
  */
 TickHelper.getGameTime = function(server) {
@@ -42,7 +42,7 @@ TickHelper.getGameTime = function(server) {
 
 /**
  * 
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id 
  * @returns 0 if timestamp has not been set for entity
  */
@@ -51,7 +51,7 @@ TickHelper.getTimestamp = function(entity, id) {
 }
 
 /**
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id 
  * @returns {long} Time that has passed since the timestamp was last set or the current game time if the timestamp has not been updated.
  */
@@ -61,7 +61,7 @@ TickHelper.getTimestampDiff = function(entity, id) {
 
 /**
  * 
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id 
  * @param {long} interval 
  */
@@ -71,7 +71,7 @@ TickHelper.hasTimestampElapsed = function(entity, id, interval) {
 
 /**
  * 
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id 
  * @param {long} interval 
  */
@@ -81,7 +81,7 @@ TickHelper.hasTimestampJustElapsed = function(entity, id, interval) {
 
 /**
  * Sets the timestamp to the current game time
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id 
  */
 TickHelper.forceUpdateTimestamp = function(entity, id) {
@@ -90,7 +90,7 @@ TickHelper.forceUpdateTimestamp = function(entity, id) {
 
 /**
  * Sets timestamp to Long.MIN_VALUE so that hasTimestampPassed() always returns true
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id 
  */
 TickHelper.resetTimestamp = function(entity, id) {
@@ -99,7 +99,7 @@ TickHelper.resetTimestamp = function(entity, id) {
 
 /**
  * Updates the timestamp to current game time if it has elapsed
- * @param {Entity} entity 
+ * @param {Entity_} entity 
  * @param {string} id
  * @param {long} interval
  * @returns {boolean} true if timestamp was successfully updated after elapsing
@@ -115,7 +115,7 @@ TickHelper.tryUpdateTimestamp = function(entity, id, interval) {
 
 
 /**
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @param {integer} ticks 
  * @returns 
  */

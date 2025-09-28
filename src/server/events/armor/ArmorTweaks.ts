@@ -8,7 +8,6 @@ let $ArmorItem: typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem =
 
 let $ItemStack: typeof import("net.minecraft.world.item.ItemStack").$ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack");
 
-
 namespace ArmorTweaks {
 
 
@@ -43,23 +42,21 @@ namespace ArmorTweaks {
 			}
 		});
 
-		function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
-			const item = stack.getItem();
-			return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
-		}
 	});
 
+	function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
+		const item = stack.getItem();
+		return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
+	}
+
+	// this event does weird shit and keeps state between reloads somehow aura
 	NativeEvents.onEvent($LivingEquipmentChangeEvent, event => {
 		let player = event.entity;
-		if (!(player instanceof $ServerPlayer)) return;
 		let slot = event.slot;
 		let fromStack = event.from;
 		let toStack = event.to;
 
-		if (!slot.armor) return;
-		if (toStack.isEmpty()) return; // nothing being equipped
-
-		if (toStack.damageValue >= toStack.maxDamage - 1) {
+		if (player instanceof $ServerPlayer && slot.armor && !toStack.isEmpty() && toStack.damageableItem && toStack.damageValue >= toStack.maxDamage - 1) {
 			// @ts-ignore
 			let added = player.inventory.add(toStack);
 			if (!added) {

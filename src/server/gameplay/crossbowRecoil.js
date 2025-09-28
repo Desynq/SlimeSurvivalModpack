@@ -12,7 +12,7 @@ NativeEvents.onEvent($ArrowLooseEvent, event => {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  */
 function ApplyCrossbowRecoil(player) {
 	ActionbarManager.setSimple(player, player.getPitch(), 20);

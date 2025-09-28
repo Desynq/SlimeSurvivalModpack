@@ -9,7 +9,7 @@ const LivingEntityHelper = {};
  * @param {boolean} ambient
  * @param {boolean} visible
  * @param {boolean} showIcon 
- * @param {Entity} [source]
+ * @param {Entity_} [source]
  */
 LivingEntityHelper.addEffect = function(entity, id, duration, amplifier, ambient, visible, showIcon, source) {
 	// @ts-ignore

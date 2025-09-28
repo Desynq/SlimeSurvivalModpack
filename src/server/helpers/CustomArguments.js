@@ -2,7 +2,7 @@ const CustomArguments = {};
 
 /**
  * @param {CommandExecutionContext} context
- * @param {SuggestionsBuilder} builder
+ * @param {SuggestionsBuilder_} builder
  */
 CustomArguments.suggestCachedPlayer = function(context, builder) {
 	let server = context.source.server;

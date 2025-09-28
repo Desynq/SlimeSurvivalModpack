@@ -38,7 +38,7 @@ class EntropyHolder {
 	}
 
 
-	public pushEntropyEntry(damage: float, attacker: Entity) {
+	public pushEntropyEntry(damage: float, attacker: Entity_) {
 		if (damage <= 0) {
 			return;
 		}

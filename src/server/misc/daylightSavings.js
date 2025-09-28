@@ -1,7 +1,7 @@
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 function isMoreThanOneNonOperator(server) {
 	return ServerHelper.numberOfNonOperators(server) > 1;
@@ -9,7 +9,7 @@ function isMoreThanOneNonOperator(server) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {boolean} bool 
  */
 function setCycleRules(server, bool) {

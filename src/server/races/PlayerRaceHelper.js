@@ -1,7 +1,7 @@
 const PlayerRaceHelper = {}
 
 /**
- * @param {Player} player 
+ * @param {Player_} player 
  */
 PlayerRaceHelper.getRace = function(player) {
 	const raceId = player.server.persistentData.getCompound("player_races").getString(player.stringUUID);
@@ -28,7 +28,7 @@ PlayerRaceHelper.getRaceWrapper = function(player) {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} race 
  */
 PlayerRaceHelper.setRace = function(player, race) {
@@ -40,7 +40,7 @@ PlayerRaceHelper.setRace = function(player, race) {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} race 
  */
 PlayerRaceHelper.isRace = function(player, race) {
@@ -48,7 +48,7 @@ PlayerRaceHelper.isRace = function(player, race) {
 }
 
 /**
- * @param {Player} player 
+ * @param {Player_} player 
  */
 PlayerRaceHelper.hasRace = function(player) {
 	const race = this.getRace(player);
@@ -56,7 +56,7 @@ PlayerRaceHelper.hasRace = function(player) {
 }
 
 /**
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} currentRace
  * @returns {RaceSwitchResult}
  */
@@ -75,7 +75,7 @@ PlayerRaceHelper.canSwitchRaceFrom = function(player, currentRace) {
 
 /**
  * Checks to see whether the player can change their race and emits side effects
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} chosenRace 
  * @param {boolean} [setByOperator]
  * @returns {RaceSwitchResult}

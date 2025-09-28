@@ -1,7 +1,7 @@
 //priority: 100
 new MarketableItem("diamond", "minecraft:diamond")
 	.setSellPrice(75.00)
-	.setBuyPrice(200.00)
+	.setBuyPrice(175.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(300)
 	.register();
