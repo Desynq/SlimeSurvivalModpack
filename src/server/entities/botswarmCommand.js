@@ -13,7 +13,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {Player} executor 
+	 * @param {Player_} executor 
 	 */
 	function spawnBotSwarm(executor) {
 		BOT_USERNAMES.forEach(username => {

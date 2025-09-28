@@ -25,7 +25,7 @@ VoidmanBoss.tick = function(boss) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  */
 VoidmanBoss.makeAllEndermenAngry = function(server) {
 	CommandHelper.runCommandSilent(server, `execute as @e[type=mutantmonsters:mutant_enderman] at @s run data modify entity @s AngryAt set from entity @p[gamemode=!creative,gamemode=!spectator,distance=..64] UUID`);

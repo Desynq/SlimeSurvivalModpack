@@ -20,7 +20,7 @@ class InvalidSellQuantityError extends Error {
  */
 class SellTransaction {
 	private readonly player: ServerPlayer_;
-	private readonly server: MinecraftServer;
+	private readonly server: MinecraftServer_;
 	private readonly mItem: MarketableItem;
 	private readonly itemId: string;
 	private readonly itemValue: number;

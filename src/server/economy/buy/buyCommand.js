@@ -43,7 +43,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * @param {CommandExecutionContext} context
-	 * @param {SuggestionsBuilder} builder
+	 * @param {SuggestionsBuilder_} builder
 	 */
 	function suggestBuyableItem(context, builder) {
 		const buyableItemNames = MarketableItem.getBuyableItems().map(item => item.getName());
@@ -51,7 +51,7 @@ ServerEvents.commandRegistry(event => {
 	}
 
 	/**
-	 * @param {SuggestionsBuilder} builder
+	 * @param {SuggestionsBuilder_} builder
 	 */
 	function suggestAmount(builder) {
 		builder.suggest("1");

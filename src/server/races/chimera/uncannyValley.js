@@ -10,7 +10,7 @@ let $AvoidEntityGoal = Java.loadClass("net.minecraft.world.entity.ai.goal.AvoidE
 
 	/**
 	 * 
-	 * @param {Entity} entity 
+	 * @param {Entity_} entity 
 	 * @param {ServerPlayer_} player 
 	 */
 	function shouldAvoid(entity, player) {

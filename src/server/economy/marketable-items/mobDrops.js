@@ -50,14 +50,14 @@ new MarketableItem("string", "minecraft:string")
 	.register();
 
 new MarketableItem("spider_eye", "minecraft:spider_eye")
-	.setSellPrice(5.00)
+	.setSellPrice(2.50)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(512)
 	.register();
 
 new MarketableItem("feather", "minecraft:feather")
-	.setSellPrice(2.50)
-	.setBuyPrice(10.00)
+	.setSellPrice(1.00)
+	.setBuyPrice(2.50)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(512)
 	.register();

@@ -71,7 +71,7 @@ ActionbarManager.setSimple = function(player, text, delay) {
 
 
 /**
- * @param {string | Player} arg0 string UUID or a player
+ * @param {string | Player_} arg0 string UUID or a player
  * @param {string} text must be a JSON component
  */
 ActionbarManager.addText = function(arg0, text) {
@@ -92,7 +92,7 @@ ActionbarManager.addSimple = function(player, text) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {string} text 
  */
 ActionbarManager.addDebug = function(server, text) {

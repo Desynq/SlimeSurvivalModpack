@@ -1,6 +1,6 @@
 
 /**
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} race 
  */
 function RaceChangeEvent(player, race) {

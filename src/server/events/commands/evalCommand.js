@@ -13,7 +13,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {CommandSourceStack} source 
+	 * @param {CommandSourceStack_} source 
 	 * @param {string} code
 	 */
 	function evaluateCommand(source, code) {

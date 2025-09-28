@@ -61,7 +61,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {Player} player 
+	 * @param {Player_} player 
 	 * @param {RaceSwitchResult} result 
 	 * @param {Race} race
 	 */

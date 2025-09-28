@@ -2,7 +2,7 @@
 const ServerDataHelper = {};
 
 /**
- * @param {MinecraftServer} server
+ * @param {MinecraftServer_} server
  * @param {string} key 
  * @param {(tag: import("net.minecraft.nbt.CompoundTag").$CompoundTag$$Original) => void} valueFn 
  */

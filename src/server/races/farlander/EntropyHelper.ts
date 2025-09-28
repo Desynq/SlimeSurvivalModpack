@@ -1,5 +1,5 @@
 class EntropyHelper {
-	public static isFromQuantumAttacker(victim: LivingEntity_, attacker: Entity) {
+	public static isFromQuantumAttacker(victim: LivingEntity_, attacker: Entity_) {
 		if (!(attacker instanceof $ServerPlayer)) {
 			return false;
 		}
@@ -58,7 +58,7 @@ class EntropyHelper {
 		entity.persistentData.remove("lifetime_entropy_damage");
 	}
 
-	public static getEntropyPercentageFromAttacker(victim: LivingEntity_, attacker: Entity) {
+	public static getEntropyPercentageFromAttacker(victim: LivingEntity_, attacker: Entity_) {
 		if (!(attacker instanceof $ServerPlayer)) {
 			return 0.0;
 		}

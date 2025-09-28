@@ -3,7 +3,7 @@ const PlayerRaceSkillHelper = {};
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} excludedRace 
  */
 PlayerRaceSkillHelper.eraseOtherRaceSkillCategories = function(player, excludedRace) {
@@ -14,7 +14,7 @@ PlayerRaceSkillHelper.eraseOtherRaceSkillCategories = function(player, excludedR
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {Race} race 
  */
 PlayerRaceSkillHelper.unlockDefaultRaceSkills = function(player, race) {
@@ -26,7 +26,7 @@ PlayerRaceSkillHelper.unlockDefaultRaceSkills = function(player, race) {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {string} categoryId 
  */
 PlayerRaceSkillHelper.unlockCategory = function(player, categoryId) {
@@ -35,7 +35,7 @@ PlayerRaceSkillHelper.unlockCategory = function(player, categoryId) {
 
 /**
  * 
- * @param {Player} player 
+ * @param {Player_} player 
  * @param {string} categoryId
  * @param {Skill} skill 
  */

@@ -15,7 +15,7 @@ function playsound(level, position, sound, volumeType, volume, pitch) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {string} sound 
  * @param {string} volumeType 
  * @param {number} volume 

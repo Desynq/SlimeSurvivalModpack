@@ -1,6 +1,6 @@
 /**
  * 
- * @param {Entity} entity
+ * @param {Entity_} entity
  */
 
 function hasPumpkinHead(entity) {

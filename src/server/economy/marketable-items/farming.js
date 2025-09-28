@@ -5,6 +5,10 @@ new MarketableItem("carrot", "minecraft:carrot")
 	.setCompoundingPeriod(5000)
 	.register();
 
+new MarketableItem("potato", "minecraft:potato")
+	.setSellPrice(0.50)
+	.register();
+
 new MarketableItem("baked_potato", "minecraft:baked_potato")
 	.setSellPrice(1.00)
 	.setCompoundingRate(0.5)

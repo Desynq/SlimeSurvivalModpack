@@ -8,11 +8,11 @@ function canReceiveOperatorMessages(player) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {import("net.minecraft.network.chat.Component").$Component$$Type} chatComponent 
  */
 function tellOperators(server, chatComponent) {
-	server.playerList.players.forEach(player => {
+	server.getPlayerList().getPlayers().forEach(player => {
 		if (canReceiveOperatorMessages(player)) {
 			player.tell(chatComponent);
 		}
@@ -21,7 +21,7 @@ function tellOperators(server, chatComponent) {
 
 /**
  * 
- * @param {MinecraftServer} server 
+ * @param {MinecraftServer_} server 
  * @param {*} error 
  */
 function tellError(server, error) {
