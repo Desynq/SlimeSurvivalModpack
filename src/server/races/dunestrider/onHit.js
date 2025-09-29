@@ -57,6 +57,14 @@
 
 		if (victim.isBlocking()) return;
 		if (!event.getSource().isDirect()) return;
+		let itemAttr = attacker.getWeaponItem().getAttributeModifiers().modifiers();
+		let validWeap = false;
+		itemAttr.forEach(e => {
+			if (e.attribute() !== $Attributes.ATTACK_DAMAGE) return;
+			if (e.modifier().amount() < 5) return;
+			validWeap = true;
+		})
+		if (!validWeap) return;
 
 		tickRend(victim, attacker);
 
