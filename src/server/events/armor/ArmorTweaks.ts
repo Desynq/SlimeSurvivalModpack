@@ -51,7 +51,6 @@ namespace ArmorTweaks {
 		return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
 	}
 
-	// this event does weird shit and keeps state between reloads somehow aura
 	NativeEvents.onEvent($LivingEquipmentChangeEvent, event => {
 		let player = event.entity;
 		let slot = event.slot;
