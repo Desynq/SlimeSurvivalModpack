@@ -3,7 +3,7 @@
 	"icon": {
 		"type": "item",
 		"data": {
-			"item": "minecraft:blaze_rod"
+			"item": "cataclysm:music_disc_ancient_remnant"
 		}
 	},
 	"background": "textures/block/netherrack.png"

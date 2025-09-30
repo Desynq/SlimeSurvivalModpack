@@ -16,7 +16,7 @@ new MarketableItem("lesser_unbreaking_tome", "slimesurvival:lesser_unbreaking_to
 	.register();
 
 new MarketableItem("unbreaking_tome", "slimesurvival:unbreaking_tome")
-	.setBuyPrice(3000.00)
+	.setBuyPrice(2500.00)
 	.register();
 
 new MarketableItem("totem", "minecraft:totem_of_undying")

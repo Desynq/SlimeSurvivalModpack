@@ -3,7 +3,7 @@
 	"icon": {
 		"type": "item",
 		"data": {
-			"item": "minecraft:goat_horn"
+			"item": "minecraft:music_disc_relic"
 		}
 	},
 	"background": "textures/block/bamboo_block.png"

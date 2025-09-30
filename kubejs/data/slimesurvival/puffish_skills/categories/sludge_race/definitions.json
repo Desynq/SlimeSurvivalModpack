@@ -15,6 +15,10 @@
 			{
 				"color": "red",
 				"text": "Fire does not extinguish naturally over time. You have to extinguish yourself in water or die trying."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -39,6 +43,10 @@
 			{
 				"color": "green",
 				"text": "Medium-sized slimes do not hurt you."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -66,7 +74,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -91,6 +99,10 @@
 			{
 				"color": "red",
 				"text": "You do not regenerate naturally."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -128,6 +140,10 @@
 			{
 				"color": "red",
 				"text": "Bow projectile speed is reduced by half."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -155,7 +171,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -176,7 +192,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -197,7 +213,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
 		"cost": 4,
@@ -224,7 +240,7 @@
 			],
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
 		"cost": 4,
@@ -245,7 +261,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
 		"cost": 4,
@@ -272,6 +288,10 @@
 			{
 				"color": "green",
 				"text": "+10 Max Health"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -308,7 +328,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -338,7 +358,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -383,7 +403,7 @@
 			],
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -410,7 +430,7 @@
 			],
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -437,7 +457,7 @@
 			],
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 3 points"
+				"text": "\n\n[Cost: 3 points]"
 			}
 		],
 		"cost": 3,
@@ -464,7 +484,7 @@
 			],
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
 		"cost": 4,
@@ -485,7 +505,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 8 points"
+				"text": "\n\n[Cost: 8 points]"
 			}
 		],
 		"cost": 8,
@@ -503,6 +523,10 @@
 			{
 				"color": "green",
 				"text": "You are immune to poison."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -530,7 +554,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -551,7 +575,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -572,10 +596,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
-		"cost": 1,
+		"cost": 2,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -593,10 +617,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 3 points]"
 			}
 		],
-		"cost": 1,
+		"cost": 3,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -614,7 +638,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -635,7 +659,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -656,7 +680,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 3 points"
+				"text": "\n\n[Cost: 3 points]"
 			}
 		],
 		"cost": 3,
@@ -677,7 +701,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -698,7 +722,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -719,7 +743,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -740,7 +764,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -761,7 +785,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -782,7 +806,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -803,7 +827,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -824,7 +848,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -845,7 +869,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 3 points"
+				"text": "\n\n[Cost: 3 points]"
 			}
 		],
 		"cost": 3,
@@ -866,7 +890,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 4 points"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
 		"cost": 4,

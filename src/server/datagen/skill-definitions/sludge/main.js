@@ -255,7 +255,7 @@ SludgeSkills.LETHAL_TOXIN_2 = new SkillDefinition(SludgeSkillsCategoryId, "letha
 		"color": "green",
 		"text": "Poison III, ×1/3 duration."
 	})
-	.cost(1)
+	.cost(2)
 	.serializeIntoSkill(SludgeDefinitionsJson);
 SludgeSkills.LETHAL_TOXIN_3 = new SkillDefinition(SludgeSkillsCategoryId, "lethal_toxin_3")
 	.itemIcon("minecraft:glowstone_dust")
@@ -263,7 +263,7 @@ SludgeSkills.LETHAL_TOXIN_3 = new SkillDefinition(SludgeSkillsCategoryId, "letha
 		"color": "green",
 		"text": "Poison IV, ×1/4 duration."
 	})
-	.cost(1)
+	.cost(3)
 	.serializeIntoSkill(SludgeDefinitionsJson);
 SludgeSkills.LONG_LASTING_TOXIN_1 = new SkillDefinition(SludgeSkillsCategoryId, "long_lasting_toxin_1")
 	.itemIcon("minecraft:redstone")

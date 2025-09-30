@@ -1,6 +1,6 @@
 {
 	"normal": {
-		"bidirectional": [
+		"unidirectional": [
 			[
 				"m13s2aep4oet8a47",
 				"vurcdoc6hgo5gbs1"
@@ -18,8 +18,8 @@
 				"98tad3k5fkvvfnur"
 			],
 			[
-				"cspxfslrz4c6380l",
-				"m13s2aep4oet8a47"
+				"m13s2aep4oet8a47",
+				"cspxfslrz4c6380l"
 			],
 			[
 				"cspxfslrz4c6380l",
@@ -40,9 +40,7 @@
 			[
 				"m13s2aep4oet8a47",
 				"smunmehdt68srjgt"
-			]
-		],
-		"unidirectional": [
+			],
 			[
 				"cspxfslrz4c6380l",
 				"9xh6zujl18y1wm7k"
@@ -50,6 +48,46 @@
 			[
 				"vurcdoc6hgo5gbs1",
 				"9xh6zujl18y1wm7k"
+			],
+			[
+				"cspxfslrz4c6380l",
+				"h71g0c9dd81vshhp"
+			],
+			[
+				"98tad3k5fkvvfnur",
+				"nj86rgc5a0ijnomp"
+			],
+			[
+				"cspxfslrz4c6380l",
+				"9hrgh5y9d82k59nn"
+			],
+			[
+				"cspxfslrz4c6380l",
+				"oa23ifaepyzy2uni"
+			],
+			[
+				"vurcdoc6hgo5gbs1",
+				"oa23ifaepyzy2uni"
+			],
+			[
+				"smunmehdt68srjgt",
+				"3zv27pp4qnvsq2hu"
+			],
+			[
+				"smunmehdt68srjgt",
+				"m08jdjwwzqvy2std"
+			],
+			[
+				"cspxfslrz4c6380l",
+				"jv9g0lrqj5begb2o"
+			],
+			[
+				"vurcdoc6hgo5gbs1",
+				"3zv27pp4qnvsq2hu"
+			],
+			[
+				"8t8jv8hkhvrr03ym",
+				"rraofrkj74ehs00m"
 			]
 		]
 	}

@@ -37,6 +37,23 @@ namespace AdminCommand {
 		);
 	}
 
+	function giveVoidHand(player: ServerPlayer_) {
+		const attributeModifiers = JSON.stringify({
+			modifiers: [
+				{
+					id: "slimesurvival:void_hand",
+					type: "minecraft:generic.max_health",
+					amount: 0.25,
+					operation: "add_multiplied_total",
+					slot: "offhand"
+				}
+			]
+		});
+		CommandHelper.runCommandSilent(player.server,
+			`give ${player.username} mutantmonsters:endersoul_hand[item_name='{"color":"dark_purple","text":"Void Hand"}',custom_data={id:void_hand},attribute_modifiers=${attributeModifiers}]`
+		);
+	}
+
 	/**
 	 * 
 	 * @param {ServerPlayer_} player 
@@ -130,6 +147,13 @@ namespace AdminCommand {
 			.then($Commands.literal("cursed_athame")
 				.executes(context => {
 					giveCursedAthame(context.getSource().getPlayer());
+					return 1;
+				})
+			)
+			// @ts-ignore
+			.then($Commands.literal("void_hand")
+				.executes(context => {
+					giveVoidHand(context.getSource().getPlayer());
 					return 1;
 				})
 			);

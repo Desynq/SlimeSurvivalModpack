@@ -3,8 +3,8 @@
 	"icon": {
 		"type": "item",
 		"data": {
-			"item": "minecraft:echo_shard"
+			"item": "cataclysm:music_disc_ender_guardian"
 		}
 	},
-	"background": "textures/gui/advancements/backgrounds/end.png"
+	"background": "minecraft:textures/gui/advancements/backgrounds/end.png"
 }

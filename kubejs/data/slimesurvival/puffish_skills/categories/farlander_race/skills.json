@@ -13,7 +13,7 @@
 	},
 	"gwptyt8ifed0x4ws": {
 		"definition": "quantum_delay_1",
-		"x": 64,
+		"x": 0,
 		"y": 64,
 		"root": false
 	},
@@ -25,8 +25,8 @@
 	},
 	"98tad3k5fkvvfnur": {
 		"definition": "quantum_delay_2",
-		"x": 128,
-		"y": 64,
+		"x": 0,
+		"y": 128,
 		"root": false
 	},
 	"cspxfslrz4c6380l": {
@@ -37,26 +37,26 @@
 	},
 	"cyegh5wlrtb4sgkj": {
 		"definition": "time_dilation_1",
-		"x": -32,
-		"y": 32,
+		"x": -64,
+		"y": 96,
 		"root": false
 	},
 	"39kjaql5l1rklarp": {
 		"definition": "time_dilation_2",
 		"x": -64,
-		"y": 64,
+		"y": 128,
 		"root": false
 	},
 	"w00u8zs19gzuq4rv": {
 		"definition": "time_dilation_3",
-		"x": -32,
-		"y": 96,
+		"x": -64,
+		"y": 160,
 		"root": false
 	},
 	"9tmcgff92ez7n8rp": {
 		"definition": "time_dilation_4",
 		"x": -64,
-		"y": 128,
+		"y": 192,
 		"root": false
 	},
 	"smunmehdt68srjgt": {
@@ -68,7 +68,55 @@
 	"9xh6zujl18y1wm7k": {
 		"definition": "event_horizon",
 		"x": -64,
+		"y": -96,
+		"root": false
+	},
+	"h71g0c9dd81vshhp": {
+		"definition": "lorentz_curve",
+		"x": -128,
+		"y": 32,
+		"root": false
+	},
+	"nj86rgc5a0ijnomp": {
+		"definition": "causality_collapse",
+		"x": 64,
+		"y": 128,
+		"root": false
+	},
+	"9hrgh5y9d82k59nn": {
+		"definition": "quantum_suspension",
+		"x": -160,
+		"y": 0,
+		"root": false
+	},
+	"oa23ifaepyzy2uni": {
+		"definition": "quantum_predation",
+		"x": -96,
 		"y": -64,
+		"root": false
+	},
+	"3zv27pp4qnvsq2hu": {
+		"definition": "quantum_echo",
+		"x": 64,
+		"y": -64,
+		"root": false
+	},
+	"m08jdjwwzqvy2std": {
+		"definition": "quantum_phoenix",
+		"x": 64,
+		"y": 64,
+		"root": false
+	},
+	"jv9g0lrqj5begb2o": {
+		"definition": "quantum_tunneling",
+		"x": -96,
+		"y": 64,
+		"root": false
+	},
+	"rraofrkj74ehs00m": {
+		"definition": "quantum_rending_3",
+		"x": 0,
+		"y": -192,
 		"root": false
 	}
 }

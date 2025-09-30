@@ -39,8 +39,9 @@ EntityEvents.death("minecraft:player", event => {
 		return;
 	}
 
+	// @ts-ignore
 	player.level.entities.filter(e => e instanceof $LivingEntity && VoidmanBoss.isVoidman(e)).forEach(/** @param {LivingEntity_} voidman */ voidman => {
-		voidman.setHealth(Math.min(voidman.health + 50, voidman.maxHealth));
+		voidman.setHealth(Math.min(voidman.health + player.maxHealth, voidman.maxHealth));
 	});
 });
 

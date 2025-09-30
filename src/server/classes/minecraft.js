@@ -70,3 +70,9 @@ const $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltIn
 
 /** @type {typeof import("net.minecraft.world.entity.item.ItemEntity").$ItemEntity } */
 const $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity");
+
+/** @type {typeof import("net.minecraft.world.entity.projectile.Projectile").$Projectile} */
+const $Projectile = Java.loadClass("net.minecraft.world.entity.projectile.Projectile");
+
+/** @type {typeof import("net.minecraft.world.phys.AABB").$AABB} */
+const $AABB = Java.loadClass("net.minecraft.world.phys.AABB");

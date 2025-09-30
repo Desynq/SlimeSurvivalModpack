@@ -6,6 +6,10 @@
 			{
 				"color": "dark_purple",
 				"text": "You do not take damage regularly, instead you pool damage as entropy.\n\nPooled damage decays exponentially per damage entry (-10% per entropy tick).\n\nEvery entropy tick, you take between 0 to 2x of the total entropy decayed in that tick as damage."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
 			}
 		],
 		"cost": 0,
@@ -41,7 +45,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -68,10 +72,41 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"quantum_rending_3": {
+		"title": "Quantum Rending III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "100% of damage dealt to enemies is converted to entropy damage."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 4,
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -95,7 +130,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -118,11 +153,11 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Entropy pool is ticked every 4 ticks.\n+100% Entropy decay"
+				"text": "Entropy pool is ticked every 4 ticks.\n+50% Entropy decay"
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -136,6 +171,107 @@
 			"type": "advancement",
 			"data": {
 				"frame": "task"
+			}
+		}
+	},
+	"causality_collapse": {
+		"title": "Causality Collapse",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Killing your attacker removes their entropy damage from your current entropy pool."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "endermanoverhaul:corrupted_pearl"
+			}
+		}
+	},
+	"quantum_suspension": {
+		"title": "Quantum Suspension",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Your entropy pool doesn't tick while Quantum Relativity is active.\nInstead you take `entropyPool / maxHealth * 4` exhaustion per tick.\nYou will at minimum still take the base exhaustion rate."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "endermanoverhaul:icy_pearl"
+			}
+		}
+	},
+	"quantum_predation": {
+		"title": "Quantum Predation",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "You regenerate `entropyDamage / maxHealth * 0.25` you deal to others as hunger while Quantum Relativity is active."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Skills Needed: 2]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "endermanoverhaul:enderman_tooth"
+			}
+		},
+		"required_skills": 2
+	},
+	"lorentz_curve": {
+		"title": "Lorentz Curve",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Quantum relativity does not affect your projectiles."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:arrow"
 			}
 		}
 	},
@@ -163,11 +299,11 @@
 			],
 			{
 				"color": "dark_red",
-				"text": "will clear all of your current entropy.\n\n- Cooldown of 3 minutes."
+				"text": "will clear all of your current entropy.\n\n- Cooldown of 30 seconds."
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -181,6 +317,86 @@
 			"type": "advancement",
 			"data": {
 				"frame": "challenge"
+			}
+		}
+	},
+	"quantum_echo": {
+		"title": "Quantum Echo",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "Heat death causes all enemies that you currently have tagged with entropy to take their lifetime entropy damage back into their entropy pool."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Skills Needed: 2]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:echo_shard"
+			}
+		},
+		"required_skills": 2
+	},
+	"quantum_phoenix": {
+		"title": "Quantum Phoenix",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_red",
+				"text": "If heat death is not on cooldown, auto-proc heat death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "cataclysm:flame_eye"
+			}
+		}
+	},
+	"quantum_tunneling": {
+		"title": "Quantum Tunneling",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_aqua",
+				"text": "You do not consume ender pearls when using them while Quantum Relativity is active."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:ender_pearl"
 			}
 		}
 	},
@@ -212,7 +428,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 3 points"
+				"text": "\n\n[Cost: 3 points]"
 			}
 		],
 		"cost": 3,
@@ -239,7 +455,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 1 point"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
 		"cost": 1,
@@ -266,7 +482,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -293,7 +509,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -320,7 +536,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 2 points"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
 		"cost": 2,
@@ -351,7 +567,11 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\nCost: 3 points"
+				"text": "\n\n[Cost: 3 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Skills Needed: 2]"
 			}
 		],
 		"cost": 3,

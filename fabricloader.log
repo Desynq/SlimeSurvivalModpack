@@ -1,0 +1,4 @@
+[02:23:29] [WARN] [FabricLoader/Resolution]: Mod resolution failed
+[02:23:29] [INFO] [FabricLoader/Resolution]: Immediate reason: [HARD_DEP_NO_CANDIDATE tickrate 0.5.0-1.21.1 {depends fabric-api @ [>=0.116.1+1.21.1]}, ROOT_FORCELOAD_SINGLE tickrate 0.5.0-1.21.1]
+[02:23:29] [INFO] [FabricLoader/Resolution]: Reason: [HARD_DEP tickrate 0.5.0-1.21.1 {depends fabric-api @ [>=0.116.1+1.21.1]}]
+[02:23:29] [INFO] [FabricLoader/Resolution]: Fix: add [], remove [], replace [[fabric_api 0.115.6+2.1.1+1.21.1] -> add:fabric-api 0.116.1+1.21.1 ([[0.116.1+1.21.1,∞)])]

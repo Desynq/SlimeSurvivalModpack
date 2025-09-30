@@ -34,6 +34,7 @@
 		"../../.probe/packages/generated-package/fuzs.mutantmonsters.world.item.d.ts",
 		"../../.probe/packages/generated-package/java.util.d.ts",
 		"../../.probe/packages/generated-package/java.util.function.d.ts",
+		"../../.probe/packages/generated-package/com.min01.tickrateapi.util.d.ts",
 		"../../.probe/server/generated-server/primitives.d.ts",
 		"../../.probe/server/generated-server/events.d.ts",
 		"../../.probe/server/generated-server/bindings.d.ts",

@@ -47,14 +47,28 @@ namespace FarlanderEvents {
 		return -Math.min(newAbsorptionValue, 0);
 	}
 
-
-	NativeEvents.onEvent($EntityTickEvent$Pre, event => {
-		const entity = event.entity instanceof $LivingEntity ? event.entity : null;
-		if (entity === null) {
-			return;
+	function tickLorentzCurve(entity: Projectile_) {
+		const customTickRate = TickHelper.getCustomTickRate(entity);
+		if ($TickrateUtil["hasTimer(net.minecraft.world.entity.Entity)"](entity)) {
+			if ($TickrateUtil["getTimer(net.minecraft.world.entity.Entity)"](entity).tickrate === customTickRate) return;
 		}
 
-		EntropyHolder.tick(entity, false);
+		if (customTickRate == null) {
+			$TickrateUtil.resetTickrate(entity);
+		}
+		else {
+			$TickrateUtil.setTickrate(entity, customTickRate);
+		}
+	}
+
+	NativeEvents.onEvent($EntityTickEvent$Pre, event => {
+		const entity = event.getEntity();
+		if (entity instanceof $LivingEntity) {
+			EntropyHolder.tick(entity, false);
+		}
+		else if (entity instanceof $Projectile) {
+			tickLorentzCurve(entity);
+		}
 	});
 
 

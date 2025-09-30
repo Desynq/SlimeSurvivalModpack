@@ -147,6 +147,10 @@ SkillDefinition.prototype.rootSkill = function() {
 	this.advancementFrame("goal");
 	this._data.required_points = 2147483647;
 	this.isRoot = true;
+	this.addDescription({
+		"color": "gold",
+		"text": "\n\n[Root Skill]"
+	});
 	return this;
 }
 
@@ -160,17 +164,29 @@ SkillDefinition.prototype.cost = function(cost) {
 	this._data.cost = cost;
 	this.addDescription({
 		"color": "dark_green",
-		"text": `\n\nCost: ${cost} point${cost === 1 ? "" : "s"}`
+		"text": `\n\n[Cost: ${cost} point${cost === 1 ? "" : "s"}]`
 	});
 	return this;
 }
 
 /**
- * @param {integer} amount how many skills connected to the skill are needed to unlock it
+ * @param {integer} amount How many skills connected to the skill are needed to unlock it
  * @returns 
  */
 SkillDefinition.prototype.requiredSkills = function(amount) {
 	this._data.required_skills = amount;
+	this.addDescription({
+		"color": "red",
+		"text": `\n[Skills Needed: ${amount}]`
+	});
+	return this;
+}
+
+SkillDefinition.prototype.flagWIP = function() {
+	this.addDescription({
+		"color": "dark_red",
+		"text": "\n[Work In Progress]"
+	});
 	return this;
 }
 

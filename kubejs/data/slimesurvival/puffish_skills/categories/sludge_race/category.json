@@ -3,7 +3,7 @@
 	"icon": {
 		"type": "item",
 		"data": {
-			"item": "minecraft:slime_ball"
+			"item": "minecraft:music_disc_creator"
 		}
 	},
 	"background": "textures/block/slime_block.png"

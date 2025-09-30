@@ -6,3 +6,7 @@ type ServerLevel_ = import("net.minecraft.server.level.ServerLevel").$ServerLeve
 type Vec3_ = import("net.minecraft.world.phys.Vec3").$Vec3$$Original;
 
 type Level_ = import("net.minecraft.world.level.Level").$Level$$Original;
+
+type Projectile_ = import("net.minecraft.world.entity.projectile.Projectile").$Projectile$$Original;
+
+type AABB_ = import("net.minecraft.world.phys.AABB").$AABB$$Original;
