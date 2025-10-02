@@ -50,6 +50,17 @@ class Summonable {
 
 		// also set current health field
 		this.nbt.Health = health;
+
+		return this;
+	}
+
+	public setBoss(bossId: string): this {
+		if (!Array.isArray(this.nbt.tags)) {
+			this.nbt.Tags = [];
+		}
+
+		this.nbt.Tags.push(`boss.${bossId}`);
+
 		return this;
 	}
 
@@ -150,4 +161,17 @@ namespace Summonables {
 		CustomName: '{"color":"dark_green","text":"Slimified Skeleton"}'
 	});
 	SLIMIFIED_SKELETON.setMaxHealth(40.0);
+
+	export const QUEEN_BEE = Summonable.create("queen_bee", "minecraft:bee", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.scale",
+				base: 3
+			}
+		],
+		CustomName: '{"color":"yellow","text":"The Queen Bee"}'
+	})
+		.setMaxHealth(1000.0)
+		.setBoss("queen_bee");
 }

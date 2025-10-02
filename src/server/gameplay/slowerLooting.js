@@ -1,7 +1,4 @@
-/** @type {typeof import("net.minecraft.world.entity.Mob").$Mob } */
-let $Mob = Java.loadClass("net.minecraft.world.entity.Mob")
-/** @type {typeof import("net.minecraft.world.entity.monster.Monster").$Monster } */
-let $Monster = Java.loadClass("net.minecraft.world.entity.monster.Monster")
+
 /** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock").$PlayerInteractEvent$RightClickBlock} */
 let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock");
 
@@ -12,18 +9,10 @@ let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforg
 	 */
 	function isBeingTargeted(player) {
 		const aabb = player.getBoundingBox().inflate(16, 16, 16);
-		// @ts-ignore
-		return player.level.getEntitiesOfClass($Mob, aabb, mob => isTargeting(mob, player)).size() > 0;
-	}
-
-	/**
-	 * 
-	 * @param {import("net.minecraft.world.entity.Mob").$Mob$$Original} mob 
-	 * @param {ServerPlayer_} player 
-	 * @returns 
-	 */
-	function isTargeting(mob, player) {
-		return mob.getTarget() == player;
+		return player.level
+			// @ts-ignore
+			.getEntitiesOfClass($Mob, aabb, mob => LivingEntityHelper.isBeingTargetedBy(player, mob))
+			.size() > 0;
 	}
 
 	/**

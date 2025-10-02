@@ -15,11 +15,11 @@ const HeatDeathAbility = new (class extends BaseAbility {
 		) { }
 
 		public abilityEnabled(player: ServerPlayer_): void {
-			playsoundAll(player.server, "minecraft:entity.wither.death", "master", 2, 2);
+			playsoundAll(player.server, "entity.wither.death", "master", 1, 2);
 		}
 
 		public alertCooldownOver(player: ServerPlayer_): void {
-			playsound(player.level, player.position(), "minecraft:item.firecharge.use", "master", 2, 0.5);
+			playsound(player.level, player.position(), "item.trident.return", "master", 2, 0.5);
 		}
 
 		public displayCooldown(player: ServerPlayer_): void {
@@ -40,7 +40,15 @@ const HeatDeathAbility = new (class extends BaseAbility {
 	protected onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
 		this.cooldownController.update(player);
+
 		EntropyHolder.get(player)?.resetEntropy();
+		this.quantumCleansing(player);
+	}
+
+	private quantumCleansing(player: ServerPlayer_): void {
+		if (!SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_CLEANSING)) return;
+
+		LivingEntityHelper.removeHarmfulEffects(player);
 	}
 
 	public onPress(player: ServerPlayer_): boolean {

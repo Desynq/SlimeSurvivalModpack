@@ -104,7 +104,7 @@ class TickRateManager {
 	static {
 		NativeEvents.onEvent($EntityTickEvent$Pre, event => {
 			const entity = event.getEntity();
-			const tickRate = this.getTickRate(entity);
+			const tickRate = TickRateManager.getTickRate(entity);
 			if ($TickrateUtil["hasTimer(net.minecraft.world.entity.Entity)"](entity)) {
 				if ($TickrateUtil["getTimer(net.minecraft.world.entity.Entity)"](entity).tickrate === tickRate) return;
 			}

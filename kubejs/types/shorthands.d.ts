@@ -10,3 +10,9 @@ type Level_ = import("net.minecraft.world.level.Level").$Level$$Original;
 type Projectile_ = import("net.minecraft.world.entity.projectile.Projectile").$Projectile$$Original;
 
 type AABB_ = import("net.minecraft.world.phys.AABB").$AABB$$Original;
+
+type Mob_ = import("net.minecraft.world.entity.Mob").$Mob$$Original;
+
+type Bee_ = import("net.minecraft.world.entity.animal.Bee").$Bee$$Original;
+
+type CustomBossEvent_ = import("net.minecraft.server.bossevents.CustomBossEvent").$CustomBossEvent$$Original;

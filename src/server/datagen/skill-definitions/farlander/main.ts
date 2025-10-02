@@ -29,7 +29,7 @@ class FarlanderSkills {
 		})
 		.addDescription({
 			"color": "dark_purple",
-			"text": "\n\nEntropy damage dealt to enemies decays 10% per tick."
+			"text": "\n\nEntropy damage dealt to enemies decays 10% per game tick."
 		})
 		.addDescription({
 			"color": "dark_purple",
@@ -58,7 +58,6 @@ class FarlanderSkills {
 			"text": "100% of damage dealt to enemies is converted to entropy damage."
 		})
 		.cost(4)
-		.flagWIP()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -96,6 +95,7 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	// TODO:
 	public static readonly QUANTUM_SUSPENSION = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_suspension")
 		.itemIcon("endermanoverhaul:icy_pearl")
 		.addDescription({
@@ -109,6 +109,7 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	// TODO:
 	public static readonly QUANTUM_PREDATION = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_predation")
 		.itemIcon("endermanoverhaul:enderman_tooth")
 		.addDescription({
@@ -125,7 +126,7 @@ class FarlanderSkills {
 		.itemIcon("minecraft:arrow")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "Quantum relativity does not affect your projectiles."
+			"text": "Quantum Relativity does not affect your projectiles."
 		})
 		.cost(1)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
@@ -150,18 +151,20 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	// TODO:
 	public static readonly QUANTUM_ECHO = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_echo")
 		.itemIcon("minecraft:echo_shard")
 		.addDescription({
 			"color": "dark_red",
 			"text": "Heat death causes all enemies that you currently have tagged with entropy to take their lifetime entropy damage back into their entropy pool."
 		})
-		.cost(2)
+		.cost(4)
 		.requiredSkills(2)
 		.flagWIP()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	// TODO:
 	public static readonly QUANTUM_PHOENIX = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_phoenix")
 		.itemIcon("cataclysm:flame_eye")
 		.addDescription({
@@ -173,6 +176,7 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	// TODO:
 	public static readonly QUANTUM_TUNNELING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_tunneling")
 		.itemIcon("minecraft:ender_pearl")
 		.addDescription({
@@ -181,6 +185,48 @@ class FarlanderSkills {
 		})
 		.cost(1)
 		.flagWIP()
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
+
+	public static readonly CASUAL_TRANSFERENCE = new SkillDefinition(FARLANDER_CATEGORY_ID, "casual_transference")
+		.itemIcon("minecraft:tnt_minecart")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to you that currently has entropy from you."
+		})
+		.cost(2)
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
+
+	// TODO:
+	public static readonly COHERENCE_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "coherence_1")
+		.effectIcon("minecraft:slowness")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Entropy you deal to others now decays every 5 game ticks with a new median damage of 1.5x."
+		})
+		.cost(2)
+		.flagWIP()
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
+
+	public static readonly OBSERVER_EFFECT = new SkillDefinition(FARLANDER_CATEGORY_ID, "observer_effect")
+		.itemIcon("minecraft:ender_eye")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Casual Transference defaults to the nearest mob currently targeting you if its initial search condition fails."
+		})
+		.cost(4)
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
+
+	public static readonly QUANTUM_CLEANSING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_cleansing")
+		.itemIcon("minecraft:milk_bucket")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Heat Death clears all negative effects on activation."
+		})
+		.cost(2)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -202,29 +248,11 @@ class FarlanderSkills {
 				+ "\n- Can be cancelled early."
 				+ `\n- Maximum duration of ${FarlanderSkillData.QUANTUM_RELATIVITY_DURATION_TICK} ticks.`
 				+ `\n- Cooldown of ${FarlanderSkillData.QUANTUM_RELATIVITY_COOLDOWN_SECONDS} seconds.`
+				+ `\n- Drains ${FarlanderSkillData.QUANTUM_RELATIVITY_EXHAUSTION_PER_TICK * 0.25} hunger per tick.`
+				+ `\n- Requires > ${FarlanderSkillData.QUANTUM_RELATIVITY_HUNGER_THRESHOLD} hunger to activate.`
+				+ `\n- Automatically deactivates when hunger <= ${FarlanderSkillData.QUANTUM_RELATIVITY_HUNGER_THRESHOLD}.`
 		})
 		.cost(3)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
-		.register(this.skills);
-
-
-	public static readonly TIME_DILATION_1 = this.createTimeDilationSkill(1, 1);
-	public static readonly TIME_DILATION_2 = this.createTimeDilationSkill(2, 2);
-	public static readonly TIME_DILATION_3 = this.createTimeDilationSkill(3, 2);
-	public static readonly TIME_DILATION_4 = this.createTimeDilationSkill(4, 2);
-
-	public static readonly EVENT_HORIZON = new SkillDefinition(FARLANDER_CATEGORY_ID, "event_horizon")
-		.itemIcon("endermanoverhaul:summoner_pearl")
-		.addDescription({
-			"color": "dark_aqua",
-			"text": "Enemies that die from your entropy damage while Quantum Relativity is active heal you based on how much entropy damage they took over their lifespan."
-		})
-		.addDescription({
-			"color": "dark_red",
-			"text": "\n\n- Requires Quantum Relativity and Quantum Rending."
-		})
-		.cost(3)
-		.requiredSkills(2)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -242,4 +270,26 @@ class FarlanderSkills {
 			.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 			.register(this.skills);
 	}
+
+	public static readonly TIME_DILATION_1 = this.createTimeDilationSkill(1, 1);
+	public static readonly TIME_DILATION_2 = this.createTimeDilationSkill(2, 2);
+	public static readonly TIME_DILATION_3 = this.createTimeDilationSkill(3, 2);
+	public static readonly TIME_DILATION_4 = this.createTimeDilationSkill(4, 2);
+
+
+
+	public static readonly EVENT_HORIZON = new SkillDefinition(FARLANDER_CATEGORY_ID, "event_horizon")
+		.itemIcon("endermanoverhaul:summoner_pearl")
+		.addDescription({
+			"color": "dark_aqua",
+			"text": "Enemies that die from your entropy damage while Quantum Relativity is active heal you based on how much entropy damage they took over their lifespan."
+		})
+		.addDescription({
+			"color": "dark_red",
+			"text": "\n\n- Requires Quantum Relativity and Quantum Rending."
+		})
+		.cost(3)
+		.requiredSkills(2)
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
 }

@@ -35,15 +35,15 @@ const QuantumRelativityAbility = new (class extends ToggleableAbility {
 		) { }
 
 		public abilityEnabled(player: ServerPlayer_): void {
-			playsoundAll(player.server, "minecraft:entity.zombie_villager.cure", "master", 2, 1);
+			playsoundAll(player.server, "minecraft:entity.zombie_villager.cure", "ambient", 2, 1);
 		}
 
 		public abilityDisabled(player: ServerPlayer_): void {
-			playsoundAll(player.server, "minecraft:entity.zombie_villager.converted", "master", 2, 2);
+			playsoundAll(player.server, "minecraft:entity.zombie_villager.converted", "ambient", 2, 2);
 		}
 
 		public alertCooldownOver(player: ServerPlayer_): void {
-			playsound(player.level, player.position(), "minecraft:block.beacon.power_select", "master", 2, 2);
+			playsound(player.level, player.position(), "minecraft:block.beacon.power_select", "player", 1, 2);
 		}
 
 		public displayCooldown(player: ServerPlayer_): void {

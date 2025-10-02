@@ -1,6 +1,33 @@
-interface EntropyEntry {
-	damage: number;
-	uuid?: string;
+
+class EntropyEntry {
+	private lastTicked: long = -Number.MAX_VALUE;
+
+	public constructor(
+		public damage: number,
+		public attackerUUID?: string
+	) { }
+
+	public getAttacker(server: MinecraftServer_): Entity_ | null {
+		if (!this.attackerUUID) return null;
+		return server.getEntityByUUID(this.attackerUUID);
+	}
+
+	public getInterval(owner: LivingEntity_): integer {
+		const attacker = this.getAttacker(owner.server);
+		return EntropyHelper.getInterval(owner);
+	}
+
+	public canTick(owner: LivingEntity_): boolean {
+		return TickHelper.getGameTime(owner.server) - this.lastTicked >= this.getInterval(owner);
+	}
+
+	public tryTick(owner: LivingEntity_): boolean {
+		if (this.canTick(owner)) {
+			this.lastTicked = TickHelper.getGameTime(owner.server);
+			return true;
+		}
+		return false;
+	}
 }
 
 class EntropyHolder {
@@ -14,6 +41,10 @@ class EntropyHolder {
 		let holder = EntropyHolder.get(entity);
 		return holder !== undefined ? holder : new EntropyHolder(entity.stringUUID);
 	};
+
+	public static delete(entity: LivingEntity_): void {
+		delete this.holders[entity.stringUUID];
+	}
 
 	public static tick(entity: LivingEntity_, createNew: boolean) {
 		let holder = EntropyHolder.get(entity);
@@ -38,14 +69,14 @@ class EntropyHolder {
 	}
 
 
-	public pushEntropyEntry(damage: float, attacker: Entity_) {
+	public pushEntropyEntry(damage: float, attacker?: Entity_) {
 		if (damage <= 0) {
 			return;
 		}
-		this.entropyEntries.push({
-			damage: damage,
-			uuid: attacker != undefined ? attacker.stringUUID : undefined
-		});
+		this.entropyEntries.push(new EntropyEntry(
+			damage,
+			attacker != undefined ? attacker.stringUUID : undefined
+		));
 	};
 
 	public getTotalEntropy() {
@@ -56,19 +87,47 @@ class EntropyHolder {
 		this.entropyEntries.length = 0;
 	};
 
+	public hasEntropyFrom(attacker: LivingEntity_): boolean {
+		return this.entropyEntries.some(entry => entry.getAttacker(attacker.server) === attacker);
+	}
 
+	/**
+	 * Transfers the attacker's entropy from this holder onto the target entity.
+	 * Original holder loses the attacker's entropy as a result.
+	 */
+	public transferAttackerEntropy(attacker: LivingEntity_, target: LivingEntity_) {
+		const targetHolder = EntropyHolder.getOrCreate(target);
+
+		let transferredEntries: EntropyEntry[] = [];
+		ListHelper.forEachRight(this.entropyEntries, (entry) => {
+			if (entry.getAttacker(attacker.server) !== attacker) return "continue";
+
+			const clone = new EntropyEntry(entry.damage, entry.attackerUUID);
+			transferredEntries.push(clone);
+			targetHolder.entropyEntries.push(clone);
+			return "splice";
+		});
+	}
+
+
+	/**
+	 * Can mutate the entries list since it can possibly call EntityEvents.death() which may wipe the entries list as a part of its GC routine.
+	 */
 	private calculateAndDealDamage(entity: LivingEntity_, amount: float, entry: EntropyEntry) {
 		if (entity.health <= 0) {
 			return;
 		}
 		let uncertaintyDamage;
-		let attacker = entry.uuid == undefined ? null : entity.server.getEntityByUUID(entry.uuid);
-		if (attacker != null) {
+		let attacker = entry.getAttacker(entity.server);
+		if (attacker) {
 			if (!EntropyHelper.isFromQuantumAttacker(entity, attacker)) {
 				uncertaintyDamage = Math.random() * 2 * amount;
 			}
 			else {
-				uncertaintyDamage = MathHelper.medianBiasedRandom(0, 2.0, 1.25) * amount;
+				let median = SkillHelper.hasSkill(attacker, FarlanderSkills.COHERENCE_1)
+					? 1.5
+					: 1.25;
+				uncertaintyDamage = MathHelper.medianBiasedRandom(0, 2.0, median) * amount;
 			}
 		}
 		else {
@@ -108,11 +167,6 @@ class EntropyHolder {
 			return;
 		}
 
-		let entropyInterval = EntropyHelper.getInterval(holder);
-		if (TickHelper.getGameTime(holder.server) - holder.persistentData.getLong("last_entropy_tick") < entropyInterval) {
-			return;
-		}
-
 		this.tickEntries(holder);
 
 		CommandHelper.runCommandSilent(holder.server,
@@ -129,16 +183,17 @@ class EntropyHolder {
 		holder.persistentData.putLong("last_entropy_tick", TickHelper.getGameTime(holder.server));
 	};
 
-	private tickEntries(holder: LivingEntity_) {
-		// walk backwards to avoid skipping entries when splicing off entries
-		for (let i = this.entropyEntries.length - 1; i >= 0; i--) {
-			let entry = this.entropyEntries[i];
-			let entropyDecay = this.decayEntry(holder, entry, i);
-			this.calculateAndDealDamage(holder, entropyDecay, entry);
-		}
+	private tickEntries(owner: LivingEntity_) {
+		ListHelper.forEachRight(this.entropyEntries, (entry, i, entries) => {
+			if (entries.length === 0) return "break"; // handles reentrance if the player died from an entropy entry being ticked
+			if (!entry.tryTick(owner)) return "continue";
+
+			const entropyDecay = this.decayEntry(owner, entry, i);
+			this.calculateAndDealDamage(owner, entropyDecay, entry);
+		});
 	};
 
-	private tryPlayFarlanderHurtSound(player: ServerPlayer_) {
+	private tryPlayFarlanderHurtSound(player: ServerPlayer_): void {
 		if (!TickHelper.tryUpdateTimestamp(player, "last_entropy_hurt_sound_tick", 5)) {
 			return;
 		}
@@ -146,11 +201,11 @@ class EntropyHolder {
 		playsound(player.level, player.position(), "minecraft:entity.enderman.hurt", "record", 1, 1.25);
 	};
 
-	private tryPlayFarlanderFullDecaySound(player: ServerPlayer_) {
+	private tryPlayFarlanderFullDecaySound(player: ServerPlayer_): void {
 		playsound(player.level, player.position(), "minecraft:entity.enderman.death", "record", 1, 2);
 	};
 
-	private decayEntry(entity: LivingEntity_, entry: EntropyEntry, index: integer) {
+	private decayEntry(entity: LivingEntity_, entry: EntropyEntry, index: integer): number {
 		if (entry.damage > 0.5) {
 			let entropyDecay = entry.damage * EntropyHelper.getDecayPercentage(entity);
 			entry.damage -= entropyDecay;

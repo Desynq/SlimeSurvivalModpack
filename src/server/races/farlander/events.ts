@@ -82,13 +82,19 @@ namespace FarlanderEvents {
 	});
 
 
-	EntityEvents.death(event => {
-		if (event.getSource().getType() !== "slimesurvival.entropy") return;
-		const victim = event.getEntity();
 
-		const attacker = event.getSource().getActual();
-		if (attacker instanceof $ServerPlayer) {
-			eventHorizon(victim, attacker);
+	EntityEvents.death(event => {
+		const victim = event.getEntity();
+		if (event.getSource().getType() === "slimesurvival.entropy") {
+			const attacker = event.getSource().getActual();
+			if (attacker instanceof $ServerPlayer) {
+				eventHorizon(victim, attacker);
+				casualTransference(victim, attacker);
+			}
+		}
+
+		if (!(victim instanceof $ServerPlayer)) {
+			EntropyHolder.delete(victim);
 		}
 	});
 
@@ -98,5 +104,41 @@ namespace FarlanderEvents {
 
 		const totalEntropyDamage = EntropyHelper.getLifetimeEntropyDamage(victim);
 		attacker.health += MathHelper.clamped(0, attacker.maxHealth, attacker.health + totalEntropyDamage);
+	}
+
+	function getNearestDecayingEntity(attacker: ServerPlayer_, distance: double): LivingEntity_ | null {
+		const conditions = $TargetingConditions.forNonCombat().selector(e => EntropyHolder.get(e)?.hasEntropyFrom(attacker) ?? false);
+		const aabb = attacker.getBoundingBox().inflate(distance);
+		return attacker.level.getNearestEntity($LivingEntity as any, conditions, attacker, attacker.x, attacker.y, attacker.z, aabb as any);
+	}
+
+	function getNearestAggressiveEntity(attacker: ServerPlayer_, distance: double): Mob_ | null {
+		const conditions = $TargetingConditions.forNonCombat().selector((mob: LivingEntity_) => mob instanceof $Mob && LivingEntityHelper.isBeingTargetedBy(attacker, mob));
+		const aabb = attacker.getBoundingBox().inflate(distance);
+		return attacker.level.getNearestEntity($Mob as any, conditions, attacker, attacker.x, attacker.y, attacker.z, aabb as any);
+	}
+
+	function getTransferenceTarget(attacker: ServerPlayer_): LivingEntity_ | null {
+		let target: LivingEntity_ | Mob_ | null = getNearestDecayingEntity(attacker, 16);
+		if (target) return target;
+
+		if (SkillHelper.hasSkill(attacker, FarlanderSkills.OBSERVER_EFFECT)) {
+			target = getNearestAggressiveEntity(attacker, 16);
+			if (target) return target as any;
+		}
+
+		return null;
+	}
+
+	function casualTransference(victim: LivingEntity_, attacker: ServerPlayer_) {
+		if (!SkillHelper.hasSkill(attacker, FarlanderSkills.CASUAL_TRANSFERENCE)) return;
+
+		const victimEntropy = EntropyHolder.get(victim);
+		if (!victimEntropy) return;
+
+		let target = getTransferenceTarget(attacker);
+		if (!target) return;
+
+		victimEntropy.transferAttackerEntropy(attacker, target);
 	}
 }

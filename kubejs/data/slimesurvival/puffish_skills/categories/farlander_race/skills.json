@@ -67,7 +67,7 @@
 	},
 	"9xh6zujl18y1wm7k": {
 		"definition": "event_horizon",
-		"x": -64,
+		"x": -96,
 		"y": -96,
 		"root": false
 	},
@@ -91,7 +91,7 @@
 	},
 	"oa23ifaepyzy2uni": {
 		"definition": "quantum_predation",
-		"x": -96,
+		"x": -128,
 		"y": -64,
 		"root": false
 	},
@@ -117,6 +117,30 @@
 		"definition": "quantum_rending_3",
 		"x": 0,
 		"y": -192,
+		"root": false
+	},
+	"bukpl1kphcr20yls": {
+		"definition": "casual_transference",
+		"x": 64,
+		"y": -128,
+		"root": false
+	},
+	"iutac0xvbdhg440k": {
+		"definition": "coherence_1",
+		"x": -32,
+		"y": -128,
+		"root": false
+	},
+	"07xrctgsqo3i8cs2": {
+		"definition": "observer_effect",
+		"x": 64,
+		"y": -192,
+		"root": false
+	},
+	"2wkhb72qfw2nbaad": {
+		"definition": "quantum_cleansing",
+		"x": 128,
+		"y": 0,
 		"root": false
 	}
 }

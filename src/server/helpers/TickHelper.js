@@ -91,6 +91,16 @@ TickHelper.hasTimestampElapsed = function(entity, id, interval) {
  * @param {string} id 
  * @param {long} interval 
  */
+TickHelper.getTimestampRemaining = function(entity, id, interval) {
+	return interval - TickHelper.getTimestampDiff(entity, id);
+}
+
+/**
+ * 
+ * @param {Entity_} entity 
+ * @param {string} id 
+ * @param {long} interval 
+ */
 TickHelper.hasTimestampJustElapsed = function(entity, id, interval) {
 	return TickHelper.getTimestampDiff(entity, id) === interval;
 }

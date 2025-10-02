@@ -37,7 +37,7 @@
 			},
 			{
 				"color": "dark_purple",
-				"text": "\n\nEntropy damage dealt to enemies decays 10% per tick."
+				"text": "\n\nEntropy damage dealt to enemies decays 10% per game tick."
 			},
 			{
 				"color": "dark_purple",
@@ -100,10 +100,6 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 4 points]"
-			},
-			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
 			}
 		],
 		"cost": 4,
@@ -260,7 +256,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Quantum relativity does not affect your projectiles."
+				"text": "Quantum Relativity does not affect your projectiles."
 			},
 			{
 				"color": "dark_green",
@@ -330,7 +326,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
+				"text": "\n\n[Cost: 4 points]"
 			},
 			{
 				"color": "red",
@@ -341,7 +337,7 @@
 				"text": "\n[Work In Progress]"
 			}
 		],
-		"cost": 2,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -400,6 +396,94 @@
 			}
 		}
 	},
+	"casual_transference": {
+		"title": "Casual Transference",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to you that currently has entropy from you."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:tnt_minecart"
+			}
+		}
+	},
+	"coherence_1": {
+		"title": "Coherence I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Entropy you deal to others now decays every 5 game ticks with a new median damage of 1.5x."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "dark_red",
+				"text": "\n[Work In Progress]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:slowness"
+			}
+		}
+	},
+	"observer_effect": {
+		"title": "Observer Effect",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Casual Transference defaults to the nearest mob currently targeting you if its initial search condition fails."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:ender_eye"
+			}
+		}
+	},
+	"quantum_cleansing": {
+		"title": "Quantum Cleansing",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Heat Death clears all negative effects on activation."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:milk_bucket"
+			}
+		}
+	},
 	"quantum_relativity": {
 		"title": "Quantum Relativity",
 		"rewards": [],
@@ -424,7 +508,7 @@
 			],
 			{
 				"color": "dark_purple",
-				"text": "will temporarily lower tick rate to 10 ticks per second.\n- Can be cancelled early.\n- Maximum duration of 10 ticks.\n- Cooldown of 5 seconds."
+				"text": "will temporarily lower tick rate to 10 ticks per second.\n- Can be cancelled early.\n- Maximum duration of 10 ticks.\n- Cooldown of 5 seconds.\n- Drains 0.25 hunger per tick.\n- Requires > 6 hunger to activate.\n- Automatically deactivates when hunger <= 6."
 			},
 			{
 				"color": "dark_green",

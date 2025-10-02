@@ -3,7 +3,6 @@
 
 namespace RepairLeather {
 
-
 	function repair(stack: ItemStack_, materialCost: integer) {
 		const currentDamage = stack.getDamageValue();
 		const maxDamage = stack.getMaxDamage();
@@ -12,20 +11,6 @@ namespace RepairLeather {
 	}
 
 	function createRepairRecipe(id: string, materialId: string, materialCost: integer) {
-		// ServerEvents.recipes(event => {
-		// 	// @ts-ignore
-		// 	event.shapeless(id, [id, ingredientId]);
-		// });
-		// ItemEvents.crafted(id, event => {
-		// 	const resultStack = event.getItem();
-		// 	const ingredients = event.getInventory().getAllItems();
-		// 	ingredients.forEach(ingredientStack => {
-		// 		if (ingredientStack.id !== id) return;
-
-		// 		ItemHelper.cloneComponents(ingredientStack, resultStack);
-		// 		repair(resultStack, ingredientCost);
-		// 	});
-		// });
 		const modifyResultId = id.split(":")[1] + "_repair";
 
 		ServerEvents.recipes(event => {
@@ -41,8 +26,13 @@ namespace RepairLeather {
 		});
 	}
 
-	createRepairRecipe("minecraft:leather_helmet", "minecraft:leather", 5);
-	createRepairRecipe("minecraft:leather_chestplate", "minecraft:leather", 8);
-	createRepairRecipe("minecraft:leather_leggings", "minecraft:leather", 7);
-	createRepairRecipe("minecraft:leather_boots", "minecraft:leather", 4);
+	function createArmorRepairRecipe(partId: string, materialId: string, materialCost: [integer, integer, integer, integer]) {
+		const parts = ["_helmet", "_chestplate", "_leggings", "_boots"];
+		for (let i = 0; i < parts.length; i++) {
+			createRepairRecipe(partId + parts[i], materialId, materialCost[i]);
+		}
+	}
+
+	createArmorRepairRecipe("minecraft:leather", "minecraft:leather", [3, 6, 6, 3]);
+	createArmorRepairRecipe("minecraft:netherite", "minecraft:netherite_scrap", [2, 4, 4, 2]);
 }

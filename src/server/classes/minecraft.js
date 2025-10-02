@@ -76,3 +76,17 @@ const $Projectile = Java.loadClass("net.minecraft.world.entity.projectile.Projec
 
 /** @type {typeof import("net.minecraft.world.phys.AABB").$AABB} */
 const $AABB = Java.loadClass("net.minecraft.world.phys.AABB");
+
+/** @type {typeof import("net.minecraft.world.entity.Mob").$Mob } */
+const $Mob = Java.loadClass("net.minecraft.world.entity.Mob")
+/** @type {typeof import("net.minecraft.world.entity.monster.Monster").$Monster } */
+const $Monster = Java.loadClass("net.minecraft.world.entity.monster.Monster")
+
+/** @type {typeof import("net.minecraft.world.entity.animal.Bee").$Bee} */
+const $Bee = Java.loadClass("net.minecraft.world.entity.animal.Bee")
+
+/** @type {typeof import("net.minecraft.server.bossevents.CustomBossEvent").$CustomBossEvent} */
+const $CustomBossEvent = Java.loadClass("net.minecraft.server.bossevents.CustomBossEvent")
+
+/** @type {typeof import("net.minecraft.world.entity.EntityType").$EntityType } */
+const $EntityType = Java.loadClass("net.minecraft.world.entity.EntityType")

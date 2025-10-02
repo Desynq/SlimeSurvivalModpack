@@ -65,3 +65,14 @@ MathHelper.clamped = function(min, max, value) {
 	if (value > max) return max;
 	return value;
 }
+
+/**
+ * 
+ * @param {number} min 
+ * @param {number} max 
+ * @param {number} factor 
+ * @returns 
+ */
+MathHelper.lerp = function(min, max, factor) {
+	return min + (max - min) * factor;
+}
