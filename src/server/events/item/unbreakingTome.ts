@@ -63,14 +63,8 @@ namespace UnbreakingTome {
 	}
 
 	function tickLesser(tome: ItemEntity, target: ItemEntity) {
-		let targetEnchants = target.getItem()?.getComponents()?.get($DataComponents.ENCHANTMENTS);
-		if (!targetEnchants) return;
-
-		const perchanceMending = tome.level.registryAccess().registryOrThrow($Registries.ENCHANTMENT).getHolder("minecraft:mending");
-		if (perchanceMending.isEmpty()) return;
-
-		const actualMending = perchanceMending.get();
-		if (targetEnchants.getLevel(actualMending) <= 0) return;
+		const mendingLevel = StackHelper.getEnchantmentLevel(tome.server, target.getItem(), "minecraft:mending");
+		if (mendingLevel === null || mendingLevel <= 0) return;
 
 		setItemUnbreakable(target.item);
 		executeAnimation(tome, target);

@@ -1,6 +1,6 @@
 
 
-namespace ItemHelper {
+namespace StackHelper {
 
 	export function isCustomItem(stack: ItemStack_, id: string) {
 		const components = stack.getComponents();
@@ -42,5 +42,18 @@ namespace ItemHelper {
 			// @ts-ignore
 			targetStack.set(compType, upgradeValue);
 		});
+	}
+
+	/**
+	 * @returns `null` if the enchantment does not exist on the item or the item does not have enchantments.
+	 * @returns 0-255 otherwise.
+	 */
+	export function getEnchantmentLevel(server: MinecraftServer_, stack: ItemStack_, id: string): integer | null {
+		let stackEnchants = stack.getComponents()?.get($DataComponents.ENCHANTMENTS);
+		if (!stackEnchants) return null;
+
+		const maybeEnchantment = server.registryAccess().registryOrThrow($Registries.ENCHANTMENT).getHolder(id);
+		if (maybeEnchantment.isEmpty()) return null;
+		return stackEnchants.getLevel(maybeEnchantment.get());
 	}
 }
