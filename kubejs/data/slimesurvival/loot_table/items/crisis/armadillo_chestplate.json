@@ -1,0 +1,72 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:leather_chestplate",
+					"functions": [
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:max_damage": 812,
+								"minecraft:attribute_modifiers": [
+									{
+										"type": "minecraft:generic.armor",
+										"id": "armadillo",
+										"amount": 10,
+										"operation": "add_value",
+										"slot": "armor",
+										"display": {
+											"type": "default"
+										}
+									},
+									{
+										"type": "minecraft:generic.armor_toughness",
+										"id": "armadillo",
+										"amount": 4,
+										"operation": "add_value",
+										"slot": "armor",
+										"display": {
+											"type": "default"
+										}
+									},
+									{
+										"type": "minecraft:generic.knockback_resistance",
+										"id": "armadillo",
+										"amount": 0.15,
+										"operation": "add_multiplied_base",
+										"slot": "armor"
+									}
+								],
+								"minecraft:dyed_color": 14459840
+							}
+						},
+						{
+							"function": "minecraft:set_name",
+							"entity": "this",
+							"name": {
+								"text": "Armadillo Chestplate",
+								"color": "light_purple",
+								"bold": false,
+								"italic": false
+							},
+							"target": "custom_name"
+						},
+						{
+							"function": "minecraft:set_custom_data",
+							"tag": {
+								"id": "armadillo_chest"
+							},
+							"conditions": []
+						}
+					],
+					"conditions": []
+				}
+			],
+			"functions": []
+		}
+	],
+	"functions": []
+}
