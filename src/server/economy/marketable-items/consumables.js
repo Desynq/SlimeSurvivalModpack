@@ -22,3 +22,7 @@ new MarketableItem("unbreaking_tome", "slimesurvival:unbreaking_tome")
 new MarketableItem("totem", "minecraft:totem_of_undying")
 	.setSellPrice(500.00)
 	.register();
+
+new MarketableItem("golden_carrot", "minecraft:golden_carrot")
+	.setSellPrice(20.00)
+	.register();
