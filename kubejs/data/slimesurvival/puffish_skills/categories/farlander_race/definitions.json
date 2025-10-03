@@ -181,6 +181,27 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "endermanoverhaul:corrupted_pearl"
+			}
+		}
+	},
+	"causality_collapse_2": {
+		"title": "Causality Collapse II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Killing your attacker also removes any negative effects obtained from them."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
 			},
 			{
 				"color": "yellow",
@@ -191,7 +212,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "endermanoverhaul:corrupted_pearl"
+				"item": "splash_milk:lingering_milk_bottle"
 			}
 		}
 	},

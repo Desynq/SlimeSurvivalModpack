@@ -82,29 +82,50 @@ namespace FarlanderEvents {
 	});
 
 
+	function isEntropyDeath(source: DamageSource_): boolean {
+		return source.getType() === "slimesurvival.entropy";
+	}
 
 	EntityEvents.death(event => {
-		const victim = event.getEntity();
-		if (event.getSource().getType() === "slimesurvival.entropy") {
-			const attacker = event.getSource().getActual();
-			if (attacker instanceof $ServerPlayer) {
-				eventHorizon(victim, attacker);
-				casualTransference(victim, attacker);
+		const deadEntity = event.getEntity();
+		const killer = event.getSource().getActual();
+
+		if (killer instanceof $ServerPlayer) {
+			if (isEntropyDeath(event.source)) {
+				tryEventHorizon(deadEntity, killer);
 			}
+
+			tryCasualTransference(deadEntity, killer);
+			tryCausalityCollapse(deadEntity, killer);
 		}
 
-		if (!(victim instanceof $ServerPlayer)) {
-			EntropyHolder.delete(victim);
+		if (!(deadEntity instanceof $ServerPlayer)) {
+			EntropyHolder.delete(deadEntity);
 		}
 	});
 
-	function eventHorizon(victim: LivingEntity_, attacker: ServerPlayer_) {
+
+	/**
+	 * Attacker loses entropy from the victim
+	 */
+	function tryCausalityCollapse(deadEntity: LivingEntity_, killer: ServerPlayer_) {
+		if (!SkillHelper.hasSkill(killer, FarlanderSkills.CAUSALITY_COLLAPSE)) return;
+
+		const killerEntropy = EntropyHolder.get(killer);
+		if (!killerEntropy) return;
+
+		killerEntropy.removeEntriesFromAttacker(deadEntity);
+	}
+
+	function tryEventHorizon(victim: LivingEntity_, attacker: ServerPlayer_) {
 		if (!SkillHelper.hasSkill(attacker, FarlanderSkills.EVENT_HORIZON)) return;
 		if (!QuantumRelativityAbility.isActive(attacker)) return;
 
 		const totalEntropyDamage = EntropyHelper.getLifetimeEntropyDamage(victim);
 		attacker.health += MathHelper.clamped(0, attacker.maxHealth, attacker.health + totalEntropyDamage);
 	}
+
+
 
 	function getNearestDecayingEntity(attacker: ServerPlayer_, distance: double): LivingEntity_ | null {
 		const conditions = $TargetingConditions.forNonCombat().selector(e => EntropyHolder.get(e)?.hasEntropyFrom(attacker) ?? false);
@@ -130,7 +151,7 @@ namespace FarlanderEvents {
 		return null;
 	}
 
-	function casualTransference(victim: LivingEntity_, attacker: ServerPlayer_) {
+	function tryCasualTransference(victim: LivingEntity_, attacker: ServerPlayer_) {
 		if (!SkillHelper.hasSkill(attacker, FarlanderSkills.CASUAL_TRANSFERENCE)) return;
 
 		const victimEntropy = EntropyHolder.get(victim);

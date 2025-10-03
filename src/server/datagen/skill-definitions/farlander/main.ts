@@ -7,6 +7,12 @@ const FARLANDER_CATEGORY_ID = "slimesurvival:farlander_race";
 class FarlanderSkills {
 	public static readonly skills: Skill[] = [];
 
+	private static createSkill(id: string, fn: (def: SkillDefinition) => void): Skill {
+		const def = new SkillDefinition(FARLANDER_CATEGORY_ID, id);
+		fn(def);
+		return def.serializeIntoSkill(FarlanderSkillDefinitionsJson);
+	}
+
 	public static readonly QUANTUM_UNCERTAINTY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_uncertainty")
 		.effectIcon("minecraft:bad_omen")
 		.advancementFrame("goal")
@@ -91,9 +97,19 @@ class FarlanderSkills {
 			"text": "Killing your attacker removes their entropy damage from your current entropy pool."
 		})
 		.cost(2)
-		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
+
+	// TODO
+	public static readonly CAUSALITY_COLLAPSE_2 = this.createSkill("causality_collapse_2", def => def
+		.itemIcon("splash_milk:lingering_milk_bottle")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Killing your attacker also removes any negative effects obtained from them."
+		})
+		.cost(2)
+		.flagPlanned()
+	);
 
 	// TODO:
 	public static readonly QUANTUM_SUSPENSION = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_suspension")
@@ -228,6 +244,7 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	// TODO
 	public static readonly INFORMATION_PARADOX = new SkillDefinition(FARLANDER_CATEGORY_ID, "information_paradox")
 		.effectIcon("minecraft:blindness")
 		.addDescription({
