@@ -4,9 +4,6 @@ let $BiConsumer: typeof import("java.util.function.BiConsumer").$BiConsumer = Ja
 let $EquipmentSlot$Type: typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type");
 let $ArmorHurtEvent: typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent");
 let $ArmorMaterials: typeof import("net.minecraft.world.item.ArmorMaterials").$ArmorMaterials = Java.loadClass("net.minecraft.world.item.ArmorMaterials");
-let $ArmorItem: typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem");
-
-let $ItemStack: typeof import("net.minecraft.world.item.ItemStack").$ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack");
 
 namespace ArmorTweaks {
 
@@ -19,6 +16,7 @@ namespace ArmorTweaks {
 
 		event.armorMap.forEach((slot, entry) => {
 			let stack = entry.armorItemStack;
+			if (!(stack.getItem() instanceof $ArmorItem)) return;
 
 			let damageLeft = stack.maxDamage - stack.damageValue;
 			let cap = Math.floor(stack.maxDamage * 0.05);
@@ -32,18 +30,14 @@ namespace ArmorTweaks {
 			damageLeft -= entry.newDamage;
 			if (damageLeft <= 1 && !isArmorMaterialLeather(stack)) {
 				stack.setDamage(stack.maxDamage - 1);
-				// @ts-ignore
-				player.setItemSlot(slot, $ItemStack.EMPTY);
-				// @ts-ignore
-				let added = player.inventory.add(stack);
-				if (!added) {
+				player.setItemSlot(slot as any, $ItemStack.EMPTY as any);
+				if (!player.inventory.add(stack as any)) {
 					player.drop(stack.copy(), false);
 				}
 				player.inventory.setChanged();
 				player.containerMenu.broadcastChanges();
 			}
 		});
-
 	});
 
 	function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
@@ -56,6 +50,8 @@ namespace ArmorTweaks {
 		let slot = event.slot;
 		let fromStack = event.from;
 		let toStack = event.to;
+
+		if (!(toStack.getItem() instanceof $ArmorItem)) return;
 
 		if (player instanceof $ServerPlayer && slot.armor && !toStack.isEmpty() && toStack.damageableItem && toStack.damageValue >= toStack.maxDamage - 1 && !isArmorMaterialLeather(toStack)) {
 			// @ts-ignore
