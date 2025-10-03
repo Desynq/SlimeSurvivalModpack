@@ -13,9 +13,9 @@ LeatherArmorValueTweak.modifierId = $ResourceLocation.parse("slimesurvival:leath
 LeatherArmorValueTweak.calculateTweak = function(player) {
 	let totalDamageAdjustedArmorValue = 0;
 	player.getArmorSlots().forEach(stack => {
-		if (stack == null) {
-			return;
-		}
+		if (!stack) return;
+		// if (ItemHelper.isCustomItem(stack, "armadillo_chest")) return;
+
 		const item = stack.getItem();
 		if (item instanceof $ArmorItem && item.getMaterial() == $ArmorMaterials.LEATHER) {
 			let slot = player.getEquipmentSlotForItem(stack);
