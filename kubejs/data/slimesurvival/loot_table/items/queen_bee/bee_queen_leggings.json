@@ -28,16 +28,26 @@
 							"components": {
 								"minecraft:max_damage": 1110
 							}
+						},
+						{
+							"function": "minecraft:set_custom_data",
+							"tag": {
+								"bee_queen_armor": true
+							}
+						},
+						{
+							"function": "minecraft:set_attributes",
+							"modifiers": [
+								{
+									"attribute": "minecraft:generic.armor",
+									"id": "slimesurvival:armor.legs",
+									"amount": 5,
+									"operation": "add_value",
+									"slot": "legs"
+								}
+							]
 						}
 					]
-				}
-			],
-			"functions": [
-				{
-					"function": "minecraft:set_custom_data",
-					"tag": {
-						"bee_queen_armor": true
-					}
 				}
 			]
 		}
