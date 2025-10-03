@@ -2,7 +2,7 @@
 
 namespace ItemHelper {
 
-	export function isCustomItem(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original, id: string) {
+	export function isCustomItem(stack: ItemStack_, id: string) {
 		const components = stack.getComponents();
 		if (components == null) {
 			return false;
@@ -13,6 +13,15 @@ namespace ItemHelper {
 		}
 		const stackId = customData.copyTag().getString("id");
 		return stackId === id;
+	}
+
+	export function isCustomFlagSet(stack: unknown, id: string): stack is ItemStack_ {
+		if (!(stack instanceof $ItemStack)) return false;
+
+		const customData = stack.getComponents()?.get($DataComponents.CUSTOM_DATA);
+		if (!customData) return false;
+
+		return customData.copyTag().getBoolean(id);
 	}
 
 	export function cloneComponents(sourceStack: ItemStack_, targetStack: ItemStack_) {

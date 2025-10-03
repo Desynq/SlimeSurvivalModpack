@@ -90,3 +90,9 @@ const $CustomBossEvent = Java.loadClass("net.minecraft.server.bossevents.CustomB
 
 /** @type {typeof import("net.minecraft.world.entity.EntityType").$EntityType } */
 const $EntityType = Java.loadClass("net.minecraft.world.entity.EntityType")
+
+/** @type {typeof import("net.minecraft.world.item.ItemStack").$ItemStack} */
+const $ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack");
+
+/** @type {typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem} */
+const $ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem");

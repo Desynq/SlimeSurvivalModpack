@@ -55,16 +55,50 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 			const ticksRemaining = TickHelper.getTimestampRemaining(boss as any, "queen_bee_minion_spawn_cooldown", spawnInterval);
 			ActionbarManager.addText(player, `{"color":"yellow","text":"Spawning in: ${ticksRemaining.toFixed(0)}"}`);
 		});
-		if (TickHelper.tryUpdateTimestamp(boss as any, "queen_bee_minion_spawn_cooldown", spawnInterval)) {
+
+		if (minions.length >= this.getMaxMinions(boss)) {
+			TickHelper.forceUpdateTimestamp(boss as any, "queen_bee_minion_spawn_cooldown");
+		}
+		else if (!this.hasParticipants(boss)) {
+			TickHelper.forceUpdateTimestamp(boss as any, "queen_bee_minion_spawn_cooldown");
 			minions.push(...this.spawnMinions(boss, minions));
 		}
+		else if (TickHelper.tryUpdateTimestamp(boss as any, "queen_bee_minion_spawn_cooldown", spawnInterval)) {
+			minions.push(...this.spawnMinions(boss, minions));
+			playsound(boss.level, boss.position().add(0, 4, 0), "block.beehive.exit", "master", 4, 1);
+		}
+
+		const hadMinions = this.lastHadMinions[boss.stringUUID] ?? false;
+		const hasMinions = minions.length > 0;
+		if (hadMinions && !hasMinions) {
+			this.onAllMinionsKilled(boss);
+		}
+		else if (!hadMinions && hasMinions) {
+			this.onMinionsReturned(boss);
+		}
+		this.lastHadMinions[boss.stringUUID] = hasMinions;
+
 
 		bees.forEach(bee => this.tickBeeDuringEvent(bee));
+
+		if (boss.isLeashed()) boss.dropLeash(true, false);
+
+		ParticleHelper.spawnCircle(boss.level as any, boss.x, boss.y + 4, boss.z, 32, 256, "falling_nectar", 1, false);
 	}
 
 	public onPlayerDeath(boss: Bee_, deadPlayer: ServerPlayer_): void {
-		if (!boss.isDeadOrDying() && PlayerHelper.isSurvivalLike(deadPlayer)) {
-			boss.health = Math.min(boss.maxHealth, boss.health + deadPlayer.maxHealth);
+		if (boss.isDeadOrDying()) return;
+
+		const deathPos = deadPlayer.position();
+		const bossPos = boss.position();
+
+		const distSqr = bossPos.distanceToSqr(deathPos.x(), deathPos.y(), deathPos.z());
+
+		if (distSqr <= 32 ** 2) {
+			const regenAmount = 500;
+			tellOperators(boss.server, `Healing boss for ${regenAmount}`);
+
+			boss.health = Math.min(boss.maxHealth, boss.health + regenAmount);
 		}
 	}
 
@@ -82,28 +116,67 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 		}
 	}
 
+	public onAllMinionsKilled(boss: Bee_): void {
+		playsound(boss.level, boss.position(), "entity.ender_dragon.growl", "master", 4, 2);
+	}
+
+	public onMinionsReturned(boss: Bee_): void {
+		playsound(boss.level, boss.position(), "entity.ghast.death", "master", 4, 2);
+	}
+
 
 
 	private readonly MINION_CLASS = $Bee;
 	private readonly QUEEN_BEE_CLASS = $Bee;
 	private readonly MINION_DISTANCE = 32;
+	private readonly lastHadMinions: Record<string, boolean> = {};
+	private readonly POISON_CLOUD_TIMESTAMP_ID = "queen_bee.poison_cloud_cooldown";
+	private readonly POISON_CLOUD_CHANCE = 0.25;
+
+	private tryPoisonCloud(boss: Bee_): void {
+		const interval = this.getPoisonCloudCooldownInterval(boss);
+		const cooldownActive = !TickHelper.hasTimestampElapsed(boss as any, this.POISON_CLOUD_TIMESTAMP_ID, interval);
+		if (cooldownActive) return;
+		if (Math.random() >= this.POISON_CLOUD_CHANCE) return;
+
+	}
+
+	private getPoisonCloudCooldownInterval(boss: Bee_): integer {
+		return 200;
+	}
+
+	private getMaxMinions(boss: Bee_): integer {
+		return 16 + ((this.getParticipantCount(boss) - 1) * 8);
+	}
 
 	private getMinionSpawnCooldownInterval(boss: Bee_): integer {
 		const healthPercentage = boss.health / boss.maxHealth;
 		const factor = Math.pow(healthPercentage, 1.5);
 		const participantCount = this.getParticipantCount(boss);
 		const max = 1200;
-		const min = Math.max(300, Math.floor(max / (participantCount + 1)));
+		const min = 600;
 
 		const interval = MathHelper.lerp(min, max, factor);
 		return interval;
 	}
 
 	private tryRegenerate(boss: Bee_): void {
-		if (!boss.isDeadOrDying() && !this.hasParticipants(boss)) {
-			const healAmount = 1 / TickHelper.getDefaultTickRate(boss.server);
-			boss.health = Math.min(boss.maxHealth, boss.health + healAmount);
+		if (boss.isDeadOrDying() || this.hasParticipants(boss)) return;
+
+		const survivorCount = ServerHelper.getSurvivorCount(boss.server);
+
+		if (boss.health >= boss.maxHealth) {
+			const newMaxHealth = 1000 * Math.max(1, survivorCount);
+			if (newMaxHealth !== boss.maxHealth) {
+				boss.maxHealth = newMaxHealth;
+				boss.health = newMaxHealth;
+			}
+			return;
 		}
+
+		let healAmount = (1 / 600) * boss.maxHealth;
+		const tickRate = TickHelper.getDefaultTickRate(boss.server);
+		boss.health = Math.min(boss.maxHealth, boss.health + (healAmount / tickRate));
 	}
 
 	private getAllBees(boss: Bee_, distance: number): Bee_[] {
@@ -126,6 +199,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 			bee.setTarget(target);
 			bee.setAggressive(true);
 		}
+		bee.removeEffect($MobEffects.POISON);
 	}
 
 	private isQueenWithinDistance(minion: Bee_): boolean {
@@ -139,8 +213,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 	}
 
 	private spawnMinions(boss: Bee_, currentMinions: Bee_[]): Bee_[] {
-		const maxMinions = 16;
-		const toSpawn = Math.max(0, maxMinions - currentMinions.length);
+		const toSpawn = Math.max(0, this.getMaxMinions(boss) - currentMinions.length);
 		const newMinions: Bee_[] = [];
 		for (let i = 0; i < toSpawn; i++) {
 			const minion = boss.level.createEntity($EntityType.BEE as any) as any as Bee_;
@@ -167,6 +240,7 @@ NativeEvents.onEvent($EntityTickEvent$Pre, event => {
 });
 
 NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
+	if (event.source.getType() === "genericKill") return;
 	const queenBee = event.entity;
 
 	if (QueenBee.isBoss(queenBee) && QueenBee.isBossImmune(queenBee)) {

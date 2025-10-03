@@ -1,0 +1,56 @@
+{
+	"type": "minecraft:command",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:golden_carrot",
+					"functions": [
+						{
+							"function": "minecraft:set_name",
+							"name": {
+								"text": "Honeyglazed Carrot",
+								"color": "gold"
+							},
+							"target": "item_name"
+						}
+					]
+				}
+			],
+			"functions": [
+				{
+					"function": "minecraft:set_components",
+					"components": {
+						"minecraft:food": {
+							"nutrition": 6,
+							"saturation": 20,
+							"can_always_eat": true,
+							"eat_seconds": 3,
+							"effects": [
+								{
+									"effect": {
+										"id": "minecraft:absorption",
+										"amplifier": 4,
+										"duration": 12000
+									}
+								},
+								{
+									"effect": {
+										"id": "minecraft:saturation",
+										"duration": 300
+									}
+								}
+							],
+							"using_converts_to": {
+								"id": "minecraft:golden_carrot"
+							}
+						}
+					}
+				}
+			]
+		}
+	],
+	"functions": []
+}

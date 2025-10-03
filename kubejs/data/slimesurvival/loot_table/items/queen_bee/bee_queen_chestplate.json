@@ -1,0 +1,45 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:leather_chestplate",
+					"functions": [
+						{
+							"function": "minecraft:set_name",
+							"name": {
+								"text": "Bee Queen Chestplate",
+								"color": "gold"
+							},
+							"target": "item_name"
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:dyed_color": {
+									"rgb": 16776960
+								}
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:max_damage": 1184
+							}
+						}
+					]
+				}
+			],
+			"functions": [
+				{
+					"function": "minecraft:set_custom_data",
+					"tag": {
+						"bee_queen_armor": true
+					}
+				}
+			]
+		}
+	]
+}
