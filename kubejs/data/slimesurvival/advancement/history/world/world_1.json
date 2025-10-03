@@ -1,0 +1,24 @@
+{
+	"display": {
+		"icon": {
+			"id": "minecraft:blackstone"
+		},
+		"title": {
+			"text": "World 1 | Mt. Rift",
+			"color": "white"
+		},
+		"description": {
+			"text": "A default superflat world that had custom terrain and protected zones.",
+			"color": "gray"
+		},
+		"frame": "goal",
+		"show_toast": false,
+		"announce_to_chat": false
+	},
+	"criteria": {
+		"tick": {
+			"trigger": "minecraft:tick"
+		}
+	},
+	"parent": "slimesurvival:history/worlds"
+}
