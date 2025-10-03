@@ -33,7 +33,7 @@ namespace SludgeCytoplasm {
 		);
 		AttributeHelper.removeModifier(player, "minecraft:generic.movement_speed", MODIFIER_KEY);
 		if (tier <= 0) return;
-		if (player.health >= player.maxHealth && !CytoplasmDisabler.isToggleActive(player)) {
+		if (Math.ceil(player.health) >= player.maxHealth && !CytoplasmDisabler.isToggleActive(player)) {
 			LivingEntityHelper.addEffect(player, "minecraft:resistance", 1, tier - 1, false, false, true);
 			const slowdownPercentage = getSlowdownPercentage(player, tier);
 			if (slowdownPercentage >= 0) return;
