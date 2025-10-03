@@ -14,7 +14,12 @@ class EntropyEntry {
 
 	public getInterval(owner: LivingEntity_): integer {
 		const attacker = this.getAttacker(owner.server);
-		return EntropyHelper.getInterval(owner);
+
+		let base = EntropyHelper.getInterval(owner);
+		if (SkillHelper.hasSkill(attacker, FarlanderSkills.COHERENCE_1)) {
+			base += 4;
+		}
+		return base;
 	}
 
 	public canTick(owner: LivingEntity_): boolean {
@@ -88,7 +93,7 @@ class EntropyHolder {
 	};
 
 	public hasEntropyFrom(attacker: LivingEntity_): boolean {
-		return this.entropyEntries.some(entry => entry.getAttacker(attacker.server) === attacker);
+		return attacker && this.entropyEntries.some(entry => entry.getAttacker(attacker.server) === attacker);
 	}
 
 	/**

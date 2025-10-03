@@ -198,15 +198,13 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
-	// TODO:
 	public static readonly COHERENCE_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "coherence_1")
 		.effectIcon("minecraft:slowness")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "Entropy you deal to others now decays every 5 game ticks with a new median damage of 1.5x."
+			"text": "Entropy you deal to others now takes 4 ticks longer to decay with a new median damage of 1.5x."
 		})
 		.cost(2)
-		.flagWIP()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 

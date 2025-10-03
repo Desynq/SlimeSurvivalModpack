@@ -423,15 +423,11 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Entropy you deal to others now decays every 5 game ticks with a new median damage of 1.5x."
+				"text": "Entropy you deal to others now takes 4 ticks longer to decay with a new median damage of 1.5x."
 			},
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 2 points]"
-			},
-			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
 			}
 		],
 		"cost": 2,
