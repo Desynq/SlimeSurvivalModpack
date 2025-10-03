@@ -7,152 +7,164 @@
 	},
 	"vurcdoc6hgo5gbs1": {
 		"definition": "quantum_rending",
-		"x": 0,
-		"y": -64,
+		"x": 96,
+		"y": -96,
 		"root": false
 	},
 	"gwptyt8ifed0x4ws": {
 		"definition": "quantum_delay_1",
-		"x": 0,
-		"y": 64,
+		"x": -96,
+		"y": 96,
 		"root": false
 	},
 	"8t8jv8hkhvrr03ym": {
 		"definition": "quantum_rending_2",
-		"x": 0,
-		"y": -128,
+		"x": 96,
+		"y": -160,
 		"root": false
 	},
 	"98tad3k5fkvvfnur": {
 		"definition": "quantum_delay_2",
-		"x": 0,
-		"y": 128,
+		"x": -96,
+		"y": 160,
 		"root": false
 	},
 	"cspxfslrz4c6380l": {
 		"definition": "quantum_relativity",
-		"x": -64,
-		"y": 0,
-		"root": false
-	},
-	"cyegh5wlrtb4sgkj": {
-		"definition": "time_dilation_1",
-		"x": -64,
-		"y": 96,
-		"root": false
-	},
-	"39kjaql5l1rklarp": {
-		"definition": "time_dilation_2",
-		"x": -64,
-		"y": 128,
-		"root": false
-	},
-	"w00u8zs19gzuq4rv": {
-		"definition": "time_dilation_3",
-		"x": -64,
-		"y": 160,
-		"root": false
-	},
-	"9tmcgff92ez7n8rp": {
-		"definition": "time_dilation_4",
-		"x": -64,
-		"y": 192,
-		"root": false
-	},
-	"smunmehdt68srjgt": {
-		"definition": "heat_death",
-		"x": 64,
-		"y": 0,
-		"root": false
-	},
-	"9xh6zujl18y1wm7k": {
-		"definition": "event_horizon",
 		"x": -96,
 		"y": -96,
 		"root": false
 	},
+	"cyegh5wlrtb4sgkj": {
+		"definition": "time_dilation_1",
+		"x": -160,
+		"y": -32,
+		"root": false
+	},
+	"39kjaql5l1rklarp": {
+		"definition": "time_dilation_2",
+		"x": -192,
+		"y": 0,
+		"root": false
+	},
+	"w00u8zs19gzuq4rv": {
+		"definition": "time_dilation_3",
+		"x": -224,
+		"y": 32,
+		"root": false
+	},
+	"9tmcgff92ez7n8rp": {
+		"definition": "time_dilation_4",
+		"x": -256,
+		"y": 64,
+		"root": false
+	},
+	"smunmehdt68srjgt": {
+		"definition": "heat_death",
+		"x": 96,
+		"y": 96,
+		"root": false
+	},
+	"9xh6zujl18y1wm7k": {
+		"definition": "event_horizon",
+		"x": 0,
+		"y": -192,
+		"root": false
+	},
 	"h71g0c9dd81vshhp": {
 		"definition": "lorentz_curve",
-		"x": -128,
-		"y": 32,
+		"x": -96,
+		"y": -192,
 		"root": false
 	},
 	"nj86rgc5a0ijnomp": {
 		"definition": "causality_collapse",
-		"x": 64,
-		"y": 128,
+		"x": -160,
+		"y": 160,
 		"root": false
 	},
 	"9hrgh5y9d82k59nn": {
 		"definition": "quantum_suspension",
 		"x": -160,
-		"y": 0,
+		"y": -160,
 		"root": false
 	},
 	"oa23ifaepyzy2uni": {
 		"definition": "quantum_predation",
-		"x": -128,
-		"y": -64,
+		"x": 0,
+		"y": -128,
 		"root": false
 	},
 	"3zv27pp4qnvsq2hu": {
 		"definition": "quantum_echo",
-		"x": 64,
-		"y": -64,
+		"x": 96,
+		"y": 0,
 		"root": false
 	},
 	"m08jdjwwzqvy2std": {
 		"definition": "quantum_phoenix",
-		"x": 128,
-		"y": 32,
+		"x": 160,
+		"y": 160,
 		"root": false
 	},
 	"jv9g0lrqj5begb2o": {
 		"definition": "quantum_tunneling",
-		"x": -96,
-		"y": 64,
+		"x": -192,
+		"y": -96,
 		"root": false
 	},
 	"rraofrkj74ehs00m": {
 		"definition": "quantum_rending_3",
-		"x": 0,
-		"y": -192,
+		"x": 96,
+		"y": -224,
 		"root": false
 	},
 	"bukpl1kphcr20yls": {
 		"definition": "casual_transference",
-		"x": 64,
-		"y": -128,
+		"x": 160,
+		"y": -32,
 		"root": false
 	},
 	"iutac0xvbdhg440k": {
 		"definition": "coherence_1",
-		"x": -32,
-		"y": -128,
+		"x": 160,
+		"y": -160,
 		"root": false
 	},
 	"07xrctgsqo3i8cs2": {
 		"definition": "observer_effect",
-		"x": 64,
-		"y": -192,
+		"x": 224,
+		"y": -32,
 		"root": false
 	},
 	"2wkhb72qfw2nbaad": {
 		"definition": "quantum_cleansing",
-		"x": 64,
-		"y": 64,
+		"x": 160,
+		"y": 96,
 		"root": false
 	},
 	"4weyxq4wxlvwsibq": {
 		"definition": "information_paradox",
-		"x": 128,
-		"y": -32,
+		"x": 160,
+		"y": 32,
 		"root": false
 	},
 	"1qyjmq9n0j84yv5h": {
-		"definition": "causality_collapse_2",
-		"x": 128,
-		"y": 128,
+		"definition": "causality_cleanse",
+		"x": -160,
+		"y": 96,
+		"root": false
+	},
+	"39xijp03fjlk9irf": {
+		"definition": "nutritional_uncertainty",
+		"x": 0,
+		"y": 64,
+		"root": false
+	},
+	"lgkitwery3v6p182": {
+		"definition": "critical_uncertainty",
+		"x": 0,
+		"y": -64,
 		"root": false
 	}
 }

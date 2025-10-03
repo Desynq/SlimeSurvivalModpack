@@ -1,3 +1,5 @@
+// priority: 10000
+
 /** @type {typeof import("net.minecraft.world.entity.ai.attributes.Attributes").$Attributes } */
 const $Attributes = Java.loadClass("net.minecraft.world.entity.ai.attributes.Attributes")
 

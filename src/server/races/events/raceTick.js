@@ -12,7 +12,7 @@ PlayerEvents.tick(event => {
 		SanguineConvenantAbility.onTick(playerRaceWrapper);
 	}
 	else if (playerRaceWrapper instanceof FarlanderPlayer) {
-		QuantumRelativityAbility.onTick(event.player);
+		QuantumRelativity.onTick(event.player);
 		HeatDeathAbility.onTick(event.player);
 	}
 });

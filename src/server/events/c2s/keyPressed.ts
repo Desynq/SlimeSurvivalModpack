@@ -9,7 +9,7 @@ namespace KeyPressedPacketListener {
 			SanguineConvenantAbility.onPress(raceWrapper);
 		}
 		else if (raceWrapper instanceof FarlanderPlayer) {
-			QuantumRelativityAbility.onPress(player);
+			QuantumRelativity.onPress(player);
 		}
 	}
 

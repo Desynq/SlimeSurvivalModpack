@@ -10,21 +10,45 @@ class FarlanderSkills {
 	private static createSkill(id: string, fn: (def: SkillDefinition) => void): Skill {
 		const def = new SkillDefinition(FARLANDER_CATEGORY_ID, id);
 		fn(def);
-		return def.serializeIntoSkill(FarlanderSkillDefinitionsJson);
+		return def.serializeIntoSkill(FarlanderSkillDefinitionsJson).register(this.skills);
 	}
 
 	public static readonly QUANTUM_UNCERTAINTY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_uncertainty")
 		.effectIcon("minecraft:bad_omen")
-		.advancementFrame("goal")
 		.addDescription({
 			"color": "dark_purple",
 			"text": "You do not take damage regularly, instead you pool damage as entropy."
 				+ "\n\nPooled damage decays exponentially per damage entry (-10% per entropy tick)."
 				+ "\n\nEvery entropy tick, you take between 0 to 2x of the total entropy decayed in that tick as damage."
 		})
+		.size(1.25)
 		.rootSkill()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
+
+	public static readonly NUTRITIONAL_UNCERTAINTY = this.createSkill("nutritional_uncertainty", def => def
+		.itemIcon("minecraft:suspicious_stew")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "How can you be sure what you ate was saturating if you're still hungry?"
+				+ "\n\n- Food does not give saturation unless you get to max hunger from eating it."
+		})
+		.size(1.25)
+		.rootSkill()
+	);
+
+	public static readonly CRITICAL_UNCERTAINTY = this.createSkill("critical_uncertainty", def => def
+		.effectIcon("slimesurvival:weak_knees")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Did you land that crit?"
+				+ "\n\n- Critical hits have a chance to not land."
+				+ "\n\n- Chance is `1 - health / maxHealth`"
+		})
+		.size(1.25)
+		.rootSkill()
+		.flagPlanned()
+	);
 
 	public static readonly QUANTUM_RENDING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_rending")
 		.effectIcon("minecraft:wither")
@@ -39,8 +63,9 @@ class FarlanderSkills {
 		})
 		.addDescription({
 			"color": "dark_purple",
-			"text": "\n\nDecayed entropy does 0.5 to 2.0 damage with a median of 1.25 to enemies."
+			"text": "\n\nDecayed entropy does 0.5x to 2.0x damage with a median of 1.25x to enemies."
 		})
+		.size(1.25)
 		.cost(1)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
@@ -101,7 +126,7 @@ class FarlanderSkills {
 		.register(this.skills);
 
 	// TODO
-	public static readonly CAUSALITY_COLLAPSE_2 = this.createSkill("causality_collapse_2", def => def
+	public static readonly CAUSALITY_CLEANSE = this.createSkill("causality_cleanse", def => def
 		.itemIcon("splash_milk:lingering_milk_bottle")
 		.addDescription({
 			"color": "dark_purple",
@@ -142,7 +167,9 @@ class FarlanderSkills {
 		.itemIcon("minecraft:arrow")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "Quantum Relativity does not affect your projectiles."
+			"text": "Your projectiles travel normally while Quantum Relativity is active."
+				+ "\n\n- Crouching temporarily toggles ability off."
+				+ "\n\n- Affected projectiles are difficult to observe."
 		})
 		.cost(1)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
@@ -163,6 +190,7 @@ class FarlanderSkills {
 			"text": "will clear all of your current entropy."
 				+ "\n\n- Cooldown of 30 seconds."
 		})
+		.size(1.25)
 		.cost(2)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
@@ -185,22 +213,20 @@ class FarlanderSkills {
 		.itemIcon("cataclysm:flame_eye")
 		.addDescription({
 			"color": "dark_red",
-			"text": "If heat death is not on cooldown, auto-proc heat death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
+			"text": "If Heat Death is not on cooldown, auto-proc Heat Death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
 		})
 		.cost(4)
 		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
-	// TODO:
 	public static readonly QUANTUM_TUNNELING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_tunneling")
 		.itemIcon("minecraft:ender_pearl")
 		.addDescription({
 			"color": "dark_aqua",
-			"text": "You do not consume ender pearls when using them while Quantum Relativity is active."
+			"text": "Ender pearls do not get consumed or cause fall damage while Quantum Relativity is active."
 		})
 		.cost(1)
-		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -215,7 +241,7 @@ class FarlanderSkills {
 		.register(this.skills);
 
 	public static readonly COHERENCE_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "coherence_1")
-		.effectIcon("minecraft:slowness")
+		.itemIcon("minecraft:heart_of_the_sea")
 		.addDescription({
 			"color": "dark_purple",
 			"text": "Entropy you deal to others now takes 4 ticks longer to decay with a new median damage of 1.5x."
@@ -277,6 +303,7 @@ class FarlanderSkills {
 				+ `\n- Requires > ${FarlanderSkillData.QUANTUM_RELATIVITY_HUNGER_THRESHOLD} hunger to activate.`
 				+ `\n- Automatically deactivates when hunger <= ${FarlanderSkillData.QUANTUM_RELATIVITY_HUNGER_THRESHOLD}.`
 		})
+		.size(1.25)
 		.cost(3)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);

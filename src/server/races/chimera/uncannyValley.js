@@ -14,7 +14,7 @@ let $AvoidEntityGoal = Java.loadClass("net.minecraft.world.entity.ai.goal.AvoidE
 	 * @param {ServerPlayer_} player 
 	 */
 	function shouldAvoid(entity, player) {
-		if (entity instanceof $Creeper) {
+		if (entity instanceof $Creeper && player.curiosInventory) {
 			return player.isCuriosEquipped($Items.CREEPER_HEAD)
 				|| player.getItemBySlot("head").is($Items.CARVED_PUMPKIN);
 		}

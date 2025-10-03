@@ -19,6 +19,69 @@
 				"effect": "minecraft:bad_omen"
 			}
 		},
+		"size": 1.25,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"nutritional_uncertainty": {
+		"title": "Nutritional Uncertainty",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "How can you be sure what you ate was saturating if you're still hungry?\n\n- Food does not give saturation unless you get to max hunger from eating it."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:suspicious_stew"
+			}
+		},
+		"size": 1.25,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"critical_uncertainty": {
+		"title": "Critical Uncertainty",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Did you land that crit?\n\n- Critical hits have a chance to not land.\n\n- Chance is `1 - health / maxHealth`"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "slimesurvival:weak_knees"
+			}
+		},
+		"size": 1.25,
 		"frame": {
 			"type": "advancement",
 			"data": {
@@ -41,7 +104,7 @@
 			},
 			{
 				"color": "dark_purple",
-				"text": "\n\nDecayed entropy does 0.5 to 2.0 damage with a median of 1.25 to enemies."
+				"text": "\n\nDecayed entropy does 0.5x to 2.0x damage with a median of 1.25x to enemies."
 			},
 			{
 				"color": "dark_green",
@@ -60,7 +123,8 @@
 			"data": {
 				"frame": "task"
 			}
-		}
+		},
+		"size": 1.25
 	},
 	"quantum_rending_2": {
 		"title": "Quantum Rending II",
@@ -191,8 +255,8 @@
 			}
 		}
 	},
-	"causality_collapse_2": {
-		"title": "Causality Collapse II",
+	"causality_cleanse": {
+		"title": "Causality Cleanse",
 		"rewards": [],
 		"description": [
 			{
@@ -277,7 +341,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Quantum Relativity does not affect your projectiles."
+				"text": "Your projectiles travel normally while Quantum Relativity is active.\n\n- Crouching temporarily toggles ability off.\n\n- Affected projectiles are difficult to observe."
 			},
 			{
 				"color": "dark_green",
@@ -335,7 +399,8 @@
 			"data": {
 				"frame": "challenge"
 			}
-		}
+		},
+		"size": 1.25
 	},
 	"quantum_echo": {
 		"title": "Quantum Echo",
@@ -373,7 +438,7 @@
 		"description": [
 			{
 				"color": "dark_red",
-				"text": "If heat death is not on cooldown, auto-proc heat death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
+				"text": "If Heat Death is not on cooldown, auto-proc Heat Death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
 			},
 			{
 				"color": "dark_green",
@@ -398,15 +463,11 @@
 		"description": [
 			{
 				"color": "dark_aqua",
-				"text": "You do not consume ender pearls when using them while Quantum Relativity is active."
+				"text": "Ender pearls do not get consumed or cause fall damage while Quantum Relativity is active."
 			},
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 1 point]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 1,
@@ -453,9 +514,9 @@
 		],
 		"cost": 2,
 		"icon": {
-			"type": "effect",
+			"type": "item",
 			"data": {
-				"effect": "minecraft:slowness"
+				"item": "minecraft:heart_of_the_sea"
 			}
 		}
 	},
@@ -569,7 +630,8 @@
 			"data": {
 				"frame": "challenge"
 			}
-		}
+		},
+		"size": 1.25
 	},
 	"time_dilation_1": {
 		"title": "Time Dilation I",

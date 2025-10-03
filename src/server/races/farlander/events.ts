@@ -16,7 +16,7 @@ namespace FarlanderEvents {
 			return;
 		}
 
-		const blacklistedDamageSources = ["genericKill", "slimesurvival.entropy"];
+		const blacklistedDamageSources: string[] = ["genericKill", "slimesurvival.entropy_kill"];
 		if (ArrayHelper.includes(blacklistedDamageSources, event.source.getType())) {
 			return;
 		}
@@ -47,27 +47,10 @@ namespace FarlanderEvents {
 		return -Math.min(newAbsorptionValue, 0);
 	}
 
-	function tickLorentzCurve(entity: Projectile_) {
-		const customTickRate = TickHelper.getCustomTickRate(entity);
-		if ($TickrateUtil["hasTimer(net.minecraft.world.entity.Entity)"](entity)) {
-			if ($TickrateUtil["getTimer(net.minecraft.world.entity.Entity)"](entity).tickrate === customTickRate) return;
-		}
-
-		if (customTickRate == null) {
-			$TickrateUtil.resetTickrate(entity);
-		}
-		else {
-			$TickrateUtil.setTickrate(entity, customTickRate);
-		}
-	}
-
 	NativeEvents.onEvent($EntityTickEvent$Pre, event => {
 		const entity = event.getEntity();
 		if (entity instanceof $LivingEntity) {
 			EntropyHolder.tick(entity, false);
-		}
-		else if (entity instanceof $Projectile) {
-			tickLorentzCurve(entity);
 		}
 	});
 
@@ -83,7 +66,7 @@ namespace FarlanderEvents {
 
 
 	function isEntropyDeath(source: DamageSource_): boolean {
-		return source.getType() === "slimesurvival.entropy";
+		return source.getType() === "slimesurvival.entropy_kill";
 	}
 
 	EntityEvents.death(event => {
@@ -119,7 +102,7 @@ namespace FarlanderEvents {
 
 	function tryEventHorizon(victim: LivingEntity_, attacker: ServerPlayer_) {
 		if (!SkillHelper.hasSkill(attacker, FarlanderSkills.EVENT_HORIZON)) return;
-		if (!QuantumRelativityAbility.isActive(attacker)) return;
+		if (!QuantumRelativity.isActive(attacker)) return;
 
 		const totalEntropyDamage = EntropyHelper.getLifetimeEntropyDamage(victim);
 		attacker.health += MathHelper.clamped(0, attacker.maxHealth, attacker.health + totalEntropyDamage);
@@ -162,4 +145,49 @@ namespace FarlanderEvents {
 
 		victimEntropy.transferAttackerEntropy(attacker, target);
 	}
+
+
+	function canQuantumTunnel(player: ServerPlayer_) {
+		return SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_TUNNELING) && QuantumRelativity.isActive(player);
+	}
+
+	ItemEvents.rightClicked(event => {
+		const player = event.getEntity();
+		if (!(player instanceof $ServerPlayer)) return;
+
+		const stack = event.getItem();
+
+		if (player.hasInfiniteMaterials()) return;
+
+		if (stack.id as string !== "minecraft:ender_pearl") return;
+
+		if (!canQuantumTunnel(player)) return;
+
+		stack.grow(1);
+	});
+
+	NativeEvents.onEvent($EntityTeleportEvent$EnderPearl, event => {
+		const player = event.getEntity();
+		if (!(player instanceof $ServerPlayer)) return;
+
+		if (canQuantumTunnel(player)) {
+			event.setAttackDamage(0);
+		}
+	});
+
+	NativeEvents.onEvent($LivingEntityUseItemEvent$Finish, event => {
+		const player = event.getEntity();
+		if (!(player instanceof $ServerPlayer)) return;
+
+		if (!SkillHelper.hasSkill(player, FarlanderSkills.NUTRITIONAL_UNCERTAINTY)) return;
+
+		const stack = event.getItem();
+		if (stack.getFoodProperties(player) === null) return;
+
+		const food = player.getFoodData();
+		const maxHunger = 20;
+		if (food.foodLevel < maxHunger) {
+			food.setSaturation(0.0);
+		}
+	});
 }

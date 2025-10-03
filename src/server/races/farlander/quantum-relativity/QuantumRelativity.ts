@@ -1,6 +1,6 @@
 
 
-const QuantumRelativityAbility = new (class extends ToggleableAbility {
+const QuantumRelativity = new (class extends ToggleableAbility {
 
 	public constructor() {
 		super();

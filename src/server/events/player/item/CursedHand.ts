@@ -1,7 +1,5 @@
 let $EndersoulHandItem: typeof import("fuzs.mutantmonsters.world.item.EndersoulHandItem").$EndersoulHandItem = Java.loadClass("fuzs.mutantmonsters.world.item.EndersoulHandItem");
 
-let $LivingEntityUseItemEvent$Finish: typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Finish").$LivingEntityUseItemEvent$Finish = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Finish");
-
 
 namespace CursedHand {
 

@@ -52,3 +52,9 @@ const $LivingDamageEvent$Post = Java.loadClass("net.neoforged.neoforge.event.ent
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.player.CriticalHitEvent").$CriticalHitEvent} */
 const $CriticalHitEvent = Java.loadClass("net.neoforged.neoforge.event.entity.player.CriticalHitEvent");
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.EntityTeleportEvent$EnderPearl").$EntityTeleportEvent$EnderPearl} */
+const $EntityTeleportEvent$EnderPearl = Java.loadClass("net.neoforged.neoforge.event.entity.EntityTeleportEvent$EnderPearl");
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Finish").$LivingEntityUseItemEvent$Finish} */
+const $LivingEntityUseItemEvent$Finish = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Finish");

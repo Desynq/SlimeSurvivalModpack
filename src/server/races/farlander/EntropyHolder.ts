@@ -150,8 +150,7 @@ class EntropyHolder {
 			uncertaintyDamage = Math.random() * 2 * amount;
 		}
 
-		// @ts-ignore
-		this.dealDamage(entity, attacker, uncertaintyDamage);
+		this.dealDamage(entity, attacker as any, uncertaintyDamage);
 	};
 
 	private dealDamage(entity: LivingEntity_, attacker: LivingEntity_ | null, amount: float) {
@@ -166,10 +165,10 @@ class EntropyHolder {
 	};
 
 	private executeEntropyKill(entity: LivingEntity_, attacker: LivingEntity_ | null) {
-		entity.health = 0.0001;
-		let reg = entity.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow($ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy"));
-		// @ts-ignore
-		entity.attack(new DamageSource(reg, attacker, attacker), 1.0);
+		entity.health = 1.0; // arbitrary health so the player doesn't silently die
+		const rk = $ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy_kill");
+		const entropyDmgType = entity.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow(rk);
+		entity.attack(new DamageSource(entropyDmgType, attacker as any, attacker as any), 2 ** 31 - 1);
 	}
 
 	public tick(holder: LivingEntity_) {
