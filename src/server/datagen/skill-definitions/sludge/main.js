@@ -349,3 +349,13 @@ SludgeSkills.CONTINUITY = SludgeSkillBuilder("continuity", def => def
 	})
 	.cost(4)
 );
+
+SludgeSkills.WITHERING = SludgeSkillBuilder("withering", def => def
+	.effectIcon("minecraft:wither")
+	.addDescription({
+		"color": "dark_gray",
+		"text": "Toxic inflicts wither instead of poison."
+	})
+	.cost(2)
+	.requiredSkills(1)
+);

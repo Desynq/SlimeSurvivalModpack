@@ -50,6 +50,9 @@ namespace SludgeToxic {
 
 		const duration = getPoisonTickDuration(player);
 		const amplifier = getPoisonAmplifier(player);
-		LivingEntityHelper.addEffect(attacker, "minecraft:poison", duration, amplifier, false, true, true);
+		const effectId = SkillHelper.hasSkill(player, SludgeSkills.WITHERING)
+			? "minecraft:wither"
+			: "minecraft:poison";
+		LivingEntityHelper.addEffect(attacker, effectId, duration, amplifier, false, true, true);
 	});
 }

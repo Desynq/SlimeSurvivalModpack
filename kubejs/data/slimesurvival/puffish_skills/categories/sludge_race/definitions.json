@@ -796,6 +796,32 @@
 			}
 		}
 	},
+	"withering": {
+		"title": "Withering",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_gray",
+				"text": "Toxic inflicts wither instead of poison."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Skills Needed: 1]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
+			}
+		},
+		"required_skills": 1
+	},
 	"mitosis": {
 		"title": "Mitosis",
 		"rewards": [],

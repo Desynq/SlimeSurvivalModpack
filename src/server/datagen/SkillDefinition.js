@@ -170,6 +170,7 @@ SkillDefinition.prototype.cost = function(cost) {
 }
 
 /**
+ * Can be used with `amount = 1` to tell users that only 1 skill is needed if it's a unifying branch
  * @param {integer} amount How many skills connected to the skill are needed to unlock it
  * @returns 
  */
