@@ -10,7 +10,8 @@ namespace BlindnessEffectHandler {
 		if (!effect || !effect.is($MobEffects.BLINDNESS)) return;
 
 		const entity = event.getEntity();
-		AttributeHelper.addModifier(entity, "minecraft:generic.follow_range", MODIFIER_KEY, -0.75, "add_multiplied_total");
+		const value = (effect.amplifier + 1) * -0.2;
+		AttributeHelper.addModifier(entity, "minecraft:generic.follow_range", MODIFIER_KEY, value, "add_multiplied_total");
 	});
 
 	NativeEvents.onEvent($MobEffectEvent$Remove, event => {

@@ -167,7 +167,7 @@
 		"description": [
 			{
 				"color": "green",
-				"text": "Each successful critical attack increases attack damage by +0.25.\nEffect ends when a non-critical attack is made or you stop dealing damage for more than 2 seconds."
+				"text": "Each successful critical attack increases attack damage by 2.5% of your max health.\n\nEffect ends when a non-critical attack is made or you stop dealing damage for more than 2 seconds."
 			},
 			{
 				"color": "dark_green",
@@ -188,7 +188,7 @@
 		"description": [
 			{
 				"color": "green",
-				"text": "Each successful critical attack now increases attack damage by +0.5"
+				"text": "Each successful critical attack now increases attack damage by 5% of your max health."
 			},
 			{
 				"color": "dark_green",
@@ -209,7 +209,7 @@
 		"description": [
 			{
 				"color": "green",
-				"text": "Each successful critical attack now increases attack damage by +1.0"
+				"text": "Each successful critical attack now increases attack damage by 10% of your max health."
 			},
 			{
 				"color": "dark_green",
@@ -231,7 +231,7 @@
 			[
 				{
 					"color": "green",
-					"text": "Each successful critical attack now increases attack damage by +2.0"
+					"text": "Each successful critical attack now increases attack damage by 20% of your max health"
 				},
 				{
 					"color": "red",
@@ -261,10 +261,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 4 points]"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
-		"cost": 4,
+		"cost": 2,
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -772,6 +772,27 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:golden_carrot"
+			}
+		}
+	},
+	"continuity": {
+		"title": "Continuity",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Motion stacks no longer reset when doing normal attacks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_sword"
 			}
 		}
 	},

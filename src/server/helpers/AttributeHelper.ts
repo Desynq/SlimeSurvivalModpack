@@ -4,7 +4,7 @@ type _AttributeModifierOperation = import("net.minecraft.world.entity.ai.attribu
 
 namespace AttributeHelper {
 	export function asAttributeHolder(attribute: string): _AttributeHolder | null {
-		const opt = $BuiltInRegistries.ATTRIBUTE.getHolder($ResourceLocation.parse(attribute));
+		const opt = $BuiltInRegistries.ATTRIBUTE.getHolder(attribute);
 		if (!opt.isPresent()) {
 			return null;
 		}
@@ -36,15 +36,13 @@ namespace AttributeHelper {
 			attribute = maybeAttribute;
 		}
 
-		const rl = $ResourceLocation.parse(modifierId);
 		const attrInstance = entity.getAttribute(attribute);
 		if (!attrInstance) return;
-		if (attrInstance.hasModifier(rl)) return;
+		if (attrInstance.hasModifier(modifierId)) return;
 
 		// @ts-ignore
 		attrInstance.addTransientModifier(new $AttributeModifier(
-			// @ts-ignore
-			rl,
+			modifierId,
 			value,
 			operation
 		));

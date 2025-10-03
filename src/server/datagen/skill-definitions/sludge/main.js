@@ -80,8 +80,8 @@ SludgeSkills.MOTION_1 = new SkillDefinition(SludgeSkillsCategoryId, "motion_1")
 	.effectIcon("minecraft:strength")
 	.addDescription({
 		"color": "green",
-		"text": "Each successful critical attack increases attack damage by +0.25."
-			+ "\nEffect ends when a non-critical attack is made or you stop dealing damage for more than 2 seconds."
+		"text": "Each successful critical attack increases attack damage by 2.5% of your max health."
+			+ "\n\nEffect ends when a non-critical attack is made or you stop dealing damage for more than 2 seconds."
 	})
 	.cost(1)
 	.serializeIntoSkill(SludgeDefinitionsJson);
@@ -89,7 +89,7 @@ SludgeSkills.MOTION_2 = new SkillDefinition(SludgeSkillsCategoryId, "motion_2")
 	.effectIcon("minecraft:strength")
 	.addDescription({
 		"color": "green",
-		"text": "Each successful critical attack now increases attack damage by +0.5"
+		"text": "Each successful critical attack now increases attack damage by 5% of your max health."
 	})
 	.cost(2)
 	.serializeIntoSkill(SludgeDefinitionsJson);
@@ -97,7 +97,7 @@ SludgeSkills.MOTION_3 = new SkillDefinition(SludgeSkillsCategoryId, "motion_3")
 	.effectIcon("minecraft:strength")
 	.addDescription({
 		"color": "green",
-		"text": "Each successful critical attack now increases attack damage by +1.0"
+		"text": "Each successful critical attack now increases attack damage by 10% of your max health."
 	})
 	.cost(4)
 	.serializeIntoSkill(SludgeDefinitionsJson);
@@ -105,7 +105,7 @@ SludgeSkills.MOTION_4 = new SkillDefinition(SludgeSkillsCategoryId, "motion_4")
 	.effectIcon("minecraft:strength")
 	.addDescription([{
 		"color": "green",
-		"text": "Each successful critical attack now increases attack damage by +2.0"
+		"text": "Each successful critical attack now increases attack damage by 20% of your max health"
 	}, {
 		"color": "red",
 		"text": "\n- Effect now ends if you stop dealing damage for more than 1 second."
@@ -119,7 +119,7 @@ SludgeSkills.INERTIA = new SkillDefinition(SludgeSkillsCategoryId, "inertia")
 		"color": "green",
 		"text": "Taking damage resets your motion timer."
 	})
-	.cost(4)
+	.cost(2)
 	.serializeIntoSkill(SludgeDefinitionsJson);
 
 
@@ -329,3 +329,23 @@ SludgeSkills.PHAGOCYTOSIS_4 = new SkillDefinition(SludgeSkillsCategoryId, "phago
 	.cost(2)
 	.serialize(SludgeDefinitionsJson)
 	.toSkill("mkjkbafqlvj6dsiq");
+
+/**
+ * @param {string} id
+ * @param {(def: SkillDefinition) => void} fn 
+ * @returns {Skill}
+ */
+function SludgeSkillBuilder(id, fn) {
+	const def = new SkillDefinition(SludgeSkillsCategoryId, id);
+	fn(def);
+	return def.serializeIntoSkill(SludgeDefinitionsJson);
+}
+
+SludgeSkills.CONTINUITY = SludgeSkillBuilder("continuity", def => def
+	.itemIcon("minecraft:golden_sword")
+	.addDescription({
+		"color": "green",
+		"text": "Motion stacks no longer reset when doing normal attacks."
+	})
+	.cost(4)
+);

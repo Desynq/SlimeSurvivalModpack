@@ -25,7 +25,7 @@ class SkillHelper {
 		return maybeSkill.get().getState(player);
 	}
 
-	public static hasSkill(player: unknown, skill: Skill): player is ServerPlayer_ {
+	public static hasSkill(player: unknown, skill: Skill): boolean {
 		return player instanceof $ServerPlayer && this.getState(player, skill) === $Skill$State.UNLOCKED;
 	}
 

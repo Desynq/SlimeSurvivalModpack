@@ -1,10 +1,9 @@
-const $CriticalHitEvent: typeof import("net.neoforged.neoforge.event.entity.player.CriticalHitEvent").$CriticalHitEvent = Java.loadClass("net.neoforged.neoforge.event.entity.player.CriticalHitEvent");
-
 
 
 namespace SludgeMotion {
 
 	function getMotionDamage(player: ServerPlayer_): double | null {
+
 		const tier = SkillHelper.getSkillTier(player,
 			SludgeSkills.MOTION_1,
 			SludgeSkills.MOTION_2,
@@ -12,25 +11,25 @@ namespace SludgeMotion {
 			SludgeSkills.MOTION_4,
 		);
 
-		let base;
+		let base: float;
 		switch (tier) {
 			case 1:
-				base = 0.25;
+				base = 0.025;
 				break;
 			case 2:
-				base = 0.5;
+				base = 0.05;
 				break;
 			case 3:
-				base = 1.0;
+				base = 0.1;
 				break;
 			case 4:
-				base = 2.0;
+				base = 0.2;
 				break;
 			default:
 				return null;
 		}
 		const stacks = getMotion(player);
-		return base * stacks;
+		return (base * player.maxHealth) * stacks;
 	}
 
 	const MOTION_KEY = "sludge.motion";
@@ -59,24 +58,36 @@ namespace SludgeMotion {
 		player.persistentData.remove(MOTION_KEY);
 	}
 
+	function removeModifier(player: ServerPlayer_): void {
+		AttributeHelper.removeModifier(player, "minecraft:generic.attack_damage", MODIFIER_KEY);
+	}
+
+	function addModifier(player: ServerPlayer_, motionDamage: double): void {
+		AttributeHelper.addModifier(player, "minecraft:generic.attack_damage", MODIFIER_KEY, motionDamage, "add_value");
+	}
+
 	const MODIFIER_KEY = "sludge.motion_damage";
+
+
 
 	NativeEvents.onEvent($CriticalHitEvent, event => {
 		const player = event.getEntity();
 		if (!(player instanceof $ServerPlayer)) return;
 
 		const motionDamage = getMotionDamage(player);
-
-		AttributeHelper.removeModifier(player, "minecraft:generic.attack_damage", MODIFIER_KEY);
 		if (motionDamage == null) return;
 
+		removeModifier(player);
 		if (event.isCriticalHit()) {
 			ActionbarManager.setSimple(player, `"Motion: ${getMotion(player)} (${motionDamage.toFixed(2)})"`, 20);
 			incrementMotion(player);
 			updateMotionTimestamp(player);
-			AttributeHelper.addModifier(player, "minecraft:generic.attack_damage", MODIFIER_KEY, motionDamage, "add_value");
+
+			addModifier(player, motionDamage);
 		}
 		else {
+			if (SkillHelper.hasSkill(player, SludgeSkills.CONTINUITY)) return;
+
 			if (motionDamage > 0) {
 				playsound(player.level, player.position(), "minecraft:entity.blaze.death", "master", 1, 2);
 			}
@@ -89,6 +100,7 @@ namespace SludgeMotion {
 
 		if (getMotion(player) > 0 && motionExpired(player)) {
 			playsound(player.level, player.position(), "minecraft:entity.blaze.death", "master", 1, 2);
+			removeModifier(player);
 			resetMotion(player);
 		}
 	});
@@ -97,6 +109,7 @@ namespace SludgeMotion {
 		const player = event.getEntity() as ServerPlayer_;
 
 		if (getMotion(player) <= 0) return;
+
 		if (SkillHelper.hasSkill(player, SludgeSkills.INERTIA)) {
 			updateMotionTimestamp(player);
 		}

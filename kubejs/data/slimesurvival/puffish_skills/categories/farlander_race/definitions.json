@@ -183,8 +183,8 @@
 				"text": "\n\n[Cost: 2 points]"
 			},
 			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 2,
@@ -208,8 +208,8 @@
 				"text": "\n\n[Cost: 2 points]"
 			},
 			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 2,
@@ -237,8 +237,8 @@
 				"text": "\n[Skills Needed: 2]"
 			},
 			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 2,
@@ -333,8 +333,8 @@
 				"text": "\n[Skills Needed: 2]"
 			},
 			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,
@@ -359,8 +359,8 @@
 				"text": "\n\n[Cost: 4 points]"
 			},
 			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,
@@ -384,8 +384,8 @@
 				"text": "\n\n[Cost: 1 point]"
 			},
 			{
-				"color": "dark_red",
-				"text": "\n[Work In Progress]"
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 1,
@@ -477,6 +477,31 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:milk_bucket"
+			}
+		}
+	},
+	"information_paradox": {
+		"title": "Information Paradox",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Heat Death gives all decaying or targeting enemies Blindness IV for 10 seconds.\nNote: Each level of blindness reduces follow range by 20%."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:blindness"
 			}
 		}
 	},

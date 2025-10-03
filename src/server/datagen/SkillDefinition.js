@@ -182,10 +182,10 @@ SkillDefinition.prototype.requiredSkills = function(amount) {
 	return this;
 }
 
-SkillDefinition.prototype.flagWIP = function() {
+SkillDefinition.prototype.flagPlanned = function() {
 	this.addDescription({
-		"color": "dark_red",
-		"text": "\n[Work In Progress]"
+		"color": "yellow",
+		"text": "\n[Planned]"
 	});
 	return this;
 }

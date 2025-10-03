@@ -16,3 +16,11 @@ type Mob_ = import("net.minecraft.world.entity.Mob").$Mob$$Original;
 type Bee_ = import("net.minecraft.world.entity.animal.Bee").$Bee$$Original;
 
 type CustomBossEvent_ = import("net.minecraft.server.bossevents.CustomBossEvent").$CustomBossEvent$$Original;
+
+type EquipmentSlot_ = import("net.minecraft.world.entity.EquipmentSlot").$EquipmentSlot$$Original;
+
+type Holder_ = import("net.minecraft.core.Holder").$Holder$$Original;
+
+type Attribute_ = import("net.minecraft.world.entity.ai.attributes.Attribute").$Attribute$$Original;
+
+type AttributeModifier_ = import("net.minecraft.world.entity.ai.attributes.AttributeModifier").$AttributeModifier$$Original;

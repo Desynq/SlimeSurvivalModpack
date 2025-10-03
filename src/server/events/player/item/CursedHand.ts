@@ -12,7 +12,7 @@ namespace CursedHand {
 		if (!player.isSecondaryUseActive()) return;
 
 		const stack = event.getItem();
-		if (!ItemHelper.isCustomItem(stack, "cursed_hand")) return;
+		if (!StackHelper.isCustomItem(stack, "cursed_hand")) return;
 
 		const hitResult = player.pick(32, 1, false);
 		if (hitResult.getType() !== $HitResult$Type.BLOCK) {

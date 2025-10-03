@@ -91,7 +91,7 @@ class FarlanderSkills {
 			"text": "Killing your attacker removes their entropy damage from your current entropy pool."
 		})
 		.cost(2)
-		.flagWIP()
+		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -105,7 +105,7 @@ class FarlanderSkills {
 				+ "\nYou will at minimum still take the base exhaustion rate."
 		})
 		.cost(2)
-		.flagWIP()
+		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -118,7 +118,7 @@ class FarlanderSkills {
 		})
 		.cost(2)
 		.requiredSkills(2)
-		.flagWIP()
+		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -160,7 +160,7 @@ class FarlanderSkills {
 		})
 		.cost(4)
 		.requiredSkills(2)
-		.flagWIP()
+		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -172,7 +172,7 @@ class FarlanderSkills {
 			"text": "If heat death is not on cooldown, auto-proc heat death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
 		})
 		.cost(4)
-		.flagWIP()
+		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -184,7 +184,7 @@ class FarlanderSkills {
 			"text": "You do not consume ender pearls when using them while Quantum Relativity is active."
 		})
 		.cost(1)
-		.flagWIP()
+		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -228,9 +228,19 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
+	public static readonly INFORMATION_PARADOX = new SkillDefinition(FARLANDER_CATEGORY_ID, "information_paradox")
+		.effectIcon("minecraft:blindness")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Heat Death gives all decaying or targeting enemies Blindness IV for 10 seconds."
+				+ "\nNote: Each level of blindness reduces follow range by 20%."
+		})
+		.cost(2)
+		.flagPlanned()
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
 
 
-	// Quantum Relativity Skills
 
 	public static readonly QUANTUM_RELATIVITY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_relativity")
 		.itemIcon("minecraft:clock")

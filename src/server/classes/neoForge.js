@@ -49,3 +49,6 @@ const $EntityTickEvent$Pre = Java.loadClass("net.neoforged.neoforge.event.tick.E
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post").$LivingDamageEvent$Post } */
 const $LivingDamageEvent$Post = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post")
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.player.CriticalHitEvent").$CriticalHitEvent} */
+const $CriticalHitEvent = Java.loadClass("net.neoforged.neoforge.event.entity.player.CriticalHitEvent");
