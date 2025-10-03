@@ -42,7 +42,7 @@ DunestriderSkills.REND_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "rend_3"
 		"color": "red",
 		"text": "You shred armor.\n\n- Plus 60% Armor shred for 1.5s"
 	})
-	.cost(4)
+	.cost(3)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("8v4xq1b7n2p6z3yt");
 
@@ -53,7 +53,7 @@ DunestriderSkills.REND_4 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "rend_4"
 		"color": "dark_red",
 		"text": "Armor buckles at your name.\n\n- 80% Armor shred for 1.5s"
 	})
-	.cost(6)
+	.cost(4)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("7f2xq9v5b3p8z6lm");
 
@@ -64,7 +64,7 @@ DunestriderSkills.REND_5 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "rend_5"
 		"color": "dark_red",
 		"text": "You tear through all.\n\n- 100% Armor shred for 1.5s"
 	})
-	.cost(8)
+	.cost(5)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("6b3xq8v2n1p7z4qs");
 
@@ -111,7 +111,7 @@ DunestriderSkills.DEMEAN_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 		"color": "red",
 		"text": "The prideful gait of the powerful disgusts you.\n\n- Plus 2% Max health damage on-hit to targets >75% HP"
 	})
-	.cost(2)
+	.cost(1)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("2n8xq5v3b1p6z7wh");
 
@@ -122,7 +122,7 @@ DunestriderSkills.DEMEAN_2 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 		"color": "red",
 		"text": "Stripping people of their ego is your specialty.\n\n- Plus 3% Max health damage on-hit to targets >50% HP"
 	})
-	.cost(4)
+	.cost(2)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("4k7xp2v9b3n6z1qy");
 
@@ -133,7 +133,7 @@ DunestriderSkills.DEMEAN_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 		"color": "dark_red",
 		"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Plus 5% Max health damage on-hit to targets >33% HP"
 	})
-	.cost(8)
+	.cost(4)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("1m8xq6v4b2p9z5wt");
 

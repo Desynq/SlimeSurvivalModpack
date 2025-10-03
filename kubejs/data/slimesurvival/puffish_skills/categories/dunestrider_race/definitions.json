@@ -64,10 +64,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 4 points]"
+				"text": "\n\n[Cost: 3 points]"
 			}
 		],
-		"cost": 4,
+		"cost": 3,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -91,10 +91,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 6 points]"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
-		"cost": 6,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -118,10 +118,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 8 points]"
+				"text": "\n\n[Cost: 5 points]"
 			}
 		],
-		"cost": 8,
+		"cost": 5,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -253,10 +253,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
-		"cost": 2,
+		"cost": 1,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -280,10 +280,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 4 points]"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
-		"cost": 4,
+		"cost": 2,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -307,10 +307,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 8 points]"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
-		"cost": 8,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {
