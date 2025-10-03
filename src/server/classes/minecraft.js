@@ -96,3 +96,15 @@ const $ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack");
 
 /** @type {typeof import("net.minecraft.world.item.ArmorItem").$ArmorItem} */
 const $ArmorItem = Java.loadClass("net.minecraft.world.item.ArmorItem");
+
+/** @type {typeof import("net.minecraft.world.level.ClipContext$Fluid").$ClipContext$Fluid} */
+const $ClipContext$Fluid = Java.loadClass("net.minecraft.world.level.ClipContext$Fluid");
+
+/** @type {typeof import("net.minecraft.world.level.ClipContext$Block").$ClipContext$Block} */
+const $ClipContext$Block = Java.loadClass("net.minecraft.world.level.ClipContext$Block");
+
+/** @type {typeof import("net.minecraft.world.level.ClipContext").$ClipContext} */
+const $ClipContext = Java.loadClass("net.minecraft.world.level.ClipContext");
+
+/** @type {typeof import("net.minecraft.world.level.levelgen.Heightmap$Types").$Heightmap$Types } */
+const $Heightmap$Types = Java.loadClass("net.minecraft.world.level.levelgen.Heightmap$Types")

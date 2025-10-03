@@ -1,8 +1,4 @@
 
-let $ClipContext$Fluid = Java.loadClass("net.minecraft.world.level.ClipContext$Fluid");
-let $ClipContext$Block = Java.loadClass("net.minecraft.world.level.ClipContext$Block");
-let $ClipContext = Java.loadClass("net.minecraft.world.level.ClipContext");
-
 /**
  * @param {$ServerPlayer_} player
  * @param {number} maxDistance

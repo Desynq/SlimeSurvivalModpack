@@ -1,7 +1,3 @@
-/** @type {typeof import("net.minecraft.world.level.levelgen.Heightmap$Types").$Heightmap$Types } */
-let $Heightmap$Types = Java.loadClass("net.minecraft.world.level.levelgen.Heightmap$Types")
-
-
 const TenuemBoss = {};
 
 /**
