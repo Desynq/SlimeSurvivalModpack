@@ -40,7 +40,8 @@ class ItemSellValueCalculator {
 				'minecraft:string',
 				'minecraft:ender_pearl',
 				'cataclysm:lacrima',
-				'minecraft:feather'
+				'minecraft:feather',
+				'minecraft:armadillo_scute'
 			];
 			if (!scavengerItems.includes(this.mItem.getItemId())) return;
 
