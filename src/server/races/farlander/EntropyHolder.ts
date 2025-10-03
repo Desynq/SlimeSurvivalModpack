@@ -12,6 +12,11 @@ class EntropyEntry {
 		return server.getEntityByUUID(this.attackerUUID);
 	}
 
+	public isFrom(entity: LivingEntity_): boolean {
+		const attacker = this.getAttacker(entity.server);
+		return attacker !== null && attacker === entity;
+	}
+
 	public getInterval(owner: LivingEntity_): integer {
 		const attacker = this.getAttacker(owner.server);
 
@@ -105,12 +110,18 @@ class EntropyHolder {
 
 		let transferredEntries: EntropyEntry[] = [];
 		ListHelper.forEachRight(this.entropyEntries, (entry) => {
-			if (entry.getAttacker(attacker.server) !== attacker) return "continue";
+			if (!entry.isFrom(attacker)) return "continue";
 
 			const clone = new EntropyEntry(entry.damage, entry.attackerUUID);
 			transferredEntries.push(clone);
 			targetHolder.entropyEntries.push(clone);
 			return "splice";
+		});
+	}
+
+	public removeEntriesFromAttacker(attacker: LivingEntity_): void {
+		ListHelper.forEachRight(this.entropyEntries, entry => {
+			if (entry.isFrom(attacker)) return "splice";
 		});
 	}
 

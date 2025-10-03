@@ -24,3 +24,5 @@ type Holder_ = import("net.minecraft.core.Holder").$Holder$$Original;
 type Attribute_ = import("net.minecraft.world.entity.ai.attributes.Attribute").$Attribute$$Original;
 
 type AttributeModifier_ = import("net.minecraft.world.entity.ai.attributes.AttributeModifier").$AttributeModifier$$Original;
+
+type DamageSource_ = import("net.minecraft.world.damagesource.DamageSource").$DamageSource$$Original;
