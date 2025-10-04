@@ -144,6 +144,7 @@
 		if (!(SkillHelper.hasSkill(victim, DunestriderSkills.MOMENTUM))) return;
 		if (!event.source.isDirect()) return;
 		let attacker = event.getSource().getActual();
+		if (!attacker) return;
 		if (!(TickHelper.hasTimestampElapsed(attacker, "dunestrider.momentum", 300))) return;
 		LivingEntityHelper.addEffect(victim, 'minecraft:slowness', 160, 0, false, true, true, attacker);
 		let dmg = event.getDamage();
