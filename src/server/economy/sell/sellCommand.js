@@ -41,12 +41,22 @@ ServerEvents.commandRegistry(event => {
 		.then(Commands.literal("hand")
 			.executes(context => {
 				const player = context.source.getPlayer();
-				const itemId = player.getInventory().getSelected().getItem().getId();
+				const itemId = player.inventory.getSelected().getItem().getId();
 				const marketableItem = MarketableItem.fromId(itemId);
 
-				trySellTransaction(context.getSource().getPlayer(), marketableItem, 0);
+				trySellTransaction(player, marketableItem, 0);
 				return 1;
 			})
+			.then(Commands.literal("all")
+				.executes(context => {
+					const player = context.source.getPlayer();
+					const itemId = player.inventory.getSelected().getItem().getId();
+					const marketableItem = MarketableItem.fromId(itemId);
+
+					trySellTransaction(player, marketableItem, null);
+					return 1;
+				})
+			)
 		)
 	);
 
