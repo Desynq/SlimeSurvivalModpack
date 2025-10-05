@@ -1,12 +1,4 @@
-/** @type {typeof import("net.neoforged.neoforge.event.entity.EntityJoinLevelEvent").$EntityJoinLevelEvent } */
-let $EntityJoinLevelEvent = Java.loadClass("net.neoforged.neoforge.event.entity.EntityJoinLevelEvent")
-
-// @ts-ignore
-/** @type {typeof import("net.minecraft.world.entity.ai.goal.AvoidEntityGoal").$AvoidEntityGoal} */
-let $AvoidEntityGoal = Java.loadClass("net.minecraft.world.entity.ai.goal.AvoidEntityGoal");
-
-
-(function() {
+(function () {
 
 	/**
 	 * 
@@ -26,10 +18,9 @@ let $AvoidEntityGoal = Java.loadClass("net.minecraft.world.entity.ai.goal.AvoidE
 	NativeEvents.onEvent($EntityJoinLevelEvent, event => {
 		const entity = event.getEntity();
 		if (entity instanceof $Creeper) {
-			entity.goalSelector.addGoal(2, $AvoidEntityGoal(
-				entity,
-				$ServerPlayer,
-				// @ts-ignore
+			entity.goalSelector.addGoal(2, new $AvoidEntityGoal(
+				entity as any,
+				$ServerPlayer as any,
 				(player) => shouldAvoid(entity, player),
 				32.0,
 				1.0,

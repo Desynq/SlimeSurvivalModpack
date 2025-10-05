@@ -26,3 +26,5 @@ type Attribute_ = import("net.minecraft.world.entity.ai.attributes.Attribute").$
 type AttributeModifier_ = import("net.minecraft.world.entity.ai.attributes.AttributeModifier").$AttributeModifier$$Original;
 
 type DamageSource_ = import("net.minecraft.world.damagesource.DamageSource").$DamageSource$$Original;
+
+type PathfinderMob_ = import("net.minecraft.world.entity.PathfinderMob").$PathfinderMob$$Original;

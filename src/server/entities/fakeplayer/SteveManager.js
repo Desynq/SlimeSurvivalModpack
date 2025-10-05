@@ -1,6 +1,3 @@
-
-/** @type {typeof import("net.minecraft.world.entity.ai.targeting.TargetingConditions").$TargetingConditions } */
-let $TargetingConditions = Java.loadClass("net.minecraft.world.entity.ai.targeting.TargetingConditions")
 ServerEvents.tick(event => SteveManager.allTick(event.server));
 
 const SteveManager = {};

@@ -67,7 +67,7 @@ class Summonable {
 	public getNode() {
 		return $Commands.literal(this.name)
 			.executes(context => {
-				this.summon(context.source.level, context.source.position);
+				this.spawn(context.source.level, context.source.position);
 				return 1;
 			})
 			// @ts-ignore
@@ -75,23 +75,20 @@ class Summonable {
 				.executes(context => {
 					// @ts-ignore
 					for (let i = 0; i < $IntegerArgumentType.getInteger(context, "amount"); i++) {
-						this.summon(context.source.level, context.source.position);
+						this.spawn(context.source.level, context.source.position);
 					}
 					return 1;
 				})
 			);
 	}
 
-	public summon(
-		level: ServerLevel_,
-		position: Vec3_
-	): this {
-		CommandHelper.runCommandSilent(
-			level.server,
-			`execute in ${level.dimension.toString()} run summon ${this.id} ${position.x()} ${position.y()} ${position.z()} ${JSON.stringify(this.nbt)}`,
-			false
-		);
-		return this;
+	public spawn(level: ServerLevel_, position: Vec3_, randomizeProperties: boolean = false): Entity_ {
+		const rk = $ResourceKey.create($Registries.ENTITY_TYPE, this.id);
+		const type = level.registryAccess().registryOrThrow($Registries.ENTITY_TYPE).getHolderOrThrow(rk);
+		const source = level.getServer().createCommandSourceStack().withLevel(level);
+		const tag: CompoundTag_ = $TagParser.parseTag(JSON.stringify(this.nbt));
+
+		return $SummonCommand.createEntity(source, type, position, tag, randomizeProperties);
 	}
 }
 
@@ -174,4 +171,66 @@ namespace Summonables {
 	})
 		.setMaxHealth(1000.0)
 		.setBoss("queen_bee");
+
+	export const THE_HUNGER = Summonable.create("the_hunger", "minecraft:rabbit", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 6
+			},
+			{
+				id: "minecraft:generic.movement_speed",
+				base: 0.5
+			},
+			{
+				id: "minecraft:generic.fall_damage_multiplier",
+				base: 0.0
+			}
+		],
+		CustomName: '{"color":"dark_red","text":"The Hunger"}',
+		RabbitType: 99,
+		Glowing: true
+	})
+		.setMaxHealth(6.0)
+		.setBoss("the_hunger");
+
+	export const THE_IMMORTAL = Summonable.create("the_immortal", "rottencreatures:immortal", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 20
+			},
+			{
+				id: "minecraft:generic.armor",
+				base: 20
+			}
+		],
+		CustomName: '{"color":"dark_aqua","text":"The Immortal"}',
+		Glowing: true
+	})
+		.setMaxHealth(10000.00)
+		.setBoss("the_immortal");
+
+	export const ZAPPY = Summonable.create("zappy", "rottencreatures:zap", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 5
+			},
+			{
+				id: "minecraft:generic.armor",
+				base: 20
+			},
+			{
+				id: "minecraft:generic.movement_speed",
+				base: 0.5
+			}
+		],
+		CustomName: '{"color":"dark_aqua","text":"Zappy"}',
+		Glowing: true
+	})
+		.setMaxHealth(40.00);
 }

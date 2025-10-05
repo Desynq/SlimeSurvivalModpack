@@ -16,7 +16,7 @@ namespace LeatherArmorValueTweak {
 			const item = stack.getItem();
 			if (item instanceof $ArmorItem && item.getMaterial() == $ArmorMaterials.LEATHER) {
 				let slot = player.getEquipmentSlotForItem(stack);
-				stack.attributeModifiers["forEach(net.minecraft.world.entity.EquipmentSlot,java.util.function.BiConsumer)"](slot, (attribute, modifier) => totalDamageAdjustedArmorValue += LeatherArmorValueTweak.getDamageAdjustedBonusValue(stack, slot, attribute, modifier));
+				stack.attributeModifiers["forEach(net.minecraft.world.entity.EquipmentSlot,java.util.function.BiConsumer)"](slot, (attribute, modifier) => totalDamageAdjustedArmorValue += getDamageAdjustedBonusValue(stack, slot, attribute, modifier));
 			}
 		});
 

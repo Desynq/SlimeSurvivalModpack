@@ -56,4 +56,9 @@ namespace StackHelper {
 		if (maybeEnchantment.isEmpty()) return null;
 		return stackEnchants.getLevel(maybeEnchantment.get());
 	}
+
+	export function hasEnchantment(server: MinecraftServer_, stack: ItemStack_, id: string): boolean {
+		const level = getEnchantmentLevel(server, stack, id);
+		return level !== null && level > 0;
+	}
 }

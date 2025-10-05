@@ -204,7 +204,6 @@ class FarlanderSkills {
 		})
 		.cost(4)
 		.requiredSkills(2)
-		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 

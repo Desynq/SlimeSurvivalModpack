@@ -41,7 +41,7 @@ class EntropyEntry {
 }
 
 class EntropyHolder {
-	public static readonly holders: Record<string, EntropyHolder> = {};
+	private static readonly holders: Record<string, EntropyHolder> = {};
 
 	public static get(entity: LivingEntity_): EntropyHolder | undefined {
 		return EntropyHolder.holders[entity.stringUUID];
@@ -66,6 +66,16 @@ class EntropyHolder {
 		}
 		holder.tick(entity);
 	};
+
+	public static getHoldersWithAttackerEntropy(attacker: LivingEntity_): EntropyHolder[] {
+		const holders: EntropyHolder[] = [];
+		Object.values(this.holders).forEach(holder => {
+			if (holder.hasEntropyFrom(attacker)) {
+				holders.push(holder);
+			}
+		});
+		return holders;
+	}
 
 
 
@@ -92,6 +102,12 @@ class EntropyHolder {
 	public getTotalEntropy() {
 		return this.entropyEntries.reduce((sum, entry) => sum + entry.damage, 0);
 	};
+
+	public getTotalEntropyFrom(attacker: LivingEntity_): double {
+		return this.entropyEntries
+			.filter(entry => entry.isFrom(attacker))
+			.reduce((sum, entry) => sum + entry.damage, 0);
+	}
 
 	public resetEntropy() {
 		this.entropyEntries.length = 0;

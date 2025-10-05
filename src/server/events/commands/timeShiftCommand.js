@@ -24,11 +24,7 @@ ServerEvents.commandRegistry(event => {
 	 * @param {integer} targetTimeOfDay 
 	 */
 	function shiftTime(source, targetTimeOfDay) {
-		const totalDayTime = source.level.getDayTime();
-		const currentTimeOfDay = totalDayTime % TIME_IN_DAY;
-		const newDayTime = totalDayTime + (targetTimeOfDay - currentTimeOfDay);
-
-		source.level.setDayTime(newDayTime);
+		const newDayTime = TimeHelper.shiftTime(source.server, targetTimeOfDay);
 		source.sendSuccess(Text.white(`Shifted the time to ${newDayTime}`), true);
 		return 1;
 	}

@@ -1,11 +1,8 @@
 
+// @ts-ignore
 const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Bee_> {
-	public override isBoss(entity: unknown): entity is Bee_ {
+	protected override isBoss(entity: unknown): entity is Bee_ {
 		return entity instanceof $Bee && entity.tags.contains("boss.queen_bee");
-	}
-
-	public bossExists(server: MinecraftServer_): boolean {
-		return server.entities.toArray().some((e: Entity_) => this.isBoss(e));
 	}
 
 	public isMinion(entity: unknown): entity is Bee_ {
@@ -34,11 +31,13 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 		return this.getParticipants(boss).length;
 	}
 
+	private readonly FORCEFIELD_RADIUS = 32;
+
 	public getParticipants(boss: Bee_): ServerPlayer_[] {
 		return boss.level.getNearbyPlayers(
 			$TargetingConditions.forNonCombat().selector((player: ServerPlayer_) => PlayerHelper.isSurvivalLike(player)),
 			boss as any,
-			boss.boundingBox.inflate(32) as any
+			boss.boundingBox.inflate(this.FORCEFIELD_RADIUS) as any
 		).toArray();
 	}
 
@@ -86,7 +85,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 		ParticleHelper.spawnCircle(boss.level as any, boss.x, boss.y + 4, boss.z, 32, 256, "falling_nectar", 1, false);
 	}
 
-	public onPlayerDeath(boss: Bee_, deadPlayer: ServerPlayer_): void {
+	public onPlayerDeathOld(boss: Bee_, deadPlayer: ServerPlayer_): void {
 		if (boss.isDeadOrDying()) return;
 
 		const deathPos = deadPlayer.position();
@@ -179,6 +178,10 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 		boss.health = Math.min(boss.maxHealth, boss.health + (healAmount / tickRate));
 	}
 
+	private updateMaxHealth(boss: Bee_): void {
+
+	}
+
 	private getAllBees(boss: Bee_, distance: number): Bee_[] {
 
 		return boss.level.getEntitiesOfClass($Bee as any, boss.boundingBox.inflate(distance) as any, (entity) => true).toArray();
@@ -205,7 +208,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 	private isQueenWithinDistance(minion: Bee_): boolean {
 		const queensWithinRange = minion.level.getNearbyEntities(
 			this.QUEEN_BEE_CLASS as any,
-			$TargetingConditions.forNonCombat().selector(e => this.isBoss(e)),
+			$TargetingConditions.forNonCombat().selector(e => this.isCachedBoss(e)),
 			minion as any,
 			minion.boundingBox.inflate(this.MINION_DISTANCE) as any
 		);
@@ -227,7 +230,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 })().register();
 
 NativeEvents.onEvent($BeeStingEvent, event => {
-	if (QueenBee.bossExists(event.entity.server)) {
+	if (QueenBee.hasBoss()) {
 		event.setCanStingAgain(true);
 	}
 });
@@ -243,7 +246,11 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 	if (event.source.getType() === "genericKill") return;
 	const queenBee = event.entity;
 
-	if (QueenBee.isBoss(queenBee) && QueenBee.isBossImmune(queenBee)) {
+	if (QueenBee.isCachedBoss(queenBee) && QueenBee.isBossImmune(queenBee)) {
 		event.setCanceled(true);
 	}
+});
+
+EntityEvents.death("minecraft:player", event => {
+	QueenBee.getBosses(event.server).forEach(boss => QueenBee.onPlayerDeathOld(boss, event.entity as ServerPlayer_));
 });

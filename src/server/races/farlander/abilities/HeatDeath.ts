@@ -33,6 +33,10 @@ const HeatDeathAbility = new (class extends BaseAbility {
 			// @ts-ignore
 			player.tell(Text.red(`Cannot activate Heath Death while on cooldown. (${max - curr} ticks left)`));
 		}
+
+		public playQuantumEcho(level: ServerLevel_, pos: Vec3_): void {
+			playsound(level, pos, "entity.elder_guardian.curse", "master", 1, 2);
+		}
 	})(this.cooldownController);
 
 
@@ -43,12 +47,27 @@ const HeatDeathAbility = new (class extends BaseAbility {
 
 		EntropyHolder.get(player)?.resetEntropy();
 		this.quantumCleansing(player);
+		this.quantumEcho(player);
 	}
 
 	private quantumCleansing(player: ServerPlayer_): void {
 		if (!SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_CLEANSING)) return;
 
 		LivingEntityHelper.removeHarmfulEffects(player);
+	}
+
+	private quantumEcho(player: ServerPlayer_): void {
+		if (!SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_ECHO)) return;
+
+		const holders = EntropyHolder.getHoldersWithAttackerEntropy(player);
+		holders.forEach(holder => {
+			const entity = player.server.getEntityByUUID(holder.uuid);
+			if (!entity) return;
+
+			const lifetimeDamage = EntropyHelper.getLifetimeEntropyDamage(entity as any);
+			holder.pushEntropyEntry(lifetimeDamage, player);
+			this.ui.playQuantumEcho(entity.level as any, entity.position());
+		});
 	}
 
 	public onPress(player: ServerPlayer_): boolean {

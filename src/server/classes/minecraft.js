@@ -70,9 +70,6 @@ const $InteractionHand = Java.loadClass("net.minecraft.world.InteractionHand")
 /** @type {typeof import("net.minecraft.core.registries.BuiltInRegistries").$BuiltInRegistries } */
 const $BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries");
 
-/** @type {typeof import("net.minecraft.world.entity.item.ItemEntity").$ItemEntity } */
-const $ItemEntity = Java.loadClass("net.minecraft.world.entity.item.ItemEntity");
-
 /** @type {typeof import("net.minecraft.world.entity.projectile.Projectile").$Projectile} */
 const $Projectile = Java.loadClass("net.minecraft.world.entity.projectile.Projectile");
 
@@ -110,3 +107,6 @@ const $ClipContext = Java.loadClass("net.minecraft.world.level.ClipContext");
 
 /** @type {typeof import("net.minecraft.world.level.levelgen.Heightmap$Types").$Heightmap$Types } */
 const $Heightmap$Types = Java.loadClass("net.minecraft.world.level.levelgen.Heightmap$Types")
+
+/** @type {typeof import("net.minecraft.world.entity.PathfinderMob").$PathfinderMob} */
+const $PathfinderMob = Java.loadClass("net.minecraft.world.entity.PathfinderMob");

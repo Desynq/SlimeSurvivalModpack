@@ -249,7 +249,7 @@
 		"description": [
 			{
 				"color": "red",
-				"text": "The prideful gait of the powerful disgusts you.\n\n- Plus 2% Max health damage on-hit to targets >75% HP"
+				"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.maxHealth / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
 			},
 			{
 				"color": "dark_green",
@@ -276,7 +276,7 @@
 		"description": [
 			{
 				"color": "red",
-				"text": "Stripping people of their ego is your specialty.\n\n- Plus 3% Max health damage on-hit to targets >50% HP"
+				"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.05"
 			},
 			{
 				"color": "dark_green",
@@ -303,7 +303,7 @@
 		"description": [
 			{
 				"color": "dark_red",
-				"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Plus 5% Max health damage on-hit to targets >33% HP"
+				"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 0.1"
 			},
 			{
 				"color": "dark_green",
@@ -396,6 +396,33 @@
 			"type": "item",
 			"data": {
 				"item": "mowziesmobs:umvuthana_mask_fury"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "task"
+			}
+		}
+	},
+	"blitzkreig": {
+		"title": "Blitzkreig",
+		"rewards": [],
+		"description": [
+			{
+				"color": "yellow",
+				"text": "Swift and decisive.\n\n- Deal up to 2x damage based on how fast you're moving."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "cataclysm:burning_ashes"
 			}
 		},
 		"frame": {

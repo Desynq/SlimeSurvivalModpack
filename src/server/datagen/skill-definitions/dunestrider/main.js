@@ -109,7 +109,7 @@ DunestriderSkills.DEMEAN_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "red",
-		"text": "The prideful gait of the powerful disgusts you.\n\n- Plus 2% Max health damage on-hit to targets >75% HP"
+		"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.maxHealth / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
 	})
 	.cost(1)
 	.serialize(DunestriderSkillDefinitionsJson)
@@ -120,7 +120,7 @@ DunestriderSkills.DEMEAN_2 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "red",
-		"text": "Stripping people of their ego is your specialty.\n\n- Plus 3% Max health damage on-hit to targets >50% HP"
+		"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.05"
 	})
 	.cost(2)
 	.serialize(DunestriderSkillDefinitionsJson)
@@ -131,7 +131,7 @@ DunestriderSkills.DEMEAN_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "dark_red",
-		"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Plus 5% Max health damage on-hit to targets >33% HP"
+		"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 0.1"
 	})
 	.cost(4)
 	.serialize(DunestriderSkillDefinitionsJson)
@@ -165,6 +165,17 @@ DunestriderSkills.HYSTERIA_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "hys
 	.addDescription({
 		"color": "gold",
 		"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nFill 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
+	})
+	.cost(4)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.toSkill("f3n6x8v2b1p7z4qs");
+
+DunestriderSkills.BLITZKREIG = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "blitzkreig")
+	.itemIcon("cataclysm:burning_ashes")
+	.advancementFrame("task")
+	.addDescription({
+		"color": "yellow",
+		"text": "Swift and decisive.\n\n- Deal up to 2x damage based on how fast you're moving."
 	})
 	.cost(4)
 	.serialize(DunestriderSkillDefinitionsJson)
