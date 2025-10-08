@@ -12,5 +12,7 @@ namespace ItemTick {
 		else if (entity.onGround() && UnbreakingTome.isUnbreakingTome(entity)) {
 			UnbreakingTome.tick(entity);
 		}
+
+		RX25Vial.tick(entity);
 	});
 }

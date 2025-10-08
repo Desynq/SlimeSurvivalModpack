@@ -1,5 +1,4 @@
-
-
+// priority: 999
 
 namespace EntityHelper {
 	export function isInDimension(entity: Entity_, dimension: string): boolean {
@@ -68,5 +67,10 @@ namespace EntityHelper {
 		}
 
 		entity.teleportTo(nX, nY, nZ);
+	}
+
+	export function getNearbySurvivors(entity: Entity_, range: double): ServerPlayer_[] {
+		const aabb = entity.boundingBox.inflate(range);
+		return entity.level.getEntitiesOfClass($ServerPlayer as any, aabb as any, (player: ServerPlayer_) => PlayerHelper.isSurvivalLike(player)).toArray();
 	}
 }

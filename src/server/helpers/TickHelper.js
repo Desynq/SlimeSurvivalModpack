@@ -72,6 +72,15 @@ TickHelper.getTimestamp = function(entity, id) {
 }
 
 /**
+ * 
+ * @param {Entity_} entity 
+ * @param {string} id 
+ */
+TickHelper.hasTimestamp = function(entity, id) {
+	return entity.persistentData.contains(id);
+}
+
+/**
  * @param {Entity_} entity 
  * @param {string} id 
  * @returns {long} Time that has passed since the timestamp was last set or the current game time if the timestamp has not been updated.
@@ -120,12 +129,31 @@ TickHelper.forceUpdateTimestamp = function(entity, id) {
 }
 
 /**
+ * Sets the timestamp `time` ticks before the current game time
+ * @param {Entity_} entity 
+ * @param {string} id 
+ * @param {long} time 
+ */
+TickHelper.setTimestampBefore = function(entity, id, time) {
+	entity.persistentData.putLong(id, TickHelper.getGameTime(entity.server) - time);
+}
+
+/**
  * Sets timestamp to Long.MIN_VALUE so that hasTimestampPassed() always returns true
  * @param {Entity_} entity 
  * @param {string} id 
  */
 TickHelper.resetTimestamp = function(entity, id) {
 	entity.persistentData.putLong(id, $Long.MIN_VALUE)
+}
+
+/**
+ * 
+ * @param {Entity_} entity 
+ * @param {string} id 
+ */
+TickHelper.removeTimestamp = function(entity, id) {
+	entity.persistentData.remove(id);
 }
 
 /**
