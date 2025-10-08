@@ -2,7 +2,7 @@
 /** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock").$PlayerInteractEvent$RightClickBlock} */
 let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock");
 
-(function() {
+(function () {
 	/**
 	 * 
 	 * @param {ServerPlayer_} player 
@@ -20,10 +20,17 @@ let $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforg
 	 * @param {ServerPlayer_} player 
 	 * @param {import("dev.latvian.mods.kubejs.level.LevelBlock").$LevelBlock$$Original} block 
 	 */
-	function canOpen(player, block) {
+	function canOpen(player: ServerPlayer_, block) {
+		if (!PlayerHelper.isSurvivalLike(player)) return true;
+
 		if (isBeingTargeted(player)) {
 			return false;
 		}
+
+		const aabb = player.boundingBox.inflate(player.getAttributeTotalValue($Attributes.BLOCK_INTERACTION_RANGE) * 2);
+		const isOperatorBlocking = player.level.getEntitiesOfClass($ServerPlayer as any, aabb as any, (p: ServerPlayer_) => PlayerHelper.isOperator(p) && p.isHolding($Items.TRAPPED_CHEST)).size() > 0;
+		if (isOperatorBlocking) return false;
+
 		return true;
 	}
 
