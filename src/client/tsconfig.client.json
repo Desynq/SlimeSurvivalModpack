@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"rootDir": "./",
-		"outDir": "../../kubejs/server_scripts/",
+		"outDir": "../../kubejs/client_scripts/",
 		"noEmitOnError": true,
 		"allowJs": true,
 		"target": "ES5",
@@ -38,9 +38,9 @@
 		"../../.probe/packages/generated-package/java.util.d.ts",
 		"../../.probe/packages/generated-package/java.util.function.d.ts",
 		"../../.probe/packages/generated-package/com.min01.tickrateapi.util.d.ts",
-		"../../.probe/server/generated-server/primitives.d.ts",
-		"../../.probe/server/generated-server/events.d.ts",
-		"../../.probe/server/generated-server/bindings.d.ts",
+		"../../.probe/client/generated-client/primitives.d.ts",
+		"../../.probe/client/generated-client/events.d.ts",
+		"../../.probe/client/generated-client/bindings.d.ts",
 	],
 	"exclude": []
 }

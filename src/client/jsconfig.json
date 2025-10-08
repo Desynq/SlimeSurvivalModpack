@@ -27,7 +27,7 @@
         ],
         "typeRoots": [
             "../../.probe/packages",
-            "../../.probe/server",
+            "../../.probe/client",
         ]
     }
 }

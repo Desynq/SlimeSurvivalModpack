@@ -47,6 +47,13 @@
         "usercache.json": true,
         "usernamecache.json": true
     },
+    "eslint.validate": [
+        "javascript",
+        "typescript"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    },
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.disableAutomaticTypeAcquisition": true,

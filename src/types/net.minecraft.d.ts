@@ -1,0 +1,1 @@
+type CompoundTag_ = import("net.minecraft.nbt.CompoundTag").$CompoundTag$$Original;

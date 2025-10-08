@@ -1,4 +1,4 @@
-"use strict";
 // priority: 1000
+
 /** @type {import("ru.fewizz.crawl.client.CrawlClient").$CrawlClient$$Original} */
-var $CrawlClient = Java.loadClass("ru.fewizz.crawl.client.CrawlClient");
+const $CrawlClient = Java.loadClass("ru.fewizz.crawl.client.CrawlClient")
