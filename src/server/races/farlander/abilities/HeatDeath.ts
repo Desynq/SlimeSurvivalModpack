@@ -10,7 +10,7 @@ const HeatDeathAbility = new (class extends BaseAbility {
 	);
 
 	protected readonly ui = new (class implements IBaseAbilityUI {
-		constructor(
+		public constructor(
 			private readonly cooldown: TimestampController,
 		) { }
 
@@ -41,7 +41,7 @@ const HeatDeathAbility = new (class extends BaseAbility {
 
 
 
-	protected onActivate(player: ServerPlayer_): void {
+	protected override onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
 		this.cooldownController.update(player);
 
@@ -56,21 +56,22 @@ const HeatDeathAbility = new (class extends BaseAbility {
 		LivingEntityHelper.removeHarmfulEffects(player);
 	}
 
-	private quantumEcho(player: ServerPlayer_): void {
-		if (!SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_ECHO)) return;
+	private quantumEcho(attacker: ServerPlayer_): void {
+		if (FarlanderSkills.QUANTUM_ECHO.isLockedFor(attacker)) return;
 
-		const holders = EntropyHolder.getHoldersWithAttackerEntropy(player);
-		holders.forEach(holder => {
-			const entity = player.server.getEntityByUUID(holder.uuid);
-			if (!entity) return;
+		const holders = EntropyHolder.getHoldersWithAttackerEntropy(attacker);
+		for (const holder of holders) {
+			const entity = attacker.server.getEntityByUUID(holder.uuid);
+			if (!entity) continue;
 
-			const lifetimeDamage = EntropyHelper.getLifetimeEntropyDamage(entity as any);
-			holder.pushEntropyEntry(lifetimeDamage, player);
+			const currentEntropy = holder.getTotalEntropyFrom(attacker);
+			holder.pushEntropyEntry(currentEntropy, attacker);
+
 			this.ui.playQuantumEcho(entity.level as any, entity.position());
-		});
+		}
 	}
 
-	public onPress(player: ServerPlayer_): boolean {
+	public override onPress(player: ServerPlayer_): boolean {
 		if (!SkillHelper.hasSkill(player, FarlanderSkills.HEAT_DEATH)) {
 			return false;
 		}

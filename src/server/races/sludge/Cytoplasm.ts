@@ -24,6 +24,7 @@ namespace SludgeCytoplasm {
 
 	PlayerEvents.tick(event => {
 		const player = event.getPlayer() as ServerPlayer_;
+		AttributeHelper.removeModifier(player, "minecraft:generic.movement_speed", MODIFIER_KEY);
 
 		const tier = SkillHelper.getSkillTier(player,
 			SludgeSkills.CYTOPLASM_1,
@@ -31,7 +32,6 @@ namespace SludgeCytoplasm {
 			SludgeSkills.CYTOPLASM_3,
 			SludgeSkills.CYTOPLASM_4,
 		);
-		AttributeHelper.removeModifier(player, "minecraft:generic.movement_speed", MODIFIER_KEY);
 		if (tier <= 0) return;
 		if (Math.ceil(player.health) >= player.maxHealth && !CytoplasmDisabler.isToggleActive(player)) {
 			LivingEntityHelper.addEffect(player, "minecraft:resistance", 1, tier - 1, false, false, true);

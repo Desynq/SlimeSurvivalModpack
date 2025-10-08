@@ -195,12 +195,11 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
-	// TODO:
 	public static readonly QUANTUM_ECHO = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_echo")
 		.itemIcon("minecraft:echo_shard")
 		.addDescription({
 			"color": "dark_red",
-			"text": "Heat death causes all enemies that you currently have tagged with entropy to take their lifetime entropy damage back into their entropy pool."
+			"text": "Heat death causes all enemies to have their total current entropy from you applied onto them again as one source (essentially doubling entropy damage)."
 		})
 		.cost(4)
 		.requiredSkills(2)
@@ -343,4 +342,16 @@ class FarlanderSkills {
 		.requiredSkills(2)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
+
+	public static readonly THE_WORLD = this.createSkill("the_world", def => def
+		.itemIcon("mowziesmobs:earthrend_gauntlet")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "You move while others cannot."
+				+ "\n\nWhile Quantum Relativity is active:"
+				+ "\n- Attack speed is doubled."
+				+ "\n- Movement speed is doubled."
+		})
+		.cost(10)
+	);
 }

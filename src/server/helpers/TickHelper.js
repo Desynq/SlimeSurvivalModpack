@@ -39,27 +39,6 @@ TickHelper.getGameTime = function(server) {
 }
 
 
-/**
- * 
- * @param {Entity_} entity 
- */
-TickHelper.getCustomTickRate = function(entity) {
-	if (entity instanceof $Projectile) {
-		const owner = entity.getOwner();
-		if (!(owner instanceof $ServerPlayer)) return null;
-
-		if (owner.crouching) return null;
-
-		if (!SkillHelper.hasSkill(owner, FarlanderSkills.LORENTZ_CURVE)) return null;
-
-		if (!QuantumRelativity.isActive(owner)) return null;
-
-		return 20;
-	}
-	return null;
-}
-
-
 
 /**
  * 

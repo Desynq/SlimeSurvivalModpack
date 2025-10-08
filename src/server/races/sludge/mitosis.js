@@ -43,7 +43,7 @@ PlayerEvents.tick(event => {
 	// @ts-ignore
 	const player = event.player;
 
-	if (player.health <= 0 || player.health >= player.maxHealth) {
+	if (player.deadOrDying || player.health <= 0 || player.health >= player.maxHealth || player.onFire) {
 		return;
 	}
 

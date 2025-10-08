@@ -8,6 +8,7 @@ interface SkillData {
 	icon?: any;
 	frame?: any;
 	required_points?: integer;
+	required_spent_points?: integer;
 	required_skills?: integer;
 	size?: float;
 }
@@ -143,6 +144,18 @@ class SkillDefinition {
 			color: "red",
 			text: `\n[Skills Needed: ${amount}]`
 		});
+		return this;
+	}
+
+	/**
+	 * How many points the player needs in order to be able to unlock the skill.
+	 * 
+	 * Separate from the skill's point cost.
+	 * Overridden by {@link rootSkill}.
+	 */
+	public requiredSpentPoints(amount: number): this {
+		this.data.required_spent_points = amount;
+		this.addDescription({ color: "red", text: `\n[Points Spent Needed: ${amount}]` });
 		return this;
 	}
 

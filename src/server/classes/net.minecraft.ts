@@ -11,7 +11,6 @@ type TagParser_ = import("net.minecraft.nbt.TagParser").$TagParser$$Original;
 // @ts-ignore
 const $TagParser: typeof import("net.minecraft.nbt.TagParser").$TagParser = Java.loadClass("net.minecraft.nbt.TagParser");
 
-type CompoundTag_ = import("net.minecraft.nbt.CompoundTag").$CompoundTag$$Original;
 const $CompoundTag: typeof import("net.minecraft.nbt.CompoundTag").$CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
 
 // @ts-ignore

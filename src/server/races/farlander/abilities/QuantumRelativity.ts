@@ -29,7 +29,7 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 	);
 
 	protected readonly ui = new (class implements IToggleableAbilityUI {
-		constructor(
+		public constructor(
 			private readonly cooldown: TimestampController,
 			private readonly duration: TimestampController
 		) { }
@@ -71,22 +71,36 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 	})(this.cooldownController, this.durationController);
 
 
+	private readonly ATTACK_SPEED_MODIFIER = new AttributeModifierController("generic.attack_speed", "ability.quantum_relativity.attack_speed", 1, "add_multiplied_total");
+	private readonly MOVEMENT_SPEED_MODIFIER = new AttributeModifierController("generic.movement_speed", "ability.quantum_relativity.movement_speed", 1, "add_multiplied_total");
 
-	protected onActivate(player: ServerPlayer_): void {
+	protected override onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
 		TickHelper.setTickRate(player.server, FarlanderSkillData.QUANTUM_RELATIVITY_TICK_RATE);
+
+		if (FarlanderSkills.THE_WORLD.isUnlockedFor(player)) {
+			this.ATTACK_SPEED_MODIFIER.add(player);
+			this.MOVEMENT_SPEED_MODIFIER.add(player);
+		}
 	}
 
-	protected onDeactivate(player: ServerPlayer_): void {
+	protected override onDeactivate(player: ServerPlayer_): void {
 		super.onDeactivate(player);
 		TickHelper.resetTickRate(player.server);
+
+		this.ATTACK_SPEED_MODIFIER.remove(player);
+		this.MOVEMENT_SPEED_MODIFIER.remove(player);
 	}
 
 	private onOutOfHunger(player: ServerPlayer_): void {
 		this.onDeactivate(player);
 	}
 
-	public onPress(player: ServerPlayer_): boolean {
+	public onDisconnect(player: ServerPlayer_): void {
+		this.onDeactivate(player);
+	}
+
+	public override onPress(player: ServerPlayer_): boolean {
 		if (!SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_RELATIVITY)) {
 			return false;
 		}
@@ -97,7 +111,7 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 		return super.onPress(player);
 	}
 
-	public onTick(player: ServerPlayer_): boolean {
+	public override onTick(player: ServerPlayer_): boolean {
 		if (!super.onTick(player)) return false;
 
 		player.causeFoodExhaustion(1);
@@ -112,5 +126,19 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 
 	public isActive(player: ServerPlayer_) {
 		return this.toggleController.isToggled(player);
+	}
+
+	/**
+	 * A projectile is a lorentz projectile if its owner has Lorentz Curve and the owner isn't crouching.
+	 */
+	public isLorentzProjectile(entity: Projectile_): boolean {
+		const owner = entity.getOwner();
+		if (!(owner instanceof $ServerPlayer)) return false;
+
+		if (owner.crouching) return false;
+
+		if (!SkillHelper.hasSkill(owner, FarlanderSkills.LORENTZ_CURVE)) return false;
+
+		return true;
 	}
 })();

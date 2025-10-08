@@ -1,0 +1,52 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:command_block",
+					"functions": [
+						{
+							"function": "minecraft:set_name",
+							"name": {
+								"text": "Shaped Glass",
+								"color": "dark_red"
+							},
+							"target": "item_name"
+						},
+						{
+							"function": "minecraft:set_custom_data",
+							"tag": {
+								"shaped_glass": true
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"curios:attribute_modifiers": {
+									"modifiers": [
+										{
+											"id": "slimesurvival:shaped_glass",
+											"type": "minecraft:generic.attack_damage",
+											"amount": 1,
+											"operation": "add_multiplied_total",
+											"slot": "charm"
+										},
+										{
+											"id": "slimesurvival:shaped_glass",
+											"type": "minecraft:generic.max_health",
+											"amount": -0.5,
+											"operation": "add_multiplied_total",
+											"slot": "charm"
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

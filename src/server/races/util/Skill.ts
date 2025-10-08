@@ -30,4 +30,12 @@ class Skill {
 		registry.push(this);
 		return this;
 	}
+
+	public isUnlockedFor(player: unknown): boolean {
+		return SkillHelper.hasSkill(player, this);
+	}
+
+	public isLockedFor(player: unknown): boolean {
+		return !SkillHelper.hasSkill(player, this);
+	}
 }

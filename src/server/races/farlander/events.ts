@@ -174,4 +174,11 @@ namespace FarlanderEvents {
 			event.setAttackDamage(0);
 		}
 	});
+
+	PlayerEvents.loggedOut(event => {
+		const player = event.entity as ServerPlayer_;
+		if (QuantumRelativity.isActive(player)) {
+			QuantumRelativity.onDisconnect(player);
+		}
+	});
 }

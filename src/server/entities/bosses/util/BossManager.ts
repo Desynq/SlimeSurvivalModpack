@@ -63,10 +63,14 @@ abstract class BossManager<T extends LivingEntity_> {
 		if (this.bossCache.count > 0) return;
 
 		for (const entity of server.getEntities()) {
-			if (!this.isBoss(entity)) continue;
+			if (entity.removed || !this.isBoss(entity)) continue;
 			this.bossCache.add(entity);
 			BossManagerRegistry.register(entity, this);
 		}
+	}
+
+	public verifyBossCache(): void {
+		this.bossCache.verify(entity => this.isBoss(entity));
 	}
 
 	public getBosses(server: MinecraftServer_): T[] {

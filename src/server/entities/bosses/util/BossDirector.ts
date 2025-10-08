@@ -45,8 +45,7 @@ class BossDirector {
 		for (const bossbar of bossbars.getEvents().toArray() as CustomBossEvent_[]) {
 			const uuid = UUID.fromString(bossbar.textId.path);
 			const entity = server.getEntityByUUID(uuid.toString());
-			if (!BossManager.isGenericBoss(entity) || (TheHunger.isCachedBoss(entity) && !TheHunger.isBossbarHolder(entity))
-			) {
+			if (!BossManager.isGenericBoss(entity) || (TheHunger.isCachedBoss(entity) && !TheHunger.isBossbarHolder(entity))) {
 				bossbar.removeAllPlayers();
 				bossbars.remove(bossbar);
 			}
@@ -74,6 +73,7 @@ class BossDirector {
 			manager.onServerTick(server);
 
 			if (manager.getBossCount(server) <= 0) continue;
+			manager.verifyBossCache();
 
 			const bosses = manager.getBosses(server);
 			manager.onTickAll(server, bosses);

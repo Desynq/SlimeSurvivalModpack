@@ -408,7 +408,7 @@
 		"description": [
 			{
 				"color": "dark_red",
-				"text": "Heat death causes all enemies that you currently have tagged with entropy to take their lifetime entropy damage back into their entropy pool."
+				"text": "Heat death causes all enemies to have their total current entropy from you applied onto them again as one source (essentially doubling entropy damage)."
 			},
 			{
 				"color": "dark_green",
@@ -766,5 +766,26 @@
 			}
 		},
 		"required_skills": 2
+	},
+	"the_world": {
+		"title": "The World",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "You move while others cannot.\n\nWhile Quantum Relativity is active:\n- Attack speed is doubled.\n- Movement speed is doubled."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 10 points]"
+			}
+		],
+		"cost": 10,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "mowziesmobs:earthrend_gauntlet"
+			}
+		}
 	}
 }

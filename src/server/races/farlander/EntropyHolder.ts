@@ -176,6 +176,7 @@ class EntropyHolder {
 	private tickEntries(owner: LivingEntity_) {
 		ListHelper.forEachRight(this.entropyEntries, (entry, i, entries) => {
 			if (entries.length === 0) return "break"; // handles reentrance if the player died from an entropy entry being ticked
+			if (entry === undefined) return "break";
 			if (!entry.tryTick(owner)) return "continue";
 
 			const entropyDecay = this.decayEntry(owner, entry, i);

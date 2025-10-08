@@ -7,3 +7,9 @@ const $ScreenEvent$KeyPressed$Pre = Java.loadClass("net.neoforged.neoforge.clien
 
 /** @type {typeof import("net.neoforged.neoforge.client.event.RenderLivingEvent$Pre").$RenderLivingEvent$Pre} */
 const $RenderLivingEvent$Pre = Java.loadClass("net.neoforged.neoforge.client.event.RenderLivingEvent$Pre");
+
+/** @type {typeof import("net.neoforged.neoforge.client.event.RenderLivingEvent$Post").$RenderLivingEvent$Post} */
+const $RenderLivingEvent$Post = Java.loadClass("net.neoforged.neoforge.client.event.RenderLivingEvent$Post");
+
+/** @type {typeof import("net.neoforged.neoforge.client.event.RenderNameTagEvent").$RenderNameTagEvent} */
+const $RenderNameTagEvent = Java.loadClass("net.neoforged.neoforge.client.event.RenderNameTagEvent");

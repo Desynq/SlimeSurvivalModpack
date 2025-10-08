@@ -12,10 +12,10 @@ interface IToggleableAbilityUI {
 abstract class ToggleableAbility extends BaseAbility {
 	protected abstract readonly toggleController: ToggleController;
 	protected abstract readonly durationController: TimestampController;
-	protected abstract readonly ui: IToggleableAbilityUI;
+	protected abstract override readonly ui: IToggleableAbilityUI;
 
 	// Hooks for subclasses
-	protected onActivate(player: ServerPlayer_): void {
+	protected override onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
 		this.durationController.update(player);
 		this.toggleController.toggle(player);
@@ -51,7 +51,7 @@ abstract class ToggleableAbility extends BaseAbility {
 		this.onDeactivate(player);
 	}
 
-	public onPress(player: ServerPlayer_): boolean {
+	public override onPress(player: ServerPlayer_): boolean {
 		if (!super.onPress(player)) {
 			return false;
 		}
@@ -65,7 +65,7 @@ abstract class ToggleableAbility extends BaseAbility {
 		return true;
 	}
 
-	public onTick(player: ServerPlayer_): boolean {
+	public override onTick(player: ServerPlayer_): boolean {
 		if (!this.toggleController.isToggled(player)) {
 			if (!this.cooldownController.hasPassed(player)) {
 				this.ui.displayCooldown(player);

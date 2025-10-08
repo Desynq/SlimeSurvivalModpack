@@ -3,7 +3,7 @@
 
 namespace SkillNetwork {
 	function isInvisible(player: ServerPlayer_): boolean {
-		return FarlanderSkills.THE_WORLD.isUnlockedFor(player) && QuantumRelativity.isActive(player);
+		return false;
 	}
 
 	ServerEvents.tick(event => {

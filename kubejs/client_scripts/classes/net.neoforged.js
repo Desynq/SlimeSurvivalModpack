@@ -5,3 +5,7 @@ var $PlayerInteractEvent$RightClickItem = Java.loadClass("net.neoforged.neoforge
 var $ScreenEvent$KeyPressed$Pre = Java.loadClass("net.neoforged.neoforge.client.event.ScreenEvent$KeyPressed$Pre");
 /** @type {typeof import("net.neoforged.neoforge.client.event.RenderLivingEvent$Pre").$RenderLivingEvent$Pre} */
 var $RenderLivingEvent$Pre = Java.loadClass("net.neoforged.neoforge.client.event.RenderLivingEvent$Pre");
+/** @type {typeof import("net.neoforged.neoforge.client.event.RenderLivingEvent$Post").$RenderLivingEvent$Post} */
+var $RenderLivingEvent$Post = Java.loadClass("net.neoforged.neoforge.client.event.RenderLivingEvent$Post");
+/** @type {typeof import("net.neoforged.neoforge.client.event.RenderNameTagEvent").$RenderNameTagEvent} */
+var $RenderNameTagEvent = Java.loadClass("net.neoforged.neoforge.client.event.RenderNameTagEvent");

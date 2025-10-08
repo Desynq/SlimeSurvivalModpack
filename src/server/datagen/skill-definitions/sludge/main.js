@@ -142,20 +142,20 @@ SludgeSkills.CONGEALED_2 = new SkillDefinition(SludgeSkillsCategoryId, "congeale
 	.effectIcon("minecraft:health_boost")
 	.addDescription({
 		"color": "green",
-		"text": "+5 Max Health"
+		"text": "+10 Max Health"
 	})
 	.cost(2)
-	.addAttributeReward("minecraft:generic.max_health", 5.0, "addition")
+	.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
 	.serialize(SludgeDefinitionsJson)
 	.toSkill("8r71o66i4ttue5nn");
 SludgeSkills.CONGEALED_3 = new SkillDefinition(SludgeSkillsCategoryId, "congealed_3")
 	.effectIcon("minecraft:health_boost")
 	.addDescription({
 		"color": "green",
-		"text": "+5 Max Health"
+		"text": "+10 Max Health"
 	})
 	.cost(2)
-	.addAttributeReward("minecraft:generic.max_health", 5.0, "addition")
+	.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
 	.serializeIntoSkill(SludgeDefinitionsJson);
 
 
