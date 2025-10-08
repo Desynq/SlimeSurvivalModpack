@@ -2,7 +2,7 @@
 
 
 // @ts-ignore
-const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements TickableBoss<T>, CustomBossbar<T> {
+const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
 	public readonly BOSS_ID = "minecraft:rabbit";
 	public readonly MOB_SEARCH_RANGE = 128;
 	public readonly MOB_AGGRO_RANGE = 16;
@@ -50,22 +50,30 @@ const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements 
 	public onBossTick(boss: T): void {
 		if (boss.tickCount % 10 === 0) {
 			this.updateTarget(boss);
-			if (!boss.aggressive) {
-				boss.setAggressive(true);
-			}
-			boss.goalSelector.availableGoals
-				.stream()
-				.filter(goal => goal instanceof $AvoidEntityGoal || goal instanceof $PanicGoal)
-				.forEach(goal => boss.goalSelector.removeGoal(goal.getGoal()));
+			this.makeHyperAggressive(boss);
 		}
-		TimeHelper.shiftTime(boss.server, 6000);
 
 		LivingEntityHelper.removeHarmfulEffects(boss as any);
-		this.updateHealth(boss);
-		this.updateScale(boss);
-		this.updateJumpStrength(boss);
 
 		this.eatNearbyItems(boss);
+	}
+
+	public override onCountChange(server: MinecraftServer_): void {
+		const bosses = this.getBosses(server);
+		for (const boss of bosses) {
+			this.updateHealth(boss);
+			this.updateScale(boss);
+			this.updateJumpStrength(boss);
+		}
+	}
+
+	public override onTickAll(server: MinecraftServer_, bosses: T[]): void {
+		TimeHelper.shiftTime(server, 6000);
+	}
+
+	public override onKill(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_): void {
+		boss.health = Math.min(boss.maxHealth, boss.health + victim.maxHealth);
+		this.tryDuplicate(boss);
 	}
 
 	public onBossbarUpdate(boss: T): void {
@@ -91,6 +99,16 @@ const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements 
 		server.runCommandSilent(`execute at ${boss.username} run bossbar set ${bossbarId} players @a[distance=0..]`);
 	}
 
+
+	private makeHyperAggressive(boss: T): void {
+		if (!boss.aggressive) {
+			boss.setAggressive(true);
+		}
+		boss.goalSelector.availableGoals
+			.stream()
+			.filter(goal => goal instanceof $AvoidEntityGoal || goal instanceof $PanicGoal)
+			.forEach(goal => boss.goalSelector.removeGoal(goal.getGoal()));
+	}
 
 	private eatNearbyItems(boss: T): void {
 		const level = boss.level;
@@ -169,19 +187,13 @@ const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements 
 		}
 	}
 
-	public duplicate(boss: T): boolean {
-		const count = this.getBosses(boss.server).length;
+	private tryDuplicate(boss: T): boolean {
+		if (boss.health < boss.maxHealth) return false;
+
+		const count = this.getBossCount(boss.server);
 		if (count >= this.SPAWN_CAP) return false;
 
 		const entity = Summonables.THE_HUNGER.spawn(boss.level as any, boss.position());
-		this.updateHealth(entity as any as T);
 		return true;
 	}
 })().register();
-
-EntityEvents.death(event => {
-	const attacker = event.source.actual;
-	if (TheHunger.isCachedBoss(attacker)) {
-		TheHunger.duplicate(attacker);
-	}
-});
