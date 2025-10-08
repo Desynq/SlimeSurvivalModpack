@@ -37,6 +37,10 @@ const BoltActionRifle = new (class {
 		return !TickHelper.hasTimestampElapsed(shooter, "bolt_action_rifle_fire_cooldown", this.COOLDOWN);
 	}
 
+	public setCooldown(shooter: ServerPlayer_): void {
+		TickHelper.forceUpdateTimestamp(shooter, "bolt_action_rifle_fire_cooldown");
+	}
+
 
 
 	private consumeAmmo(shooter: ServerPlayer_): void {
@@ -50,6 +54,7 @@ const BoltActionRifle = new (class {
 
 		playsound(shooter.level, shooter.position(), "minecraft:entity.firework_rocket.large_blast", "master", 16, 1);
 		this.summonProjectile(shooter, weapon);
+		this.setCooldown(shooter);
 	};
 
 	private summonProjectile(shooter: ServerPlayer_, weapon: ItemStack_): void {
