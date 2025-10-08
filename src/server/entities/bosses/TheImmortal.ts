@@ -2,7 +2,7 @@
 
 
 // @ts-ignore
-const Draugrnaut = new (class <T extends Mob_> extends BossManager<T> implements TickableBoss<T> {
+const Draugrnaut = new (class <T extends Mob_> extends BossManager<T> implements ITickableBoss<T> {
 	public readonly BOSS_ID = "rottencreatures:immortal";
 
 	protected override isBoss(entity: unknown): entity is T {

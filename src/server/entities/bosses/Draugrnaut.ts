@@ -4,7 +4,7 @@
  * Boss damaging mechanic:
  */
 // @ts-ignore
-const Draugrnaut = new (class <T extends PathfinderMob_> extends BossManager<T> implements TickableBoss<T> {
+const Draugrnaut = new (class <T extends PathfinderMob_> extends BossManager<T> implements ITickableBoss<T> {
 	public readonly BOSS_ID = "mowziesmobs:ferrous_wroughtnaut";
 
 	protected override isBoss(entity: unknown): entity is T {
@@ -27,8 +27,3 @@ const Draugrnaut = new (class <T extends PathfinderMob_> extends BossManager<T> 
 
 	}
 })().register();
-
-
-EntityEvents.beforeHurt(Draugrnaut.BOSS_ID, event => {
-
-});

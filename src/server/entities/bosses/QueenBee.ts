@@ -1,6 +1,6 @@
 
 // @ts-ignore
-const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Bee_> {
+const QueenBee = new (class extends BossManager<Bee_> implements ITickableBoss<Bee_> {
 	protected override isBoss(entity: unknown): entity is Bee_ {
 		return entity instanceof $Bee && entity.tags.contains("boss.queen_bee");
 	}
@@ -145,7 +145,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements TickableBoss<Be
 	}
 
 	private getMaxMinions(boss: Bee_): integer {
-		return 16 + ((this.getParticipantCount(boss) - 1) * 8);
+		return 16 + ((ServerHelper.getSurvivorCount(boss.server) - 1) * 8);
 	}
 
 	private getMinionSpawnCooldownInterval(boss: Bee_): integer {
