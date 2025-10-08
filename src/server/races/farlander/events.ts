@@ -174,20 +174,4 @@ namespace FarlanderEvents {
 			event.setAttackDamage(0);
 		}
 	});
-
-	NativeEvents.onEvent($LivingEntityUseItemEvent$Finish, event => {
-		const player = event.getEntity();
-		if (!(player instanceof $ServerPlayer)) return;
-
-		if (!SkillHelper.hasSkill(player, FarlanderSkills.NUTRITIONAL_UNCERTAINTY)) return;
-
-		const stack = event.getItem();
-		if (stack.getFoodProperties(player) === null) return;
-
-		const food = player.getFoodData();
-		const maxHunger = 20;
-		if (food.foodLevel < maxHunger) {
-			food.setSaturation(0.0);
-		}
-	});
 }
