@@ -35,7 +35,7 @@ const HeatDeathAbility = new (class extends BaseAbility {
 		}
 
 		public playQuantumEcho(level: ServerLevel_, pos: Vec3_): void {
-			playsound(level, pos, "entity.elder_guardian.curse", "master", 1, 2);
+			playsound(level, pos, "entity.elder_guardian.curse", "ambient", 1, 2);
 		}
 	})(this.cooldownController);
 
