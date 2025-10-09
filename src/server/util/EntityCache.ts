@@ -6,11 +6,12 @@ class EntityCache<T extends Entity_> {
 
 	public constructor() { }
 
-	public add(entity: T): void {
-		if (this._entities[entity.stringUUID] !== undefined) return;
+	public add(entity: T): boolean {
+		if (this._entities[entity.stringUUID] !== undefined) return false;
 
 		this._entities[entity.stringUUID] = entity;
 		this._count++;
+		return true;
 	}
 
 	public remove(entity: T): void {
