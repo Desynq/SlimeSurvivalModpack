@@ -145,7 +145,7 @@ class FarlanderSkills {
 				+ "\nInstead you take `entropyPool / maxHealth * 4` exhaustion per tick."
 				+ "\nYou will at minimum still take the base exhaustion rate."
 		})
-		.cost(2)
+		.cost(4)
 		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
@@ -157,7 +157,7 @@ class FarlanderSkills {
 			"color": "dark_purple",
 			"text": "You regenerate `entropyDamage / maxHealth * 0.25` you deal to others as hunger while Quantum Relativity is active."
 		})
-		.cost(2)
+		.cost(8)
 		.requiredSkills(2)
 		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
@@ -167,9 +167,9 @@ class FarlanderSkills {
 		.itemIcon("minecraft:arrow")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "Your projectiles travel normally while Quantum Relativity is active."
+			"text": "Your projectiles travel at 20hz while Quantum Relativity is active."
 				+ "\n\n- Crouching temporarily toggles ability off."
-				+ "\n\n- Affected projectiles are difficult to observe."
+				+ "\n\n- Affected projectiles do not interpolate motion visually."
 		})
 		.cost(1)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
@@ -232,9 +232,20 @@ class FarlanderSkills {
 		.itemIcon("minecraft:tnt_minecart")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to you that currently has entropy from you."
+			"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to them that currently has entropy from you."
+				+ "\n- Max distance of 16 blocks"
 		})
 		.cost(2)
+		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.register(this.skills);
+
+	public static readonly OBSERVER_EFFECT = new SkillDefinition(FARLANDER_CATEGORY_ID, "observer_effect")
+		.itemIcon("minecraft:observer")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "Casual Transference defaults to the nearest mob from the victim that is currently targeting you if its initial search condition fails."
+		})
+		.cost(4)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
@@ -248,15 +259,14 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
-	public static readonly OBSERVER_EFFECT = new SkillDefinition(FARLANDER_CATEGORY_ID, "observer_effect")
-		.itemIcon("minecraft:ender_eye")
+	public static readonly COHERENCE_2 = this.createSkill("coherence_2", def => def
+		.itemIcon("minecraft:heart_of_the_sea")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "Casual Transference defaults to the nearest mob currently targeting you if its initial search condition fails."
+			"text": "Entropy you deal to others takes 5 ticks longer to decay in addition to the delay from Coherence I."
 		})
 		.cost(4)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
-		.register(this.skills);
+	);
 
 	public static readonly QUANTUM_CLEANSING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_cleansing")
 		.itemIcon("minecraft:milk_bucket")
@@ -351,6 +361,7 @@ class FarlanderSkills {
 				+ "\n\nWhile Quantum Relativity is active:"
 				+ "\n- Attack speed is doubled."
 				+ "\n- Movement speed is doubled."
+				+ "\n- No gun aim spread from moving."
 		})
 		.cost(10)
 	);

@@ -290,14 +290,14 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
+				"text": "\n\n[Cost: 4 points]"
 			},
 			{
 				"color": "yellow",
 				"text": "\n[Planned]"
 			}
 		],
-		"cost": 2,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -315,7 +315,7 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
+				"text": "\n\n[Cost: 8 points]"
 			},
 			{
 				"color": "red",
@@ -326,7 +326,7 @@
 				"text": "\n[Planned]"
 			}
 		],
-		"cost": 2,
+		"cost": 8,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -341,7 +341,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Your projectiles travel normally while Quantum Relativity is active.\n\n- Crouching temporarily toggles ability off.\n\n- Affected projectiles are difficult to observe."
+				"text": "Your projectiles travel at 20hz while Quantum Relativity is active.\n\n- Crouching temporarily toggles ability off.\n\n- Affected projectiles do not interpolate motion visually."
 			},
 			{
 				"color": "dark_green",
@@ -480,7 +480,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to you that currently has entropy from you."
+				"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to them that currently has entropy from you.\n- Max distance of 16 blocks"
 			},
 			{
 				"color": "dark_green",
@@ -492,6 +492,27 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:tnt_minecart"
+			}
+		}
+	},
+	"observer_effect": {
+		"title": "Observer Effect",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "Casual Transference defaults to the nearest mob from the victim that is currently targeting you if its initial search condition fails."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:observer"
 			}
 		}
 	},
@@ -516,13 +537,13 @@
 			}
 		}
 	},
-	"observer_effect": {
-		"title": "Observer Effect",
+	"coherence_2": {
+		"title": "Coherence II",
 		"rewards": [],
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "Casual Transference defaults to the nearest mob currently targeting you if its initial search condition fails."
+				"text": "Entropy you deal to others takes 5 ticks longer to decay in addition to the delay from Coherence I."
 			},
 			{
 				"color": "dark_green",
@@ -533,7 +554,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:ender_eye"
+				"item": "minecraft:heart_of_the_sea"
 			}
 		}
 	},
@@ -773,7 +794,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "You move while others cannot.\n\nWhile Quantum Relativity is active:\n- Attack speed is doubled.\n- Movement speed is doubled."
+				"text": "You move while others cannot.\n\nWhile Quantum Relativity is active:\n- Attack speed is doubled.\n- Movement speed is doubled.\n- No gun aim spread from moving."
 			},
 			{
 				"color": "dark_green",
