@@ -29,6 +29,13 @@ class BossDirector {
 		return manager !== undefined && this.isCustomBossbarManager(manager);
 	}
 
+	public static tryAddBoss(boss: Entity_): boolean {
+		for (const manager of this.managers) {
+			if (manager.tryAddBoss(boss)) return true;
+		}
+		return false;
+	}
+
 	public static eventHook(boss: Entity_, event: any): void {
 		const manager = BossManagerRegistry.getManager(boss);
 		if (!manager) return;
@@ -53,10 +60,7 @@ class BossDirector {
 	}
 
 	public static genericBossTick(boss: LivingEntity_): void {
-		if (boss.tags.contains("boss.tenuem")) {
-			TenuemBoss.tick(boss);
-		}
-		else if (boss.tags.contains("boss.voidman")) {
+		if (boss.tags.contains("boss.voidman")) {
 			VoidmanBoss.tick(boss);
 		}
 		else if (boss instanceof $ServerPlayer && boss.tags.contains("boss.the_hunter")) {
@@ -72,8 +76,8 @@ class BossDirector {
 		for (const manager of this.managers) {
 			manager.onServerTick(server);
 
-			if (manager.getBossCount(server) <= 0) continue;
 			manager.verifyBossCache();
+			if (manager.getBossCount(server) === 0) continue;
 
 			const bosses = manager.getBosses(server);
 			manager.onTickAll(server, bosses);

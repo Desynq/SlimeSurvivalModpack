@@ -64,6 +64,16 @@ class Summonable {
 		return this;
 	}
 
+	public setCustomEntity(entityId: string): this {
+		if (!Array.isArray(this.nbt.tags)) {
+			this.nbt.Tags = [];
+		}
+
+		this.nbt.Tags.push(`entity.${entityId}`);
+
+		return this;
+	}
+
 	public getNode() {
 		return $Commands.literal(this.name)
 			.executes(context => {
@@ -88,7 +98,9 @@ class Summonable {
 		const source = level.getServer().createCommandSourceStack().withLevel(level);
 		const tag: CompoundTag_ = $TagParser.parseTag(JSON.stringify(this.nbt));
 
-		return $SummonCommand.createEntity(source, type, position, tag, randomizeProperties);
+		const entity = $SummonCommand.createEntity(source, type, position, tag, randomizeProperties);
+		// BossDirector.tryAddBoss(entity);
+		return entity;
 	}
 }
 
@@ -233,4 +245,35 @@ namespace Summonables {
 		Glowing: true
 	})
 		.setMaxHealth(40.00);
+
+	export const TENUEM_BOSS = Summonable.create("tenuem_boss", "minecraft:phantom", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 40
+			},
+			{
+				id: "minecraft:generic.scale",
+				base: 3
+			}
+		],
+		CustomName: '{"color":"dark_aqua","text":"The Tenuem"}',
+		Glowing: true
+	})
+		.setMaxHealth(10_000.00)
+		.setBoss("tenuem");
+
+	export const TENUEM_MINION = Summonable.create("tenuem_minion", "minecraft:phantom", {
+		PersistenceRequired: true,
+		attributes: [
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 4
+			}
+		],
+		CustomName: '{"color":"dark_aqua","text":"Tenuem Minion"}'
+	})
+		.setMaxHealth(20.00)
+		.setCustomEntity("tenuem_minion");
 }
