@@ -13,11 +13,11 @@ function nukeBossbars(server: MinecraftServer_) {
 
 const EntityManagers = new EntityManagerRegistry();
 
-interface ITickableBoss<T> {
+interface ITickableBoss<T extends LivingEntity_> {
 	onBossTick(boss: T): void;
 }
 
-interface ICustomBossbar<T> {
+interface ICustomBossbar<T extends LivingEntity_> {
 	onBossbarUpdate(boss: T): void;
 }
 

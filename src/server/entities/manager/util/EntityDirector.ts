@@ -21,17 +21,17 @@ class EntityDirector {
 	}
 
 
-	public static readonly managers: EntityManager<any>[] = [];
+	public static readonly managers: EntityManager<LivingEntity_>[] = [];
 
-	public static addManager(manager: EntityManager<any>): void {
+	public static addManager(manager: EntityManager<LivingEntity_>): void {
 		this.managers.push(manager);
 	}
 
-	public static isTickManager(manager: EntityManager<any>): manager is EntityManager<any> & ITickableBoss<any> {
+	public static isTickManager(manager: EntityManager<LivingEntity_>): manager is EntityManager<LivingEntity_> & ITickableBoss<LivingEntity_> {
 		return "onBossTick" in manager;
 	}
 
-	public static isCustomBossbarManager(manager: EntityManager<any>): manager is EntityManager<any> & ICustomBossbar<any> {
+	public static isCustomBossbarManager(manager: EntityManager<LivingEntity_>): manager is EntityManager<LivingEntity_> & ICustomBossbar<LivingEntity_> {
 		return "onBossbarUpdate" in manager;
 	}
 
@@ -106,7 +106,7 @@ class EntityDirector {
 			if (!isTickable && !hasCustomBossbar) continue;
 
 			for (const boss of bosses) {
-				if (isTickable) manager.onBossTick(boss);
+				if (isTickable && boss.isAlive()) manager.onBossTick(boss);
 				if (hasCustomBossbar) manager.onBossbarUpdate(boss);
 			}
 		}
