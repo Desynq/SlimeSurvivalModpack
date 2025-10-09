@@ -18,8 +18,8 @@ class LivingEntityHelper {
 		this.addEffect(entity, id, duration, amplifier, ambient, visible, showIcon, source);
 	}
 
-	public static isBeingTargetedBy(entity: LivingEntity_, mob: Mob_) {
-		return mob.getTarget() === entity;
+	public static isBeingTargetedBy(victim: LivingEntity_, mob: Mob_) {
+		return mob.getTarget() === victim;
 	}
 
 	public static removeHarmfulEffects(entity: LivingEntity_) {

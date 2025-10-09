@@ -17,9 +17,7 @@ namespace FarlanderEvents {
 		}
 
 		const blacklistedDamageSources: string[] = ["genericKill", "slimesurvival.entropy_kill"];
-		if (ArrayHelper.includes(blacklistedDamageSources, event.source.getType())) {
-			return;
-		}
+		if (blacklistedDamageSources.includes(event.source.getType())) return;
 
 		let postAbsorptionDamage = applyAbsorptionDamage(victim, event.damage);
 
@@ -110,24 +108,30 @@ namespace FarlanderEvents {
 
 
 
-	function getNearestDecayingEntity(attacker: ServerPlayer_, distance: double): LivingEntity_ | null {
-		const conditions = $TargetingConditions.forNonCombat().selector(e => EntropyHolder.get(e)?.hasEntropyFrom(attacker) ?? false);
-		const aabb = attacker.getBoundingBox().inflate(distance);
-		return attacker.level.getNearestEntity($LivingEntity as any, conditions, attacker, attacker.x, attacker.y, attacker.z, aabb as any);
+	function getNearestDecayingEntity(victim: LivingEntity_, attacker: ServerPlayer_, distance: double): LivingEntity_ | null {
+		const conditions = $TargetingConditions.forNonCombat().selector(entity =>
+			EntropyHolder.get(entity)?.hasEntropyFrom(attacker) ?? false
+		);
+
+		const aabb = victim.getBoundingBox().inflate(distance);
+		return victim.level.getNearestEntity($LivingEntity as any, conditions, victim, victim.x, victim.y, victim.z, aabb as any);
 	}
 
-	function getNearestAggressiveEntity(attacker: ServerPlayer_, distance: double): Mob_ | null {
-		const conditions = $TargetingConditions.forNonCombat().selector((mob: LivingEntity_) => mob instanceof $Mob && LivingEntityHelper.isBeingTargetedBy(attacker, mob));
-		const aabb = attacker.getBoundingBox().inflate(distance);
-		return attacker.level.getNearestEntity($Mob as any, conditions, attacker, attacker.x, attacker.y, attacker.z, aabb as any);
+	function getNearestAggressiveEntity(victim: LivingEntity_, attacker: ServerPlayer_, distance: double): Mob_ | null {
+		const conditions = $TargetingConditions.forNonCombat().selector((mob: LivingEntity_) =>
+			mob instanceof $Mob && LivingEntityHelper.isBeingTargetedBy(attacker, mob)
+		);
+
+		const aabb = victim.getBoundingBox().inflate(distance);
+		return victim.level.getNearestEntity($Mob as any, conditions, victim, victim.x, victim.y, victim.z, aabb as any);
 	}
 
-	function getTransferenceTarget(attacker: ServerPlayer_): LivingEntity_ | null {
-		let target: LivingEntity_ | Mob_ | null = getNearestDecayingEntity(attacker, 16);
+	function getTransferenceTarget(victim: LivingEntity_, attacker: ServerPlayer_): LivingEntity_ | null {
+		let target: LivingEntity_ | Mob_ | null = getNearestDecayingEntity(victim, attacker, 16);
 		if (target) return target;
 
-		if (SkillHelper.hasSkill(attacker, FarlanderSkills.OBSERVER_EFFECT)) {
-			target = getNearestAggressiveEntity(attacker, 16);
+		if (FarlanderSkills.OBSERVER_EFFECT.isUnlockedFor(attacker)) {
+			target = getNearestAggressiveEntity(victim, attacker, 16);
 			if (target) return target as any;
 		}
 
@@ -140,7 +144,7 @@ namespace FarlanderEvents {
 		const victimEntropy = EntropyHolder.get(victim);
 		if (!victimEntropy) return;
 
-		let target = getTransferenceTarget(attacker);
+		let target = getTransferenceTarget(victim, attacker);
 		if (!target) return;
 
 		victimEntropy.transferAttackerEntropy(attacker, target);
@@ -148,7 +152,7 @@ namespace FarlanderEvents {
 		const distance = Math.ceil(victim.distanceToEntity(target));
 		const pos1 = victim.eyePosition;
 		const pos2 = target.eyePosition;
-		ParticleHelper.drawLineVec(victim.level as any, pos1, pos2, distance, "soul_fire_flame", 0, true);
+		ParticleHelper.drawLineVec(victim.level as any, pos1, pos2, distance * 2, "soul_fire_flame", 0, true);
 	}
 
 
