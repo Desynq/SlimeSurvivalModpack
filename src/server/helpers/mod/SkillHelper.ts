@@ -48,6 +48,13 @@ class SkillHelper {
 		return { player: entity, tier };
 	}
 
+	/**
+	 * Skills should go from the lowest tier skill to the highest tier skill
+	 * @returns `0` if no skills, otherwise returns `i + 1` of the highest tier skill the player has unlocked
+	 * 
+	 * For example:
+	 * `getSkillTier(player, skill1, skill2, skill3)` will return `3` if the player has `skill3`
+	 */
 	public static getSkillTier(player: ServerPlayer_, ...skills: Skill[]): integer {
 		for (let i = skills.length - 1; i >= 0; i--) {
 			if (this.hasSkill(player, skills[i])) {
