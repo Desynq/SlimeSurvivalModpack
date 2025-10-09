@@ -1,6 +1,25 @@
 // priority: 2
 
 class BossDirector {
+	/**
+	 * Defaults to true on server start/reload
+	 */
+	private static needsGlobalRebuild: boolean = true;
+
+	public static tryGlobalCacheRebuild(server: MinecraftServer_): boolean {
+		if (!this.needsGlobalRebuild) return false;
+
+		this.needsGlobalRebuild = false;
+
+		for (const entity of server.getEntities()) {
+			for (const manager of this.managers) {
+				manager.tryCacheBoss(entity);
+			}
+		}
+
+		return true;
+	}
+
 
 	public static readonly managers: BossManager<any>[] = [];
 
@@ -31,7 +50,7 @@ class BossDirector {
 
 	public static tryAddBoss(boss: Entity_): boolean {
 		for (const manager of this.managers) {
-			if (manager.tryAddBoss(boss)) return true;
+			if (manager.tryCacheBoss(boss)) return true;
 		}
 		return false;
 	}

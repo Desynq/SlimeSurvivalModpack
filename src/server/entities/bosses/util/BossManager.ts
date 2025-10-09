@@ -46,7 +46,7 @@ abstract class BossManager<T extends LivingEntity_> {
 	public onCountChange(server: MinecraftServer_) { }
 
 	public onJoin(boss: T, event: EntityJoinLevelEvent_): void {
-		this.tryAddBoss(boss);
+		this.tryCacheBoss(boss);
 	}
 
 	public onLeave(boss: T, event: EntityLeaveLevelEvent_): void {
@@ -60,17 +60,19 @@ abstract class BossManager<T extends LivingEntity_> {
 	private ensureBossCacheLoaded(server: MinecraftServer_): void {
 		if (this.bossCache.count > 0) return;
 
-		for (const entity of server.getEntities()) {
-			if (entity.removed || !this.isBoss(entity)) continue;
-			this.bossCache.add(entity);
-			BossManagerRegistry.register(entity, this);
+		if (!BossDirector.tryGlobalCacheRebuild(server)) {
+			for (const entity of server.getEntities()) {
+				this.tryCacheBoss(entity);
+			}
 		}
 	}
 
-	public tryAddBoss(boss: T): boolean {
-		if (this.isBoss(boss) && this.bossCache.add(boss)) {
-			BossManagerRegistry.register(boss, this);
-			this.onCountChange(boss.server);
+	public tryCacheBoss(entity: Entity_): boolean {
+		if (!entity.isRemoved() && this.isBoss(entity)
+			&& this.bossCache.add(entity)
+		) {
+			BossManagerRegistry.register(entity, this);
+			this.onCountChange(entity.server);
 			return true;
 		}
 		return false;
