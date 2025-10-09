@@ -2,6 +2,7 @@
 	"replace": false,
 	"values": [
 		"minecraft:creeper_head",
+		"minecraft:player_head",
 		"slimesurvival:crash_helmet"
 	]
 }

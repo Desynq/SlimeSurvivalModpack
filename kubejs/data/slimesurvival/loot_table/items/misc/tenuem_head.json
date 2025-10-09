@@ -1,0 +1,45 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "minecraft:set_name",
+							"name": {
+								"text": "Tenuem Head",
+								"color": "dark_aqua"
+							},
+							"target": "item_name"
+						},
+						{
+							"function": "minecraft:set_custom_data",
+							"tag": {
+								"tenuem_head": true
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"curios:attribute_modifiers": {
+									"modifiers": [
+										{
+											"id": "slimesurvival:shaped_glass",
+											"type": "minecraft:generic.attack_damage",
+											"amount": 1,
+											"operation": "add_multiplied_total",
+											"slot": "head"
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
