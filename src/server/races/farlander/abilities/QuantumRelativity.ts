@@ -139,6 +139,8 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 
 		if (!SkillHelper.hasSkill(owner, FarlanderSkills.LORENTZ_CURVE)) return false;
 
+		if (!this.isActive(owner)) return false;
+
 		return true;
 	}
 })();
