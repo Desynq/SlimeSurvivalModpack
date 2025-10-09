@@ -1,9 +1,9 @@
 // priority: 2
 
 class EntityManagerRegistry {
-	private registry: Record<string, BossManager<any>> = Object.create(null);
+	private registry: Record<string, EntityManager<any>> = Object.create(null);
 
-	public register(entity: Entity_, manager: BossManager<any>): void {
+	public register(entity: Entity_, manager: EntityManager<any>): void {
 		this.registry[entity.stringUUID] = manager;
 	}
 
@@ -11,7 +11,7 @@ class EntityManagerRegistry {
 		delete this.registry[entity.stringUUID];
 	}
 
-	public getManager(entity: Entity_): BossManager<any> | undefined {
+	public getManager(entity: Entity_): EntityManager<any> | undefined {
 		return this.registry[entity.stringUUID];
 	}
 }

@@ -1,6 +1,6 @@
 // priority: 2
 
-class BossDirector {
+class EntityDirector {
 	/**
 	 * Defaults to true on server start/reload
 	 */
@@ -13,7 +13,7 @@ class BossDirector {
 
 		for (const entity of server.getEntities()) {
 			for (const manager of this.managers) {
-				manager.tryCacheBoss(entity);
+				manager.tryCacheEntity(entity);
 			}
 		}
 
@@ -21,42 +21,42 @@ class BossDirector {
 	}
 
 
-	public static readonly managers: BossManager<any>[] = [];
+	public static readonly managers: EntityManager<any>[] = [];
 
-	public static addManager(manager: BossManager<any>): void {
+	public static addManager(manager: EntityManager<any>): void {
 		this.managers.push(manager);
 	}
 
-	public static isTickManager(manager: BossManager<any>): manager is BossManager<any> & ITickableBoss<any> {
+	public static isTickManager(manager: EntityManager<any>): manager is EntityManager<any> & ITickableBoss<any> {
 		return "onBossTick" in manager;
 	}
 
-	public static isCustomBossbarManager(manager: BossManager<any>): manager is BossManager<any> & ICustomBossbar<any> {
+	public static isCustomBossbarManager(manager: EntityManager<any>): manager is EntityManager<any> & ICustomBossbar<any> {
 		return "onBossbarUpdate" in manager;
 	}
 
 	public static isBoss(entity: unknown): boolean {
-		return this.managers.some(manager => manager.isBoss(entity));
+		return this.managers.some(manager => manager.isEntity(entity));
 	}
 
 	public static isCachedBoss(entity: unknown): boolean {
-		return this.managers.some(manager => manager.isCachedBoss(entity));
+		return this.managers.some(manager => manager.isCachedEntity(entity));
 	}
 
 	public static hasCustomBossbar(entity: Entity_): boolean {
-		const manager = BossManagerRegistry.getManager(entity);
+		const manager = EntityManagers.getManager(entity);
 		return manager !== undefined && this.isCustomBossbarManager(manager);
 	}
 
 	public static tryAddBoss(boss: Entity_): boolean {
 		for (const manager of this.managers) {
-			if (manager.tryCacheBoss(boss)) return true;
+			if (manager.tryCacheEntity(boss)) return true;
 		}
 		return false;
 	}
 
 	public static eventHook(boss: Entity_, event: any): void {
-		const manager = BossManagerRegistry.getManager(boss);
+		const manager = EntityManagers.getManager(boss);
 		if (!manager) return;
 
 		if (event instanceof $EntitySpawnedKubeEvent) manager.onSpawn(boss, event);
@@ -71,7 +71,7 @@ class BossDirector {
 		for (const bossbar of bossbars.getEvents().toArray() as CustomBossEvent_[]) {
 			const uuid = UUID.fromString(bossbar.textId.path);
 			const entity = server.getEntityByUUID(uuid.toString());
-			if (!BossManager.isGenericBoss(entity) || (TheHunger.isCachedBoss(entity) && !TheHunger.isBossbarHolder(entity))) {
+			if (!EntityManager.isGenericBoss(entity) || (TheHunger.isCachedEntity(entity) && !TheHunger.isBossbarHolder(entity))) {
 				bossbar.removeAllPlayers();
 				bossbars.remove(bossbar);
 			}

@@ -1,10 +1,10 @@
 
 
 // @ts-ignore
-const PatrolHelicopter = new (class <T extends ServerPlayer_> extends BossManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
+const PatrolHelicopter = new (class <T extends ServerPlayer_> extends EntityManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
 	public readonly BOSS_ID = "minecraft:player";
 
-	protected override isBoss(entity: unknown): entity is T {
+	protected override isEntity(entity: unknown): entity is T {
 		return entity instanceof $ServerPlayer && entity.tags.contains("boss.telesniper");
 	}
 

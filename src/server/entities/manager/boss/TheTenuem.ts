@@ -1,9 +1,9 @@
 
 
 // @ts-ignore
-const TheTenuem = new (class <T extends Phantom_> extends BossManager<T> implements ITickableBoss<T> {
+const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> implements ITickableBoss<T> {
 
-	public override isBoss(entity: unknown): entity is T {
+	public override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Phantom && entity.tags.contains("boss.tenuem");
 	}
 

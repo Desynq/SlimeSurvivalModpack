@@ -1,7 +1,7 @@
 
 // @ts-ignore
-const QueenBee = new (class extends BossManager<Bee_> implements ITickableBoss<Bee_> {
-	protected override isBoss(entity: unknown): entity is Bee_ {
+const QueenBee = new (class extends EntityManager<Bee_> implements ITickableBoss<Bee_> {
+	protected override isEntity(entity: unknown): entity is Bee_ {
 		return entity instanceof $Bee && entity.tags.contains("boss.queen_bee");
 	}
 
@@ -208,7 +208,7 @@ const QueenBee = new (class extends BossManager<Bee_> implements ITickableBoss<B
 	private isQueenWithinDistance(minion: Bee_): boolean {
 		const queensWithinRange = minion.level.getNearbyEntities(
 			this.QUEEN_BEE_CLASS as any,
-			$TargetingConditions.forNonCombat().selector(e => this.isCachedBoss(e)),
+			$TargetingConditions.forNonCombat().selector(e => this.isCachedEntity(e)),
 			minion as any,
 			minion.boundingBox.inflate(this.MINION_DISTANCE) as any
 		);
@@ -246,7 +246,7 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 	if (event.source.getType() === "genericKill") return;
 	const queenBee = event.entity;
 
-	if (QueenBee.isCachedBoss(queenBee) && QueenBee.isBossImmune(queenBee)) {
+	if (QueenBee.isCachedEntity(queenBee) && QueenBee.isBossImmune(queenBee)) {
 		event.setCanceled(true);
 	}
 });

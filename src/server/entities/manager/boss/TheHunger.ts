@@ -2,14 +2,14 @@
 
 
 // @ts-ignore
-const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
+const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
 	public readonly BOSS_ID = "minecraft:rabbit";
 	public readonly MOB_SEARCH_RANGE = 128;
 	public readonly MOB_AGGRO_RANGE = 16;
 	public readonly PLAYER_AGGRO_RANGE = 128;
 	public readonly SPAWN_CAP = 128;
 
-	protected override isBoss(entity: unknown): entity is T {
+	protected override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Mob && entity.tags.contains("boss.the_hunger") && EntityHelper.isType(entity as any, this.BOSS_ID);
 	}
 
@@ -123,7 +123,7 @@ const TheHunger = new (class <T extends Mob_> extends BossManager<T> implements 
 	}
 
 	private readonly LIVING_ENTITY_CONDITION = $TargetingConditions.forCombat().selector((e: LivingEntity_) =>
-		!this.isCachedBoss(e)
+		!this.isCachedEntity(e)
 		&& e.onGround()
 	);
 

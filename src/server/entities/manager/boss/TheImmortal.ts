@@ -2,10 +2,10 @@
 
 
 // @ts-ignore
-const Draugrnaut = new (class <T extends Mob_> extends BossManager<T> implements ITickableBoss<T> {
+const Draugrnaut = new (class <T extends Mob_> extends EntityManager<T> implements ITickableBoss<T> {
 	public readonly BOSS_ID = "rottencreatures:immortal";
 
-	protected override isBoss(entity: unknown): entity is T {
+	protected override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Mob && entity.tags.contains("boss.the_immortal") && EntityHelper.isType(entity as any, this.BOSS_ID);
 	}
 

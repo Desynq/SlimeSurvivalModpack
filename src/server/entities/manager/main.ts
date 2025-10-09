@@ -11,7 +11,7 @@ function nukeBossbars(server: MinecraftServer_) {
 	}
 }
 
-const BossManagerRegistry = new EntityManagerRegistry();
+const EntityManagers = new EntityManagerRegistry();
 
 interface ITickableBoss<T> {
 	onBossTick(boss: T): void;
@@ -24,22 +24,22 @@ interface ICustomBossbar<T> {
 
 
 ServerEvents.tick(event => {
-	BossDirector.pruneBossbars(event.server);
-	BossDirector.tickAll(event.server);
+	EntityDirector.pruneBossbars(event.server);
+	EntityDirector.tickAll(event.server);
 });
 
 
 
 EntityEvents.spawned(event => {
-	BossDirector.eventHook(event.entity, event);
+	EntityDirector.eventHook(event.entity, event);
 });
 
 EntityEvents.death(event => {
 	const victim = event.entity;
-	BossDirector.eventHook(victim, event);
+	EntityDirector.eventHook(victim, event);
 
 	if (victim instanceof $ServerPlayer) {
-		for (const manager of BossDirector.managers) {
+		for (const manager of EntityDirector.managers) {
 			if (manager.hasBoss()) {
 				manager.onPlayerDeath(victim, event);
 			}
@@ -48,13 +48,13 @@ EntityEvents.death(event => {
 
 	const attacker = event.source.actual;
 	if (attacker) {
-		BossManagerRegistry.getManager(attacker)?.onKill(attacker, victim, event);
+		EntityManagers.getManager(attacker)?.onKill(attacker, victim, event);
 	}
 });
 
 NativeEvents.onEvent($EntityJoinLevelEvent, event => {
-	for (const manager of BossDirector.managers) {
-		if (manager.isBoss(event.entity)) {
+	for (const manager of EntityDirector.managers) {
+		if (manager.isEntity(event.entity)) {
 			manager.onJoin(event.entity, event);
 			break;
 		}
@@ -62,18 +62,18 @@ NativeEvents.onEvent($EntityJoinLevelEvent, event => {
 });
 
 NativeEvents.onEvent($EntityLeaveLevelEvent, event => {
-	BossDirector.eventHook(event.entity, event);
+	EntityDirector.eventHook(event.entity, event);
 });
 
 NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
-	BossDirector.eventHook(event.entity, event);
+	EntityDirector.eventHook(event.entity, event);
 });
 
 
 
 NativeEvents.onEvent($EntityTickEvent$Post, event => {
 	const entity = event.entity;
-	if (BossManager.isGenericBoss(entity)) {
-		BossDirector.genericBossTick(entity);
+	if (EntityManager.isGenericBoss(entity)) {
+		EntityDirector.genericBossTick(entity);
 	}
 });

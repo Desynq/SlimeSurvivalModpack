@@ -3,7 +3,7 @@
 
 namespace SkillNetwork {
 	function isInvisible(player: ServerPlayer_): boolean {
-		return InvisibleMan.isCachedBoss(player);
+		return InvisibleMan.isCachedEntity(player);
 	}
 
 	ServerEvents.tick(event => {
