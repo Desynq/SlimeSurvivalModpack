@@ -42,4 +42,8 @@ class ParticleHelper {
 			level.spawnParticles(particle, override, px, py, pz, 0, 0, 0, 1, speed);
 		}
 	}
+
+	public static drawLineVec(level: ServerLevel_, pos1: Vec3_, pos2: Vec3_, points: integer, particle: string, speed: double, override: boolean): void {
+		this.drawLine(level, pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z(), points, particle, speed, override);
+	}
 }

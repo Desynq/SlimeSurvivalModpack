@@ -144,6 +144,11 @@ namespace FarlanderEvents {
 		if (!target) return;
 
 		victimEntropy.transferAttackerEntropy(attacker, target);
+
+		const distance = Math.ceil(victim.distanceToEntity(target));
+		const pos1 = victim.eyePosition;
+		const pos2 = target.eyePosition;
+		ParticleHelper.drawLineVec(victim.level as any, pos1, pos2, distance, "soul_fire_flame", 0, true);
 	}
 
 
