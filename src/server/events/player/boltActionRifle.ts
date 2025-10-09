@@ -72,14 +72,20 @@ const BoltActionRifle = new (class {
 
 		arrow.load(tag);
 
-		const speed = Velocity.get(shooter);
-		// const shootingFirework = shooter.level.entities.stream().anyMatch(e => e instanceof $FireworkRocketEntity && e.ownedBy(shooter))
-		// let spread = shooter.fallFlying && !shootingFirework ? 0 : speed * 50;
-		let spread = speed * 50;
+		const spread = this.getAimSpread(shooter, weapon);
 		shooter.tell(spread.toString());
 		arrow.shootFromRotation(shooter, shooter.xRot, shooter.yRot, 0, 20, spread);
 
 		shooter.level.addFreshEntity(arrow as any);
+	}
+
+	private getAimSpread(shooter: ServerPlayer_, weapon: ItemStack_): double {
+		if (QuantumRelativity.isActive(shooter) && FarlanderSkills.THE_WORLD.isUnlockedFor(shooter)) {
+			return 0;
+		}
+		const speed = Velocity.get(shooter);
+		let spread = speed * 45;
+		return spread;
 	}
 })();
 
