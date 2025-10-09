@@ -32,10 +32,23 @@ class EntropyEntry {
 	public getInterval(owner: LivingEntity_): integer {
 		const attacker = this.getAttacker(owner.server);
 
-		let base = EntropyHelper.getInterval(owner);
-		if (SkillHelper.hasSkill(attacker, FarlanderSkills.COHERENCE_1)) {
-			base += 4;
+		let base = EntropyHelper.getBaseInterval(owner);
+
+		if (attacker instanceof $ServerPlayer) {
+			const coherenceTier = SkillHelper.getSkillTier(attacker,
+				FarlanderSkills.COHERENCE_1,
+				FarlanderSkills.COHERENCE_2
+			);
+			switch (coherenceTier) {
+				case 2:
+					base += 4;
+				case 1:
+					base += 4;
+				default:
+					break;
+			}
 		}
+
 		return base;
 	}
 

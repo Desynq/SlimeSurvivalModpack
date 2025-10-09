@@ -11,7 +11,7 @@ class EntropyHelper {
 		return SkillHelper.hasSkill(entity, FarlanderSkills.QUANTUM_UNCERTAINTY);
 	}
 
-	public static getInterval(entity: LivingEntity_) {
+	public static getBaseInterval(entity: LivingEntity_) {
 		const player = entity instanceof $ServerPlayer ? entity : null;
 
 		if (player == null) {
