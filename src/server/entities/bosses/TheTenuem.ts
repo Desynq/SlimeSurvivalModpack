@@ -9,7 +9,7 @@ const TheTenuem = new (class <T extends Phantom_> extends BossManager<T> impleme
 
 
 	public override onIncomingDamage(boss: T, event: LivingIncomingDamageEvent_): void {
-		if (event.source.getType() === "lightningBolt") {
+		if (["lightningBolt", "inFire", "onFire"].includes(event.source.getType())) {
 			event.setCanceled(true);
 		}
 	}
@@ -18,13 +18,28 @@ const TheTenuem = new (class <T extends Phantom_> extends BossManager<T> impleme
 		server.runCommandSilent(`weather thunder 1d`);
 	}
 
+	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
+		const bosses = this.getBosses(player.server);
+		for (const boss of bosses) {
+			const newHealth = Math.min(boss.maxHealth, boss.health + boss.maxHealth * 0.2);
+			tellOperators(player.server, `Healed boss to ${newHealth}`);
+			boss.health = newHealth;
+		}
+	}
+
 	public onBossTick(boss: T): void {
-		if (boss.server.tickCount % 20 === 0 && Math.random() < 0.5) {
-			this.smitePlayers(boss);
+		if (boss.server.tickCount % 20 === 0) {
+			this.trySmitePlayers(boss);
 		}
 
 		const minionCount = TenuemMinion.getBossCount(boss.server);
 		boss.setAttributeBaseValue($Attributes.ARMOR, minionCount);
+
+		if (boss.server.tickCount % 5 === 0) {
+			this.updateTarget(boss);
+		}
+
+		this.tryUnstuck(boss);
 	}
 
 	private readonly BOSS_EVENT_RANGE = 128;
@@ -33,9 +48,17 @@ const TheTenuem = new (class <T extends Phantom_> extends BossManager<T> impleme
 		return 64 * MathHelper.clamped(1, 3, this.getPlayers(boss).length);
 	}
 
-	private smitePlayers(boss: T): void {
+	private tryUnstuck(boss: T): void {
+		const surface = boss.level.getHeightmapPos("motion_blocking_no_leaves", [boss.x, boss.y, boss.z]);
+		if (boss.y > surface.y + 64) {
+			boss.teleportTo(boss.x, surface.y + 32, boss.z);
+		}
+	}
+
+	private trySmitePlayers(boss: T): void {
 		const players = this.getPlayers(boss);
 		for (const player of players) {
+			if (Math.random() >= 0.5) continue;
 			this.smitePlayer(boss, player);
 		}
 	}
@@ -69,6 +92,19 @@ const TheTenuem = new (class <T extends Phantom_> extends BossManager<T> impleme
 		Summonables.TENUEM_MINION.spawn(boss.level as any, pos);
 
 		return true;
+	}
+
+	private updateTarget(boss: T): void {
+		const nearestTankiestPlayer = ServerHelper.getSurvivors(boss.server)
+			.filter(player => player.distanceToEntity(boss as any) < 128)
+			.sort((a, b) => {
+				const aTank = a.health + a.armorValue;
+				const bTank = b.health + b.armorValue;
+				return bTank - aTank;
+			})[0];
+
+		if (!nearestTankiestPlayer) return;
+		boss.setTarget(nearestTankiestPlayer);
 	}
 
 })().register();

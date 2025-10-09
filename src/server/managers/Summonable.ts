@@ -251,7 +251,7 @@ namespace Summonables {
 		attributes: [
 			{
 				id: "minecraft:generic.attack_damage",
-				base: 40
+				base: 100
 			},
 			{
 				id: "minecraft:generic.scale",
@@ -269,7 +269,7 @@ namespace Summonables {
 		attributes: [
 			{
 				id: "minecraft:generic.attack_damage",
-				base: 4
+				base: 8
 			}
 		],
 		CustomName: '{"color":"dark_aqua","text":"Tenuem Minion"}'
