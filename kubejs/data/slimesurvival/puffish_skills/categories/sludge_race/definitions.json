@@ -822,6 +822,48 @@
 		},
 		"required_skills": 1
 	},
+	"sticky": {
+		"title": "Sticky",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_gray",
+				"text": "Toxic now also inflicts Slowness using the same duration and amplifier stats."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:slowness"
+			}
+		}
+	},
+	"slimeproof_2": {
+		"title": "Slimeproof II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Large slimes no longer hurt you either."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:slime_block"
+			}
+		}
+	},
 	"mitosis": {
 		"title": "Mitosis",
 		"rewards": [],

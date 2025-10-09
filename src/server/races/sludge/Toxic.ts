@@ -54,5 +54,9 @@ namespace SludgeToxic {
 			? "minecraft:wither"
 			: "minecraft:poison";
 		LivingEntityHelper.addEffect(attacker, effectId, duration, amplifier, false, true, true);
+
+		if (SludgeSkills.STICKY.isUnlockedFor(player)) {
+			LivingEntityHelper.addEffect(attacker, "minecraft:slowness", duration, amplifier, false, true, true);
+		}
 	});
 }

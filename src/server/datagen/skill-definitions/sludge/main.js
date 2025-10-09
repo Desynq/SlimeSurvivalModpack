@@ -359,3 +359,21 @@ SludgeSkills.WITHERING = SludgeSkillBuilder("withering", def => def
 	.cost(2)
 	.requiredSkills(1)
 );
+
+SludgeSkills.STICKY = SludgeSkillBuilder("sticky", def => def
+	.effectIcon("minecraft:slowness")
+	.addDescription({
+		"color": "dark_gray",
+		"text": "Toxic now also inflicts Slowness using the same duration and amplifier stats."
+	})
+	.cost(4)
+);
+
+SludgeSkills.SLIMEPROOF_2 = SludgeSkillBuilder("slimeproof_2", def => def
+	.itemIcon("minecraft:slime_block")
+	.addDescription({
+		"color": "green",
+		"text": "Large slimes no longer hurt you either."
+	})
+	.cost(1)
+);
