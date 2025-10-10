@@ -45,7 +45,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 	private readonly BOSS_EVENT_RANGE = 128;
 
 	private getMaxMinions(boss: T): integer {
-		return 64 * MathHelper.clamped(1, 3, this.getPlayers(boss).length);
+		return 32 * MathHelper.clamped(1, 3, this.getPlayers(boss).length);
 	}
 
 	private tryUnstuck(boss: T): void {
@@ -57,8 +57,9 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 
 	private trySmitePlayers(boss: T): void {
 		const players = this.getPlayers(boss);
+		const chance = 1 / (1 + this.getBossCount(boss.server));
 		for (const player of players) {
-			if (Math.random() >= 0.5) continue;
+			if (Math.random() >= chance) continue;
 			this.smitePlayer(boss, player);
 		}
 	}
