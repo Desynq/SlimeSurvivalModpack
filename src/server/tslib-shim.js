@@ -1,4 +1,4 @@
-// priority: 1000
+// priority: 100000
 
 const __setFunctionName = function(f, name, prefix) {
 	try {
