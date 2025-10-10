@@ -150,7 +150,6 @@ class FarlanderSkills {
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 
-	// TODO:
 	public static readonly QUANTUM_PREDATION = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_predation")
 		.itemIcon("endermanoverhaul:enderman_tooth")
 		.addDescription({
@@ -159,7 +158,6 @@ class FarlanderSkills {
 		})
 		.cost(8)
 		.requiredSkills(2)
-		.flagPlanned()
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
 

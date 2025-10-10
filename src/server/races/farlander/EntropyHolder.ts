@@ -125,22 +125,35 @@ class EntropyHolder {
 			uncertaintyDamage = Math.random() * 2 * amount;
 		}
 
-		this.dealDamage(entity, attacker as any, uncertaintyDamage);
+		this.dealEntropyDamage(entity, attacker as any, uncertaintyDamage);
 	};
 
-	private dealDamage(entity: LivingEntity_, attacker: LivingEntity_ | null, amount: float) {
+	private dealEntropyDamage(victim: LivingEntity_, attacker: LivingEntity_ | null, amount: float) {
 		try {
-			entity.health -= amount;
-			EntropyHelper.incrementLifetimeEntropyDamage(entity, amount);
-			if (entity.health <= 0) this.executeEntropyKill(entity, attacker);
+			victim.health -= amount;
+			EntropyHelper.incrementLifetimeEntropyDamage(victim, amount);
+			this.tryQuantumPredation(victim, attacker, amount);
+
+			if (victim.health <= 0) this.executeEntropyKill(victim, attacker);
 		}
 		catch (error) {
-			tellError(entity.server, error);
+			tellError(victim.server, error);
 		}
-	};
+	}
+
+	private tryQuantumPredation(victim: LivingEntity_, attacker: LivingEntity_ | null, damage: number) {
+		if (!(attacker instanceof $ServerPlayer)) return;
+		if (FarlanderSkills.QUANTUM_PREDATION.isLockedFor(attacker)) return;
+		if (!QuantumRelativity.isActive(attacker)) return;
+
+		const sateAmount = damage / attacker.maxHealth * 0.25;
+		if (sateAmount <= 0) return;
+
+		PlayerHelper.feed(attacker, sateAmount);
+	}
 
 	private executeEntropyKill(entity: LivingEntity_, attacker: LivingEntity_ | null) {
-		entity.health = 1.0; // arbitrary health so the player doesn't silently die
+		entity.health = 1.0; // arbitrary health so the entity doesn't silently die
 		const rk = $ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy_kill");
 		const entropyDmgType = entity.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow(rk);
 		entity.attack(new DamageSource(entropyDmgType, attacker as any, attacker as any), 2 ** 31 - 1);
