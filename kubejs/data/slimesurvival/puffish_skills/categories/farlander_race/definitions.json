@@ -815,7 +815,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "-20% Quantum Relativity cooldown\n-25% Quantum Relativity duration"
+				"text": "-20% Quantum Relativity cooldown"
 			},
 			{
 				"color": "dark_green",
@@ -836,7 +836,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "-60% Quantum Relativity cooldown\n-50% Quantum Relativity duration"
+				"text": "-40% Quantum Relativity cooldown"
 			},
 			{
 				"color": "dark_green",
@@ -857,7 +857,7 @@
 		"description": [
 			{
 				"color": "dark_purple",
-				"text": "-80% Quantum Relativity cooldown\n-75% Quantum Relativity duration"
+				"text": "-60% Quantum Relativity cooldown"
 			},
 			{
 				"color": "dark_green",

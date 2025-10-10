@@ -249,7 +249,7 @@
 		"description": [
 			{
 				"color": "red",
-				"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.maxHealth / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
+				"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.health / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
 			},
 			{
 				"color": "dark_green",

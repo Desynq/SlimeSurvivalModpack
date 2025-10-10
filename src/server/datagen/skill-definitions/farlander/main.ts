@@ -371,7 +371,6 @@ class FarlanderSkills {
 		.addDescription({
 			"color": "dark_purple",
 			"text": "-20% Quantum Relativity cooldown"
-				+ "\n-25% Quantum Relativity duration"
 		})
 		.cost(1)
 	);
@@ -379,8 +378,7 @@ class FarlanderSkills {
 		.itemIcon("minecraft:anvil")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "-60% Quantum Relativity cooldown"
-				+ "\n-50% Quantum Relativity duration"
+			"text": "-40% Quantum Relativity cooldown"
 		})
 		.cost(2)
 	);
@@ -388,8 +386,7 @@ class FarlanderSkills {
 		.itemIcon("minecraft:anvil")
 		.addDescription({
 			"color": "dark_purple",
-			"text": "-80% Quantum Relativity cooldown"
-				+ "\n-75% Quantum Relativity duration"
+			"text": "-60% Quantum Relativity cooldown"
 		})
 		.cost(2)
 	);

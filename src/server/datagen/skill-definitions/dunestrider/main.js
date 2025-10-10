@@ -109,7 +109,7 @@ DunestriderSkills.DEMEAN_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "red",
-		"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.maxHealth / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
+		"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.health / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
 	})
 	.cost(1)
 	.serialize(DunestriderSkillDefinitionsJson)

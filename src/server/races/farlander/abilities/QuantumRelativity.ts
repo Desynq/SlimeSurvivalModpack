@@ -23,10 +23,10 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 					cooldown *= 0.8;
 					break;
 				case 2:
-					cooldown *= 0.4;
+					cooldown *= 0.6;
 					break;
 				case 3:
-					cooldown *= 0.2;
+					cooldown *= 0.4;
 					break;
 			}
 			return Math.ceil(cooldown);
@@ -46,23 +46,6 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 			let duration = dilationTier <= 0
 				? FarlanderSkillData.QUANTUM_RELATIVITY_DURATION_TICK
 				: FarlanderSkillData.TIME_DILATION_DURATION_TICK[dilationTier - 1];
-
-			const compressionTier = SkillHelper.getSkillTier(player,
-				FarlanderSkills.RELATIVE_COMPRESSION_1,
-				FarlanderSkills.RELATIVE_COMPRESSION_2,
-				FarlanderSkills.RELATIVE_COMPRESSION_3,
-			);
-			switch (compressionTier) {
-				case 1:
-					duration *= 0.75;
-					break;
-				case 2:
-					duration *= 0.5;
-					break;
-				case 3:
-					duration *= 0.25;
-					break;
-			}
 
 			return Math.ceil(duration);
 		}
