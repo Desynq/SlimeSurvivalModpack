@@ -1,6 +1,3 @@
-let $Stats = Java.loadClass("net.minecraft.stats.Stats");
-let $Pose = Java.loadClass("net.minecraft.world.entity.Pose");
-
 
 NetworkEvents.dataReceived("KeyPressed", event => {
 	const player = event.player;

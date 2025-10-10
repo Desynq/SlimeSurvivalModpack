@@ -28,6 +28,6 @@
         "typeRoots": [
             "../../.probe/packages",
             "../../.probe/server",
-        ]
+        ],
     }
 }

@@ -5,7 +5,7 @@
 		"noEmitOnError": true,
 		"allowJs": true,
 		"target": "ES5",
-		"module": "none",
+		"module": "commonjs",
 		"lib": [
 			"ES2017"
 		],
@@ -40,6 +40,5 @@
 		"../../.probe/server/generated-server/primitives.d.ts",
 		"../../.probe/server/generated-server/events.d.ts",
 		"../../.probe/server/generated-server/bindings.d.ts",
-	],
-	"exclude": []
+	]
 }

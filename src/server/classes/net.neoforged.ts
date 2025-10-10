@@ -10,3 +10,7 @@ const $EntityLeaveLevelEvent: typeof import("net.neoforged.neoforge.event.entity
 
 type LivingDamageEvent$Pre_ = import("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Pre").$LivingDamageEvent$Pre;
 const $LivingDamageEvent$Pre: typeof import("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Pre").$LivingDamageEvent$Pre = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Pre");
+
+
+
+const $LivingEntityUseItemEvent$Stop: typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Stop").$LivingEntityUseItemEvent$Stop = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Stop");

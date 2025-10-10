@@ -1,14 +1,14 @@
 
 class LivingEntityHelper {
-	public static addEffect(entity: LivingEntity_, id: string, duration: integer, amplifier: integer, ambient: boolean, visible: boolean, showIcon: boolean, source?: Entity_): void {
+	public static addEffect(entity: LivingEntity_, id: string, duration: integer, amplifier: integer, ambient: boolean, visible: boolean, showIcon: boolean, source?: Entity_ | null): void {
 		// @ts-ignore
 		const effect = new $MobEffectInstance(id, duration, amplifier, ambient, visible, showIcon);
-		source !== undefined
+		source !== undefined && source !== null
 			? entity.addEffect(effect, source)
 			: entity.addEffect(effect);
 	}
 
-	public static applyEffectUntilExpired(entity: LivingEntity_, id: string, duration: integer, threshold: integer, amplifier: integer, ambient: boolean, visible: boolean, showIcon: boolean, source?: Entity_): void {
+	public static applyEffectUntilExpired(entity: LivingEntity_, id: string, duration: integer, threshold: integer, amplifier: integer, ambient: boolean, visible: boolean, showIcon: boolean, source?: Entity_ | null): void {
 		const currentEffect = entity.getEffect($BuiltInRegistries.MOB_EFFECT.getHolderOrThrow($ResourceKey.create($Registries.MOB_EFFECT, id)));
 		if (currentEffect) {
 			const currentDuration = currentEffect.getDuration();

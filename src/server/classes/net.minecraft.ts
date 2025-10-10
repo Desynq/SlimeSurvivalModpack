@@ -38,3 +38,10 @@ const $LivingIncomingDamageEvent: typeof import("net.neoforged.neoforge.event.en
 const $TagKey: typeof import("net.minecraft.tags.TagKey").$TagKey = Java.loadClass("net.minecraft.tags.TagKey");
 
 const $Phantom: typeof import("net.minecraft.world.entity.monster.Phantom").$Phantom = Java.loadClass("net.minecraft.world.entity.monster.Phantom");
+
+const $AbstractArrow$Pickup: typeof import("net.minecraft.world.entity.projectile.AbstractArrow$Pickup").$AbstractArrow$Pickup = Java.loadClass("net.minecraft.world.entity.projectile.AbstractArrow$Pickup");
+
+// @ts-ignore
+const $Stats: typeof import("net.minecraft.stats.Stats").$Stats = Java.loadClass("net.minecraft.stats.Stats");
+
+const $Pose: typeof import("net.minecraft.world.entity.Pose").$Pose = Java.loadClass("net.minecraft.world.entity.Pose");
