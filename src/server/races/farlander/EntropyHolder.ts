@@ -146,8 +146,9 @@ class EntropyHolder {
 		if (FarlanderSkills.QUANTUM_PREDATION.isLockedFor(attacker)) return;
 		if (!QuantumRelativity.isActive(attacker)) return;
 
-		const sateAmount = damage / attacker.maxHealth * 0.25;
+		const sateAmount = damage / attacker.maxHealth * 4;
 		if (sateAmount <= 0) return;
+		// attacker.tell(`${sateAmount}`);
 
 		PlayerHelper.feed(attacker, sateAmount);
 	}
