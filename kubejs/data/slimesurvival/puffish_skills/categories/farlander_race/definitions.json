@@ -320,10 +320,6 @@
 			{
 				"color": "red",
 				"text": "\n[Skills Needed: 2]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 8,
