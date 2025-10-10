@@ -10,21 +10,61 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 
 	protected readonly cooldownController = new TimestampController(
 		"farlander.quantum_relativity.cooldown",
-		(player: ServerPlayer_) => FarlanderSkillData.QUANTUM_RELATIVITY_COOLDOWN_SECONDS * TickHelper.getDefaultTickRate(player.server)
+		(player: ServerPlayer_) => {
+			let cooldown = FarlanderSkillData.QUANTUM_RELATIVITY_COOLDOWN_SECONDS * TickHelper.getDefaultTickRate(player.server);
+
+			const compressionTier = SkillHelper.getSkillTier(player,
+				FarlanderSkills.RELATIVE_COMPRESSION_1,
+				FarlanderSkills.RELATIVE_COMPRESSION_2,
+				FarlanderSkills.RELATIVE_COMPRESSION_3,
+			);
+			switch (compressionTier) {
+				case 1:
+					cooldown *= 0.8;
+					break;
+				case 2:
+					cooldown *= 0.4;
+					break;
+				case 3:
+					cooldown *= 0.2;
+					break;
+			}
+			return Math.ceil(cooldown);
+		}
 	);
 
 	protected readonly durationController = new TimestampController(
 		"farlander.quantum_relativity.duration",
 		(player: ServerPlayer_) => {
-			const tier = SkillHelper.getSkillTier(player,
+			const dilationTier = SkillHelper.getSkillTier(player,
 				FarlanderSkills.TIME_DILATION_1,
 				FarlanderSkills.TIME_DILATION_2,
 				FarlanderSkills.TIME_DILATION_3,
 				FarlanderSkills.TIME_DILATION_4
 			);
 
-			if (tier <= 0) return FarlanderSkillData.QUANTUM_RELATIVITY_DURATION_TICK;
-			return FarlanderSkillData.TIME_DILATION_DURATION_TICK[tier - 1];
+			let duration = dilationTier <= 0
+				? FarlanderSkillData.QUANTUM_RELATIVITY_DURATION_TICK
+				: FarlanderSkillData.TIME_DILATION_DURATION_TICK[dilationTier - 1];
+
+			const compressionTier = SkillHelper.getSkillTier(player,
+				FarlanderSkills.RELATIVE_COMPRESSION_1,
+				FarlanderSkills.RELATIVE_COMPRESSION_2,
+				FarlanderSkills.RELATIVE_COMPRESSION_3,
+			);
+			switch (compressionTier) {
+				case 1:
+					duration *= 0.75;
+					break;
+				case 2:
+					duration *= 0.5;
+					break;
+				case 3:
+					duration *= 0.25;
+					break;
+			}
+
+			return Math.ceil(duration);
 		}
 	);
 

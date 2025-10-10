@@ -808,5 +808,68 @@
 				"item": "mowziesmobs:earthrend_gauntlet"
 			}
 		}
+	},
+	"relative_compression_1": {
+		"title": "Relative Compression I",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "-20% Quantum Relativity cooldown\n-25% Quantum Relativity duration"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:anvil"
+			}
+		}
+	},
+	"relative_compression_2": {
+		"title": "Relative Compression II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "-60% Quantum Relativity cooldown\n-50% Quantum Relativity duration"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:anvil"
+			}
+		}
+	},
+	"relative_compression_3": {
+		"title": "Relative Compression III",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_purple",
+				"text": "-80% Quantum Relativity cooldown\n-75% Quantum Relativity duration"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:anvil"
+			}
+		}
 	}
 }

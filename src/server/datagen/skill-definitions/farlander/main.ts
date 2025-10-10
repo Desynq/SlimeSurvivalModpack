@@ -365,4 +365,32 @@ class FarlanderSkills {
 		})
 		.cost(10)
 	);
+
+	public static readonly RELATIVE_COMPRESSION_1 = this.createSkill("relative_compression_1", def => def
+		.itemIcon("minecraft:anvil")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "-20% Quantum Relativity cooldown"
+				+ "\n-25% Quantum Relativity duration"
+		})
+		.cost(1)
+	);
+	public static readonly RELATIVE_COMPRESSION_2 = this.createSkill("relative_compression_2", def => def
+		.itemIcon("minecraft:anvil")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "-60% Quantum Relativity cooldown"
+				+ "\n-50% Quantum Relativity duration"
+		})
+		.cost(2)
+	);
+	public static readonly RELATIVE_COMPRESSION_3 = this.createSkill("relative_compression_3", def => def
+		.itemIcon("minecraft:anvil")
+		.addDescription({
+			"color": "dark_purple",
+			"text": "-80% Quantum Relativity cooldown"
+				+ "\n-75% Quantum Relativity duration"
+		})
+		.cost(2)
+	);
 }
