@@ -116,7 +116,10 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 
 	protected override onActivate(player: ServerPlayer_): void {
 		super.onActivate(player);
-		TickHelper.setTickRate(player.server, FarlanderSkillData.QUANTUM_RELATIVITY_TICK_RATE);
+
+		if (this.canOverrideTickRate(player)) {
+			TickHelper.setTickRate(player.server, FarlanderSkillData.QUANTUM_RELATIVITY_TICK_RATE);
+		}
 
 		if (FarlanderSkills.THE_WORLD.isUnlockedFor(player)) {
 			this.ATTACK_SPEED_MODIFIER.add(player);
@@ -126,10 +129,21 @@ const QuantumRelativity = new (class extends ToggleableAbility {
 
 	protected override onDeactivate(player: ServerPlayer_): void {
 		super.onDeactivate(player);
-		TickHelper.resetTickRate(player.server);
+
+		if (this.canOverrideTickRate(player)) {
+			TickHelper.resetTickRate(player.server);
+		}
 
 		this.ATTACK_SPEED_MODIFIER.remove(player);
 		this.MOVEMENT_SPEED_MODIFIER.remove(player);
+	}
+
+	/**
+	 * Player cannot override tick rate if there's another farlander with relativity active
+	 */
+	private canOverrideTickRate(player: ServerPlayer_): boolean {
+		return ServerHelper.getPlayers(player.server)
+			.every(other => other === player || !this.isActive(other));
 	}
 
 	private onOutOfHunger(player: ServerPlayer_): void {

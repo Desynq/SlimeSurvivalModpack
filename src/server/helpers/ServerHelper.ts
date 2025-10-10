@@ -1,4 +1,8 @@
 class ServerHelper {
+	public static getPlayers(server: MinecraftServer_): ServerPlayer_[] {
+		return server.playerList.players.toArray();
+	}
+
 	public static numberOfNonOperators(server: MinecraftServer_) {
 		return server.playerList.players
 			.stream()

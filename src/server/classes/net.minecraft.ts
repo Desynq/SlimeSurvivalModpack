@@ -45,3 +45,6 @@ const $AbstractArrow$Pickup: typeof import("net.minecraft.world.entity.projectil
 const $Stats: typeof import("net.minecraft.stats.Stats").$Stats = Java.loadClass("net.minecraft.stats.Stats");
 
 const $Pose: typeof import("net.minecraft.world.entity.Pose").$Pose = Java.loadClass("net.minecraft.world.entity.Pose");
+
+// @ts-ignore
+const $MinecraftServer: typeof import("net.minecraft.server.MinecraftServer").$MinecraftServer = Java.loadClass("net.minecraft.server.MinecraftServer");

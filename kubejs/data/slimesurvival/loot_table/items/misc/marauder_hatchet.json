@@ -29,14 +29,14 @@
 										{
 											"id": "slimesurvival:marauder_hatchet",
 											"type": "minecraft:generic.attack_damage",
-											"amount": 6,
+											"amount": 8,
 											"operation": "add_value",
 											"slot": "mainhand"
 										},
 										{
 											"id": "slimesurvival:marauder_hatchet",
 											"type": "minecraft:generic.attack_speed",
-											"amount": -2.0,
+											"amount": -2.4,
 											"operation": "add_value",
 											"slot": "mainhand"
 										}
