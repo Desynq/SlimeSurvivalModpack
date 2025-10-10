@@ -4,7 +4,7 @@
  * @public
  * @param {$ServerPlayer_} player 
  * @param {MarketableItem} mItem 
- * @param {integer} buyAmount must be > 0
+ * @param {integer} buyAmount must be > 0 && < 6400
  */
 function BuyTransaction(player, mItem, buyAmount) {
 	this.player = player;

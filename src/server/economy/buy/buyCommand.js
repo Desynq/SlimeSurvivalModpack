@@ -8,7 +8,7 @@ ServerEvents.commandRegistry(event => {
 	const itemArgument = Commands.argument("item", Arguments.STRING.create(event))
 		.suggests((context, builder) => suggestBuyableItem(context, builder));
 
-	const amountArgument = Commands.argument("amount", $IntegerArgumentType.integer(1))
+	const amountArgument = Commands.argument("amount", $IntegerArgumentType.integer(1, 6400))
 		.suggests((context, builder) => suggestAmount(builder));
 
 	event.register(Commands.literal("buy")
