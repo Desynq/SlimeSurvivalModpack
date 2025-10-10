@@ -48,3 +48,6 @@ const $Pose: typeof import("net.minecraft.world.entity.Pose").$Pose = Java.loadC
 
 // @ts-ignore
 const $MinecraftServer: typeof import("net.minecraft.server.MinecraftServer").$MinecraftServer = Java.loadClass("net.minecraft.server.MinecraftServer");
+
+// @ts-ignore
+const $ClientboundContainerSetSlotPacket: typeof import("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket").$ClientboundContainerSetSlotPacket = Java.loadClass("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket");
