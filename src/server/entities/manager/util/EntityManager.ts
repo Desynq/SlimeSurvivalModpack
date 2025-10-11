@@ -57,17 +57,19 @@ abstract class EntityManager<T extends LivingEntity_> {
 
 	public onKill(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_): void { }
 
-	private ensureBossCacheLoaded(server: MinecraftServer_): void {
+	private ensureEntityCacheLoaded(server: MinecraftServer_): void {
 		if (this.entityCache.count > 0) return;
 
-		if (!EntityDirector.tryGlobalCacheRebuild(server)) {
-			for (const entity of server.getEntities()) {
+		if (EntityDirector.tryGlobalCacheRebuild(server)) return;
+
+		for (const entity of server.getEntities()) {
+			if (entity instanceof $LivingEntity) {
 				this.tryCacheEntity(entity);
 			}
 		}
 	}
 
-	public tryCacheEntity(entity: Entity_): boolean {
+	public tryCacheEntity(entity: LivingEntity_): boolean {
 		if (!entity.isRemoved() && this.isEntity(entity)
 			&& this.entityCache.add(entity)
 		) {
@@ -78,17 +80,17 @@ abstract class EntityManager<T extends LivingEntity_> {
 		return false;
 	}
 
-	public verifyBossCache(): void {
+	public verifyEntityCache(): void {
 		this.entityCache.verify(entity => this.isEntity(entity));
 	}
 
 	public getBosses(server: MinecraftServer_): T[] {
-		this.ensureBossCacheLoaded(server);
+		this.ensureEntityCacheLoaded(server);
 		return this.entityCache.entities;
 	}
 
 	public getBossCount(server: MinecraftServer_): integer {
-		this.ensureBossCacheLoaded(server);
+		this.ensureEntityCacheLoaded(server);
 		return this.entityCache.count;
 	}
 

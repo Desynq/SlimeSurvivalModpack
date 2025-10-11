@@ -6,14 +6,20 @@ class EntityDirector {
 	 */
 	private static needsGlobalRebuild: boolean = true;
 
+	/**
+	 * Tries to rebuild the entity cache of every entity manager if the server just reloaded or started.
+	 * @returns `true` if the cache of all managers could be rebuilt, `false` otherwise.
+	 */
 	public static tryGlobalCacheRebuild(server: MinecraftServer_): boolean {
 		if (!this.needsGlobalRebuild) return false;
 
 		this.needsGlobalRebuild = false;
 
 		for (const entity of server.getEntities()) {
-			for (const manager of this.managers) {
-				manager.tryCacheEntity(entity);
+			if (entity instanceof $LivingEntity) {
+				for (const manager of this.managers) {
+					manager.tryCacheEntity(entity);
+				}
 			}
 		}
 
@@ -48,7 +54,7 @@ class EntityDirector {
 		return manager !== undefined && this.isCustomBossbarManager(manager);
 	}
 
-	public static tryAddBoss(boss: Entity_): boolean {
+	public static tryCacheEntity(boss: LivingEntity_): boolean {
 		for (const manager of this.managers) {
 			if (manager.tryCacheEntity(boss)) return true;
 		}
@@ -95,7 +101,7 @@ class EntityDirector {
 		for (const manager of this.managers) {
 			manager.onServerTick(server);
 
-			manager.verifyBossCache();
+			manager.verifyEntityCache();
 			if (manager.getBossCount(server) === 0) continue;
 
 			const bosses = manager.getBosses(server);
