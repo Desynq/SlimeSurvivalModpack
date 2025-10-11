@@ -1,3 +1,4 @@
+// priority: 1000
 
 class LivingEntityHelper {
 	public static addEffect(entity: LivingEntity_, id: string, duration: integer, amplifier: integer, ambient: boolean, visible: boolean, showIcon: boolean, source?: Entity_ | null): void {
@@ -32,5 +33,18 @@ class LivingEntityHelper {
 	public static removeEffect(entity: LivingEntity_, id: string) {
 		const effect = $BuiltInRegistries.MOB_EFFECT.getHolderOrThrow($ResourceKey.create($Registries.MOB_EFFECT, id));
 		entity.removeEffect(effect);
+	}
+
+
+	public static scaleHealth(entity: LivingEntity_, newMaxHealth: number): void {
+		const oldMaxHealth = entity.maxHealth;
+		if (oldMaxHealth === newMaxHealth) return;
+
+		const oldHealth = entity.health;
+
+		const healthPercent = oldHealth / Math.max(Number.MIN_VALUE, oldMaxHealth);
+
+		entity.maxHealth = newMaxHealth;
+		entity.health = newMaxHealth * healthPercent;
 	}
 }

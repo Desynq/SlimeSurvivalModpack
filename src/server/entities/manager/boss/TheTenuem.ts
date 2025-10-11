@@ -29,6 +29,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 
 	public onBossTick(boss: T): void {
 		if (boss.server.tickCount % 20 === 0) {
+			this.scaleHealth(boss);
 			this.trySmitePlayers(boss);
 		}
 
@@ -46,6 +47,17 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 
 	private getMaxMinions(boss: T): integer {
 		return 32 * MathHelper.clamped(1, 3, this.getPlayers(boss).length);
+	}
+
+	private lastScaleHealthPlayerCount: number | undefined;
+	private scaleHealth(boss: T): void {
+		const players = this.getPlayers(boss);
+		const playerCount = players.length;
+		if (playerCount === this.lastScaleHealthPlayerCount) return;
+		this.lastScaleHealthPlayerCount = playerCount;
+
+		const newMaxHealth = Math.max(1, playerCount) * 5_000;
+		LivingEntityHelper.scaleHealth(boss as any, newMaxHealth);
 	}
 
 	private tryUnstuck(boss: T): void {
