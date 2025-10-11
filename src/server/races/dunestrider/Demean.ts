@@ -12,21 +12,26 @@ namespace DemeanSkill {
 			DunestriderSkills.DEMEAN_3
 		);
 
+		return calculateDamageModifier(demeanTier, victim.health, attacker.maxHealth);
+	}
+
+	export function calculateDamageModifier(demeanTier: integer, victimHealth: float, attackerMaxHealth: double): float {
 		let factor: number;
 		switch (demeanTier) {
 			case 1:
-				factor = 0.1;
-				break;
-			case 2:
 				factor = 0.25;
 				break;
-			case 3:
+			case 2:
 				factor = 0.5;
+				break;
+			case 3:
+				factor = 1.0;
 				break;
 			default:
 				return 1.0; // no modifier
 		}
-		const ratio = Math.min(1, victim.health / attacker.maxHealth);
+
+		const ratio = Math.max(1, victimHealth / attackerMaxHealth);
 		const modifier = Math.log10(ratio) * factor;
 		return 1 + modifier;
 	}

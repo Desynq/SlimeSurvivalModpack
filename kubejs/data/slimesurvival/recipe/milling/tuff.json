@@ -1,0 +1,27 @@
+{
+	"type": "create:milling",
+	"ingredients": [
+		{
+			"item": "minecraft:tuff"
+		}
+	],
+	"processing_time": 100,
+	"results": [
+		{
+			"id": "minecraft:flint",
+			"chance": 0.1
+		},
+		{
+			"id": "create:copper_nugget",
+			"chance": 0.05
+		},
+		{
+			"id": "create:zinc_nugget",
+			"chance": 0.05
+		},
+		{
+			"id": "minecraft:iron_nugget",
+			"chance": 0.05
+		}
+	]
+}

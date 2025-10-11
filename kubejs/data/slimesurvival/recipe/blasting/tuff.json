@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:blasting",
+	"ingredient": [
+		{
+			"item": "minecraft:smooth_basalt"
+		}
+	],
+	"result": {
+		"id": "minecraft:tuff"
+	},
+	"experience": 0.1
+}
