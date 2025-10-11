@@ -48,3 +48,5 @@
 /usernamecache.json
 
 .probe
+/.vscode/probe.code-snippets
+/.vscode/key.code-snippets
