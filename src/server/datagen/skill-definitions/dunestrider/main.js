@@ -109,7 +109,9 @@ DunestriderSkills.DEMEAN_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "red",
-		"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.health / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
+		"text": "The prideful gait of the powerful disgusts you."
+			+ "\n\nYour damage logarithmically scales in relation to the victim's current health versus your max health."
+			+ "\n\nFactor of 0.25"
 	})
 	.cost(1)
 	.serialize(DunestriderSkillDefinitionsJson)
@@ -120,7 +122,7 @@ DunestriderSkills.DEMEAN_2 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "red",
-		"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.05"
+		"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.5"
 	})
 	.cost(2)
 	.serialize(DunestriderSkillDefinitionsJson)
@@ -131,11 +133,22 @@ DunestriderSkills.DEMEAN_3 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "demea
 	.advancementFrame("task")
 	.addDescription({
 		"color": "dark_red",
-		"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 0.1"
+		"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 1.0"
 	})
 	.cost(4)
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("1m8xq6v4b2p9z5wt");
+
+DunestriderSkills.MARTYR = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "martyr")
+	.itemIcon("cataclysm:blazing_grips")
+	.addDescription({
+		"color": "red",
+		"text": "You will not be taken advantage of by the powerful."
+			+ "\n\nDemean now ratios your current health instead of your max health."
+	})
+	.cost(4)
+	.serializeIntoSkill(DunestriderSkillDefinitionsJson);
+
 
 DunestriderSkills.HYSTERIA_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "hysteria_1")
 	.itemIcon("mowziesmobs:umvuthana_mask_fury")

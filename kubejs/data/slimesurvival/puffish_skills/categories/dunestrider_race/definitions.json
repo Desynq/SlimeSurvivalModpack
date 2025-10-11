@@ -249,7 +249,7 @@
 		"description": [
 			{
 				"color": "red",
-				"text": "The prideful gait of the powerful disgusts you.\n\n- Your damage is multiplied by `Math.max(1, victim.health / attacker.maxHealth * factor)`.\n\n- Factor of 0.025"
+				"text": "The prideful gait of the powerful disgusts you.\n\nYour damage logarithmically scales in relation to the victim's current health versus your max health.\n\nFactor of 0.25"
 			},
 			{
 				"color": "dark_green",
@@ -276,7 +276,7 @@
 		"description": [
 			{
 				"color": "red",
-				"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.05"
+				"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.5"
 			},
 			{
 				"color": "dark_green",
@@ -303,7 +303,7 @@
 		"description": [
 			{
 				"color": "dark_red",
-				"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 0.1"
+				"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 1.0"
 			},
 			{
 				"color": "dark_green",
@@ -321,6 +321,27 @@
 			"type": "advancement",
 			"data": {
 				"frame": "task"
+			}
+		}
+	},
+	"martyr": {
+		"title": "Martyr",
+		"rewards": [],
+		"description": [
+			{
+				"color": "red",
+				"text": "You will not be taken advantage of by the powerful.\n\nDemean now ratios your current health instead of your max health."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "cataclysm:blazing_grips"
 			}
 		}
 	},

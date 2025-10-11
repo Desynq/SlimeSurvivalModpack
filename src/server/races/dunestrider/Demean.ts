@@ -12,10 +12,14 @@ namespace DemeanSkill {
 			DunestriderSkills.DEMEAN_3
 		);
 
-		return calculateDamageModifier(demeanTier, victim.health, attacker.maxHealth);
+		const attackerHealth = DunestriderSkills.MARTYR.isUnlockedFor(attacker)
+			? attacker.health
+			: attacker.maxHealth;
+
+		return calculateDamageModifier(demeanTier, victim.health, attackerHealth);
 	}
 
-	export function calculateDamageModifier(demeanTier: integer, victimHealth: float, attackerMaxHealth: double): float {
+	export function calculateDamageModifier(demeanTier: integer, victimHealth: float, attackerHealth: double): float {
 		let factor: number;
 		switch (demeanTier) {
 			case 1:
@@ -31,7 +35,7 @@ namespace DemeanSkill {
 				return 1.0; // no modifier
 		}
 
-		const ratio = Math.max(1, victimHealth / attackerMaxHealth);
+		const ratio = Math.max(1, victimHealth / attackerHealth);
 		const modifier = Math.log10(ratio) * factor;
 		return 1 + modifier;
 	}
