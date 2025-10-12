@@ -20,9 +20,7 @@ export default defineConfig([
       "@typescript-eslint": tseslint.plugin,
     },
     rules: {
-      "@typescript-eslint/explicit-member-accessibility": "error",
-      "@typescript-eslint/semi": ["error", "always"],
-      "no-extra-semi": "error"
+      "@typescript-eslint/explicit-member-accessibility": "error"
     },
   },
 
