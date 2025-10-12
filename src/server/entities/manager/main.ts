@@ -40,7 +40,7 @@ EntityEvents.death(event => {
 
 	if (victim instanceof $ServerPlayer) {
 		for (const manager of EntityDirector.managers) {
-			if (manager.hasBoss()) {
+			if (manager.hasEntity()) {
 				manager.onPlayerDeath(victim, event);
 			}
 		}

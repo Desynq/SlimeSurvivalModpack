@@ -102,9 +102,9 @@ class EntityDirector {
 			manager.onServerTick(server);
 
 			manager.verifyEntityCache();
-			if (manager.getBossCount(server) === 0) continue;
+			if (manager.getEntityCount(server) === 0) continue;
 
-			const bosses = manager.getBosses(server);
+			const bosses = manager.getEntities(server);
 			manager.onTickAll(server, bosses);
 
 			const isTickable = this.isTickManager(manager);

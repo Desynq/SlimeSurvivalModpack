@@ -16,7 +16,7 @@ const RiftMage = new (class <T extends Mob_> extends EntityManager<T> implements
 	public override onAfterHurt(boss: T, event: AfterLivingEntityHurtKubeEvent_): void {
 		if (!boss.isAlive()) return;
 
-		EntityHelper.teleportRandDonut(boss as any, boss.position(), 16, 32);
+		EntityHelper.teleportRandCircle(boss as any, boss.position(), 16);
 		LivingEntityHelper.addEffect(boss as any, "cataclysm:stun", 20, 0, false, false, false);
 
 		this.tallyDamage(boss, event.damage, event.source.actual as Entity_ | undefined);
@@ -25,7 +25,7 @@ const RiftMage = new (class <T extends Mob_> extends EntityManager<T> implements
 	}
 
 	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
-		for (const boss of this.getBosses(player.server)) {
+		for (const boss of this.getEntities(player.server)) {
 			this.revertDamage(boss, player);
 		}
 	}

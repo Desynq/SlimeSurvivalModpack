@@ -19,7 +19,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 	}
 
 	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
-		const bosses = this.getBosses(player.server);
+		const bosses = this.getEntities(player.server);
 		for (const boss of bosses) {
 			const newHealth = Math.min(boss.maxHealth, boss.health + boss.maxHealth * 0.2);
 			tellOperators(player.server, `Healed boss to ${newHealth}`);
@@ -33,7 +33,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 			this.trySmitePlayers(boss);
 		}
 
-		const minionCount = TenuemMinion.getBossCount(boss.server);
+		const minionCount = TenuemMinion.getEntityCount(boss.server);
 		boss.setAttributeBaseValue($Attributes.ARMOR, minionCount);
 
 		if (boss.server.tickCount % 5 === 0) {
@@ -69,7 +69,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 
 	private trySmitePlayers(boss: T): void {
 		const players = this.getPlayers(boss);
-		const chance = 1 / (1 + this.getBossCount(boss.server));
+		const chance = 1 / (1 + this.getEntityCount(boss.server));
 		for (const player of players) {
 			if (Math.random() >= chance) continue;
 			this.smitePlayer(boss, player);
@@ -99,7 +99,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 	}
 
 	private spawnMinion(boss: T, pos: Vec3_): boolean {
-		const toSpawn = Math.max(0, this.getMaxMinions(boss) - TenuemMinion.getBossCount(boss.server));
+		const toSpawn = Math.max(0, this.getMaxMinions(boss) - TenuemMinion.getEntityCount(boss.server));
 		if (toSpawn === 0) return false;
 
 		Summonables.TENUEM_MINION.spawn(boss.level as any, pos);

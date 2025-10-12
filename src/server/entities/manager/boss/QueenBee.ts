@@ -230,7 +230,7 @@ const QueenBee = new (class extends EntityManager<Bee_> implements ITickableBoss
 })().register();
 
 NativeEvents.onEvent($BeeStingEvent, event => {
-	if (QueenBee.hasBoss()) {
+	if (QueenBee.hasEntity()) {
 		event.setCanStingAgain(true);
 	}
 });
@@ -252,5 +252,5 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 });
 
 EntityEvents.death("minecraft:player", event => {
-	QueenBee.getBosses(event.server).forEach(boss => QueenBee.onPlayerDeathOld(boss, event.entity as ServerPlayer_));
+	QueenBee.getEntities(event.server).forEach(boss => QueenBee.onPlayerDeathOld(boss, event.entity as ServerPlayer_));
 });

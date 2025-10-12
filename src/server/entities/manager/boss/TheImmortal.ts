@@ -47,7 +47,7 @@ const Draugrnaut = new (class <T extends Mob_> extends EntityManager<T> implemen
 	}
 
 	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
-		this.getBosses(player.server).forEach(boss => {
+		this.getEntities(player.server).forEach(boss => {
 			const distance = boss.distanceToEntitySqr(player);
 			if (distance > 32) return;
 			const amount = Math.ceil(player.maxHealth * 0.1);

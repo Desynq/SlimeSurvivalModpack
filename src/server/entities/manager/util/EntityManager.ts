@@ -3,6 +3,9 @@
 abstract class EntityManager<T extends LivingEntity_> {
 	private entityCache: EntityCache<T> = new EntityCache();
 
+	/**
+	 * TODO: Move this to a static helper
+	 */
 	public static isGenericBoss(entity: unknown): entity is LivingEntity_ {
 		return entity instanceof $LivingEntity
 			&& entity.tags.stream().anyMatch(tag => tag.startsWith("boss."));
@@ -86,17 +89,17 @@ abstract class EntityManager<T extends LivingEntity_> {
 		this.entityCache.verify(entity => this.isEntity(entity));
 	}
 
-	public getBosses(server: MinecraftServer_): T[] {
+	public getEntities(server: MinecraftServer_): T[] {
 		this.ensureEntityCacheLoaded(server);
 		return this.entityCache.entities;
 	}
 
-	public getBossCount(server: MinecraftServer_): integer {
+	public getEntityCount(server: MinecraftServer_): integer {
 		this.ensureEntityCacheLoaded(server);
 		return this.entityCache.count;
 	}
 
-	public hasBoss(): boolean {
+	public hasEntity(): boolean {
 		return this.entityCache.count > 0;
 	}
 }

@@ -14,7 +14,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public getMaxHealth(server: MinecraftServer_): float {
-		const count = Math.max(1, this.getBossCount(server));
+		const count = Math.max(1, this.getEntityCount(server));
 		const ratio = Math.min(1, Math.log(count) / Math.log(this.SPAWN_CAP));
 		const maxHealth = 256;
 		const minHealth = 1;
@@ -24,7 +24,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public getScale(server: MinecraftServer_): double {
-		const count = Math.max(1, this.getBossCount(server));
+		const count = Math.max(1, this.getEntityCount(server));
 		const ratio = Math.min(1, Math.log(count) / Math.log(this.SPAWN_CAP));
 		const maxScale = 4;
 		const minScale = 1;
@@ -34,7 +34,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public getJumpStrength(server: MinecraftServer_): double {
-		const count = Math.max(1, this.getBossCount(server));
+		const count = Math.max(1, this.getEntityCount(server));
 		const ratio = Math.min(1, Math.log(count) / Math.log(this.SPAWN_CAP / 4));
 		const maxJumpStrength = 2.0;
 		const minJumpStrength = 0.4;
@@ -44,7 +44,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public isBossbarHolder(boss: T): boolean {
-		return this.getBosses(boss.server).indexOf(boss) === 0;
+		return this.getEntities(boss.server).indexOf(boss) === 0;
 	}
 
 	public onBossTick(boss: T): void {
@@ -59,7 +59,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public override onCountChange(server: MinecraftServer_): void {
-		const bosses = this.getBosses(server);
+		const bosses = this.getEntities(server);
 		for (const boss of bosses) {
 			this.updateHealth(boss);
 			this.updateScale(boss);
@@ -88,7 +88,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 			server.runCommandSilent(`bossbar add ${bossbarId} ""`);
 		}
 
-		const count = this.getBosses(boss.server).length;
+		const count = this.getEntities(boss.server).length;
 
 		server.runCommandSilent(`bossbar set ${bossbarId} max ${count}`);
 		server.runCommandSilent(`bossbar set ${bossbarId} value ${count}`);
@@ -190,7 +190,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	private tryDuplicate(boss: T): boolean {
 		if (boss.health < boss.maxHealth) return false;
 
-		const count = this.getBossCount(boss.server);
+		const count = this.getEntityCount(boss.server);
 		if (count >= this.SPAWN_CAP) return false;
 
 		const entity = Summonables.THE_HUNGER.spawn(boss.level as any, boss.position());

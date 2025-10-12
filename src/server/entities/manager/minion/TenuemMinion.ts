@@ -14,7 +14,7 @@ const TenuemMinion = new (class <T extends Phantom_> extends EntityManager<T> im
 	}
 
 	public onBossTick(minion: T): void {
-		const bossNearby = TheTenuem.getBosses(minion.server).some(boss => boss.distanceToEntity(minion as any) < 128);
+		const bossNearby = TheTenuem.getEntities(minion.server).some(boss => boss.distanceToEntity(minion as any) < 128);
 		if (!bossNearby) {
 			minion.discard();
 			return;
