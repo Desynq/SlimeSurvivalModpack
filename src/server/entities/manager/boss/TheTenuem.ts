@@ -108,16 +108,21 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 	}
 
 	private updateTarget(boss: T): void {
-		const nearestTankiestPlayer = ServerHelper.getSurvivors(boss.server)
-			.filter(player => player.distanceToEntity(boss as any) < 128)
-			.sort((a, b) => {
-				const aTank = a.health + a.armorValue;
-				const bTank = b.health + b.armorValue;
-				return bTank - aTank;
-			})[0];
+		const survivors: { player: ServerPlayer_, distance: double; }[] = [];
+		for (const survivor of ServerHelper.getSurvivors(boss.server)) {
+			const distance = survivor.distanceToEntity(boss as any);
+			if (distance >= this.BOSS_EVENT_RANGE) continue;
+			survivors.push({ player: survivor, distance: distance });
+		}
+		if (survivors.length === 0) return;
 
-		if (!nearestTankiestPlayer) return;
-		boss.setTarget(nearestTankiestPlayer);
+		const nearest = ArrayHelper.getHighest(
+			survivors,
+			x => (x.player.health + x.player.armorValue) / (1 + x.distance / 32)
+		).player;
+
+		if (!nearest) return;
+		boss.setTarget(nearest);
 	}
 
 })().register();

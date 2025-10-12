@@ -25,17 +25,21 @@ const TenuemMinion = new (class <T extends Phantom_> extends EntityManager<T> im
 		}
 	}
 
-	// TODO: Make it biased towards closer players so they don't cross-map to the dps
 	private updateTarget(minion: T): void {
-		const nearestTankiestPlayer = ServerHelper.getSurvivors(minion.server)
-			.filter(player => player.distanceToEntity(minion as any) < 128)
-			.sort((a, b) => {
-				const aTank = a.health + a.armorValue;
-				const bTank = b.health + b.armorValue;
-				return aTank - bTank;
-			})[0];
+		const survivors: { player: ServerPlayer_, distance: double; }[] = [];
+		for (const survivor of ServerHelper.getSurvivors(minion.server)) {
+			const distance = survivor.distanceToEntity(minion as any);
+			if (distance >= 128) continue;
+			survivors.push({ player: survivor, distance: distance });
+		}
+		if (survivors.length === 0) return;
 
-		if (!nearestTankiestPlayer) return;
-		minion.setTarget(nearestTankiestPlayer);
+		const nearest = ArrayHelper.getLowest(
+			survivors,
+			x => (x.player.health + x.player.armorValue) / (1 + x.distance / 32)
+		).player;
+
+		if (!nearest) return;
+		minion.setTarget(nearest);
 	}
 })().register();
