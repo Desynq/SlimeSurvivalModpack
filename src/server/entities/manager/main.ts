@@ -52,6 +52,16 @@ EntityEvents.death(event => {
 	}
 });
 
+EntityEvents.afterHurt(event => {
+	const manager = EntityManagers.getManager(event.entity);
+	if (!manager) return;
+
+	manager.onAfterHurt(event.entity, event);
+});
+
+
+
+
 NativeEvents.onEvent($EntityJoinLevelEvent, event => {
 	for (const manager of EntityDirector.managers) {
 		if (manager.isEntity(event.entity)) {

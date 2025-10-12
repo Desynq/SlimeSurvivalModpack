@@ -10,3 +10,8 @@ const $EntitySpawnedKubeEvent = Java.loadClass("dev.latvian.mods.kubejs.entity.E
 // @ts-ignore
 type LivingEntityDeathKubeEvent_ = import("dev.latvian.mods.kubejs.entity.LivingEntityDeathKubeEvent").$LivingEntityDeathKubeEvent$$Original;
 const $LivingEntityDeathKubeEvent = Java.loadClass("dev.latvian.mods.kubejs.entity.LivingEntityDeathKubeEvent");
+
+
+// @ts-ignore
+type AfterLivingEntityHurtKubeEvent_ = import("dev.latvian.mods.kubejs.entity.AfterLivingEntityHurtKubeEvent").$AfterLivingEntityHurtKubeEvent$$Original;
+const $AfterLivingEntityHurtKubeEvent = Java.loadClass("dev.latvian.mods.kubejs.entity.AfterLivingEntityHurtKubeEvent");

@@ -13,7 +13,7 @@ abstract class EntityManager<T extends LivingEntity_> {
 	 */
 	public abstract isEntity(entity: unknown): entity is T;
 
-	public isCachedEntity(entity: unknown): entity is T {
+	public isCachedEntity(entity: unknown): boolean {
 		return this.entityCache.isCached(entity);
 	}
 
@@ -29,6 +29,8 @@ abstract class EntityManager<T extends LivingEntity_> {
 	public onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void { }
 
 	public onIncomingDamage(entity: T, event: LivingIncomingDamageEvent_): void { }
+
+	public onAfterHurt(entity: T, event: AfterLivingEntityHurtKubeEvent_): void { }
 
 	/**
 	 * Runs regardless of whether the manager has any bosses

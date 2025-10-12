@@ -11,6 +11,14 @@ class EntropyHelper {
 		return SkillHelper.hasSkill(entity, FarlanderSkills.QUANTUM_UNCERTAINTY);
 	}
 
+	public static canReceiveEntropy(entity: LivingEntity_): boolean {
+		if (RiftMage.isCachedEntity(entity)) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public static getBaseInterval(entity: LivingEntity_) {
 		const player = entity instanceof $ServerPlayer ? entity : null;
 

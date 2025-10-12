@@ -2,11 +2,19 @@
 
 namespace FarlanderEvents {
 
+	function isBlacklistedDamageSource(type: string): boolean {
+		const blacklistedDamageSources = ["genericKill", "slimesurvival.entropy_kill"];
+		return blacklistedDamageSources.includes(type);
+	}
+
 	EntityEvents.beforeHurt(event => {
 		const victim = event.entity;
 		const attacker = event.source.actual;
 
 		if (!(victim instanceof $LivingEntity)) {
+			return;
+		}
+		if (!EntropyHelper.canReceiveEntropy(victim)) {
 			return;
 		}
 
@@ -16,8 +24,7 @@ namespace FarlanderEvents {
 			return;
 		}
 
-		const blacklistedDamageSources: string[] = ["genericKill", "slimesurvival.entropy_kill"];
-		if (blacklistedDamageSources.includes(event.source.getType())) return;
+		if (isBlacklistedDamageSource(event.source.getType())) return;
 
 		let postAbsorptionDamage = applyAbsorptionDamage(victim, event.damage);
 
@@ -32,6 +39,7 @@ namespace FarlanderEvents {
 			holder.pushEntropyEntry(rendingDamage, attacker);
 			postAbsorptionDamage -= rendingDamage;
 		}
+
 		if (isFarlander) {
 			holder.pushEntropyEntry(postAbsorptionDamage, attacker);
 			postAbsorptionDamage = 0;
@@ -118,8 +126,8 @@ namespace FarlanderEvents {
 	}
 
 	function getNearestAggressiveEntity(victim: LivingEntity_, attacker: ServerPlayer_, distance: double): Mob_ | null {
-		const conditions = $TargetingConditions.forNonCombat().selector((mob: LivingEntity_) =>
-			mob instanceof $Mob && LivingEntityHelper.isBeingTargetedBy(attacker, mob)
+		const conditions = $TargetingConditions.forNonCombat().selector((entity: LivingEntity_) =>
+			entity instanceof $Mob && entity.getTarget() === attacker && EntropyHelper.canReceiveEntropy(entity as any)
 		);
 
 		const aabb = victim.getBoundingBox().inflate(distance);
