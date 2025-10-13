@@ -84,7 +84,7 @@ class EntropyHolder {
 		const targetHolder = EntropyHolder.getOrCreate(target);
 
 		let transferredEntries: EntropyEntry[] = [];
-		ListHelper.forEachRight(this.entropyEntries, (entry) => {
+		ArrayHelper.forEachRight(this.entropyEntries, (entry) => {
 			if (!entry.isFrom(attacker)) return "continue";
 
 			const clone = new EntropyEntry(entry.damage, entry.attackerUUID);
@@ -95,7 +95,7 @@ class EntropyHolder {
 	}
 
 	public removeEntriesFromAttacker(attacker: LivingEntity_): void {
-		ListHelper.forEachRight(this.entropyEntries, entry => {
+		ArrayHelper.forEachRight(this.entropyEntries, entry => {
 			if (entry.isFrom(attacker)) return "splice";
 		});
 	}
@@ -188,7 +188,7 @@ class EntropyHolder {
 	};
 
 	private tickEntries(owner: LivingEntity_) {
-		ListHelper.forEachRight(this.entropyEntries, (entry, i, entries) => {
+		ArrayHelper.forEachRight(this.entropyEntries, (entry, i, entries) => {
 			if (entries.length === 0) return "break"; // handles reentrance if the player died from an entropy entry being ticked
 			if (entry === undefined) return "break";
 			if (!entry.tryTick(owner)) return "continue";

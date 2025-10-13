@@ -1,7 +1,7 @@
 /**
  * 
- * @param {import("net.minecraft.server.level.ServerLevel").$ServerLevel$$Original | import("net.minecraft.world.level.Level").$Level$$Original} level
- * @param {import("net.minecraft.world.phys.Vec3").$Vec3$$Original} position 
+ * @param {ServerLevel_ | Level_} level
+ * @param {Vec3_} position 
  * @param {string} sound 
  * @param {string} volumeType 
  * @param {number} volume 

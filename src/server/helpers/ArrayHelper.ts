@@ -1,5 +1,6 @@
+// priority: 1000
 
-
+type SpliceAction = "splice" | "break" | "continue" | void;
 
 class ArrayHelper {
 
@@ -33,5 +34,14 @@ class ArrayHelper {
 
 	public static getLowest<T>(array: T[], scoreGetter: (x: T) => number): T {
 		return this.getByComparison(array, scoreGetter, (a, b) => b - a);
+	}
+
+
+	public static forEachRight<T>(array: T[], callback: (item: T, index: number, arr: T[]) => SpliceAction): void {
+		for (let i = array.length - 1; i >= 0; i--) {
+			const action = callback(array[i], i, array);
+			if (action === "splice") array.splice(i, 1);
+			else if (action === "break") return;
+		}
 	}
 }

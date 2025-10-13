@@ -50,6 +50,8 @@ abstract class EntityManager<T extends LivingEntity_> {
 	 */
 	public onCountChange(server: MinecraftServer_) { }
 
+	public onAdd(entity: T) { }
+
 	public onJoin(entity: T, event: EntityJoinLevelEvent_): void {
 		this.tryCacheEntity(entity);
 	}
@@ -79,6 +81,7 @@ abstract class EntityManager<T extends LivingEntity_> {
 			&& this.entityCache.add(entity)
 		) {
 			EntityManagers.register(entity, this);
+			this.onAdd(entity);
 			this.onCountChange(entity.server);
 			return true;
 		}

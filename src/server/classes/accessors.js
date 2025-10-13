@@ -1,4 +1,5 @@
 // net.minecraft.nbt
+/** @type {typeof import("net.minecraft.nbt.Tag").$Tag} */
 const $Tag = Java.loadClass("net.minecraft.nbt.Tag");
 
 const $StringTag = Java.loadClass('net.minecraft.nbt.StringTag');

@@ -5,6 +5,7 @@
 		"noEmitOnError": true,
 		"allowJs": true,
 		"target": "ES5",
+		"downlevelIteration": false,
 		"module": "commonjs",
 		"lib": [
 			"ES2017"

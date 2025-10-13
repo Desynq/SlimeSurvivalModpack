@@ -118,6 +118,16 @@ TickHelper.setTimestampBefore = function(entity, id, time) {
 }
 
 /**
+ * Sets the timestamp `time` ticks after the current game time
+ * @param {Entity_} entity 
+ * @param {string} id 
+ * @param {long} time 
+ */
+TickHelper.setTimestampAfter = function(entity, id, time) {
+	entity.persistentData.putLong(id, TickHelper.getGameTime(entity.server) + time);
+}
+
+/**
  * Sets timestamp to Long.MIN_VALUE so that hasTimestampPassed() always returns true
  * @param {Entity_} entity 
  * @param {string} id 
