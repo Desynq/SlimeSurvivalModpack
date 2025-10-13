@@ -45,7 +45,7 @@ class EntityDirector {
 		return this.managers.some(manager => manager.isEntity(entity));
 	}
 
-	public static isCachedBoss(entity: unknown): boolean {
+	public static isCachedEntity(entity: unknown): boolean {
 		return this.managers.some(manager => manager.isCachedEntity(entity));
 	}
 
