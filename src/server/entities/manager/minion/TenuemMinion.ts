@@ -36,7 +36,7 @@ const TenuemMinion = new (class <T extends Phantom_> extends EntityManager<T> im
 
 		const nearest = ArrayHelper.getLowest(
 			survivors,
-			x => (x.player.health + x.player.armorValue) / (1 + x.distance / 32)
+			x => x.player.health + x.player.armorValue
 		).player;
 
 		if (!nearest) return;

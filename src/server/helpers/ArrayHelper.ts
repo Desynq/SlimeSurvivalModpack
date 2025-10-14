@@ -10,6 +10,18 @@ class ArrayHelper {
 		return array[Math.floor(Math.random() * array.length)];
 	}
 
+	/**
+	 * Creates a shallow clone of the array and shuffles it
+	 */
+	public static shuffle<T>(array: T[]): T[] {
+		const copy = array.slice();
+		for (let i = copy.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[copy[i], copy[j]] = [copy[j], copy[i]];
+		}
+		return copy;
+	}
+
 	public static getByComparison<T>(array: T[], scoreGetter: (x: T) => number, comparison: (a: number, b: number) => number): T {
 		if (array.length === 0) throw new Error("Cannot get the best element from an empty array");
 

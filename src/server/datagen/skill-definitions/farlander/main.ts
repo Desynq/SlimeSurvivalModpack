@@ -156,7 +156,7 @@ class FarlanderSkills {
 			"color": "dark_purple",
 			"text": "You regenerate `entropyDamage / maxHealth * 0.25` you deal to others as hunger while Quantum Relativity is active."
 		})
-		.cost(8)
+		.cost(4)
 		.requiredSkills(2)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);
@@ -346,7 +346,7 @@ class FarlanderSkills {
 			"color": "dark_red",
 			"text": "\n\n- Requires Quantum Relativity and Quantum Rending."
 		})
-		.cost(3)
+		.cost(8)
 		.requiredSkills(2)
 		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
 		.register(this.skills);

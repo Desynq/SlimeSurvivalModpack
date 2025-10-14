@@ -13,6 +13,7 @@ new MarketableItem("cobblestone", "minecraft:cobblestone")
 
 new MarketableItem("dirt", "minecraft:dirt")
 	.setSellPrice(0.01)
+	.setBuyPrice(0.25)
 	.register();
 
 new MarketableItem("deepslate", "minecraft:deepslate")

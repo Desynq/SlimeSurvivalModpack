@@ -51,3 +51,9 @@ const $MinecraftServer: typeof import("net.minecraft.server.MinecraftServer").$M
 
 // @ts-ignore
 const $ClientboundContainerSetSlotPacket: typeof import("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket").$ClientboundContainerSetSlotPacket = Java.loadClass("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket");
+
+// @ts-ignore
+const $ShulkerBullet: typeof import("net.minecraft.world.entity.projectile.ShulkerBullet").$ShulkerBullet = Java.loadClass("net.minecraft.world.entity.projectile.ShulkerBullet");
+
+// @ts-ignore
+const $Direction$Axis: typeof import("net.minecraft.core.Direction$Axis").$Direction$Axis = Java.loadClass("net.minecraft.core.Direction$Axis");

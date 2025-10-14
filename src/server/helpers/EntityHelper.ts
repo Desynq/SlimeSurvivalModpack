@@ -65,8 +65,8 @@ namespace EntityHelper {
 			nX = Math.floor(testX) + 0.5;
 			nZ = Math.floor(testZ) + 0.5;
 
-			const surfaceY = entity.level.getHeight("motion_blocking_no_leaves", Math.floor(nX), Math.floor(nZ));
-			nY = Math.floor(surfaceY + 1);
+			const surfaceY = entity.level.getHeight("motion_blocking_no_leaves", nX, nZ);
+			nY = Math.floor(surfaceY + 1.0);
 		}
 
 		entity.teleportTo(nX, nY, nZ);

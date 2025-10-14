@@ -111,7 +111,7 @@ namespace FarlanderEvents {
 		if (!QuantumRelativity.isActive(attacker)) return;
 
 		const totalEntropyDamage = EntropyHelper.getLifetimeEntropyDamage(victim);
-		attacker.health += MathHelper.clamped(0, attacker.maxHealth, attacker.health + totalEntropyDamage);
+		attacker.health += MathHelper.clamped(attacker.health + totalEntropyDamage, 0, attacker.maxHealth);
 	}
 
 

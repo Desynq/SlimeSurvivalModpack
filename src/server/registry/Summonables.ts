@@ -178,11 +178,15 @@ namespace Summonables {
 		attributes: [
 			{
 				id: "minecraft:generic.attack_damage",
-				base: 20
+				base: 10
 			},
 			{
 				id: "minecraft:generic.movement_speed",
 				base: 0.3
+			},
+			{
+				id: "minecraft:generic.armor",
+				base: 20
 			}
 		],
 		active_effects: [
@@ -195,8 +199,15 @@ namespace Summonables {
 				show_particles: false
 			}
 		],
-		CustomName: '{"color":"dark_purple","text":"Rift Mage"}'
+		CustomName: '{"color":"dark_purple","text":"Rift Mage"}',
+		Glowing: true,
+		HandItems: [
+			{
+				id: "minecraft:bow",
+				count: 1
+			}
+		]
 	})
-		.setMaxHealth(1000.00)
+		.setMaxHealth(500.00)
 		.setBoss();
 }

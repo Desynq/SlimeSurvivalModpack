@@ -94,7 +94,7 @@ class SellTransaction {
 			const rl = $ResourceLocation.parse(this.itemId);
 			// @ts-ignore
 			const item = $BuiltInRegistries.ITEM.get(rl);
-			const itemCount = this.player.inventory.countItem(item);
+			const itemCount = this.player.inventory.countItem(item as any);
 			this.amountSold = Math.min(this.sellAmount, itemCount);
 
 			this.server.runCommandSilent(`clear ${this.player.username} ${this.itemId} ${this.sellAmount}`);

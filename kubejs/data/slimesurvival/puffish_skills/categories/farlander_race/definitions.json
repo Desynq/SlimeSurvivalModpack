@@ -315,14 +315,14 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 8 points]"
+				"text": "\n\n[Cost: 4 points]"
 			},
 			{
 				"color": "red",
 				"text": "\n[Skills Needed: 2]"
 			}
 		],
-		"cost": 8,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -768,14 +768,14 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 3 points]"
+				"text": "\n\n[Cost: 8 points]"
 			},
 			{
 				"color": "red",
 				"text": "\n[Skills Needed: 2]"
 			}
 		],
-		"cost": 3,
+		"cost": 8,
 		"icon": {
 			"type": "item",
 			"data": {

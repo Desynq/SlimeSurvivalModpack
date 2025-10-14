@@ -46,15 +46,15 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 	private readonly BOSS_EVENT_RANGE = 128;
 
 	private getMaxMinions(boss: T): integer {
-		return 32 * MathHelper.clamped(1, 3, this.getPlayers(boss).length);
+		return 32 * MathHelper.clamped(this.getPlayers(boss).length, 1, 3);
 	}
 
-	private lastScaleHealthPlayerCount: number | undefined;
+	private readonly lastScaleHealthPlayerCount: Record<string, number | undefined> = {};
 	private scaleHealth(boss: T): void {
 		const players = this.getPlayers(boss);
 		const playerCount = players.length;
-		if (playerCount === this.lastScaleHealthPlayerCount) return;
-		this.lastScaleHealthPlayerCount = playerCount;
+		if (playerCount === this.lastScaleHealthPlayerCount[boss.stringUUID]) return;
+		this.lastScaleHealthPlayerCount[boss.stringUUID] = playerCount;
 
 		const newMaxHealth = Math.max(1, playerCount) * 5_000;
 		LivingEntityHelper.scaleHealth(boss as any, newMaxHealth);

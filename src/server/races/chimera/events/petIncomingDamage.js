@@ -17,7 +17,7 @@
 
 		const damage = event.getAmount();
 		const minPossibleHealth = pet.maxHealth * (chimera.player.health / chimera.player.maxHealth);
-		const newDamage = MathHelper.clamped(0, pet.health - minPossibleHealth, damage);
+		const newDamage = MathHelper.clamped(damage, 0, pet.health - minPossibleHealth);
 		event.setAmount(newDamage);
 	}
 

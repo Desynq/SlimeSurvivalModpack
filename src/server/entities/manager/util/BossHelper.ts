@@ -1,4 +1,4 @@
-// priorty: 2
+// priority: 2
 
 interface PlayerDistance {
 	player: ServerPlayer_;
@@ -18,5 +18,14 @@ class BossHelper {
 			survivors.push({ player: survivor, distance: distance });
 		}
 		return survivors;
+	}
+
+	public static scaleHealthByPlayers(entity: LivingEntity_, baseHealth: number, playerCount: number): void {
+		const last = entity.persistentData.getInt("last_scale_health_player_count");
+		if (playerCount === last) return;
+		entity.persistentData.putInt("last_scale_health_player_count", playerCount);
+
+		const newMaxHealth = Math.max(1, playerCount) * baseHealth;
+		LivingEntityHelper.scaleHealth(entity, newMaxHealth);
 	}
 }
