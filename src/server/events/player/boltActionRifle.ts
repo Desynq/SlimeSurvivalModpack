@@ -1,15 +1,47 @@
 
 const BoltActionRifle = new (class {
-	public readonly COOLDOWN = 20;
+	public readonly COOLDOWN = 40;
+	private readonly cooldownTs = new EntityTimestamp<ServerPlayer_>("bolt_action_rifle_cooldown");
+	private readonly lastHeldTs = new EntityTimestamp<ServerPlayer_>("bolt_action_rifle_last_held");
 
 	public isCorrectGun(weapon: ItemStack_): boolean {
-		const customData = weapon.components.get($DataComponents.CUSTOM_DATA);
+		const customData = weapon.components.get($DataComponents.CUSTOM_DATA as any) as CustomData_;
 		if (customData == null) {
 			return false;
 		}
 		const id = customData.copyTag().getString("id");
 		return id === "bolt_action_rifle";
 	};
+
+	public whileHeld(shooter: ServerPlayer_, weapon: ItemStack_): void {
+		if (this.cooldownTs.has(shooter)) {
+			const diff = this.lastHeldTs.getDiff(shooter);
+			if (diff === undefined || diff > 1) {
+				this.setCooldown(shooter);
+			}
+
+			this.handleCooldown(shooter, weapon);
+		}
+		this.lastHeldTs.update(shooter);
+	}
+
+	private handleCooldown(shooter: ServerPlayer_, weapon: ItemStack_): void {
+		const remaining = this.cooldownTs.getRemaining(shooter, this.COOLDOWN);
+		if (remaining === undefined) return;
+
+		switch (remaining) {
+			case Math.floor(this.COOLDOWN * (3 / 4)):
+				playsound(shooter.level, shooter.position(), "block.iron_door.open", "master", 1, 0.5);
+				break;
+			case Math.floor(this.COOLDOWN * (1 / 3)):
+				playsound(shooter.level, shooter.position(), "item.crossbow.loading_end", "master", 1, 1.0);
+				break;
+			case 0:
+				playsound(shooter.level, shooter.position(), "block.iron_door.close", "master", 1, 0.5);
+				this.removeCooldown(shooter);
+				break;
+		}
+	}
 
 	public tryFire(shooter: ServerPlayer_, weapon: ItemStack_): void {
 		if (!this.canFire(shooter, weapon)) return;
@@ -28,17 +60,20 @@ const BoltActionRifle = new (class {
 	}
 
 	public hasAmmo(shooter: ServerPlayer_): boolean {
-		const ammoItem = $BuiltInRegistries.ITEM.get("minecraft:iron_nugget");
-		const ammoCount = shooter.inventory.countItem(ammoItem);
+		const ammoCount = shooter.inventory.countItem("minecraft:iron_nugget");
 		return ammoCount > 0;
 	}
 
 	public onCooldown(shooter: ServerPlayer_): boolean {
-		return !TickHelper.hasTimestampElapsed(shooter, "bolt_action_rifle_fire_cooldown", this.COOLDOWN);
+		return !this.cooldownTs.hasElapsed(shooter, this.COOLDOWN);
 	}
 
 	public setCooldown(shooter: ServerPlayer_): void {
-		TickHelper.forceUpdateTimestamp(shooter, "bolt_action_rifle_fire_cooldown");
+		this.cooldownTs.update(shooter);
+	}
+
+	public removeCooldown(shooter: ServerPlayer_): void {
+		this.cooldownTs.remove(shooter);
 	}
 
 
@@ -58,10 +93,10 @@ const BoltActionRifle = new (class {
 	};
 
 	private summonProjectile(shooter: ServerPlayer_, weapon: ItemStack_): void {
-		const arrowStack = new $ItemStack($Items.ARROW);
+		const arrowStack = new $ItemStack("minecraft:arrow");
 		const arrowItem = $Items.ARROW as import("net.minecraft.world.item.ArrowItem").$ArrowItem$$Original;
 
-		const arrow = arrowItem.createArrow(shooter.level, arrowStack as any, shooter, weapon as any);
+		const arrow = arrowItem.createArrow(shooter.level as any, arrowStack as any, shooter, weapon as any);
 
 		const tag = new $CompoundTag();
 		arrow.saveWithoutId(tag);
@@ -97,4 +132,11 @@ NativeEvents.onEvent($PlayerInteractEvent$RightClickItem, event => {
 	if (!(player instanceof $ServerPlayer)) return;
 
 	BoltActionRifle.tryFire(player, stack);
+});
+
+PlayerEvents.tick(event => {
+	const player = event.player as ServerPlayer_;
+	if (BoltActionRifle.isCorrectGun(player.mainHandItem)) {
+		BoltActionRifle.whileHeld(player, player.mainHandItem);
+	}
 });

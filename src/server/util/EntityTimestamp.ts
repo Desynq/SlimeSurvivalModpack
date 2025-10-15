@@ -49,9 +49,12 @@ class EntityTimestamp<T extends Entity_> {
 		}
 	}
 
+	/**
+	 * Will always return `true` if timestamp has not been set
+	 */
 	public hasElapsed(entity: T, duration: long): boolean {
 		const diff = this.getDiff(entity);
-		return diff !== undefined && diff >= duration;
+		return diff === undefined || diff >= duration;
 	}
 
 	public hasJustElapsed(entity: T, duration: long): boolean {
@@ -72,6 +75,9 @@ class EntityTimestamp<T extends Entity_> {
 			: duration - diff;
 	}
 
+	/**
+	 * Also returns `true` if timestamp has not been set
+	 */
 	public hasElapsedPast(entity: T, duration: long, timeAfter: long): boolean {
 		const elapsed = this.getElapsedTime(entity, duration);
 		return elapsed === undefined || elapsed >= timeAfter;
