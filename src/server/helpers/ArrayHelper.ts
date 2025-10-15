@@ -1,6 +1,6 @@
 // priority: 1000
 
-type SpliceAction = "splice" | "break" | "continue" | void;
+type SpliceAction = "splice" | "break" | "continue" | undefined;
 
 class ArrayHelper {
 
@@ -10,16 +10,11 @@ class ArrayHelper {
 		return array[Math.floor(Math.random() * array.length)];
 	}
 
-	/**
-	 * Creates a shallow clone of the array and shuffles it
-	 */
-	public static shuffle<T>(array: T[]): T[] {
-		const copy = array.slice();
-		for (let i = copy.length - 1; i > 0; i--) {
+	public static shuffle<T>(array: T[]): void {
+		for (let i = array.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
-			[copy[i], copy[j]] = [copy[j], copy[i]];
+			[array[i], array[j]] = [array[j], array[i]];
 		}
-		return copy;
 	}
 
 	public static getByComparison<T>(array: T[], scoreGetter: (x: T) => number, comparison: (a: number, b: number) => number): T {
@@ -54,6 +49,39 @@ class ArrayHelper {
 			const action = callback(array[i], i, array);
 			if (action === "splice") array.splice(i, 1);
 			else if (action === "break") return;
+		}
+	}
+
+	/**
+	 * Forward traverse with splicing occuring as a batch after traversal.
+	 * 
+	 * Use as a snapshot since elements are marked for deletion during traversal and only deleted after traversal is finished.
+	 */
+	public static forEachSplice<T>(
+		array: T[],
+		callback: (item: T, index: number, arr: T[]) => SpliceAction
+	): void {
+		const removeIndices: number[] = [];
+
+		for (let i = 0; i < array.length; i++) {
+			const action = callback(array[i], i, array);
+			if (action === "splice") {
+				removeIndices.push(i);
+			}
+			else if (action === "break") {
+				break;
+			}
+		}
+
+		for (const i of removeIndices) {
+			array[i] = null as any;
+		}
+		if (removeIndices.length > 0) {
+			let write = 0;
+			for (let read = 0; read < array.length; read++) {
+				if (array[read] != null) array[write++] = array[read];
+			}
+			array.length = write;
 		}
 	}
 }

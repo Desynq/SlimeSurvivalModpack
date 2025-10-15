@@ -3,9 +3,7 @@
 const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManager<T> implements ITickableBoss<T> {
 
 	private readonly rewarder = new BossRewarder(1);
-
-	private readonly soulFlares: Record<string, SoulFlare[]> = {};
-	private readonly lastScaleHealthPlayerCount: Record<string, number | undefined> = {};
+	private readonly sfManager = new SoulFlareManager();
 
 	private readonly tsSoulFlare = new EntityTimestamp<T>("soul_flare");
 	private readonly tsLastInteraction = new EntityTimestamp<T>("last_interaction");
@@ -17,13 +15,9 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		return entity instanceof $LivingEntity && entity.tags.contains("boss.rift_mage");
 	}
 
-	public override onAdd(entity: T): void {
-		this.soulFlares[entity.stringUUID] ??= [];
-	}
-
 	public override onLeave(entity: T, event: EntityLeaveLevelEvent_): void {
 		super.onLeave(entity, event);
-		delete this.soulFlares[entity.stringUUID];
+		this.sfManager.clear(entity);
 	}
 
 	public override onIncomingDamage(entity: T, event: LivingIncomingDamageEvent_): void {
@@ -77,24 +71,24 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 	}
 
 	private trySwapPlayers(boss: T): void {
-		const players = BossHelper.getSurvivorDistances(boss, 64).map(sd => sd.player);
+		const players = this.rewarder.getContributors(boss).filter(player => player.distanceToEntity(boss) <= 64);
 		if (players.length < 2) return;
 
 		const ts = this.tsSwapPlayers;
-		const elapsedTime = ts.getElapsedTime(boss, 20);
+		const duration = 40;
 
-		if (boss.tickCount >= 300 && ts.hasElapsedPast(boss, 40, 200) && Math.random() < 0.5) {
+		if (boss.tickCount >= 300 && ts.hasElapsedPast(boss, duration, 200) && Math.random() < 0.5) {
 			ts.update(boss);
 			playsoundAll(boss.server, "minecraft:entity.evoker.prepare_summon", "master", 4, 2);
 		}
-		else if (elapsedTime === 0) {
+		else if (ts.hasJustElapsed(boss, duration)) {
 			this.swapPlayers(boss, players);
 		}
 	}
 
 	private swapPlayers(boss: T, players: ServerPlayer_[]) {
 		if (players.length < 2) return;
-		players = ArrayHelper.shuffle(players);
+		ArrayHelper.shuffle(players);
 
 		const firstPos = players[0].position();
 
@@ -157,16 +151,15 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		const stepSize = this.stepSizeFn(ratio);
 
 		const flare = SoulFlare.spawn(boss, player, 32, stepSize);
-		if (flare === undefined) return;
-		this.soulFlares[boss.stringUUID].push(flare);
+		this.sfManager.add(boss, flare);
 	}
 
 	private updateSoulFlares(boss: T): void {
-		const flares = this.soulFlares[boss.stringUUID];
+		const flares = this.sfManager.getFlares(boss);
 		if (flares.length === 0) return;
 		const level = boss.level as any as ServerLevel_;
 
-		ArrayHelper.forEachRight(flares, flare => {
+		ArrayHelper.forEachSplice(flares, flare => {
 			const oldPos = flare.getPos();
 			flare.tick(level);
 			const newPos = flare.getPos();
