@@ -67,13 +67,7 @@ abstract class EntityManager<T extends LivingEntity_> {
 	private ensureEntityCacheLoaded(server: MinecraftServer_): void {
 		if (this.entityCache.count > 0) return;
 
-		if (EntityDirector.tryGlobalCacheRebuild(server)) return;
-
-		for (const entity of server.getEntities()) {
-			if (entity instanceof $LivingEntity) {
-				this.tryCacheEntity(entity);
-			}
-		}
+		EntityDirector.tryGlobalCacheRebuild(server);
 	}
 
 	public tryCacheEntity(entity: LivingEntity_): boolean {
