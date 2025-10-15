@@ -36,18 +36,14 @@ namespace EntityHelper {
 			const testZ = center.z() + Math.sin(angle) * dist;
 			const targetY = center.y();
 
-			const from = new Vec3d(entity.x, entity.y + entity.eyeHeight, entity.z);
-			const to = new Vec3d(testX, targetY + entity.eyeHeight, testZ);
+			const targetPos = new $Vec3(testX, targetY, testZ);
+			const aabb = entity.getBoundingBox().move(
+				targetPos.x() - entity.x,
+				targetPos.y() - entity.y,
+				targetPos.z() - entity.z
+			);
 
-			const hit = entity.level.clip(new $ClipContext(
-				from as any,
-				to as any,
-				"collider",
-				"none",
-				entity
-			));
-
-			if (hit.type === $HitResult$Type.MISS) {
+			if (entity.level.noBlockCollision(entity, aabb as any)) {
 				nX = Math.floor(testX) + 0.5;
 				nY = Math.floor(targetY);
 				nZ = Math.floor(testZ) + 0.5;
@@ -95,18 +91,14 @@ namespace EntityHelper {
 			const testZ = center.z() + Math.sin(angle) * dist;
 			const targetY = center.y();
 
-			const from = new Vec3d(entity.x, entity.y + entity.eyeHeight, entity.z);
-			const to = new Vec3d(testX, targetY + entity.eyeHeight, testZ);
+			const targetPos = new $Vec3(testX, targetY, testZ);
+			const aabb = entity.getBoundingBox().move(
+				targetPos.x() - entity.x,
+				targetPos.y() - entity.y,
+				targetPos.z() - entity.z
+			);
 
-			const hit = entity.level.clip(new $ClipContext(
-				from as any,
-				to as any,
-				"collider",
-				"none",
-				entity
-			));
-
-			if (hit.type === $HitResult$Type.MISS) {
+			if (entity.level.noBlockCollision(entity, aabb as any)) {
 				nX = Math.floor(testX) + 0.5;
 				nY = Math.floor(targetY);
 				nZ = Math.floor(testZ) + 0.5;
