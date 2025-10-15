@@ -8,7 +8,7 @@ class SoulFlare {
 	/**
 	 * @returns `undefined` if origin and target occupy the exact same position
 	 */
-	public static spawn(origin: Entity_, target: Entity_, distance: number, stepSize: double): SoulFlare | undefined {
+	public static spawn(origin: Entity_, target: Entity_, distance: number, stepSize: double): SoulFlare {
 		const ox = origin.x;
 		const oy = origin.y + origin.eyeHeight * 0.5;
 		const oz = origin.z;
@@ -23,8 +23,15 @@ class SoulFlare {
 		let dz = pz - oz;
 
 		// Normalize direction
-		const length = Math.sqrt(dx * dx + dy * dy + dz * dz);
-		if (length === 0) return undefined; // avoid NaN from dividing by 0
+		let length = Math.sqrt(dx * dx + dy * dy + dz * dz);
+		if (length === 0) { // fallback to shooting in a random direction if the target is exactly inside of the origin
+			const theta = Math.random() * 2 * Math.PI;
+			const phi = Math.acos(2 * Math.random() - 1);
+			dx = Math.sin(phi) * Math.cos(theta);
+			dy = Math.cos(phi);
+			dz = Math.sin(phi) * Math.sin(theta);
+			length = 1;
+		}
 
 		dx /= length;
 		dy /= length;

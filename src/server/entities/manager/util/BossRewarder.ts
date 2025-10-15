@@ -9,12 +9,13 @@ class BossRewarder<T extends LivingEntity_> {
 	) { }
 
 
-	public addContributor(boss: T, player: ServerPlayer_): void {
+	public addContributor(boss: T, player: ServerPlayer_): boolean {
 		const contributorsTag = boss.persistentData.getCompound(this.KEY);
-		if (contributorsTag.contains(player.stringUUID)) return;
+		if (contributorsTag.contains(player.stringUUID)) return false;
 
 		contributorsTag.putBoolean(player.stringUUID, true);
 		boss.persistentData.put("contributors", contributorsTag);
+		return true;
 	}
 
 	public removeContributor(boss: T, player: ServerPlayer_): void {
