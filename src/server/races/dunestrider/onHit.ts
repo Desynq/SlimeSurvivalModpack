@@ -73,31 +73,6 @@
 
 		let finalDmg = event.getDamage();
 
-		// if ((SkillHelper.hasSkill(attacker, DunestriderSkills.DEMEAN_1))) {
-		// 	let skillLvl = SkillHelper.getSkillTier(attacker, DunestriderSkills.DEMEAN_1, DunestriderSkills.DEMEAN_2, DunestriderSkills.DEMEAN_3);
-		// 	let victimMaxHealth = victim.getMaxHealth();
-		// 	let victimHealth = victim.getHealth();
-		// 	let dropoff = 0;
-		// 	let extraDmg = 0;
-		// 	switch (skillLvl) {
-		// 		case 1:
-		// 			dropoff = 0.75;
-		// 			extraDmg = victimMaxHealth * 0.025;
-		// 			break;
-		// 		case 2:
-		// 			dropoff = 0.50;
-		// 			extraDmg = victimMaxHealth * 0.030;
-		// 			break;
-		// 		case 3:
-		// 			dropoff = 0.33;
-		// 			extraDmg = victimMaxHealth * 0.050;
-		// 			break;
-		// 	}
-		// 	if (victimMaxHealth * dropoff >= victimHealth) return;
-		// 	let dmg = event.getDamage();
-		// 	finalDmg = dmg + extraDmg;
-		// }
-
 		tickFirstStrike(victim, attacker);
 		tickMomentum(victim, attacker);
 
@@ -109,7 +84,7 @@
 			}
 		}
 
-		if ((SkillHelper.hasSkill(attacker, DunestriderSkills.FURANTUR_1))) {
+		if ((PlayerHelper.canHeal(attacker) && SkillHelper.hasSkill(attacker, DunestriderSkills.FURANTUR_1))) {
 			let skillLvl = SkillHelper.getSkillTier(attacker, DunestriderSkills.FURANTUR_1, DunestriderSkills.FURANTUR_2, DunestriderSkills.FURANTUR_3, DunestriderSkills.FURANTUR_4, DunestriderSkills.FURANTUR_5);
 			let stealPercent = 0;
 			switch (skillLvl) {
