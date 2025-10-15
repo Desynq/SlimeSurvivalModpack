@@ -246,7 +246,7 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 	if (event.source.getType() === "genericKill") return;
 	const queenBee = event.entity;
 
-	if (QueenBee.isCachedEntity(queenBee) && QueenBee.isBossImmune(queenBee)) {
+	if (QueenBee.isCachedEntity(queenBee) && QueenBee.isBossImmune(queenBee as any)) {
 		event.setCanceled(true);
 	}
 });
