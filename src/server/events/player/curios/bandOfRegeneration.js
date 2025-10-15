@@ -4,7 +4,7 @@ PlayerEvents.tick(event => {
 		return;
 	}
 
-	if (!PlayerHelper.shouldBeAbleToHeal(player)) {
+	if (!PlayerHelper.canHeal(player)) {
 		return;
 	}
 

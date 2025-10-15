@@ -37,10 +37,10 @@ namespace PlayerHelper {
 
 	export function hasCuriosEquipped(player: ServerPlayer_, itemId: string): boolean {
 		const item = $BuiltInRegistries.ITEM.get(itemId);
-		return player.isCuriosEquipped(item);
+		return player.isCuriosEquipped(itemId);
 	}
 
-	export function shouldBeAbleToHeal(player: ServerPlayer_): boolean {
+	export function canHeal(player: ServerPlayer_): boolean {
 		return player.health > 0 && player.health < player.maxHealth && !player.isDeadOrDying();
 	}
 
