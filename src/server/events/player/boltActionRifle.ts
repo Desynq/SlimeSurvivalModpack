@@ -13,7 +13,9 @@ const BoltActionRifle = new (class {
 		return id === "bolt_action_rifle";
 	};
 
-	public whileHeld(shooter: ServerPlayer_, weapon: ItemStack_): void {
+	public tryWhileHeld(shooter: ServerPlayer_, weapon: ItemStack_): boolean {
+		if (!this.isCorrectGun(weapon)) return false;
+
 		if (this.cooldownTs.has(shooter)) {
 			const diff = this.lastHeldTs.getDiff(shooter);
 			if (diff === undefined || diff > 1) {
@@ -23,6 +25,7 @@ const BoltActionRifle = new (class {
 			this.handleCooldown(shooter, weapon);
 		}
 		this.lastHeldTs.update(shooter);
+		return true;
 	}
 
 	private handleCooldown(shooter: ServerPlayer_, weapon: ItemStack_): void {
@@ -43,10 +46,11 @@ const BoltActionRifle = new (class {
 		}
 	}
 
-	public tryFire(shooter: ServerPlayer_, weapon: ItemStack_): void {
-		if (!this.canFire(shooter, weapon)) return;
+	public tryFire(shooter: ServerPlayer_, weapon: ItemStack_): boolean {
+		if (!this.canFire(shooter, weapon)) return false;
 
 		this.fire(shooter, weapon);
+		return true;
 	};
 
 	public canFire(shooter: ServerPlayer_, weapon: ItemStack_): boolean {
@@ -137,8 +141,9 @@ NativeEvents.onEvent($PlayerInteractEvent$RightClickItem, event => {
 
 PlayerEvents.tick(event => {
 	const player = event.player as ServerPlayer_;
-	if (BoltActionRifle.isCorrectGun(player.mainHandItem)) {
-		BoltActionRifle.whileHeld(player, player.mainHandItem);
+
+	if (!BoltActionRifle.tryWhileHeld(player, player.mainHandItem)) {
+		BoltActionRifle.tryWhileHeld(player, player.offHandItem);
 	}
 });
 
