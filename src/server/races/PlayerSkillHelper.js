@@ -6,10 +6,10 @@ const PlayerRaceSkillHelper = {};
  * @param {Player_} player 
  * @param {Race} excludedRace 
  */
-PlayerRaceSkillHelper.eraseOtherRaceSkillCategories = function(player, excludedRace) {
-	Races.getRaces().filter(race => race !== excludedRace).forEach(race => {
+PlayerRaceSkillHelper.eraseRaceSkillCategories = function(player, excludedRace) {
+	for (const race of Races.getRaces()) {
 		player.server.runCommandSilent(`puffish_skills category erase ${player.username} ${race.getSkillCategoryId()}`);
-	});
+	}
 };
 
 /**
@@ -45,7 +45,7 @@ PlayerRaceSkillHelper.unlockSkill = function(player, categoryId, skill) {
 
 /**
  * 
- * @param {Player_} player 
+ * @param {ServerPlayer_} player 
  * @param {integer} amount 
  */
 PlayerRaceSkillHelper.addSkillPoint = function(player, amount) {
