@@ -131,7 +131,7 @@ namespace FarlanderEvents {
 		);
 
 		const aabb = victim.getBoundingBox().inflate(distance);
-		return victim.level.getNearestEntity($Mob as any, conditions, victim, victim.x, victim.y, victim.z, aabb as any);
+		return victim.level.getNearestEntity($Mob as any, conditions, victim, victim.x, victim.y, victim.z, aabb as any) as Mob_;
 	}
 
 	function getTransferenceTarget(victim: LivingEntity_, attacker: ServerPlayer_): LivingEntity_ | null {

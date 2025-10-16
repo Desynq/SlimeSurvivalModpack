@@ -77,7 +77,7 @@ class EntityDirector {
 		for (const bossbar of bossbars.getEvents().toArray() as CustomBossEvent_[]) {
 			const uuid = UUID.fromString(bossbar.textId.path);
 			const entity = server.getEntityByUUID(uuid.toString());
-			if (!EntityManager.isGenericBoss(entity) || (entity instanceof $Mob && TheHunger.isCachedEntity(entity) && !TheHunger.isBossbarHolder(entity))) {
+			if (!EntityManager.isGenericBoss(entity) || (entity instanceof $Mob && TheHunger.isCachedEntity(entity) && !TheHunger.isBossbarHolder(entity as Mob_))) {
 				bossbar.removeAllPlayers();
 				bossbars.remove(bossbar);
 			}
