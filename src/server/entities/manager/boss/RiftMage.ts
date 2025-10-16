@@ -262,7 +262,7 @@ NativeEvents.onEvent($EntityTickEvent$Post, event => {
 	}
 });
 
-EntityEvents.afterHurt("minecraft:player", event => {
+EntityEvents.afterHurt("minecraft:player" as any, event => {
 	const player = event.entity as ServerPlayer_;
 	const immediate = event.source.immediate;
 	const attacker = event.source.actual;

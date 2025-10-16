@@ -1,8 +1,9 @@
+// @ts-ignore
 let $TntBlock: typeof import("net.minecraft.world.level.block.TntBlock").$TntBlock = Java.loadClass("net.minecraft.world.level.block.TntBlock");
 let $ExplosionEvent$Detonate: typeof import("net.neoforged.neoforge.event.level.ExplosionEvent$Detonate").$ExplosionEvent$Detonate = Java.loadClass("net.neoforged.neoforge.event.level.ExplosionEvent$Detonate");
 
 namespace NoExplosionBlockDamage {
-	function inBlacklistedDimension(level: import("net.minecraft.world.level.Level").$Level$$Original) {
+	function inBlacklistedDimension(level: Level_) {
 		switch (level.getDimension().toString()) {
 			case "slimesurvival:wipe":
 				return true;
@@ -13,7 +14,7 @@ namespace NoExplosionBlockDamage {
 
 	function pruneAffectedBlocks(
 		affected: import("java.util.List").$List$$Original<import("net.minecraft.core.BlockPos").$BlockPos$$Original>,
-		level: import("net.minecraft.world.level.Level").$Level$$Original
+		level: Level_
 	) {
 		const keepers: import("net.minecraft.core.BlockPos").$BlockPos$$Original[] = [];
 		affected.forEach(pos => {
@@ -31,7 +32,7 @@ namespace NoExplosionBlockDamage {
 
 	function pruneAffectedBlocksOld(
 		affected: import("java.util.List").$List$$Original<import("net.minecraft.core.BlockPos").$BlockPos$$Original>,
-		level: import("net.minecraft.world.level.Level").$Level$$Original
+		level: Level_
 	) {
 		affected.removeIf(pos => {
 			// @ts-ignore

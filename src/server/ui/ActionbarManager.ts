@@ -109,11 +109,11 @@ class ActionbarManager {
 	 * @param text must be a JSON component
 	 */
 	public static addText(arg0: string | ServerPlayer_, text: string): void {
-		if (arg0 instanceof $ServerPlayer) {
-			arg0 = arg0.stringUUID;
-			return;
-		}
-		this.addMessageByUUID(arg0, text);
+		let uuid: string = arg0 instanceof $ServerPlayer
+			? arg0.stringUUID
+			: arg0;
+
+		this.addMessageByUUID(uuid, text);
 	};
 
 	/**

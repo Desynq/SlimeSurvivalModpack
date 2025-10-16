@@ -1,4 +1,5 @@
 // priority: 10000
+// @ts-nocheck
 
 type BlockState_ = import("net.minecraft.world.level.block.state.BlockState").$BlockState$$Original;
 const $BlockState: typeof import("net.minecraft.world.level.block.state.BlockState").$BlockState = Java.loadClass("net.minecraft.world.level.block.state.BlockState");
@@ -6,9 +7,7 @@ const $BlockState: typeof import("net.minecraft.world.level.block.state.BlockSta
 type Blocks_ = import("net.minecraft.world.level.block.Blocks").$Blocks$$Original;
 const $Blocks: typeof import("net.minecraft.world.level.block.Blocks").$Blocks = Java.loadClass("net.minecraft.world.level.block.Blocks");
 
-// @ts-ignore
 type TagParser_ = import("net.minecraft.nbt.TagParser").$TagParser$$Original;
-// @ts-ignore
 const $TagParser: typeof import("net.minecraft.nbt.TagParser").$TagParser = Java.loadClass("net.minecraft.nbt.TagParser");
 
 const $CompoundTag: typeof import("net.minecraft.nbt.CompoundTag").$CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
