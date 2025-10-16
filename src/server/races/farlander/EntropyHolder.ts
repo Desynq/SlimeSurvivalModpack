@@ -161,7 +161,7 @@ class EntropyHolder {
 	}
 
 	public tick(holder: LivingEntity_) {
-		let player = holder instanceof $Player ? holder : null;
+		let player = holder instanceof $ServerPlayer ? holder : null;
 		if (player != null) {
 			let entropyDisplay = `{"color":"dark_purple","text":"Entropy: ${this.getTotalEntropy().toFixed(2)}"}`;
 			ActionbarManager.addText(player, entropyDisplay);

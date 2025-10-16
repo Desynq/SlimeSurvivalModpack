@@ -1,6 +1,6 @@
 // priority: 1000
 
-type SpliceAction = "splice" | "break" | "continue" | undefined;
+type SpliceAction = "splice" | "break" | "continue" | void;
 
 class ArrayHelper {
 
@@ -56,11 +56,17 @@ class ArrayHelper {
 	 * Forward traverse with splicing occuring as a batch after traversal.
 	 * 
 	 * Use as a snapshot since elements are marked for deletion during traversal and only deleted after traversal is finished.
+	 * 
+	 * Early returns if `array.length === 0` so there's no major performance penalty in passing an empty array.
+	 * 
+	 * Avoid passing in an array with `null` values as they might unintentionally get pruned.
 	 */
 	public static forEachSplice<T>(
 		array: T[],
 		callback: (item: T, index: number, arr: T[]) => SpliceAction
 	): void {
+		if (array.length === 0) return;
+
 		const removeIndices: number[] = [];
 
 		for (let i = 0; i < array.length; i++) {
