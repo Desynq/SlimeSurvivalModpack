@@ -108,8 +108,9 @@ const BoltActionRifle = new (class {
 		arrow.load(tag);
 
 		const spread = this.getAimSpread(shooter, weapon);
-		shooter.tell(spread.toString());
+		ActionbarManager.addMessage(shooter, `"Spread: ${spread.toFixed(2)}"`, 20, 0, "aimspread");
 		arrow.shootFromRotation(shooter, shooter.xRot, shooter.yRot, 0, 20, spread);
+		arrow.tags.add("bullet.bolt_action_rifle");
 
 		shooter.level.addFreshEntity(arrow as any);
 	}
@@ -138,5 +139,60 @@ PlayerEvents.tick(event => {
 	const player = event.player as ServerPlayer_;
 	if (BoltActionRifle.isCorrectGun(player.mainHandItem)) {
 		BoltActionRifle.whileHeld(player, player.mainHandItem);
+	}
+});
+
+NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
+	const bullet = event.source.immediate;
+	const flag = bullet instanceof $Arrow && bullet.tags.contains("bullet.bolt_action_rifle");
+	if (!flag) return;
+
+	const victim = event.entity;
+	const shooter = event.source.actual;
+	if (!shooter) return;
+
+	const NEAR = 0;
+	const FAR = 24;
+	const MIN_MULT = 0.1;
+	const EPS = 10;
+
+	function logRamp01(x: number, eps: number): number {
+		x = MathHelper.clamped(x, 0, 1);
+		if (Math.abs(eps) < 1e-8) return x;
+
+		return Math.log1p(eps * x) / Math.log1p(eps);
+	}
+
+	function expRamp01(x: number, eps: number): number {
+		x = MathHelper.clamped(x, 0, 1);
+		if (Math.abs(eps) < 1e-8) {
+			return x;
+		}
+		else if (eps > 0) {
+			const base = 1 + eps;
+			const exp = base ** x;
+			return (exp - 1) / eps;
+		}
+		else {
+			eps = -eps;
+			const base = 1 + eps;
+			const exp = base ** (1 - x);
+			return 1 - (exp - 1) / eps;
+		}
+	}
+
+	function boltActionDamageMult(distance: number): number {
+		if (FAR <= NEAR) return 1;
+		const x = MathHelper.clamped((distance - NEAR) / (FAR - NEAR), 0, 1);
+		const r = expRamp01(x, EPS);
+		return MathHelper.lerp(MIN_MULT, 1, r);
+	}
+
+	const distance = victim.distanceToEntity(shooter);
+	const mult = boltActionDamageMult(distance);
+	event.amount = Math.max(0, event.amount * mult);
+
+	if (shooter instanceof $ServerPlayer) {
+		ActionbarManager.addMessage(shooter, `"Hit: ${event.amount.toFixed(2)}"`, 20, 0, "debug");
 	}
 });
