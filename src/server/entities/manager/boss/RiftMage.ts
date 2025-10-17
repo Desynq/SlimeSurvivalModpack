@@ -126,7 +126,10 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 	private tickSoulFlareAbility(boss: T): void {
 		const sds = BossHelper.getSurvivorDistances(boss, 32);
-		if (sds.length === 0) return;
+		if (sds.length === 0) {
+			if (boss.glowing) boss.setGlowing(false);
+			return;
+		}
 
 		const ts = this.tsSoulFlare;
 		const elapsedTime = ts.getElapsedTime(boss, 20);
@@ -134,9 +137,11 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		if (boss.tickCount >= 100 && ts.hasElapsedPast(boss, 40, 100) && Math.random() < 0.1) {
 			ts.update(boss);
 			playsoundAll(boss.server, "entity.elder_guardian.curse", "master", 2, 0.5);
+			boss.setGlowing(true);
 		}
 		else if (elapsedTime === 0) {
 			this.spawnSoulFlares(boss, sds);
+			boss.setGlowing(false);
 		}
 	}
 
