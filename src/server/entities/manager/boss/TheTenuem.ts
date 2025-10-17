@@ -1,7 +1,6 @@
 
 
-// @ts-ignore
-const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> implements ITickableBoss<T> {
+const TheTenuem = new (class <T extends Phantom_ & Mob_> extends EntityManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
 
 	public override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Phantom && entity.tags.contains("boss.tenuem");
@@ -27,6 +26,30 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 		}
 	}
 
+	public onBossbarUpdate(boss: T): void {
+		const server = boss.server;
+		const bossbarManager = server.customBossEvents;
+
+		const bossbarId = `boss:${boss.uuid.toString()}`;
+
+		if (bossbarManager.get(bossbarId) == null) {
+			server.runCommandSilent(`bossbar add ${bossbarId} ""`);
+		}
+
+		const count = this.getEntities(boss.server).length;
+
+		server.runCommandSilent(`bossbar set ${bossbarId} max ${count}`);
+		server.runCommandSilent(`bossbar set ${bossbarId} value ${count}`);
+
+		server.runCommandSilent(`bossbar set ${bossbarId} color aqua`);
+		const toughness = boss.getAttributeValue($Attributes.ARMOR_TOUGHNESS);
+		server.runCommandSilent(
+			`bossbar set ${bossbarId} name [{"selector":"${boss.username}"},{"color":"dark_aqua","text":": ${boss.health.toFixed(1)}/${boss.maxHealth.toFixed(1)} Shield: ${toughness.toFixed(1)}"}]`
+		);
+
+		server.runCommandSilent(`execute at ${boss.username} run bossbar set ${bossbarId} players @a[distance=0..]`);
+	}
+
 	public onBossTick(boss: T): void {
 		if (boss.server.tickCount % 20 === 0) {
 			this.scaleHealth(boss);
@@ -34,7 +57,7 @@ const TheTenuem = new (class <T extends Phantom_> extends EntityManager<T> imple
 		}
 
 		const minionCount = TenuemMinion.getEntityCount(boss.server);
-		boss.setAttributeBaseValue($Attributes.ARMOR, minionCount);
+		boss.setAttributeBaseValue($Attributes.ARMOR_TOUGHNESS, minionCount * 0.5);
 
 		if (boss.server.tickCount % 5 === 0) {
 			this.updateTarget(boss);
