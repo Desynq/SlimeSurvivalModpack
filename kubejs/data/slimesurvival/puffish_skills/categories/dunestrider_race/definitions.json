@@ -737,5 +737,26 @@
 				"frame": "challenge"
 			}
 		}
+	},
+	"bloodclot_1": {
+		"title": "Bloodclot I",
+		"rewards": [],
+		"description": [
+			{
+				"text": "Overheal up to your max health in absorption hearts from lifesteal.",
+				"color": "dark_red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:beetroot_soup"
+			}
+		}
 	}
 }

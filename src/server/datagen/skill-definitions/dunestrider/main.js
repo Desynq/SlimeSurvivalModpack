@@ -307,7 +307,15 @@ DunestriderSkills.FURANTUR_5 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "fur
 	.serialize(DunestriderSkillDefinitionsJson)
 	.toSkill("l2mpxq7wrn0cegti");
 
-
+DunestriderSkills.BLOODCLOT_1 = new SkillDefinition(DUNESTRIDER_CATEGORY_ID, "bloodclot_1")
+	.itemIcon("minecraft:beetroot_soup")
+	.addDescription({
+		"text": "Overheal up to your max health in absorption hearts from lifesteal.",
+		"color": "dark_red"
+	})
+	.cost(4)
+	.serialize(DunestriderSkillDefinitionsJson)
+	.findSkill();
 
 
 

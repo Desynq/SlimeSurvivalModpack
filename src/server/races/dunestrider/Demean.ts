@@ -13,7 +13,7 @@ namespace DemeanSkill {
 		);
 
 		const attackerHealth = DunestriderSkills.MARTYR.isUnlockedFor(attacker)
-			? attacker.health
+			? Math.max(1, attacker.health)
 			: attacker.maxHealth;
 
 		return calculateDamageModifier(demeanTier, victim.health, attackerHealth);

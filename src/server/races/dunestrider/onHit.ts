@@ -84,32 +84,9 @@
 			}
 		}
 
-		if ((PlayerHelper.canHeal(attacker) && SkillHelper.hasSkill(attacker, DunestriderSkills.FURANTUR_1))) {
-			let skillLvl = SkillHelper.getSkillTier(attacker, DunestriderSkills.FURANTUR_1, DunestriderSkills.FURANTUR_2, DunestriderSkills.FURANTUR_3, DunestriderSkills.FURANTUR_4, DunestriderSkills.FURANTUR_5);
-			let stealPercent = 0;
-			switch (skillLvl) {
-				case 1:
-					stealPercent = 0.025;
-					break;
-				case 2:
-					stealPercent = 0.050;
-					break;
-				case 3:
-					stealPercent = 0.075;
-					break;
-				case 4:
-					stealPercent = 0.100;
-					break;
-				case 5:
-					stealPercent = 0.150;
-					break;
-			}
-			let heal = finalDmg * stealPercent;
-			let health = attacker.getHealth();
-			attacker.setHealth(health + heal);
-		}
-
 		finalDmg *= DemeanSkill.getDamageModifier(attacker, victim);
+
+		FuranturSkill.onAttack(attacker, finalDmg);
 
 		event.setDamage(finalDmg);
 	});
