@@ -67,7 +67,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 	private scaleHealth(boss: T): void {
 		const playerCount = this.rewarder.getContributors(boss).length;
-		BossHelper.scaleHealthByPlayers(boss, 500, playerCount);
+		BossHelper.scaleHealthByPlayers(boss, 1000, playerCount);
 	}
 
 	private trySwapPlayers(boss: T): void {
@@ -75,13 +75,14 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		if (players.length < 2) return;
 
 		const ts = this.tsSwapPlayers;
-		const duration = 40;
+		const warnDuration = 20;
+		const cooldown = 200;
 
-		if (boss.tickCount >= 300 && ts.hasElapsedPast(boss, duration, 200) && Math.random() < 0.5) {
+		if (boss.tickCount >= cooldown && ts.hasElapsedPast(boss, warnDuration, cooldown) && Math.random() < 0.5) {
 			ts.update(boss);
 			playsoundAll(boss.server, "minecraft:entity.evoker.prepare_summon", "master", 4, 2);
 		}
-		else if (ts.hasJustElapsed(boss, duration)) {
+		else if (ts.hasJustElapsed(boss, warnDuration)) {
 			this.swapPlayers(boss, players);
 		}
 	}
@@ -91,16 +92,18 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		ArrayHelper.shuffle(players);
 
 		const firstPos = players[0].position();
+		const firstYaw = players[0].yaw;
+		const firstPitch = players[0].pitch;
 
 		for (let i = 0; i < players.length - 1; i++) {
 			const current = players[i];
 			const next = players[i + 1];
-			current.teleportTo(next.x, next.y, next.z);
+			current.teleportTo(next.level as any, next.x, next.y, next.z, [], next.yRot, next.xRot);
 			playsound(current.level, current.position(), "entity.enderman.teleport", "master", 1, 2);
 		}
 
 		const last = players[players.length - 1];
-		last.teleportTo(firstPos.x(), firstPos.y(), firstPos.z());
+		last.teleportTo(last.level as any, firstPos.x(), firstPos.y(), firstPos.z(), [], firstYaw, firstPitch);
 		playsound(last.level, last.position(), "entity.enderman.teleport", "master", 1, 2);
 	}
 
@@ -136,7 +139,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 		if (boss.tickCount >= 100 && ts.hasElapsedPast(boss, 40, 100) && Math.random() < 0.1) {
 			ts.update(boss);
-			playsoundAll(boss.server, "entity.elder_guardian.curse", "master", 2, 0.5);
+			playsoundAll(boss.server, "entity.elder_guardian.curse", "voice", 2, 0.5);
 			boss.setGlowing(true);
 		}
 		else if (elapsedTime === 0) {
@@ -169,9 +172,9 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 			flare.tick(level);
 			const newPos = flare.getPos();
 			ParticleHelper.drawLine(level, oldPos[0], oldPos[1], oldPos[2], newPos[0], newPos[1], newPos[2],
-				4 * flare.stepSize, "soul_fire_flame", 0.01, true
+				8 * flare.stepSize, "soul_fire_flame", 0.01, true
 			);
-			playsound(level, new $Vec3(newPos[0], newPos[1], newPos[2]), "entity.blaze.hurt", "master", 1, 0.5);
+			playsound(level, new $Vec3(newPos[0], newPos[1], newPos[2]), "entity.blaze.hurt", "hostile", 1, 0.5);
 
 			flare.playerLineCollisionCheck(level, 0.25, 20).forEach(player => this.hurtPlayerHitBySoulFlare(boss, player));
 
@@ -183,7 +186,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 	private hurtPlayerHitBySoulFlare(boss: T, player: ServerPlayer_): void {
 		if (!PlayerHelper.isSurvivalLike(player) || !player.isAlive() || player.stats.timeSinceDeath < 100) return;
-		EntropyHolder.getOrCreate(player).pushEntropyEntry(player.maxHealth * 2, boss);
+		EntropyHolder.getOrCreate(player).pushEntropyEntry(player.maxHealth, boss);
 	}
 
 	private updateTarget(boss: T): void {
@@ -192,7 +195,10 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 		const nearestPlayer = ArrayHelper.getLowest(
 			survivorDistances,
-			sd => sd.distance
+			sd => {
+				const damagePercent = this.getDamage(boss, sd.player) / boss.maxHealth;
+				return (sd.distance ** 1.5) / (damagePercent + 1e-6);
+			}
 		).player;
 
 		boss.setTarget(nearestPlayer);
@@ -219,6 +225,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		if (attacker instanceof $ServerPlayer) {
 			this.rewarder.addContributor(boss, attacker);
 			storage.putDouble(attacker.stringUUID, storage.getDouble(attacker.stringUUID) + amount);
+			CommandHelper.runCommandSilent(attacker.server, `scoreboard players add ${attacker.username} rift_mage_damage ${Math.floor(amount)}`);
 		}
 		else {
 			storage.putDouble("unknown", storage.getDouble("unknown") + amount);
@@ -235,6 +242,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		storage.remove("unknown");
 
 		if (attacker instanceof $ServerPlayer) {
+			CommandHelper.runCommandSilent(attacker.server, `scoreboard players reset ${attacker.username} rift_mage_damage`);
 			totalDamage += storage.getDouble(attacker.stringUUID);
 			storage.remove(attacker.stringUUID);
 		}
@@ -246,6 +254,11 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		boss.persistentData.put("damage_taken", storage);
 
 		boss.health = Math.min(boss.maxHealth, boss.health + totalDamage);
+	}
+
+	private getDamage(boss: T, player: ServerPlayer_): number {
+		const storage = boss.persistentData.getCompound("damage_taken");
+		return storage.getDouble(player.stringUUID);
 	}
 })().register();
 
@@ -262,7 +275,7 @@ EntityEvents.spawned(event => {
 
 NativeEvents.onEvent($EntityTickEvent$Post, event => {
 	const entity = event.entity;
-	if (entity instanceof $ShulkerBullet && entity.isAlive() && entity.tags.contains("rift_mage_bullet") && entity.tickCount >= 100) {
+	if (entity instanceof $ShulkerBullet && entity.isAlive() && entity.tags.contains("rift_mage_bullet") && entity.tickCount >= 300) {
 		entity.discard();
 	}
 });
