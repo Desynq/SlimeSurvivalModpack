@@ -29,8 +29,11 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 	public override onAfterHurt(boss: T, event: AfterLivingEntityHurtKubeEvent_): void {
 		if (!boss.isAlive()) return;
 
-		playsound(boss.level, boss.eyePosition, "entity.enderman.teleport", "master", 1, 2);
-		EntityHelper.teleportRandCircle(boss, boss.position(), 16);
+		if (Math.random() < 0.75) {
+			playsound(boss.level, boss.eyePosition, "entity.enderman.teleport", "master", 1, 2);
+			EntityHelper.teleportRandCircle(boss, boss.position(), 16);
+		}
+
 		LivingEntityHelper.addEffect(boss, "cataclysm:stun", 20, 0, false, false, false);
 
 		this.recordDamage(boss, event.damage, event.source.actual as Entity_ | undefined);
@@ -139,7 +142,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 		if (boss.tickCount >= 100 && ts.hasElapsedPast(boss, 40, 100) && Math.random() < 0.1) {
 			ts.update(boss);
-			playsoundAll(boss.server, "entity.elder_guardian.curse", "voice", 2, 0.5);
+			PlaysoundHelper.playsoundLevel(boss.level, "entity.elder_guardian.curse", "voice", 2, 0.5);
 			boss.setGlowing(true);
 		}
 		else if (elapsedTime === 0) {
@@ -186,7 +189,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 	private hurtPlayerHitBySoulFlare(boss: T, player: ServerPlayer_): void {
 		if (!PlayerHelper.isSurvivalLike(player) || !player.isAlive() || player.stats.timeSinceDeath < 100) return;
-		EntropyHolder.getOrCreate(player).pushEntropyEntry(player.maxHealth, boss);
+		EntropyHolder.getOrCreate(player).pushEntropyEntry(player.maxHealth * 1.25, boss);
 	}
 
 	private updateTarget(boss: T): void {
