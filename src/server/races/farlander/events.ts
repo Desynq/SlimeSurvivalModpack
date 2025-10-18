@@ -155,7 +155,10 @@ namespace FarlanderEvents {
 		let target = getTransferenceTarget(victim, attacker);
 		if (!target) return;
 
-		victimEntropy.transferAttackerEntropy(attacker, target);
+		const transferEntropy = victimEntropy.getTotalEntropyFrom(attacker);
+		victimEntropy.resetEntropy();
+
+		EntropyHelper.attackWithEntropy(target, attacker, transferEntropy);
 
 		const distance = Math.ceil(victim.distanceToEntity(target));
 		const pos1 = victim.eyePosition;

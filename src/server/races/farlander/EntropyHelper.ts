@@ -84,4 +84,12 @@ class EntropyHelper {
 				return 0.0;
 		}
 	}
+
+	public static attackWithEntropy(victim: LivingEntity_, attacker: LivingEntity_, amount: number): void {
+		const resourceKey = $ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy_attack");
+		const damageType = attacker.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow(resourceKey);
+		const source = new DamageSource(damageType, attacker as any, attacker as any);
+
+		victim.attack(source, amount);
+	}
 }
