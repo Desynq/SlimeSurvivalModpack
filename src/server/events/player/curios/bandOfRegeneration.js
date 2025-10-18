@@ -4,7 +4,7 @@ PlayerEvents.tick(event => {
 		return;
 	}
 
-	if (!PlayerHelper.canHeal(player)) {
+	if (!PlayerHelper.canHeal(player) || player.health >= player.maxHealth) {
 		return;
 	}
 

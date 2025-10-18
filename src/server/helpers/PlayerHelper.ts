@@ -41,7 +41,7 @@ namespace PlayerHelper {
 	}
 
 	export function canHeal(player: ServerPlayer_): boolean {
-		return player.health > 0 && player.health < player.maxHealth && !player.isDeadOrDying();
+		return player.health > 0 && !player.isDeadOrDying();
 	}
 
 	export function feed(player: ServerPlayer_, sateAmount: number): void {
