@@ -29,11 +29,10 @@ class EntityCache<T extends Entity_> {
 	 * Removes any entities from the cache that don't succeed the predicate
 	 */
 	public verify(predicate: (entity: T) => boolean) {
-		for (const entity of Object.values(this._entities)) {
-			if (!predicate(entity)) {
-				delete this._entities[entity.stringUUID];
-				this._count--;
-			}
+		for (const [uuid, entity] of Object.entries(this._entities)) {
+			if (predicate(entity)) continue;
+			delete this._entities[uuid];
+			this._count--;
 		}
 	}
 
