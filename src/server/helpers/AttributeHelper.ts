@@ -11,7 +11,13 @@ namespace AttributeHelper {
 		return opt.get();
 	}
 
-	export function removeModifier(entity: LivingEntity_, attribute: AttributeHolder_ | string, modifierId: string) {
+	export function hasModifier(entity: LivingEntity_, attribute: AttributeHolder_ | string, modifierId: string): boolean {
+		const resolved = resolveAttribute(attribute, modifierId);
+
+		return entity.getAttribute(resolved)?.hasModifier(modifierId) ?? false;
+	}
+
+	export function removeModifier(entity: LivingEntity_, attribute: AttributeHolder_ | string, modifierId: string): void {
 		if (typeof attribute === "string") {
 			let maybeAttribute = asAttributeHolder(attribute);
 			if (!maybeAttribute) {
@@ -27,7 +33,12 @@ namespace AttributeHelper {
 		attrInstance["removeModifier(net.minecraft.resources.ResourceLocation)"](rl);
 	}
 
-	export function addModifier(entity: LivingEntity_, attribute: AttributeHolder_ | string, modifierId: string, value: double, operation: AttributeModifierOperation_) {
+	/**
+	 * Adds the modifier.
+	 * 
+	 * Overrides the previous modifier value if it was already set.
+	 */
+	export function addModifier(entity: LivingEntity_, attribute: AttributeHolder_ | string, modifierId: string, value: double, operation: AttributeModifierOperation_): void {
 		if (typeof attribute === "string") {
 			let maybeAttribute = asAttributeHolder(attribute);
 			if (!maybeAttribute) {
@@ -38,7 +49,9 @@ namespace AttributeHelper {
 
 		const attrInstance = entity.getAttribute(attribute);
 		if (!attrInstance) return;
-		if (attrInstance.hasModifier(modifierId)) return;
+		if (attrInstance.hasModifier(modifierId)) {
+			attrInstance["removeModifier(net.minecraft.resources.ResourceLocation)"](modifierId);
+		}
 
 		// @ts-ignore
 		attrInstance.addTransientModifier(new $AttributeModifier(
@@ -46,5 +59,22 @@ namespace AttributeHelper {
 			value,
 			operation
 		));
+	}
+
+	export function getModifierValue(entity: LivingEntity_, attribute: AttributeHolder_ | string, modifierId: string): number {
+		const resolved = resolveAttribute(attribute, modifierId);
+
+		return entity.getAttribute(resolved)?.getModifier(modifierId)?.amount() ?? 0;
+	}
+
+	function resolveAttribute(attribute: AttributeHolder_ | string, modifierId: string): AttributeHolder_ {
+		if (typeof attribute === "string") {
+			const opt = $BuiltInRegistries.ATTRIBUTE.getHolder(attribute);
+			if (!opt.isPresent()) {
+				throw new Error(`Cannot add modifier of id: ${modifierId} as attribute: ${attribute} is not registered.`);
+			}
+			return opt.get();
+		}
+		return attribute;
 	}
 }

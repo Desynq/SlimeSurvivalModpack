@@ -9,6 +9,14 @@ class AttributeModifierController {
 		private readonly operation: AttributeModifierOperation_
 	) { }
 
+	public get(entity: LivingEntity_): number {
+		return AttributeHelper.getModifierValue(entity, this.type, this.id);
+	}
+
+	public has(entity: LivingEntity_): boolean {
+		return AttributeHelper.hasModifier(entity, this.type, this.id);
+	}
+
 	public add(entity: LivingEntity_): void {
 		AttributeHelper.addModifier(entity, this.type, this.id, this.value, this.operation);
 	}
