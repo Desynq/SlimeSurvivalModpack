@@ -63,7 +63,7 @@ Minigun.fire = function(shooter, weapon) {
 	arrow.saveWithoutId(tag);
 
 	tag.putByte("pickup", 2);
-	tag.putDouble("damage", 1);
+	tag.putDouble("damage", 4);
 
 	arrow.load(tag);
 
