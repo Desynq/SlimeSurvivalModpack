@@ -4,7 +4,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		super("slimesurvival:chimera_race");
 	}
 
-	public readonly THE_LIONS_SHARE = new SkillDefinition(this.CATEGORY_ID, "the_lions_share")
+	public readonly THE_LIONS_SHARE = new SkillDefinition(this.categoryId, "the_lions_share")
 		.title("The Lion's Share")
 		.itemIcon("minecraft:ocelot_spawn_egg")
 		.advancementFrame("goal")
@@ -19,7 +19,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 
 
 
-	public readonly WOLF_PACKING = new SkillDefinition(this.CATEGORY_ID, "wolf_packing")
+	public readonly WOLF_PACKING = new SkillDefinition(this.categoryId, "wolf_packing")
 		.itemIcon("minecraft:bone")
 		.advancementFrame("task")
 		.addDescription({
@@ -32,7 +32,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("l3j9ppm6hiiypz3l")
 		.register(this.skills);
 
-	public readonly PACK_MARATHON = new SkillDefinition(this.CATEGORY_ID, "pack_marathon")
+	public readonly PACK_MARATHON = new SkillDefinition(this.categoryId, "pack_marathon")
 		.effectIcon("minecraft:speed")
 		.advancementFrame("task")
 		.addDescription({
@@ -44,7 +44,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("g6wrs6zee7l57gnv")
 		.register(this.skills);
 
-	public readonly FORTITUDE_1 = new SkillDefinition(this.CATEGORY_ID, "fortitude_1")
+	public readonly FORTITUDE_1 = new SkillDefinition(this.categoryId, "fortitude_1")
 		.effectIcon("minecraft:resistance")
 		.advancementFrame("task")
 		.addDescription({
@@ -56,7 +56,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("454dhe0xb7uzqvlx")
 		.register(this.skills);
 
-	public readonly FORTITUDE_2 = new SkillDefinition(this.CATEGORY_ID, "fortitude_2")
+	public readonly FORTITUDE_2 = new SkillDefinition(this.categoryId, "fortitude_2")
 		.effectIcon("minecraft:resistance")
 		.advancementFrame("task")
 		.addDescription({
@@ -68,7 +68,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("l8aprgz05mqjajqh")
 		.register(this.skills);
 
-	public readonly FORTITUDE_3 = new SkillDefinition(this.CATEGORY_ID, "fortitude_3")
+	public readonly FORTITUDE_3 = new SkillDefinition(this.categoryId, "fortitude_3")
 		.effectIcon("minecraft:resistance")
 		.advancementFrame("task")
 		.addDescription({
@@ -80,7 +80,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("gcnl216n2wo0b8u5")
 		.register(this.skills);
 
-	public readonly SANGUINE_COVENANT = new SkillDefinition(this.CATEGORY_ID, "sanguine_covenant")
+	public readonly SANGUINE_COVENANT = new SkillDefinition(this.categoryId, "sanguine_covenant")
 		.effectIcon("minecraft:instant_damage")
 		.advancementFrame("challenge")
 		.addDescription([
@@ -106,7 +106,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("53sa7a8z55jcy314")
 		.register(this.skills);
 
-	public readonly COVENANT_RESTORATION = new SkillDefinition(this.CATEGORY_ID, "covenant_restoration")
+	public readonly COVENANT_RESTORATION = new SkillDefinition(this.categoryId, "covenant_restoration")
 		.effectIcon("minecraft:instant_health")
 		.advancementFrame("task")
 		.addDescription({
@@ -118,7 +118,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("mdxmlh3ln8lruyo2")
 		.register(this.skills);
 
-	public readonly PERFECT_COVENANT = new SkillDefinition(this.CATEGORY_ID, "perfect_covenant")
+	public readonly PERFECT_COVENANT = new SkillDefinition(this.categoryId, "perfect_covenant")
 		.itemIcon("minecraft:diamond")
 		.advancementFrame("task")
 		.addDescription({
@@ -130,7 +130,7 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.toSkill("i9m0vussyk8rd1fn")
 		.register(this.skills);
 
-	public readonly FALL_PROTECTION = new SkillDefinition(this.CATEGORY_ID, "fall_protection")
+	public readonly FALL_PROTECTION = new SkillDefinition(this.categoryId, "fall_protection")
 		.itemIcon("minecraft:feather")
 		.advancementFrame("task")
 		.addDescription({
