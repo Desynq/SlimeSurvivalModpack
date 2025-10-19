@@ -141,4 +141,4 @@ const ChimeraSkills = new (class extends RaceSkillManager {
 		.serialize(this.definitionsJson)
 		.toSkill("hzdfphadlqrhhv7a")
 		.register(this.skills);
-})();
+})().register();

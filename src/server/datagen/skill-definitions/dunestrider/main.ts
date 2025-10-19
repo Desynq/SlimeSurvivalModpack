@@ -24,7 +24,6 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		.serialize(this.definitionsJson)
 		.toSkill("9f2xq7v6b1p4z8rw");
 
-	// it automatically does the whole "Rend II" thing if you don't insert a .title() as long as you do "rend_x"
 	public readonly REND_2 = new SkillDefinition(this.categoryId, "rend_2")
 		.itemIcon("minecraft:cracked_stone_bricks")
 		.advancementFrame("task")
@@ -317,7 +316,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		.cost(4)
 		.serialize(this.definitionsJson)
 		.findSkill();
-})();
+
+})().register();
 
 
 

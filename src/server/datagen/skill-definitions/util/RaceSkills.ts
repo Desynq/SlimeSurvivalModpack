@@ -10,13 +10,16 @@ abstract class RaceSkillManager {
 
 	public constructor(
 		public readonly categoryId: string
-	) {
-		RaceSkillManager.INSTANCES.push(this);
-	}
+	) { }
 
 	protected createSkill(id: string, decorate: (def: SkillDefinition) => void): Skill {
 		const def = new SkillDefinition(this.categoryId, id);
 		decorate(def);
 		return def.serializeIntoSkill(this.definitionsJson).register(this.skills);
+	}
+
+	public register(): this {
+		RaceSkillManager.INSTANCES.push(this);
+		return this;
 	}
 }
