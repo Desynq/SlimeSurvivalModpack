@@ -10,7 +10,7 @@ const RaceSkills = (function() {
 			case Races.SLUDGE:
 				return Object.values(SludgeSkills);
 			case Races.CHIMERA:
-				return Object.values(ChimeraSkills);
+				return ChimeraSkills.skills;
 			case Races.DUNESTRIDER:
 				return Object.values(DunestriderSkills);
 			default:
