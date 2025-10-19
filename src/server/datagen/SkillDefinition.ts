@@ -30,7 +30,7 @@ class SkillDefinition {
 		};
 	}
 
-	// ---------- Static ----------
+	/* --------------------------------- Static --------------------------------- */
 
 	private static convertIdToTitle(id: string): string {
 		const parts = id.split("_");
@@ -46,7 +46,7 @@ class SkillDefinition {
 			: name;
 	}
 
-	// ---------- Instance methods ----------
+	/* ---------------------------- Instance Methods ---------------------------- */
 
 	public copy(definitionId: string): SkillDefinition {
 		const copy = new SkillDefinition(this.categoryId, definitionId);
