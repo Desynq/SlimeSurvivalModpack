@@ -1,0 +1,10 @@
+{
+	"title": "Sculker",
+	"icon": {
+		"type": "item",
+		"data": {
+			"item": "minecraft:music_disc_5"
+		}
+	},
+	"background": "minecraft:textures/block/reinforced_deepslate_side.png"
+}

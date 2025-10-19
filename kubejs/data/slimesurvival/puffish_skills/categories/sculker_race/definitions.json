@@ -1,0 +1,118 @@
+{
+	"blind": {
+		"title": "Blind",
+		"rewards": [],
+		"description": [
+			{
+				"text": "Who's there?",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nYou cannot see living entities who aren't pinged.",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:blindness"
+			}
+		},
+		"size": 1.25,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"echolocation": {
+		"title": "Echolocation",
+		"rewards": [],
+		"description": [
+			{
+				"text": "I hear you...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nLiving entities that produce a sound event within 32 blocks of you get pinged for 1 second.",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "slimesurvival:pinged"
+			}
+		},
+		"size": 1.25,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"chitinous": {
+		"title": "Chitinous",
+		"rewards": [],
+		"description": [
+			{
+				"text": "That tickles...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nArmor toughness reduces damage by a flat amount rather than by percentage.",
+				"color": "dark_aqua"
+			},
+			{
+				"text": "\nArmor reduces damage by a rational percentage.",
+				"color": "dark_aqua"
+			},
+			{
+				"text": "\n\nMath.max(1, damage - toughness * toughnessFactor) * (armorFactor / (armor + armorFactor))",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\ntoughnessFactor = 0.5; armorFactor = 20",
+				"color": "dark_aqua",
+				"bold": true
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:popped_chorus_fruit"
+			}
+		},
+		"size": 1.25,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	}
+}
