@@ -83,6 +83,10 @@ class EntityTimestamp<T extends Entity_> {
 		return elapsed === undefined || elapsed >= timeAfter;
 	}
 
+	/**
+	 * Tries to update the timestamp if it has elapsed.
+	 * @returns `true` if timestamp has elapsed, `false` otherwise.
+	 */
 	public tryUpdate(entity: T, duration: long): boolean {
 		if (this.hasElapsed(entity, duration)) {
 			this.update(entity);
