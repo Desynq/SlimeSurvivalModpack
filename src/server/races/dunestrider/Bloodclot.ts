@@ -1,65 +1,58 @@
 // priority: 1
 
-namespace FuranturSkill {
+namespace BloodclotSkill {
+	const BLOODCLOT_MAX_ABSORPTION = new AttributeModifierController("generic.max_absorption", "bloodclot", 20, "add_value");
+	const BLOODCLOT_DECAY_COOLDOWN = new EntityTimestamp("bloodclot_decay_cooldown");
 
-	const bloodclotAbsorptionModifier = new AttributeModifierController("generic.max_absorption", "bloodclot", 20, "add_value");
-
-	export function onAttack(player: ServerPlayer_, damage: float): void {
-		if (!PlayerHelper.canHeal(player)) return;
-
-		let furanturTier = SkillHelper.getSkillTier(player,
-			DunestriderSkills.FURANTUR_1,
-			DunestriderSkills.FURANTUR_2,
-			DunestriderSkills.FURANTUR_3,
-			DunestriderSkills.FURANTUR_4,
-			DunestriderSkills.FURANTUR_5
-		);
-		if (furanturTier === 0) return;
-
-		const stealPercent = getLifestealPercentage(furanturTier, damage);
-		let healAmount = damage * stealPercent;
-
-		const healthToAdd = Math.min(healAmount, player.maxHealth - player.health);
-		player.setHealth(player.health + healthToAdd);
-		healAmount -= healthToAdd;
-
-		applyBloodclot(player, healAmount);
-	}
-
-	function getLifestealPercentage(furanturTier: integer, damage: float): number {
-		let stealPercent = 0;
-		switch (furanturTier) {
-			case 1:
-				stealPercent = 0.025;
-				break;
-			case 2:
-				stealPercent = 0.050;
-				break;
-			case 3:
-				stealPercent = 0.075;
-				break;
-			case 4:
-				stealPercent = 0.100;
-				break;
-			case 5:
-				stealPercent = 0.150;
-				break;
-		}
-		return stealPercent;
-	}
-
-	function applyBloodclot(player: ServerPlayer_, healAmount: number): number {
+	/**
+	 * @param healAmount Number >= 0
+	 * @returns Left over heal amount after trying to apply bloodclot
+	 */
+	export function applyOverheal(player: ServerPlayer_, healAmount: number): number {
 		const bloodclotTier = SkillHelper.getSkillTier(player,
 			DunestriderSkills.BLOODCLOT_1
 		);
 		if (bloodclotTier === 0) return healAmount;
 
-		const maxAbsorption = player.maxHealth;
+		// ensures that we track the highest bloodclot amount and caps it to their max possible bloodclot amount
+		const maxAbsorption = Math.min(getMaxBloodclot(player), getCurrentBloodclot(player) + healAmount);
+		BLOODCLOT_MAX_ABSORPTION.withValue(maxAbsorption).add(player);
+		BLOODCLOT_DECAY_COOLDOWN.update(player);
+
 		const currentAbsorption = player.absorptionAmount;
-		const absorptionToAdd = Math.min(healAmount, maxAbsorption - currentAbsorption);
-		bloodclotAbsorptionModifier.withValue(maxAbsorption).add(player);
+		const healLimit = maxAbsorption - currentAbsorption;
+		const absorptionToAdd = Math.min(healAmount, healLimit);
+
 		player.setAbsorptionAmount(player.absorptionAmount + absorptionToAdd);
 
 		return healAmount - absorptionToAdd;
+	}
+
+	export function decayOverheal(player: ServerPlayer_): void {
+		if (!BLOODCLOT_MAX_ABSORPTION.has(player)) return;
+
+		const duration = getBloodclotDecayDuration(player);
+		if (!BLOODCLOT_DECAY_COOLDOWN.tryUpdate(player, duration)) return;
+
+		let current = BLOODCLOT_MAX_ABSORPTION.get(player);
+		if (current <= 0) {
+			BLOODCLOT_MAX_ABSORPTION.remove(player);
+			return;
+		}
+
+		const newValue = Math.max(0, current - 1.0);
+		BLOODCLOT_MAX_ABSORPTION.withValue(newValue).add(player);
+	}
+
+	function getBloodclotDecayDuration(player: ServerPlayer_): number {
+		return 20;
+	}
+
+	function getCurrentBloodclot(player: ServerPlayer_): number {
+		return BLOODCLOT_MAX_ABSORPTION.get(player);
+	}
+
+	function getMaxBloodclot(player: ServerPlayer_): number {
+		return player.maxHealth;
 	}
 }
