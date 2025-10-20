@@ -6,8 +6,13 @@ const $DamageAfterArmorEvent: typeof import("io.github.desynq.slimesurvival.even
 
 namespace DamageAfterArmor {
 
-	function applyToughness(entity: LivingEntity_, event: DamageAfterArmorEvent_): void {
-
+	function getToughnessFactor(entity: LivingEntity_, damage: number, event: DamageAfterArmorEvent_): number {
+		if (entity instanceof $ServerPlayer) {
+			return 0.5;
+		}
+		else {
+			return 1.0;
+		}
 	}
 
 	NativeEvents.onEvent($DamageAfterArmorEvent, event => {
@@ -16,9 +21,10 @@ namespace DamageAfterArmor {
 		const toughness = entity.getAttributeValue($Attributes.ARMOR_TOUGHNESS);
 
 		const armorFactor = 20;
-		const toughnessFactor = 1;
 
 		let damage = event.getOriginalDamage();
+		const toughnessFactor = getToughnessFactor(entity, damage, event);
+
 		if (damage > 1) {
 			damage -= Math.min(damage - 1, toughness * toughnessFactor);
 		}
