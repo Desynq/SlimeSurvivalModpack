@@ -1,1 +1,36 @@
-{}
+{
+	"normal": {
+		"unidirectional": [
+			[
+				"6241iwnckv6vz62a",
+				"5neo38owj7eror4r"
+			]
+		],
+		"bidirectional": [
+			[
+				"f4zbb4qulaqpmjjr",
+				"zbh51l6opa6wl4iv"
+			],
+			[
+				"6241iwnckv6vz62a",
+				"nnh4903hobep8apv"
+			],
+			[
+				"6241iwnckv6vz62a",
+				"f4zbb4qulaqpmjjr"
+			],
+			[
+				"6241iwnckv6vz62a",
+				"zbh51l6opa6wl4iv"
+			],
+			[
+				"zbh51l6opa6wl4iv",
+				"nnh4903hobep8apv"
+			],
+			[
+				"nnh4903hobep8apv",
+				"f4zbb4qulaqpmjjr"
+			]
+		]
+	}
+}

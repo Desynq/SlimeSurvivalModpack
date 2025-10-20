@@ -3,6 +3,7 @@
 		"title": "Blind",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"text": "Who's there?",
 				"color": "dark_aqua",
@@ -15,6 +16,10 @@
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -37,8 +42,9 @@
 		"title": "Echolocation",
 		"rewards": [],
 		"description": [
+			"",
 			{
-				"text": "I hear you...",
+				"text": "We hear you...",
 				"color": "dark_aqua",
 				"italic": true
 			},
@@ -49,6 +55,10 @@
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -71,32 +81,23 @@
 		"title": "Chitinous",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"text": "That tickles...",
 				"color": "dark_aqua",
 				"italic": true
 			},
 			{
-				"text": "\n\nArmor toughness reduces damage by a flat amount rather than by percentage.",
+				"text": "\n\nArmor is 33% more effective at reducing damage",
 				"color": "dark_aqua"
-			},
-			{
-				"text": "\nArmor reduces damage by a rational percentage.",
-				"color": "dark_aqua"
-			},
-			{
-				"text": "\n\nMath.max(1, damage - toughness * toughnessFactor) * (armorFactor / (armor + armorFactor))",
-				"color": "dark_aqua",
-				"italic": true
-			},
-			{
-				"text": "\ntoughnessFactor = 0.5; armorFactor = 20",
-				"color": "dark_aqua",
-				"bold": true
 			},
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -114,5 +115,179 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"mycelic": {
+		"title": "Mycelic",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "The mycelium is everything — life, home, strength. Without it, we are scattered, hollow spores adrift on barren air.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nYou take double damage while not on the ground.",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:mycelium"
+			}
+		},
+		"size": 1.25,
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"appressorium": {
+		"title": "Appressorium",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We are beneath you, within you, through you. Every step you take presses closer to us. When you touch the earth, we feel it — and when you fall to it, we answer.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nYou deal double damage to enemies who are on the ground.",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:brown_mushroom"
+			}
+		}
+	},
+	"chitin_1": {
+		"title": "Chitin I",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+2 Armor\n+1 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"chitin_2": {
+		"title": "Chitin II",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+4 Armor\n+1 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"chitin_3": {
+		"title": "Chitin III",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+4 Armor\n+2 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 3 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"chitin_4": {
+		"title": "Chitin IV",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+6 Armor\n+2 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
 	}
 }
