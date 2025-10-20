@@ -170,7 +170,8 @@ class SoulFlare {
 		const checkAxis = (start: number, dir: number, min: number, max: number) => {
 			if (Math.abs(dir) < 1e-8) {
 				if (start < min || start > max) return false;
-			} else {
+			}
+			else {
 				const ood = 1 / dir;
 				let t1 = (min - start) * ood;
 				let t2 = (max - start) * ood;
@@ -204,7 +205,7 @@ class SoulFlare {
 
 		// Project point p onto line ab, clamp to segment
 		let t = (apx * abx + apy * aby + apz * abz) / abLenSq;
-		t = Math.max(0, Math.min(1, t));
+		t = MathHelper.clamped(t, 0, 1);
 
 		const closestX = ax + abx * t;
 		const closestY = ay + aby * t;
