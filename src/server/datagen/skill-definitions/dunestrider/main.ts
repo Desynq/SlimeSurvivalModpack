@@ -22,7 +22,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.rootSkill()
 		.serialize(this.definitionsJson)
-		.toSkill("9f2xq7v6b1p4z8rw");
+		.toSkill("9f2xq7v6b1p4z8rw")
+		.register(this.skills);
 
 	public readonly REND_2 = new SkillDefinition(this.categoryId, "rend_2")
 		.itemIcon("minecraft:cracked_stone_bricks")
@@ -33,7 +34,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(2)
 		.serialize(this.definitionsJson)
-		.toSkill("3f9xq2v7b6p4z8rw");
+		.toSkill("3f9xq2v7b6p4z8rw")
+		.register(this.skills);
 
 	public readonly REND_3 = new SkillDefinition(this.categoryId, "rend_3")
 		.itemIcon("minecraft:cracked_stone_bricks")
@@ -44,7 +46,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(3)
 		.serialize(this.definitionsJson)
-		.toSkill("8v4xq1b7n2p6z3yt");
+		.toSkill("8v4xq1b7n2p6z3yt")
+		.register(this.skills);
 
 	public readonly REND_4 = new SkillDefinition(this.categoryId, "rend_4")
 		.itemIcon("minecraft:cracked_deepslate_bricks")
@@ -55,7 +58,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(4)
 		.serialize(this.definitionsJson)
-		.toSkill("7f2xq9v5b3p8z6lm");
+		.toSkill("7f2xq9v5b3p8z6lm")
+		.register(this.skills);
 
 	public readonly REND_5 = new SkillDefinition(this.categoryId, "rend_5")
 		.itemIcon("minecraft:cracked_nether_bricks")
@@ -66,7 +70,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(5)
 		.serialize(this.definitionsJson)
-		.toSkill("6b3xq8v2n1p7z4qs");
+		.toSkill("6b3xq8v2n1p7z4qs")
+		.register(this.skills);
 
 	public readonly TREAD = new SkillDefinition(this.categoryId, "tread")
 		.itemIcon("minecraft:leather_boots")
@@ -78,7 +83,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		.addAttributeReward('minecraft:generic.step_height', .5, "addition")
 		.cost(1)
 		.serialize(this.definitionsJson)
-		.toSkill("5p7xq4v6b9p2z8dj");
+		.toSkill("5p7xq4v6b9p2z8dj")
+		.register(this.skills);
 
 	public readonly DEFT = new SkillDefinition(this.categoryId, "deft")
 		.itemIcon("minecraft:sand")
@@ -90,7 +96,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		.addAttributeReward('minecraft:generic.movement_efficiency', 20, "addition")
 		.cost(1)
 		.serialize(this.definitionsJson)
-		.toSkill("w8k3z1v6b9p2x7qm");
+		.toSkill("w8k3z1v6b9p2x7qm")
+		.register(this.skills);
 
 	public readonly LIGHT_FOOTED = new SkillDefinition(this.categoryId, "light_footed")
 		.itemIcon("minecraft:wind_charge")
@@ -102,7 +109,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		.addAttributeReward('combat_roll:recharge', 20, "addition")
 		.cost(2)
 		.serialize(this.definitionsJson)
-		.toSkill("x7F9kLm2Qw8VzR1T");
+		.toSkill("x7F9kLm2Qw8VzR1T")
+		.register(this.skills);
 
 	public readonly DEMEAN_1 = new SkillDefinition(this.categoryId, "demean_1")
 		.itemIcon("minecraft:netherite_sword")
@@ -115,7 +123,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(1)
 		.serialize(this.definitionsJson)
-		.toSkill("2n8xq5v3b1p6z7wh");
+		.toSkill("2n8xq5v3b1p6z7wh")
+		.register(this.skills);
 
 	public readonly DEMEAN_2 = new SkillDefinition(this.categoryId, "demean_2")
 		.itemIcon("minecraft:netherite_sword")
@@ -126,7 +135,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(2)
 		.serialize(this.definitionsJson)
-		.toSkill("4k7xp2v9b3n6z1qy");
+		.toSkill("4k7xp2v9b3n6z1qy")
+		.register(this.skills);
 
 	public readonly DEMEAN_3 = new SkillDefinition(this.categoryId, "demean_3")
 		.itemIcon("minecraft:netherite_sword")
@@ -137,7 +147,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(4)
 		.serialize(this.definitionsJson)
-		.toSkill("1m8xq6v4b2p9z5wt");
+		.toSkill("1m8xq6v4b2p9z5wt")
+		.register(this.skills);
 
 	public readonly MARTYR = new SkillDefinition(this.categoryId, "martyr")
 		.itemIcon("cataclysm:blazing_grips")
@@ -147,7 +158,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 				+ "\n\nDemean now ratios your current health instead of your max health."
 		})
 		.cost(4)
-		.serializeIntoSkill(this.definitionsJson);
+		.serializeIntoSkill(this.definitionsJson)
+		.register(this.skills);
 
 
 	public readonly HYSTERIA_1 = new SkillDefinition(this.categoryId, "hysteria_1")
@@ -159,7 +171,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(1)
 		.serialize(this.definitionsJson)
-		.toSkill("9b2xq7v5c4m8z1pl");
+		.toSkill("9b2xq7v5c4m8z1pl")
+		.register(this.skills);
 
 	public readonly HYSTERIA_2 = new SkillDefinition(this.categoryId, "hysteria_2")
 		.itemIcon("mowziesmobs:umvuthana_mask_fury")
@@ -181,7 +194,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(4)
 		.serialize(this.definitionsJson)
-		.toSkill("f3n6x8v2b1p7z4qs");
+		.toSkill("f3n6x8v2b1p7z4qs")
+		.register(this.skills);
 
 	public readonly BLITZKREIG = new SkillDefinition(this.categoryId, "blitzkreig")
 		.itemIcon("cataclysm:burning_ashes")
@@ -192,7 +206,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(4)
 		.serialize(this.definitionsJson)
-		.toSkill("f3n6x8v2b1p7z4qs");
+		.toSkill("f3n6x8v2b1p7z4qs")
+		.register(this.skills);
 
 	public readonly ROBINHOOD = new SkillDefinition(this.categoryId, "robinhood")
 		.itemIcon("minecraft:barrier")
@@ -203,7 +218,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.rootSkill()
 		.serialize(this.definitionsJson)
-		.toSkill("a7f2xq9v5b3p8z6a");
+		.toSkill("a7f2xq9v5b3p8z6a")
+		.register(this.skills);
 
 	public readonly SCAVENGER = new SkillDefinition(this.categoryId, "scavenger")
 		.itemIcon("minecraft:rotten_flesh")
@@ -214,7 +230,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.rootSkill()
 		.serialize(this.definitionsJson)
-		.toSkill("rab5481jrf51h598");
+		.toSkill("rab5481jrf51h598")
+		.register(this.skills);
 
 	public readonly MOMENTUM = new SkillDefinition(this.categoryId, "momentum")
 		.itemIcon("minecraft:string")
@@ -225,7 +242,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.rootSkill()
 		.serialize(this.definitionsJson)
-		.toSkill("v8czm1qxdu3lke9r");
+		.toSkill("v8czm1qxdu3lke9r")
+		.register(this.skills);
 
 	public readonly FIRST_STRIKE = new SkillDefinition(this.categoryId, "first_strike")
 		.itemIcon("minecraft:cobweb")
@@ -236,7 +254,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(2)
 		.serialize(this.definitionsJson)
-		.toSkill("t5bnqz7lwxr3umke");
+		.toSkill("t5bnqz7lwxr3umke")
+		.register(this.skills);
 
 	public readonly HEAVENLY_RESTRICTION = new SkillDefinition(this.categoryId, "heavenly_restriction")
 		.itemIcon("minecraft:chain")
@@ -246,10 +265,11 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 			"text": "Make a pact with the war god in return for knowledge of true power.\n\n- You lose all natural regeneration. Pain is virtue."
 		})
 		.cost(1)
-		.requiredSkills(3)
+		.requiredSkills(2)
 		.addTagReward("no_natural_regeneration")
 		.serialize(this.definitionsJson)
-		.toSkill("od48m4hf7r9le2mv");
+		.toSkill("od48m4hf7r9le2mv")
+		.register(this.skills);
 
 	public readonly FURANTUR_1 = new SkillDefinition(this.categoryId, "furantur_1")
 		.itemIcon("minecraft:redstone")
@@ -260,7 +280,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(2)
 		.serialize(this.definitionsJson)
-		.toSkill("idFW1923jf01l3o6");
+		.toSkill("idFW1923jf01l3o6")
+		.register(this.skills);
 
 	public readonly FURANTUR_2 = new SkillDefinition(this.categoryId, "furantur_2")
 		.itemIcon("minecraft:redstone")
@@ -271,7 +292,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(3)
 		.serialize(this.definitionsJson)
-		.toSkill("g7xq2n4mdbv5czlu");
+		.toSkill("g7xq2n4mdbv5czlu")
+		.register(this.skills);
 
 	public readonly FURANTUR_3 = new SkillDefinition(this.categoryId, "furantur_3")
 		.itemIcon("minecraft:redstone")
@@ -282,7 +304,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(4)
 		.serialize(this.definitionsJson)
-		.toSkill("r1kz8jwmq5tl2hce");
+		.toSkill("r1kz8jwmq5tl2hce")
+		.register(this.skills);
 
 	public readonly FURANTUR_4 = new SkillDefinition(this.categoryId, "furantur_4")
 		.itemIcon("minecraft:redstone")
@@ -293,7 +316,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(5)
 		.serialize(this.definitionsJson)
-		.toSkill("n9dfv3upxbz4eaym");
+		.toSkill("n9dfv3upxbz4eaym")
+		.register(this.skills);
 
 	public readonly FURANTUR_5 = new SkillDefinition(this.categoryId, "furantur_5")
 		.title("Ares")
@@ -305,7 +329,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(10)
 		.serialize(this.definitionsJson)
-		.toSkill("l2mpxq7wrn0cegti");
+		.toSkill("l2mpxq7wrn0cegti")
+		.register(this.skills);
 
 	public readonly BLOODCLOT_1 = new SkillDefinition(this.categoryId, "bloodclot_1")
 		.itemIcon("minecraft:beetroot_soup")
@@ -315,7 +340,8 @@ const DunestriderSkills = new (class extends RaceSkillManager {
 		})
 		.cost(4)
 		.serialize(this.definitionsJson)
-		.findSkill();
+		.findSkill()
+		.register(this.skills);
 
 })().register();
 

@@ -319,7 +319,7 @@
 			},
 			{
 				"color": "red",
-				"text": "\n[Skills Needed: 2]"
+				"text": "\n[Parent Skills Needed: 2]"
 			}
 		],
 		"cost": 4,
@@ -412,7 +412,7 @@
 			},
 			{
 				"color": "red",
-				"text": "\n[Skills Needed: 2]"
+				"text": "\n[Parent Skills Needed: 2]"
 			}
 		],
 		"cost": 4,
@@ -772,7 +772,7 @@
 			},
 			{
 				"color": "red",
-				"text": "\n[Skills Needed: 2]"
+				"text": "\n[Parent Skills Needed: 2]"
 			}
 		],
 		"cost": 8,

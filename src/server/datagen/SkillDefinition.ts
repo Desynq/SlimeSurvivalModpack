@@ -138,11 +138,14 @@ class SkillDefinition {
 		return this;
 	}
 
+	/**
+	 * Sets the amount of parent skills needed to be unlocked in order to be able to unlock this skill
+	 */
 	public requiredSkills(amount: number): this {
 		this.data.required_skills = amount;
 		this.addDescription({
 			color: "red",
-			text: `\n[Skills Needed: ${amount}]`
+			text: `\n[Parent Skills Needed: ${amount}]`
 		});
 		return this;
 	}

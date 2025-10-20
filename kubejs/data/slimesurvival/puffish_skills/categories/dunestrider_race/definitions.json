@@ -585,7 +585,7 @@
 			},
 			{
 				"color": "red",
-				"text": "\n[Skills Needed: 3]"
+				"text": "\n[Parent Skills Needed: 2]"
 			}
 		],
 		"cost": 1,
@@ -601,7 +601,7 @@
 				"frame": "task"
 			}
 		},
-		"required_skills": 3
+		"required_skills": 2
 	},
 	"furantur_1": {
 		"title": "Furantur I",
