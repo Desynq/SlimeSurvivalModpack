@@ -25,7 +25,7 @@ class SkillDefinition {
 		this.data = {
 			title: SkillDefinition.convertIdToTitle(definitionId),
 			rewards: [],
-			description: [],
+			description: [""],
 			cost: 0
 		};
 	}

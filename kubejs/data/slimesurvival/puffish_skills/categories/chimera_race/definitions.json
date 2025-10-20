@@ -3,6 +3,7 @@
 		"title": "The Lion's Share",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gold",
 				"text": "Owned living entities will have at least the same max health as you.\n\nEffects you get also spread to your followers."
@@ -31,6 +32,7 @@
 		"title": "Wolf Packing",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Each pet wolf you own that is following you (not sitting) increases your max health by 1 point.\n\nCaps out at 20 pet wolves following you."
@@ -58,6 +60,7 @@
 		"title": "Pack Marathon",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Double the movement speed of your pets when sprinting."
@@ -85,6 +88,7 @@
 		"title": "Fortitude I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Tamed animals get Resistance I when your health is >= 50%"
@@ -112,6 +116,7 @@
 		"title": "Fortitude II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Tamed animals get Resistance II when your health is >= 50%"
@@ -139,6 +144,7 @@
 		"title": "Fortitude III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Tamed animals get Resistance III when your health is >= 50%"
@@ -166,6 +172,7 @@
 		"title": "Sanguine Covenant",
 		"rewards": [],
 		"description": [
+			"",
 			[
 				{
 					"color": "gray",
@@ -203,6 +210,7 @@
 		"title": "Covenant Restoration",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "All pets following you are restored to your current health percentage once Sanguine Convenant gets cancelled or ends."
@@ -230,6 +238,7 @@
 		"title": "Perfect Covenant",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Cooldown is reduced by 50% if the ability ends and you're at max health.\n- Does not proc if the ability is cancelled early."
@@ -257,6 +266,7 @@
 		"title": "Fall Protection",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Pets following you don't take fall damage"

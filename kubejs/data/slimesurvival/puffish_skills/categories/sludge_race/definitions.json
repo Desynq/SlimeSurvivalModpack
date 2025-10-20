@@ -12,6 +12,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "Fire does not extinguish naturally over time. You have to extinguish yourself in water or die trying."
@@ -40,6 +41,7 @@
 		"title": "Slimeproof",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Medium-sized slimes do not hurt you."
@@ -68,6 +70,7 @@
 		"title": "Natural Economist",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "You can sell slime for double money."
@@ -96,6 +99,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "You do not regenerate naturally."
@@ -133,6 +137,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "You lack a proper rigid structure for your arms, making you ineffective at archery.\n\n"
@@ -165,6 +170,7 @@
 		"title": "Motion I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Each successful critical attack increases attack damage by 2.5% of your max health.\n\nEffect ends when a non-critical attack is made or you stop dealing damage for more than 2 seconds."
@@ -186,6 +192,7 @@
 		"title": "Motion II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Each successful critical attack now increases attack damage by 5% of your max health."
@@ -207,6 +214,7 @@
 		"title": "Motion III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Each successful critical attack now increases attack damage by 10% of your max health."
@@ -228,6 +236,7 @@
 		"title": "Motion IV",
 		"rewards": [],
 		"description": [
+			"",
 			[
 				{
 					"color": "green",
@@ -255,6 +264,7 @@
 		"title": "Inertia",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Taking damage resets your motion timer."
@@ -285,6 +295,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "+10 Max Health"
@@ -322,6 +333,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "+10 Max Health"
@@ -352,6 +364,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "+10 Max Health"
@@ -373,6 +386,7 @@
 		"title": "Cytoplasm I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Press"
@@ -418,6 +432,7 @@
 		"title": "Cytoplasm II",
 		"rewards": [],
 		"description": [
+			"",
 			[
 				{
 					"color": "green",
@@ -445,6 +460,7 @@
 		"title": "Cytoplasm III",
 		"rewards": [],
 		"description": [
+			"",
 			[
 				{
 					"color": "green",
@@ -472,6 +488,7 @@
 		"title": "Cytoplasm IV",
 		"rewards": [],
 		"description": [
+			"",
 			[
 				{
 					"color": "green",
@@ -499,6 +516,7 @@
 		"title": "Cytoskeleton",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "No movement slowdown from being at max health."
@@ -520,6 +538,7 @@
 		"title": "Antivenom",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "You are immune to poison."
@@ -548,6 +567,7 @@
 		"title": "Toxic",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Enemies within your attack range receive Poison I for 5 seconds when they damage you."
@@ -569,6 +589,7 @@
 		"title": "Lethal Toxin I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Poison II, ×1/2 duration."
@@ -590,6 +611,7 @@
 		"title": "Lethal Toxin II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Poison III, ×1/3 duration."
@@ -611,6 +633,7 @@
 		"title": "Lethal Toxin III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Poison IV, ×1/4 duration."
@@ -632,6 +655,7 @@
 		"title": "Long Lasting Toxin I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "×2 duration."
@@ -653,6 +677,7 @@
 		"title": "Long Lasting Toxin II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "×4 duration."
@@ -674,6 +699,7 @@
 		"title": "Long Lasting Toxin III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "×8 duration."
@@ -695,6 +721,7 @@
 		"title": "Phagocytosis",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "You can eat food 25% faster"
@@ -716,6 +743,7 @@
 		"title": "Phagocytosis II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "You can eat food 50% faster"
@@ -737,6 +765,7 @@
 		"title": "Phagocytosis III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "You can eat food 75% faster"
@@ -758,6 +787,7 @@
 		"title": "Phagocytosis IV",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "You can eat food 100% faster"
@@ -779,6 +809,7 @@
 		"title": "Mitosis",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "aqua",
 				"text": "Passively regenerate 1 health every 5 seconds at the cost of 1 hunger point."
@@ -800,6 +831,7 @@
 		"title": "Apoptosis",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Mitosis now works until starvation.\n-50% hunger drain per mitosis tick."
@@ -821,6 +853,7 @@
 		"title": "Mitotic Acceleration I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "aqua",
 				"text": "Mitosis now occurs every 4 seconds."
@@ -842,6 +875,7 @@
 		"title": "Mitotic Acceleration II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "aqua",
 				"text": "Mitosis now occurs every 3 seconds."
@@ -863,6 +897,7 @@
 		"title": "Mitotic Acceleration III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "aqua",
 				"text": "Mitosis now occurs every 2 seconds."
@@ -884,6 +919,7 @@
 		"title": "Mitotic Acceleration IV",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "aqua",
 				"text": "Mitosis now occurs every second."
@@ -905,6 +941,7 @@
 		"title": "Continuity",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Motion stacks no longer reset when doing normal attacks."
@@ -926,6 +963,7 @@
 		"title": "Withering",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_gray",
 				"text": "Toxic inflicts wither instead of poison."
@@ -952,6 +990,7 @@
 		"title": "Sticky",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_gray",
 				"text": "Toxic now also inflicts Slowness using the same duration and amplifier stats."
@@ -973,6 +1012,7 @@
 		"title": "Slimeproof II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Large slimes no longer hurt you either."
@@ -994,6 +1034,7 @@
 		"title": "Mass",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"text": "Gain 1 extra tick towards the max duration of your Motion decay timer per extra health point above 40.\nOnly takes into account current health, not max health. No cap.",
 				"color": "green"

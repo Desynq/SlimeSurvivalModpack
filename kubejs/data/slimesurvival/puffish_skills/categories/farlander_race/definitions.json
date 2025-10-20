@@ -3,6 +3,7 @@
 		"title": "Quantum Uncertainty",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "You do not take damage regularly, instead you pool damage as entropy.\n\nPooled damage decays exponentially per damage entry (-10% per entropy tick).\n\nEvery entropy tick, you take between 0 to 2x of the total entropy decayed in that tick as damage."
@@ -32,6 +33,7 @@
 		"title": "Nutritional Uncertainty",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "How can you be sure what you ate was saturating if you're still hungry?\n\n- Food does not give saturation unless you get to max hunger from eating it."
@@ -61,6 +63,7 @@
 		"title": "Critical Uncertainty",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Did you land that crit?\n\n- Critical hits have a chance to not land.\n\n- Chance is `1 - health / maxHealth`"
@@ -94,6 +97,7 @@
 		"title": "Quantum Rending",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "33% of damage dealt to enemies is converted to entropy damage."
@@ -130,6 +134,7 @@
 		"title": "Quantum Rending II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "66% of damage dealt to enemies is converted to entropy damage."
@@ -157,6 +162,7 @@
 		"title": "Quantum Rending III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "100% of damage dealt to enemies is converted to entropy damage."
@@ -184,6 +190,7 @@
 		"title": "Quantum Delay I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Entropy pool is ticked every other tick."
@@ -211,6 +218,7 @@
 		"title": "Quantum Delay II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Entropy pool is ticked every 4 ticks.\n+50% Entropy decay"
@@ -238,6 +246,7 @@
 		"title": "Causality Collapse",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Killing your attacker removes their entropy damage from your current entropy pool."
@@ -259,6 +268,7 @@
 		"title": "Causality Cleanse",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Killing your attacker also removes any negative effects obtained from them."
@@ -284,6 +294,7 @@
 		"title": "Quantum Suspension",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Your entropy pool doesn't tick while Quantum Relativity is active.\nInstead you take `entropyPool / maxHealth * 4` exhaustion per tick.\nYou will at minimum still take the base exhaustion rate."
@@ -309,6 +320,7 @@
 		"title": "Quantum Predation",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "You regenerate `entropyDamage / maxHealth * 0.25` you deal to others as hunger while Quantum Relativity is active."
@@ -335,6 +347,7 @@
 		"title": "Lorentz Curve",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Your projectiles travel at 20hz while Quantum Relativity is active.\n\n- Crouching temporarily toggles ability off.\n\n- Affected projectiles do not interpolate motion visually."
@@ -356,6 +369,7 @@
 		"title": "Heat Death",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Pressing"
@@ -402,6 +416,7 @@
 		"title": "Quantum Echo",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Heat death causes all enemies to have their total current entropy from you applied onto them again as one source (essentially doubling entropy damage)."
@@ -428,6 +443,7 @@
 		"title": "Quantum Phoenix",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "If Heat Death is not on cooldown, auto-proc Heat Death when you die and consume all hunger, healing `hunger / 20 * maxHealth` health."
@@ -453,6 +469,7 @@
 		"title": "Quantum Tunneling",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_aqua",
 				"text": "Ender pearls do not get consumed or cause fall damage while Quantum Relativity is active."
@@ -474,6 +491,7 @@
 		"title": "Casual Transference",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "When an enemy dies, any entropy they have left over that you've dealt to them is passed onto the closest enemy to them that currently has entropy from you.\n- Max distance of 16 blocks"
@@ -495,6 +513,7 @@
 		"title": "Observer Effect",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Casual Transference defaults to the nearest mob from the victim that is currently targeting you if its initial search condition fails."
@@ -516,6 +535,7 @@
 		"title": "Coherence I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Entropy you deal to others now takes 4 ticks longer to decay with a new median damage of 1.5x."
@@ -537,6 +557,7 @@
 		"title": "Coherence II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Entropy you deal to others takes 5 ticks longer to decay in addition to the delay from Coherence I."
@@ -558,6 +579,7 @@
 		"title": "Quantum Cleansing",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Heat Death clears all negative effects on activation."
@@ -579,6 +601,7 @@
 		"title": "Information Paradox",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Heat Death gives all decaying or targeting enemies Blindness IV for 10 seconds.\nNote: Each level of blindness reduces follow range by 20%."
@@ -604,6 +627,7 @@
 		"title": "Quantum Relativity",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Pressing"
@@ -650,6 +674,7 @@
 		"title": "Time Dilation I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Quantum Relativity now lasts for 20 ticks."
@@ -677,6 +702,7 @@
 		"title": "Time Dilation II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Quantum Relativity now lasts for 40 ticks."
@@ -704,6 +730,7 @@
 		"title": "Time Dilation III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Quantum Relativity now lasts for 60 ticks."
@@ -731,6 +758,7 @@
 		"title": "Time Dilation IV",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "Quantum Relativity now lasts for 80 ticks."
@@ -758,6 +786,7 @@
 		"title": "Event Horizon",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_aqua",
 				"text": "Enemies that die from your entropy damage while Quantum Relativity is active heal you based on how much entropy damage they took over their lifespan."
@@ -788,6 +817,7 @@
 		"title": "The World",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "You move while others cannot.\n\nWhile Quantum Relativity is active:\n- Attack speed is doubled.\n- Movement speed is doubled.\n- No gun aim spread from moving."
@@ -809,6 +839,7 @@
 		"title": "Relative Compression I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "-20% Quantum Relativity cooldown"
@@ -830,6 +861,7 @@
 		"title": "Relative Compression II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "-40% Quantum Relativity cooldown"
@@ -851,6 +883,7 @@
 		"title": "Relative Compression III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_purple",
 				"text": "-60% Quantum Relativity cooldown"

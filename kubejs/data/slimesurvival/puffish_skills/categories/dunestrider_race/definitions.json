@@ -3,6 +3,7 @@
 		"title": "Rend I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "You have a knack for chipping armour.\n\n- Plus 20% Armor shred for 1.5s"
@@ -31,6 +32,7 @@
 		"title": "Rend II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "You're deft at sundering armor.\n\n- Plus 40% Armor shred for 1.5s"
@@ -58,6 +60,7 @@
 		"title": "Rend III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "You shred armor.\n\n- Plus 60% Armor shred for 1.5s"
@@ -85,6 +88,7 @@
 		"title": "Rend IV",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Armor buckles at your name.\n\n- 80% Armor shred for 1.5s"
@@ -112,6 +116,7 @@
 		"title": "Rend V",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "You tear through all.\n\n- 100% Armor shred for 1.5s"
@@ -148,6 +153,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "yellow",
 				"text": "You skate across the landscape easier than most.\n\n- Plus 0.5 step height"
@@ -184,6 +190,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "yellow",
 				"text": "Adaption for the nomadic lifestyle of the Sinking Dunes.\n\n- Extra speed on sand.\nBlocks like soul sand don't slow you as much."
@@ -220,6 +227,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "yellow",
 				"text": "Eat or be eaten, hit or get hit. Keep out of reach.\n\n- Your rolls recharge twice as fast."
@@ -247,6 +255,7 @@
 		"title": "Demean I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "The prideful gait of the powerful disgusts you.\n\nYour damage logarithmically scales in relation to the victim's current health versus your max health.\n\nFactor of 0.25"
@@ -274,6 +283,7 @@
 		"title": "Demean II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "Stripping people of their ego is your specialty.\n\n- Factor is now 0.5"
@@ -301,6 +311,7 @@
 		"title": "Demean III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Durability is a metric to be measured against you. Gloryseekers fear you hearing their name.\n\n- Factor is now 1.0"
@@ -328,6 +339,7 @@
 		"title": "Martyr",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "red",
 				"text": "You will not be taken advantage of by the powerful.\n\nDemean now ratios your current health instead of your max health."
@@ -349,6 +361,7 @@
 		"title": "Hysteria I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "yellow",
 				"text": "When things look rough, you feel lucky.\n\n- Gain movement speed per enemy targeting you.\n(Capped at 2x base speed)"
@@ -376,6 +389,7 @@
 		"title": "Hysteria II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "yellow",
 				"text": "Intense battle is your homestead.\n\n- Gain movement speed and attack speed per enemy targeting you.\n(Capped at 2x base speed)"
@@ -403,6 +417,7 @@
 		"title": "Hysteria III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gold",
 				"text": "You hunger for war.\n\n- Gain movement speed and attack speed per enemy targeting you.\nFill 1 saturation on kill when at max speed.\n(Capped at 2x base speed)"
@@ -430,6 +445,7 @@
 		"title": "Blitzkreig",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "yellow",
 				"text": "Swift and decisive.\n\n- Deal up to 2x damage based on how fast you're moving."
@@ -457,6 +473,7 @@
 		"title": "Robinhood",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Take from the strong, give to the weak!\n\n- You deal 50% less damage to enemies with significantly less health than you."
@@ -485,6 +502,7 @@
 		"title": "Scavenger",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "green",
 				"text": "Survivals not easy in the Dunes.\n\n- Sell certain mob drops for more."
@@ -513,6 +531,7 @@
 		"title": "Momentum",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Me? Stopped in my tracks?..\n\n- When struck by an enemy that you haven't damaged in the last 30 seconds, take 2x damage and gain slowness I"
@@ -541,6 +560,7 @@
 		"title": "First Strike",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "gray",
 				"text": "Victory goes to the swift.\n\n- Deal increased damage for a small burst after damaging an enemy for the first time.\n(30s cooldown)"
@@ -575,6 +595,7 @@
 			}
 		],
 		"description": [
+			"",
 			{
 				"color": "white",
 				"text": "Make a pact with the war god in return for knowledge of true power.\n\n- You lose all natural regeneration. Pain is virtue."
@@ -607,6 +628,7 @@
 		"title": "Furantur I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Soak in the blood.\n\n- Gain 2.5% lifesteal on-hit."
@@ -634,6 +656,7 @@
 		"title": "Furantur II",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "You hemorrhage your foes and relish it.\n\n- Gain 5.0% lifesteal on-hit."
@@ -661,6 +684,7 @@
 		"title": "Furantur III",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Spread the red. You're a festival of death.\n\n- Gain 7.5% lifesteal on-hit."
@@ -688,6 +712,7 @@
 		"title": "Furantur IV",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Drink their blood.\n\n- Gain 10% lifesteal on-hit."
@@ -715,6 +740,7 @@
 		"title": "Ares",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"color": "dark_red",
 				"text": "Something inside of you needs violence.\nYou don't dare disobey.\n\n- Heal for 20% of your enemies max hp on kill.\n15% lifesteal on-hit."
@@ -742,6 +768,7 @@
 		"title": "Bloodclot I",
 		"rewards": [],
 		"description": [
+			"",
 			{
 				"text": "Overheal up to your max health in absorption hearts from lifesteal.",
 				"color": "dark_red"
