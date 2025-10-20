@@ -8,7 +8,7 @@ const RaceSkills = (function() {
 			case Races.FARLANDER:
 				return FarlanderSkills.skills;
 			case Races.SLUDGE:
-				return Object.values(SludgeSkills);
+				return SludgeSkills.skills;
 			case Races.CHIMERA:
 				return ChimeraSkills.skills;
 			case Races.DUNESTRIDER:

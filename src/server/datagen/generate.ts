@@ -13,7 +13,6 @@ namespace DefinitionsGenerator {
 		write(manager.categoryId, manager.definitionsJson);
 	}
 
-	write(SludgeSkillsCategoryId, SludgeDefinitionsJson);
 	write(FARLANDER_CATEGORY_ID, FarlanderSkillDefinitionsJson);
 	write(SculkerSkills.CATEGORY_ID, SculkerSkills.definitionsJson);
 

@@ -6,10 +6,10 @@ const Mitosis = {};
 Mitosis.getMitoticAccelerationLevel = function(player) {
 	/** @type {[integer, Skill][]} */
 	const levels = [
-		[4, MitosisSkillTree.MITOTIC_ACCELERATION_4],
-		[3, MitosisSkillTree.MITOTIC_ACCELERATION_3],
-		[2, MitosisSkillTree.MITOTIC_ACCELERATION_2],
-		[1, MitosisSkillTree.MITOTIC_ACCELERATION_1],
+		[4, SludgeSkills.MITOTIC_ACCELERATION_4],
+		[3, SludgeSkills.MITOTIC_ACCELERATION_3],
+		[2, SludgeSkills.MITOTIC_ACCELERATION_2],
+		[1, SludgeSkills.MITOTIC_ACCELERATION_1],
 	];
 	for (let i = 0; i < levels.length; i++) {
 		if (SkillHelper.hasSkill(player, levels[i][1])) {
@@ -47,13 +47,13 @@ PlayerEvents.tick(event => {
 		return;
 	}
 
-	const hasApoptosis = SkillHelper.hasSkill(player, MitosisSkillTree.APOPTOSIS)
+	const hasApoptosis = SkillHelper.hasSkill(player, SludgeSkills.APOPTOSIS)
 	const minimumHungerLevelNeeded = hasApoptosis ? 0 : 6;
 	if (player.foodData.foodLevel + player.foodData.saturationLevel <= minimumHungerLevelNeeded) {
 		return;
 	}
 
-	if (!SkillHelper.hasSkill(player, MitosisSkillTree.MITOSIS)) {
+	if (!SkillHelper.hasSkill(player, SludgeSkills.MITOSIS)) {
 		return;
 	}
 

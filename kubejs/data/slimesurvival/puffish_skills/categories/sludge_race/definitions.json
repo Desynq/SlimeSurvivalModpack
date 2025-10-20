@@ -235,7 +235,7 @@
 				},
 				{
 					"color": "red",
-					"text": "\n- Effect now ends if you stop dealing damage for more than 1 second."
+					"text": "\n- Motion stack duration is halved (e.g., 40 ticks -> 20 ticks)."
 				}
 			],
 			{
@@ -775,95 +775,6 @@
 			}
 		}
 	},
-	"continuity": {
-		"title": "Continuity",
-		"rewards": [],
-		"description": [
-			{
-				"color": "green",
-				"text": "Motion stacks no longer reset when doing normal attacks."
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 4 points]"
-			}
-		],
-		"cost": 4,
-		"icon": {
-			"type": "item",
-			"data": {
-				"item": "minecraft:golden_sword"
-			}
-		}
-	},
-	"withering": {
-		"title": "Withering",
-		"rewards": [],
-		"description": [
-			{
-				"color": "dark_gray",
-				"text": "Toxic inflicts wither instead of poison."
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
-			},
-			{
-				"color": "red",
-				"text": "\n[Parent Skills Needed: 1]"
-			}
-		],
-		"cost": 2,
-		"icon": {
-			"type": "effect",
-			"data": {
-				"effect": "minecraft:wither"
-			}
-		},
-		"required_skills": 1
-	},
-	"sticky": {
-		"title": "Sticky",
-		"rewards": [],
-		"description": [
-			{
-				"color": "dark_gray",
-				"text": "Toxic now also inflicts Slowness using the same duration and amplifier stats."
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 4 points]"
-			}
-		],
-		"cost": 4,
-		"icon": {
-			"type": "effect",
-			"data": {
-				"effect": "minecraft:slowness"
-			}
-		}
-	},
-	"slimeproof_2": {
-		"title": "Slimeproof II",
-		"rewards": [],
-		"description": [
-			{
-				"color": "green",
-				"text": "Large slimes no longer hurt you either."
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 1 point]"
-			}
-		],
-		"cost": 1,
-		"icon": {
-			"type": "item",
-			"data": {
-				"item": "minecraft:slime_block"
-			}
-		}
-	},
 	"mitosis": {
 		"title": "Mitosis",
 		"rewards": [],
@@ -987,6 +898,116 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:clock"
+			}
+		}
+	},
+	"continuity": {
+		"title": "Continuity",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Motion stacks no longer reset when doing normal attacks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:golden_sword"
+			}
+		}
+	},
+	"withering": {
+		"title": "Withering",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_gray",
+				"text": "Toxic inflicts wither instead of poison."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Parent Skills Needed: 1]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
+			}
+		},
+		"required_skills": 1
+	},
+	"sticky": {
+		"title": "Sticky",
+		"rewards": [],
+		"description": [
+			{
+				"color": "dark_gray",
+				"text": "Toxic now also inflicts Slowness using the same duration and amplifier stats."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:slowness"
+			}
+		}
+	},
+	"slimeproof_2": {
+		"title": "Slimeproof II",
+		"rewards": [],
+		"description": [
+			{
+				"color": "green",
+				"text": "Large slimes no longer hurt you either."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:slime_block"
+			}
+		}
+	},
+	"mass": {
+		"title": "Mass",
+		"rewards": [],
+		"description": [
+			{
+				"text": "Gain 1 extra tick towards the max duration of your Motion decay timer per extra health point above 40.\nOnly takes into account current health, not max health. No cap.",
+				"color": "green"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:anvil"
 			}
 		}
 	}

@@ -32,6 +32,20 @@ namespace SludgeMotion {
 		return (base * player.maxHealth) * stacks;
 	}
 
+	function getMotionDuration(player: ServerPlayer_): number {
+		const hasMotion4Skill = SludgeSkills.MOTION_4.isUnlockedFor(player);
+		const hasMassSkill = SludgeSkills.MASS.isUnlockedFor(player);
+
+		let duration = 40;
+		if (hasMassSkill) {
+			duration = Math.max(duration, Math.ceil(player.health));
+		}
+		if (hasMotion4Skill) {
+			duration = Math.ceil(duration * 0.5);
+		}
+		return duration;
+	}
+
 	const MOTION_KEY = "sludge.motion";
 	const MOTION_TIMESTAMP = "sludge.motion.last";
 
@@ -48,10 +62,8 @@ namespace SludgeMotion {
 	}
 
 	function motionExpired(player: ServerPlayer_): boolean {
-		const interval = SkillHelper.hasSkill(player, SludgeSkills.MOTION_4)
-			? 20
-			: 40;
-		return TickHelper.hasTimestampElapsed(player, MOTION_TIMESTAMP, interval);
+		const duration = getMotionDuration(player);
+		return TickHelper.hasTimestampElapsed(player, MOTION_TIMESTAMP, duration);
 	}
 
 	function resetMotion(player: ServerPlayer_): void {
@@ -105,7 +117,7 @@ namespace SludgeMotion {
 		}
 	});
 
-	EntityEvents.afterHurt("minecraft:player", event => {
+	EntityEvents.afterHurt("minecraft:player" as any, event => {
 		const player = event.getEntity() as ServerPlayer_;
 
 		if (getMotion(player) <= 0) return;
