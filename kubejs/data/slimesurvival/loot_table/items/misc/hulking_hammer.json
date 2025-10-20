@@ -1,0 +1,52 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "mutantmonsters:hulk_hammer",
+					"functions": [
+						{
+							"function": "minecraft:set_name",
+							"name": {
+								"text": "Hulking Hammer",
+								"color": "dark_green"
+							},
+							"target": "item_name"
+						},
+						{
+							"function": "minecraft:set_custom_data",
+							"tag": {
+								"id": "hulking_hammer"
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:attribute_modifiers": {
+									"modifiers": [
+										{
+											"id": "slimesurvival:hulking_hammer",
+											"type": "minecraft:generic.attack_damage",
+											"amount": 40,
+											"operation": "add_value",
+											"slot": "mainhand"
+										},
+										{
+											"id": "slimesurvival:hulking_hammer",
+											"type": "minecraft:generic.attack_speed",
+											"amount": -3.75,
+											"operation": "add_value",
+											"slot": "mainhand"
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
