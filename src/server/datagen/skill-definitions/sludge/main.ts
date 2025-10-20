@@ -6,7 +6,7 @@ const SludgeSkills = new (class extends SkillManager {
 		super("slimesurvival:sludge_race");
 	}
 
-	public readonly FLAMMABLE = new SkillDefinition(SludgeSkillsCategoryId, "flammable")
+	public readonly FLAMMABLE = new SkillDefinition(this.categoryId, "flammable")
 		.advancementFrame("goal")
 		.itemIcon("minecraft:flint_and_steel")
 		.addDescription({
@@ -19,7 +19,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("s9il1r95zp4fg5vl")
 		.register(this.skills);
 
-	public readonly SLIMEPROOF = new SkillDefinition(SludgeSkillsCategoryId, "slimeproof")
+	public readonly SLIMEPROOF = new SkillDefinition(this.categoryId, "slimeproof")
 		.advancementFrame("goal")
 		.itemIcon("minecraft:slime_block")
 		.addDescription({
@@ -31,7 +31,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("hi8bub7iluizrm0t")
 		.register(this.skills);
 
-	public readonly NATURAL_ECONOMIST = new SkillDefinition(SludgeSkillsCategoryId, "natural_economist")
+	public readonly NATURAL_ECONOMIST = new SkillDefinition(this.categoryId, "natural_economist")
 		.itemIcon("minecraft:slime_ball")
 		.addDescription({
 			"color": "green",
@@ -45,7 +45,7 @@ const SludgeSkills = new (class extends SkillManager {
 
 
 
-	public readonly AREGENERATIVE = new SkillDefinition(SludgeSkillsCategoryId, "aregenerative")
+	public readonly AREGENERATIVE = new SkillDefinition(this.categoryId, "aregenerative")
 		.advancementFrame("goal")
 		.effectIcon("minecraft:wither")
 		.addDescription({
@@ -63,7 +63,7 @@ const SludgeSkills = new (class extends SkillManager {
 
 
 
-	public readonly PSEUDOPODIA = new SkillDefinition(SludgeSkillsCategoryId, "pseudopodia")
+	public readonly PSEUDOPODIA = new SkillDefinition(this.categoryId, "pseudopodia")
 		.advancementFrame("goal")
 		.effectIcon("minecraft:weakness")
 		.addDescription({
@@ -81,7 +81,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.register(this.skills);
 
 
-	public readonly MOTION_1 = new SkillDefinition(SludgeSkillsCategoryId, "motion_1")
+	public readonly MOTION_1 = new SkillDefinition(this.categoryId, "motion_1")
 		.effectIcon("minecraft:strength")
 		.addDescription({
 			"color": "green",
@@ -92,7 +92,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly MOTION_2 = new SkillDefinition(SludgeSkillsCategoryId, "motion_2")
+	public readonly MOTION_2 = new SkillDefinition(this.categoryId, "motion_2")
 		.effectIcon("minecraft:strength")
 		.addDescription({
 			"color": "green",
@@ -102,7 +102,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly MOTION_3 = new SkillDefinition(SludgeSkillsCategoryId, "motion_3")
+	public readonly MOTION_3 = new SkillDefinition(this.categoryId, "motion_3")
 		.effectIcon("minecraft:strength")
 		.addDescription({
 			"color": "green",
@@ -112,7 +112,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly MOTION_4 = new SkillDefinition(SludgeSkillsCategoryId, "motion_4")
+	public readonly MOTION_4 = new SkillDefinition(this.categoryId, "motion_4")
 		.effectIcon("minecraft:strength")
 		.addDescription([{
 			"color": "green",
@@ -125,7 +125,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly INERTIA = new SkillDefinition(SludgeSkillsCategoryId, "inertia")
+	public readonly INERTIA = new SkillDefinition(this.categoryId, "inertia")
 		.effectIcon("minecraft:absorption")
 		.addDescription({
 			"color": "green",
@@ -139,7 +139,7 @@ const SludgeSkills = new (class extends SkillManager {
 
 
 
-	public readonly CONGEALED_1 = new SkillDefinition(SludgeSkillsCategoryId, "congealed_1")
+	public readonly CONGEALED_1 = new SkillDefinition(this.categoryId, "congealed_1")
 		.advancementFrame("goal")
 		.effectIcon("minecraft:health_boost")
 		.addDescription({
@@ -152,7 +152,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("7mb8epyl7aobm9ub")
 		.register(this.skills);
 
-	public readonly CONGEALED_2 = new SkillDefinition(SludgeSkillsCategoryId, "congealed_2")
+	public readonly CONGEALED_2 = new SkillDefinition(this.categoryId, "congealed_2")
 		.effectIcon("minecraft:health_boost")
 		.addDescription({
 			"color": "green",
@@ -164,7 +164,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("8r71o66i4ttue5nn")
 		.register(this.skills);
 
-	public readonly CONGEALED_3 = new SkillDefinition(SludgeSkillsCategoryId, "congealed_3")
+	public readonly CONGEALED_3 = new SkillDefinition(this.categoryId, "congealed_3")
 		.effectIcon("minecraft:health_boost")
 		.addDescription({
 			"color": "green",
@@ -176,7 +176,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.register(this.skills);
 
 
-	public readonly CYTOPLASM_1 = new SkillDefinition(SludgeSkillsCategoryId, "cytoplasm_1")
+	public readonly CYTOPLASM_1 = new SkillDefinition(this.categoryId, "cytoplasm_1")
 		.effectIcon("minecraft:resistance")
 		.addDescription({
 			"color": "gray",
@@ -194,7 +194,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly CYTOPLASM_2 = new SkillDefinition(SludgeSkillsCategoryId, "cytoplasm_2")
+	public readonly CYTOPLASM_2 = new SkillDefinition(this.categoryId, "cytoplasm_2")
 		.effectIcon("minecraft:resistance")
 		.addDescription([{
 			"color": "green",
@@ -207,7 +207,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly CYTOPLASM_3 = new SkillDefinition(SludgeSkillsCategoryId, "cytoplasm_3")
+	public readonly CYTOPLASM_3 = new SkillDefinition(this.categoryId, "cytoplasm_3")
 		.effectIcon("minecraft:resistance")
 		.addDescription([{
 			"color": "green",
@@ -220,7 +220,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly CYTOPLASM_4 = new SkillDefinition(SludgeSkillsCategoryId, "cytoplasm_4")
+	public readonly CYTOPLASM_4 = new SkillDefinition(this.categoryId, "cytoplasm_4")
 		.effectIcon("minecraft:resistance")
 		.addDescription([{
 			"color": "green",
@@ -233,7 +233,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly CYTOSKELETON = new SkillDefinition(SludgeSkillsCategoryId, "cytoskeleton")
+	public readonly CYTOSKELETON = new SkillDefinition(this.categoryId, "cytoskeleton")
 		.itemIcon("mutantmonsters:mutant_skeleton_rib_cage")
 		.addDescription({
 			"color": "green",
@@ -247,7 +247,7 @@ const SludgeSkills = new (class extends SkillManager {
 
 
 
-	public readonly ANTIVENOM = new SkillDefinition(SludgeSkillsCategoryId, "antivenom")
+	public readonly ANTIVENOM = new SkillDefinition(this.categoryId, "antivenom")
 		.advancementFrame("goal")
 		.effectIcon("mowziesmobs:poison_resist")
 		.addDescription({
@@ -259,7 +259,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("n39u9um6nxp1haoh")
 		.register(this.skills);
 
-	public readonly TOXIC = new SkillDefinition(SludgeSkillsCategoryId, "toxic")
+	public readonly TOXIC = new SkillDefinition(this.categoryId, "toxic")
 		.effectIcon("minecraft:poison")
 		.addDescription({
 			"color": "green",
@@ -269,7 +269,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly LETHAL_TOXIN_1 = new SkillDefinition(SludgeSkillsCategoryId, "lethal_toxin_1")
+	public readonly LETHAL_TOXIN_1 = new SkillDefinition(this.categoryId, "lethal_toxin_1")
 		.itemIcon("minecraft:glowstone_dust")
 		.addDescription({
 			"color": "green",
@@ -279,7 +279,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly LETHAL_TOXIN_2 = new SkillDefinition(SludgeSkillsCategoryId, "lethal_toxin_2")
+	public readonly LETHAL_TOXIN_2 = new SkillDefinition(this.categoryId, "lethal_toxin_2")
 		.itemIcon("minecraft:glowstone_dust")
 		.addDescription({
 			"color": "green",
@@ -289,7 +289,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly LETHAL_TOXIN_3 = new SkillDefinition(SludgeSkillsCategoryId, "lethal_toxin_3")
+	public readonly LETHAL_TOXIN_3 = new SkillDefinition(this.categoryId, "lethal_toxin_3")
 		.itemIcon("minecraft:glowstone_dust")
 		.addDescription({
 			"color": "green",
@@ -299,7 +299,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly LONG_LASTING_TOXIN_1 = new SkillDefinition(SludgeSkillsCategoryId, "long_lasting_toxin_1")
+	public readonly LONG_LASTING_TOXIN_1 = new SkillDefinition(this.categoryId, "long_lasting_toxin_1")
 		.itemIcon("minecraft:redstone")
 		.addDescription({
 			"color": "green",
@@ -309,7 +309,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly LONG_LASTING_TOXIN_2 = new SkillDefinition(SludgeSkillsCategoryId, "long_lasting_toxin_2")
+	public readonly LONG_LASTING_TOXIN_2 = new SkillDefinition(this.categoryId, "long_lasting_toxin_2")
 		.itemIcon("minecraft:redstone")
 		.addDescription({
 			"color": "green",
@@ -319,7 +319,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly LONG_LASTING_TOXIN_3 = new SkillDefinition(SludgeSkillsCategoryId, "long_lasting_toxin_3")
+	public readonly LONG_LASTING_TOXIN_3 = new SkillDefinition(this.categoryId, "long_lasting_toxin_3")
 		.itemIcon("minecraft:redstone")
 		.addDescription({
 			"color": "green",
@@ -329,7 +329,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly PHAGOCYTOSIS = new SkillDefinition(SludgeSkillsCategoryId, "phagocytosis")
+	public readonly PHAGOCYTOSIS = new SkillDefinition(this.categoryId, "phagocytosis")
 		.itemIcon("minecraft:golden_carrot")
 		.addDescription({
 			"color": "green",
@@ -340,7 +340,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("u3dd2zdz5jy3xufx")
 		.register(this.skills);
 
-	public readonly PHAGOCYTOSIS_2 = new SkillDefinition(SludgeSkillsCategoryId, "phagocytosis_2")
+	public readonly PHAGOCYTOSIS_2 = new SkillDefinition(this.categoryId, "phagocytosis_2")
 		.itemIcon("minecraft:golden_carrot")
 		.addDescription({
 			"color": "green",
@@ -351,7 +351,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("e5nab8zgkaf74j7a")
 		.register(this.skills);
 
-	public readonly PHAGOCYTOSIS_3 = new SkillDefinition(SludgeSkillsCategoryId, "phagocytosis_3")
+	public readonly PHAGOCYTOSIS_3 = new SkillDefinition(this.categoryId, "phagocytosis_3")
 		.itemIcon("minecraft:golden_carrot")
 		.addDescription({
 			"color": "green",
@@ -362,7 +362,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("lky96rv3fwyg52ht")
 		.register(this.skills);
 
-	public readonly PHAGOCYTOSIS_4 = new SkillDefinition(SludgeSkillsCategoryId, "phagocytosis_4")
+	public readonly PHAGOCYTOSIS_4 = new SkillDefinition(this.categoryId, "phagocytosis_4")
 		.itemIcon("minecraft:golden_carrot")
 		.addDescription({
 			"color": "green",
@@ -373,7 +373,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("mkjkbafqlvj6dsiq")
 		.register(this.skills);
 
-	public readonly MITOSIS = new SkillDefinition(SludgeSkillsCategoryId, "mitosis")
+	public readonly MITOSIS = new SkillDefinition(this.categoryId, "mitosis")
 		.effectIcon("minecraft:regeneration")
 		.addDescription({
 			"color": "aqua",
@@ -384,7 +384,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("cdw1xwwww7rsxbvx")
 		.register(this.skills);
 
-	public readonly APOPTOSIS = new SkillDefinition(SludgeSkillsCategoryId, "apoptosis")
+	public readonly APOPTOSIS = new SkillDefinition(this.categoryId, "apoptosis")
 		.effectIcon("minecraft:hunger")
 		.addDescription({
 			"color": "dark_red",
@@ -395,7 +395,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("4yjkeqmp04gygc04")
 		.register(this.skills);
 
-	public readonly MITOTIC_ACCELERATION_1 = new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_1")
+	public readonly MITOTIC_ACCELERATION_1 = new SkillDefinition(this.categoryId, "mitotic_acceleration_1")
 		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
@@ -406,7 +406,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("xj64dsjei37hvgax")
 		.register(this.skills);
 
-	public readonly MITOTIC_ACCELERATION_2 = new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_2")
+	public readonly MITOTIC_ACCELERATION_2 = new SkillDefinition(this.categoryId, "mitotic_acceleration_2")
 		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
@@ -417,7 +417,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("lsce7nkfd76wytmm")
 		.register(this.skills);
 
-	public readonly MITOTIC_ACCELERATION_3 = new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_3")
+	public readonly MITOTIC_ACCELERATION_3 = new SkillDefinition(this.categoryId, "mitotic_acceleration_3")
 		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
@@ -428,7 +428,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.toSkill("64ckkk2rx7hfvkqq")
 		.register(this.skills);
 
-	public readonly MITOTIC_ACCELERATION_4 = new SkillDefinition(SludgeSkillsCategoryId, "mitotic_acceleration_4")
+	public readonly MITOTIC_ACCELERATION_4 = new SkillDefinition(this.categoryId, "mitotic_acceleration_4")
 		.itemIcon("minecraft:clock")
 		.addDescription({
 			"color": "aqua",
