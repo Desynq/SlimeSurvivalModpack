@@ -1,18 +1,11 @@
 //priority: 101
 
-class SculkerSkills {
-	public static readonly CATEGORY_ID = "slimesurvival:sculker_race";
-
-	public static readonly definitionsJson: Object = {};
-	public static readonly skills: Skill[] = [];
-
-	private static createSkill(id: string, decorate: (def: SkillDefinition) => void): Skill {
-		const def = new SkillDefinition(this.CATEGORY_ID, id);
-		decorate(def);
-		return def.serializeIntoSkill(this.definitionsJson).register(this.skills);
+const SculkerSkills = new (class extends SkillManager {
+	public constructor() {
+		super("slimesurvival:sculker_race");
 	}
 
-	public static readonly BLIND = this.createSkill("blind", def => def
+	public readonly BLIND = this.createSkill("blind", def => def
 		.effectIcon("minecraft:blindness")
 		.addDescription({
 			"text": "Who's there?",
@@ -27,7 +20,7 @@ class SculkerSkills {
 		.rootSkill()
 	);
 
-	public static readonly ECHOLOCATION = this.createSkill("echolocation", def => def
+	public readonly ECHOLOCATION = this.createSkill("echolocation", def => def
 		.effectIcon("slimesurvival:pinged")
 		.addDescription({
 			"text": "I hear you...",
@@ -42,7 +35,7 @@ class SculkerSkills {
 		.rootSkill()
 	);
 
-	public static readonly CHITINOUS = this.createSkill("chitinous", def => def
+	public readonly CHITINOUS = this.createSkill("chitinous", def => def
 		.itemIcon("minecraft:popped_chorus_fruit")
 		.addDescription({
 			"text": "That tickles...",
@@ -70,4 +63,4 @@ class SculkerSkills {
 		.size(1.25)
 		.rootSkill()
 	);
-}
+})().register();

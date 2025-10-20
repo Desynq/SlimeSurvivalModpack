@@ -9,12 +9,9 @@ namespace DefinitionsGenerator {
 		JsonIO.write(`kubejs/data/${namespace}/puffish_skills/categories/${path}/definitions.json`, json);
 	}
 
-	function writeFromManager(manager: RaceSkillManager): void {
+	function writeFromManager(manager: SkillManager): void {
 		write(manager.categoryId, manager.definitionsJson);
 	}
 
-	write(FARLANDER_CATEGORY_ID, FarlanderSkillDefinitionsJson);
-	write(SculkerSkills.CATEGORY_ID, SculkerSkills.definitionsJson);
-
-	RaceSkillManager.INSTANCES.forEach(manager => writeFromManager(manager));
+	SkillManager.INSTANCES.forEach(manager => writeFromManager(manager));
 }

@@ -1,5 +1,5 @@
 //priority: 101
-const ChimeraSkills = new (class extends RaceSkillManager {
+const ChimeraSkills = new (class extends SkillManager {
 	public constructor() {
 		super("slimesurvival:chimera_race");
 	}

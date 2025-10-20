@@ -7,7 +7,7 @@
 // BUT DONT TOUCH THE SKILLS IM GONNA CODE THEM JUST MAKE THE PUFFISH WORK PLZ
 // ALSO RENAME IT TO SOMETHING MORE THEMATIC. RANDOM DGAF SO NOWS YOUR TIME TO SHINE
 
-const DunestriderSkills = new (class extends RaceSkillManager {
+const DunestriderSkills = new (class extends SkillManager {
 
 	public constructor() {
 		super("slimesurvival:dunestrider_race");

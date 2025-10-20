@@ -1,9 +1,9 @@
 // priority: 1000
 
 
-abstract class RaceSkillManager {
+abstract class SkillManager {
 
-	public static readonly INSTANCES: RaceSkillManager[] = [];
+	public static readonly INSTANCES: SkillManager[] = [];
 
 	public readonly definitionsJson: Object = {};
 	public readonly skills: Skill[] = [];
@@ -19,7 +19,7 @@ abstract class RaceSkillManager {
 	}
 
 	public register(): this {
-		RaceSkillManager.INSTANCES.push(this);
+		SkillManager.INSTANCES.push(this);
 		return this;
 	}
 }

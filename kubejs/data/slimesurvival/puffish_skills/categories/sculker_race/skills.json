@@ -1,1 +1,20 @@
-{}
+{
+	"f4zbb4qulaqpmjjr": {
+		"definition": "blind",
+		"x": -64,
+		"y": 0,
+		"root": true
+	},
+	"zbh51l6opa6wl4iv": {
+		"definition": "echolocation",
+		"x": 64,
+		"y": 0,
+		"root": true
+	},
+	"nnh4903hobep8apv": {
+		"definition": "chitinous",
+		"x": 0,
+		"y": -64,
+		"root": true
+	}
+}

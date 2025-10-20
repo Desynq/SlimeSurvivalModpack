@@ -1,6 +1,6 @@
 // priority: 101
 
-const SludgeSkills = new (class extends RaceSkillManager {
+const SludgeSkills = new (class extends SkillManager {
 
 	public constructor() {
 		super("slimesurvival:sludge_race");

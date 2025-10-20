@@ -1,19 +1,12 @@
 //priority: 101
 
-const FarlanderSkillDefinitionsJson = {};
+const FarlanderSkills = new (class extends SkillManager {
 
-const FARLANDER_CATEGORY_ID = "slimesurvival:farlander_race";
-
-class FarlanderSkills {
-	public static readonly skills: Skill[] = [];
-
-	private static createSkill(id: string, fn: (def: SkillDefinition) => void): Skill {
-		const def = new SkillDefinition(FARLANDER_CATEGORY_ID, id);
-		fn(def);
-		return def.serializeIntoSkill(FarlanderSkillDefinitionsJson).register(this.skills);
+	public constructor() {
+		super("slimesurvival:farlander_race");
 	}
 
-	public static readonly QUANTUM_UNCERTAINTY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_uncertainty")
+	public readonly QUANTUM_UNCERTAINTY = new SkillDefinition(this.categoryId, "quantum_uncertainty")
 		.effectIcon("minecraft:bad_omen")
 		.addDescription({
 			"color": "dark_purple",
@@ -23,10 +16,10 @@ class FarlanderSkills {
 		})
 		.size(1.25)
 		.rootSkill()
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly NUTRITIONAL_UNCERTAINTY = this.createSkill("nutritional_uncertainty", def => def
+	public readonly NUTRITIONAL_UNCERTAINTY = this.createSkill("nutritional_uncertainty", def => def
 		.itemIcon("minecraft:suspicious_stew")
 		.addDescription({
 			"color": "dark_purple",
@@ -37,7 +30,7 @@ class FarlanderSkills {
 		.rootSkill()
 	);
 
-	public static readonly CRITICAL_UNCERTAINTY = this.createSkill("critical_uncertainty", def => def
+	public readonly CRITICAL_UNCERTAINTY = this.createSkill("critical_uncertainty", def => def
 		.effectIcon("slimesurvival:weak_knees")
 		.addDescription({
 			"color": "dark_purple",
@@ -50,7 +43,7 @@ class FarlanderSkills {
 		.flagPlanned()
 	);
 
-	public static readonly QUANTUM_RENDING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_rending")
+	public readonly QUANTUM_RENDING = new SkillDefinition(this.categoryId, "quantum_rending")
 		.effectIcon("minecraft:wither")
 		.advancementFrame("task")
 		.addDescription({
@@ -67,10 +60,10 @@ class FarlanderSkills {
 		})
 		.size(1.25)
 		.cost(1)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_RENDING_2 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_rending_2")
+	public readonly QUANTUM_RENDING_2 = new SkillDefinition(this.categoryId, "quantum_rending_2")
 		.effectIcon("minecraft:wither")
 		.advancementFrame("task")
 		.addDescription({
@@ -78,10 +71,10 @@ class FarlanderSkills {
 			"text": "66% of damage dealt to enemies is converted to entropy damage."
 		})
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_RENDING_3 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_rending_3")
+	public readonly QUANTUM_RENDING_3 = new SkillDefinition(this.categoryId, "quantum_rending_3")
 		.effectIcon("minecraft:wither")
 		.advancementFrame("task")
 		.addDescription({
@@ -89,10 +82,10 @@ class FarlanderSkills {
 			"text": "100% of damage dealt to enemies is converted to entropy damage."
 		})
 		.cost(4)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_DELAY_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_delay_1")
+	public readonly QUANTUM_DELAY_1 = new SkillDefinition(this.categoryId, "quantum_delay_1")
 		.effectIcon("minecraft:slowness")
 		.advancementFrame("task")
 		.addDescription({
@@ -100,10 +93,10 @@ class FarlanderSkills {
 			"text": "Entropy pool is ticked every other tick."
 		})
 		.cost(1)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_DELAY_2 = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_delay_2")
+	public readonly QUANTUM_DELAY_2 = new SkillDefinition(this.categoryId, "quantum_delay_2")
 		.effectIcon("minecraft:slowness")
 		.advancementFrame("task")
 		.addDescription({
@@ -112,21 +105,21 @@ class FarlanderSkills {
 				+ "\n+50% Entropy decay"
 		})
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly CAUSALITY_COLLAPSE = new SkillDefinition(FARLANDER_CATEGORY_ID, "causality_collapse")
+	public readonly CAUSALITY_COLLAPSE = new SkillDefinition(this.categoryId, "causality_collapse")
 		.itemIcon("endermanoverhaul:corrupted_pearl")
 		.addDescription({
 			"color": "dark_purple",
 			"text": "Killing your attacker removes their entropy damage from your current entropy pool."
 		})
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
 	// TODO
-	public static readonly CAUSALITY_CLEANSE = this.createSkill("causality_cleanse", def => def
+	public readonly CAUSALITY_CLEANSE = this.createSkill("causality_cleanse", def => def
 		.itemIcon("splash_milk:lingering_milk_bottle")
 		.addDescription({
 			"color": "dark_purple",
@@ -137,7 +130,7 @@ class FarlanderSkills {
 	);
 
 	// TODO:
-	public static readonly QUANTUM_SUSPENSION = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_suspension")
+	public readonly QUANTUM_SUSPENSION = new SkillDefinition(this.categoryId, "quantum_suspension")
 		.itemIcon("endermanoverhaul:icy_pearl")
 		.addDescription({
 			"color": "dark_purple",
@@ -147,10 +140,10 @@ class FarlanderSkills {
 		})
 		.cost(4)
 		.flagPlanned()
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_PREDATION = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_predation")
+	public readonly QUANTUM_PREDATION = new SkillDefinition(this.categoryId, "quantum_predation")
 		.itemIcon("endermanoverhaul:enderman_tooth")
 		.addDescription({
 			"color": "dark_purple",
@@ -158,10 +151,10 @@ class FarlanderSkills {
 		})
 		.cost(4)
 		.requiredSkills(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly LORENTZ_CURVE = new SkillDefinition(FARLANDER_CATEGORY_ID, "lorentz_curve")
+	public readonly LORENTZ_CURVE = new SkillDefinition(this.categoryId, "lorentz_curve")
 		.itemIcon("minecraft:arrow")
 		.addDescription({
 			"color": "dark_purple",
@@ -170,12 +163,12 @@ class FarlanderSkills {
 				+ "\n\n- Affected projectiles do not interpolate motion visually."
 		})
 		.cost(1)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
 
 
-	public static readonly HEAT_DEATH = new SkillDefinition(FARLANDER_CATEGORY_ID, "heat_death")
+	public readonly HEAT_DEATH = new SkillDefinition(this.categoryId, "heat_death")
 		.itemIcon("endermanoverhaul:crimson_pearl")
 		.advancementFrame("challenge")
 		.addDescription({
@@ -190,10 +183,10 @@ class FarlanderSkills {
 		})
 		.size(1.25)
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_ECHO = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_echo")
+	public readonly QUANTUM_ECHO = new SkillDefinition(this.categoryId, "quantum_echo")
 		.itemIcon("minecraft:echo_shard")
 		.addDescription({
 			"color": "dark_red",
@@ -201,11 +194,11 @@ class FarlanderSkills {
 		})
 		.cost(4)
 		.requiredSkills(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
 	// TODO:
-	public static readonly QUANTUM_PHOENIX = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_phoenix")
+	public readonly QUANTUM_PHOENIX = new SkillDefinition(this.categoryId, "quantum_phoenix")
 		.itemIcon("cataclysm:flame_eye")
 		.addDescription({
 			"color": "dark_red",
@@ -213,20 +206,20 @@ class FarlanderSkills {
 		})
 		.cost(4)
 		.flagPlanned()
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly QUANTUM_TUNNELING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_tunneling")
+	public readonly QUANTUM_TUNNELING = new SkillDefinition(this.categoryId, "quantum_tunneling")
 		.itemIcon("minecraft:ender_pearl")
 		.addDescription({
 			"color": "dark_aqua",
 			"text": "Ender pearls do not get consumed or cause fall damage while Quantum Relativity is active."
 		})
 		.cost(1)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly CASUAL_TRANSFERENCE = new SkillDefinition(FARLANDER_CATEGORY_ID, "casual_transference")
+	public readonly CASUAL_TRANSFERENCE = new SkillDefinition(this.categoryId, "casual_transference")
 		.itemIcon("minecraft:tnt_minecart")
 		.addDescription({
 			"color": "dark_purple",
@@ -234,30 +227,30 @@ class FarlanderSkills {
 				+ "\n- Max distance of 16 blocks"
 		})
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly OBSERVER_EFFECT = new SkillDefinition(FARLANDER_CATEGORY_ID, "observer_effect")
+	public readonly OBSERVER_EFFECT = new SkillDefinition(this.categoryId, "observer_effect")
 		.itemIcon("minecraft:observer")
 		.addDescription({
 			"color": "dark_purple",
 			"text": "Casual Transference defaults to the nearest mob from the victim that is currently targeting you if its initial search condition fails."
 		})
 		.cost(4)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly COHERENCE_1 = new SkillDefinition(FARLANDER_CATEGORY_ID, "coherence_1")
+	public readonly COHERENCE_1 = new SkillDefinition(this.categoryId, "coherence_1")
 		.itemIcon("minecraft:heart_of_the_sea")
 		.addDescription({
 			"color": "dark_purple",
 			"text": "Entropy you deal to others now takes 4 ticks longer to decay with a new median damage of 1.5x."
 		})
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly COHERENCE_2 = this.createSkill("coherence_2", def => def
+	public readonly COHERENCE_2 = this.createSkill("coherence_2", def => def
 		.itemIcon("minecraft:heart_of_the_sea")
 		.addDescription({
 			"color": "dark_purple",
@@ -266,18 +259,18 @@ class FarlanderSkills {
 		.cost(4)
 	);
 
-	public static readonly QUANTUM_CLEANSING = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_cleansing")
+	public readonly QUANTUM_CLEANSING = new SkillDefinition(this.categoryId, "quantum_cleansing")
 		.itemIcon("minecraft:milk_bucket")
 		.addDescription({
 			"color": "dark_purple",
 			"text": "Heat Death clears all negative effects on activation."
 		})
 		.cost(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
 	// TODO
-	public static readonly INFORMATION_PARADOX = new SkillDefinition(FARLANDER_CATEGORY_ID, "information_paradox")
+	public readonly INFORMATION_PARADOX = new SkillDefinition(this.categoryId, "information_paradox")
 		.effectIcon("minecraft:blindness")
 		.addDescription({
 			"color": "dark_purple",
@@ -286,12 +279,12 @@ class FarlanderSkills {
 		})
 		.cost(2)
 		.flagPlanned()
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
 
 
-	public static readonly QUANTUM_RELATIVITY = new SkillDefinition(FARLANDER_CATEGORY_ID, "quantum_relativity")
+	public readonly QUANTUM_RELATIVITY = new SkillDefinition(this.categoryId, "quantum_relativity")
 		.itemIcon("minecraft:clock")
 		.advancementFrame("challenge")
 		.addDescription({
@@ -311,13 +304,13 @@ class FarlanderSkills {
 		})
 		.size(1.25)
 		.cost(3)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
 
 
-	private static createTimeDilationSkill(tier: integer, cost: integer): Skill {
-		return new SkillDefinition(FARLANDER_CATEGORY_ID, `time_dilation_${tier}`)
+	private createTimeDilationSkill(tier: integer, cost: integer): Skill {
+		return new SkillDefinition(this.categoryId, `time_dilation_${tier}`)
 			.itemIcon("minecraft:popped_chorus_fruit")
 			.advancementFrame("task")
 			.addDescription({
@@ -325,18 +318,18 @@ class FarlanderSkills {
 				"text": `Quantum Relativity now lasts for ${FarlanderSkillData.TIME_DILATION_DURATION_TICK[tier - 1]} ticks.`
 			})
 			.cost(cost)
-			.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+			.serializeIntoSkill(this.definitionsJson)
 			.register(this.skills);
 	}
 
-	public static readonly TIME_DILATION_1 = this.createTimeDilationSkill(1, 1);
-	public static readonly TIME_DILATION_2 = this.createTimeDilationSkill(2, 2);
-	public static readonly TIME_DILATION_3 = this.createTimeDilationSkill(3, 2);
-	public static readonly TIME_DILATION_4 = this.createTimeDilationSkill(4, 2);
+	public readonly TIME_DILATION_1 = this.createTimeDilationSkill(1, 1);
+	public readonly TIME_DILATION_2 = this.createTimeDilationSkill(2, 2);
+	public readonly TIME_DILATION_3 = this.createTimeDilationSkill(3, 2);
+	public readonly TIME_DILATION_4 = this.createTimeDilationSkill(4, 2);
 
 
 
-	public static readonly EVENT_HORIZON = new SkillDefinition(FARLANDER_CATEGORY_ID, "event_horizon")
+	public readonly EVENT_HORIZON = new SkillDefinition(this.categoryId, "event_horizon")
 		.itemIcon("endermanoverhaul:summoner_pearl")
 		.addDescription({
 			"color": "dark_aqua",
@@ -348,10 +341,10 @@ class FarlanderSkills {
 		})
 		.cost(8)
 		.requiredSkills(2)
-		.serializeIntoSkill(FarlanderSkillDefinitionsJson)
+		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public static readonly THE_WORLD = this.createSkill("the_world", def => def
+	public readonly THE_WORLD = this.createSkill("the_world", def => def
 		.itemIcon("mowziesmobs:earthrend_gauntlet")
 		.addDescription({
 			"color": "dark_purple",
@@ -364,7 +357,7 @@ class FarlanderSkills {
 		.cost(10)
 	);
 
-	public static readonly RELATIVE_COMPRESSION_1 = this.createSkill("relative_compression_1", def => def
+	public readonly RELATIVE_COMPRESSION_1 = this.createSkill("relative_compression_1", def => def
 		.itemIcon("minecraft:anvil")
 		.addDescription({
 			"color": "dark_purple",
@@ -372,7 +365,7 @@ class FarlanderSkills {
 		})
 		.cost(1)
 	);
-	public static readonly RELATIVE_COMPRESSION_2 = this.createSkill("relative_compression_2", def => def
+	public readonly RELATIVE_COMPRESSION_2 = this.createSkill("relative_compression_2", def => def
 		.itemIcon("minecraft:anvil")
 		.addDescription({
 			"color": "dark_purple",
@@ -380,7 +373,7 @@ class FarlanderSkills {
 		})
 		.cost(2)
 	);
-	public static readonly RELATIVE_COMPRESSION_3 = this.createSkill("relative_compression_3", def => def
+	public readonly RELATIVE_COMPRESSION_3 = this.createSkill("relative_compression_3", def => def
 		.itemIcon("minecraft:anvil")
 		.addDescription({
 			"color": "dark_purple",
@@ -388,4 +381,5 @@ class FarlanderSkills {
 		})
 		.cost(2)
 	);
-}
+
+})().register();
