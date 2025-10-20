@@ -16,7 +16,7 @@ namespace BloodclotSkill {
 
 		// ensures that we track the highest bloodclot amount and caps it to their max possible bloodclot amount
 		const maxAbsorption = Math.min(getMaxBloodclot(player), getCurrentBloodclot(player) + healAmount);
-		BLOODCLOT_MAX_ABSORPTION.withValue(maxAbsorption).add(player);
+		BLOODCLOT_MAX_ABSORPTION.apply(player, maxAbsorption);
 		BLOODCLOT_DECAY_COOLDOWN.update(player);
 
 		const currentAbsorption = player.absorptionAmount;
@@ -41,7 +41,7 @@ namespace BloodclotSkill {
 		}
 
 		const newValue = Math.max(0, current - 1.0);
-		BLOODCLOT_MAX_ABSORPTION.withValue(newValue).add(player);
+		BLOODCLOT_MAX_ABSORPTION.apply(player, newValue);
 	}
 
 	function getBloodclotDecayDuration(player: ServerPlayer_): number {
