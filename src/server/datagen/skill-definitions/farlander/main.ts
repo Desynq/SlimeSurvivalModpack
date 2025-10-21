@@ -192,7 +192,7 @@ const FarlanderSkills = new (class extends SkillManager {
 			"color": "dark_red",
 			"text": "Heat death causes all enemies to have their total current entropy from you applied onto them again as one source (essentially doubling entropy damage)."
 		})
-		.cost(4)
+		.cost(8)
 		.requiredSkills(2)
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
