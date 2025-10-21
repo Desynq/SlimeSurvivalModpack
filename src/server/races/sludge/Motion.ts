@@ -91,7 +91,7 @@ namespace SludgeMotion {
 
 		removeModifier(player);
 		if (event.isCriticalHit()) {
-			const text = `"Motion: ${getMotion(player)} (${motionDamage.toFixed(2)})"`;
+			const text = `{"text":"Motion: ${getMotion(player)} (+${motionDamage.toFixed(2)})","color":"green"}`;
 			ActionbarManager.addMessage(player, text, getMotionDuration(player), undefined, "sludge.motion");
 			incrementMotion(player);
 			updateMotionTimestamp(player);
