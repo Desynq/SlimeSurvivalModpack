@@ -1,9 +1,11 @@
 
 // @ts-ignore
-const QueenBee = new (class extends EntityManager<Bee_> implements ITickableBoss<Bee_> {
+const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITickableBoss<Bee_> {
+
 	protected override isEntity(entity: unknown): entity is Bee_ {
 		return entity instanceof $Bee && entity.tags.contains("boss.queen_bee");
 	}
+
 
 	public isMinion(entity: unknown): entity is Bee_ {
 		return entity instanceof this.MINION_CLASS && entity.tags.contains("queen_bee_minion");
@@ -251,6 +253,6 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 	}
 });
 
-EntityEvents.death("minecraft:player", event => {
+EntityEvents.death("minecraft:player" as any, event => {
 	QueenBee.getEntities(event.server).forEach(boss => QueenBee.onPlayerDeathOld(boss, event.entity as ServerPlayer_));
 });

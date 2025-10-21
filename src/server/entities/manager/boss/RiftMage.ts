@@ -1,8 +1,6 @@
 
 
-const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManager<T> implements ITickableBoss<T> {
-
-	private readonly rewarder = new BossRewarder(1);
+const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableEntityManager<T> implements ITickableBoss<T> {
 	private readonly sfManager = new SoulFlareManager();
 
 	private readonly tsSoulFlare = new EntityTimestamp<T>("soul_flare");
@@ -251,6 +249,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 	private revertDamage(boss: T, attacker?: Entity_) {
 		const storage = boss.persistentData.getCompound("damage_taken");
+		if (storage.size() === 0) return;
 
 		let totalDamage = 0;
 		totalDamage += storage.getDouble("unknown");
@@ -264,7 +263,8 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 		}
 
 		if (storage.size() === 0) {
-			totalDamage = boss.maxHealth - boss.health;
+			const miscDamage = boss.maxHealth - boss.health - totalDamage;
+			totalDamage += miscDamage;
 		}
 
 		boss.persistentData.put("damage_taken", storage);

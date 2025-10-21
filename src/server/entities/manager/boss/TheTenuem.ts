@@ -20,7 +20,7 @@ const TheTenuem = new (class <T extends Phantom_ & Mob_> extends EntityManager<T
 	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
 		const bosses = this.getEntities(player.server);
 		for (const boss of bosses) {
-			const newHealth = Math.min(boss.maxHealth, boss.health + boss.maxHealth * 0.2);
+			const newHealth = MathHelper.clamped(boss.health + boss.maxHealth * 0.2, 0, boss.maxHealth);
 			tellOperators(player.server, `Healed boss to ${newHealth}`);
 			boss.health = newHealth;
 		}
