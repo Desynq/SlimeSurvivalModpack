@@ -164,31 +164,31 @@
 	"7jruof5a3mi8bfn4": {
 		"definition": "parried",
 		"x": -96,
-		"y": -64,
+		"y": -96,
 		"root": false
 	},
 	"yynm23kpk1k7pp2u": {
 		"definition": "clarity",
 		"x": -128,
-		"y": -32,
+		"y": 64,
 		"root": false
 	},
 	"3uul94cqmny01mpy": {
 		"definition": "clairvoyance",
 		"x": -160,
-		"y": 0,
+		"y": 32,
 		"root": false
 	},
 	"bex2nnru3g3wqkki": {
 		"definition": "disconcern",
 		"x": -128,
-		"y": 32,
+		"y": -64,
 		"root": false
 	},
 	"kwkog24kyzdzplqn": {
 		"definition": "solitude",
 		"x": -96,
-		"y": 64,
+		"y": 96,
 		"root": false
 	},
 	"8ge7cuvlc272q9uw": {
@@ -207,6 +207,12 @@
 		"definition": "hemorrhage",
 		"x": 288,
 		"y": -128,
+		"root": false
+	},
+	"g5d0kaic7fp7w8y5": {
+		"definition": "deflection",
+		"x": -160,
+		"y": -32,
 		"root": false
 	}
 }
