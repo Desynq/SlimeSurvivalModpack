@@ -74,10 +74,6 @@
 				"h5w83lztq232vgy9"
 			],
 			[
-				"7mb8epyl7aobm9ub",
-				"rsh5hh3t9zzo0o6h"
-			],
-			[
 				"rsh5hh3t9zzo0o6h",
 				"wkrr6r839qa8gp9q"
 			],
@@ -144,20 +140,20 @@
 			[
 				"2u5ieie8je107lqi",
 				"g4i37sl63snma0rp"
+			],
+			[
+				"g3xbm7meborm5nct",
+				"7mb8epyl7aobm9ub"
+			],
+			[
+				"g3xbm7meborm5nct",
+				"rsh5hh3t9zzo0o6h"
 			]
 		],
 		"bidirectional": [
 			[
 				"n39u9um6nxp1haoh",
 				"1eo7ddidgilk3911"
-			],
-			[
-				"1eo7ddidgilk3911",
-				"7mb8epyl7aobm9ub"
-			],
-			[
-				"7mb8epyl7aobm9ub",
-				"s9il1r95zp4fg5vl"
 			],
 			[
 				"s9il1r95zp4fg5vl",
@@ -170,6 +166,14 @@
 			[
 				"hi8bub7iluizrm0t",
 				"n39u9um6nxp1haoh"
+			],
+			[
+				"1eo7ddidgilk3911",
+				"g3xbm7meborm5nct"
+			],
+			[
+				"g3xbm7meborm5nct",
+				"s9il1r95zp4fg5vl"
 			]
 		]
 	}

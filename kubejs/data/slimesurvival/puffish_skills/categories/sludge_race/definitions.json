@@ -301,24 +301,17 @@
 				"text": "+10 Max Health"
 			},
 			{
-				"color": "gold",
-				"text": "\n\n[Root Skill]"
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
-		"cost": 0,
-		"frame": {
-			"type": "advancement",
-			"data": {
-				"frame": "goal"
-			}
-		},
+		"cost": 1,
 		"icon": {
 			"type": "effect",
 			"data": {
 				"effect": "minecraft:health_boost"
 			}
-		},
-		"required_points": 2147483647
+		}
 	},
 	"congealed_2": {
 		"title": "Congealed II",
@@ -1051,5 +1044,42 @@
 				"item": "minecraft:anvil"
 			}
 		}
+	},
+	"volatile": {
+		"title": "Volatile",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "You struggle to stay well-defined when pushing your body to its limits.",
+				"color": "dark_green",
+				"italic": true
+			},
+			{
+				"text": "\n\nWhen your attack damage is higher than your max health, you take extra damage."
+			},
+			{
+				"text": "\ndamage *= damage / maxHealth",
+				"color": "dark_gray"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:dragon_breath"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
 	}
 }

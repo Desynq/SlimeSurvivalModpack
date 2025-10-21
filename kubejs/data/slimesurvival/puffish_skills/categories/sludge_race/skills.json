@@ -61,9 +61,9 @@
 	},
 	"7mb8epyl7aobm9ub": {
 		"definition": "congealed_1",
-		"x": 64,
-		"y": -36.95041722813605,
-		"root": true
+		"x": 96,
+		"y": -92.37604307034012,
+		"root": false
 	},
 	"u3dd2zdz5jy3xufx": {
 		"definition": "phagocytosis",
@@ -97,8 +97,8 @@
 	},
 	"8r71o66i4ttue5nn": {
 		"definition": "congealed_2",
-		"x": 96,
-		"y": -55.42562584220407,
+		"x": 128,
+		"y": -147.8016689125442,
 		"root": false
 	},
 	"psd4irgsit6fn85w": {
@@ -139,38 +139,38 @@
 	},
 	"h5w83lztq232vgy9": {
 		"definition": "congealed_3",
-		"x": 128,
-		"y": -73.9008344562721,
+		"x": 160,
+		"y": -203.22729475474824,
 		"root": false
 	},
 	"rsh5hh3t9zzo0o6h": {
 		"definition": "cytoplasm_1",
-		"x": 96,
-		"y": -18.475208614068023,
+		"x": 128,
+		"y": -36.95041722813605,
 		"root": false
 	},
 	"wkrr6r839qa8gp9q": {
 		"definition": "cytoplasm_2",
-		"x": 128,
-		"y": 0,
+		"x": 192,
+		"y": -36.95041722813605,
 		"root": false
 	},
 	"ri3ow7bv6q31eh0h": {
 		"definition": "cytoplasm_3",
-		"x": 160,
-		"y": 18.475208614068023,
+		"x": 256,
+		"y": -36.95041722813605,
 		"root": false
 	},
 	"ij9ueq5rxplco74y": {
 		"definition": "cytoplasm_4",
-		"x": 192,
-		"y": 36.95041722813605,
+		"x": 320,
+		"y": -36.95041722813605,
 		"root": false
 	},
 	"fuedicunnah9htl6": {
 		"definition": "cytoskeleton",
-		"x": 160,
-		"y": -18.475208614068023,
+		"x": 192,
+		"y": -73.9008344562721,
 		"root": false
 	},
 	"wbp3gmhzmudu4oyc": {
@@ -244,5 +244,11 @@
 		"x": 64,
 		"y": 147.8016689125442,
 		"root": false
+	},
+	"g3xbm7meborm5nct": {
+		"definition": "volatile",
+		"x": 64,
+		"y": -36.95041722813605,
+		"root": true
 	}
 }

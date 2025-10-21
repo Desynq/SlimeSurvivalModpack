@@ -140,13 +140,12 @@ const SludgeSkills = new (class extends SkillManager {
 
 
 	public readonly CONGEALED_1 = new SkillDefinition(this.categoryId, "congealed_1")
-		.advancementFrame("goal")
 		.effectIcon("minecraft:health_boost")
 		.addDescription({
 			"color": "green",
 			"text": "+10 Max Health"
 		})
-		.rootSkill()
+		.cost(1)
 		.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
 		.serialize(this.definitionsJson)
 		.toSkill("7mb8epyl7aobm9ub")
@@ -492,4 +491,24 @@ const SludgeSkills = new (class extends SkillManager {
 		})
 		.cost(4)
 	);
+
+
+	public readonly VOLATILE = this.createSkill("volatile", def => def
+		.itemIcon("minecraft:dragon_breath")
+		.addDescription({
+			"text": "You struggle to stay well-defined when pushing your body to its limits.",
+			"color": "dark_green",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nWhen your attack damage is higher than your max health, you take extra damage."
+		})
+		.addDescription({
+			"text": "\ndamage *= damage / maxHealth",
+			"color": "dark_gray"
+		})
+		.rootSkill()
+	);
+
+
 })().register();
