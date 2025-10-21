@@ -3,7 +3,8 @@
 class EntityTimestamp<T extends Entity_> {
 
 	public constructor(
-		private readonly id: string
+		private readonly id: string,
+		private readonly defaultDuration: number = 1
 	) { }
 
 	public get(entity: T): long {
@@ -87,7 +88,8 @@ class EntityTimestamp<T extends Entity_> {
 	 * Tries to update the timestamp if it has elapsed.
 	 * @returns `true` if timestamp has elapsed, `false` otherwise.
 	 */
-	public tryUpdate(entity: T, duration: long): boolean {
+	public tryUpdate(entity: T, duration?: long): boolean {
+		if (duration === undefined) duration = this.defaultDuration;
 		if (this.hasElapsed(entity, duration)) {
 			this.update(entity);
 			return true;
