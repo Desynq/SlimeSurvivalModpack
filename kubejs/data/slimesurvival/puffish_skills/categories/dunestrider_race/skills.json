@@ -31,20 +31,20 @@
 	},
 	"5p7xq4v6b9p2z8dj": {
 		"definition": "tread",
-		"x": -32,
-		"y": 0,
+		"x": 0,
+		"y": 64,
 		"root": false
 	},
 	"w8k3z1v6b9p2x7qm": {
 		"definition": "deft",
-		"x": -64,
-		"y": 32,
+		"x": 32,
+		"y": 96,
 		"root": false
 	},
 	"x7F9kLm2Qw8VzR1T": {
 		"definition": "light_footed",
-		"x": -64,
-		"y": -32,
+		"x": -32,
+		"y": 96,
 		"root": false
 	},
 	"2n8xq5v3b1p6z7wh": {
@@ -109,37 +109,37 @@
 	},
 	"od48m4hf7r9le2mv": {
 		"definition": "heavenly_restriction",
-		"x": 160,
+		"x": 192,
 		"y": 0,
 		"root": false
 	},
 	"idFW1923jf01l3o6": {
 		"definition": "furantur_1",
-		"x": 192,
+		"x": 256,
 		"y": 0,
 		"root": false
 	},
 	"g7xq2n4mdbv5czlu": {
 		"definition": "furantur_2",
-		"x": 224,
+		"x": 320,
 		"y": -32,
 		"root": false
 	},
 	"r1kz8jwmq5tl2hce": {
 		"definition": "furantur_3",
-		"x": 256,
+		"x": 384,
 		"y": 0,
 		"root": false
 	},
 	"n9dfv3upxbz4eaym": {
 		"definition": "furantur_4",
-		"x": 224,
+		"x": 320,
 		"y": 32,
 		"root": false
 	},
 	"l2mpxq7wrn0cegti": {
 		"definition": "furantur_5",
-		"x": 224,
+		"x": 320,
 		"y": 0,
 		"root": false
 	},
@@ -151,8 +151,62 @@
 	},
 	"5umrj3x3ot05rrf6": {
 		"definition": "bloodclot_1",
-		"x": 192,
+		"x": 256,
+		"y": -64,
+		"root": false
+	},
+	"qr6bvijmndxtwjwm": {
+		"definition": "focus",
+		"x": -64,
+		"y": 0,
+		"root": false
+	},
+	"7jruof5a3mi8bfn4": {
+		"definition": "parried",
+		"x": -96,
+		"y": -64,
+		"root": false
+	},
+	"yynm23kpk1k7pp2u": {
+		"definition": "clarity",
+		"x": -128,
 		"y": -32,
+		"root": false
+	},
+	"3uul94cqmny01mpy": {
+		"definition": "clairvoyance",
+		"x": -160,
+		"y": 0,
+		"root": false
+	},
+	"bex2nnru3g3wqkki": {
+		"definition": "disconcern",
+		"x": -128,
+		"y": 32,
+		"root": false
+	},
+	"kwkog24kyzdzplqn": {
+		"definition": "solitude",
+		"x": -96,
+		"y": 64,
+		"root": false
+	},
+	"8ge7cuvlc272q9uw": {
+		"definition": "bloodclot_2",
+		"x": 256,
+		"y": -128,
+		"root": false
+	},
+	"8isd9j70qi4617cc": {
+		"definition": "primacy",
+		"x": 224,
+		"y": -128,
+		"root": false
+	},
+	"wmh1bhhf67jp6fz8": {
+		"definition": "hemorrhage",
+		"x": 288,
+		"y": -128,
 		"root": false
 	}
 }

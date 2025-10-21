@@ -769,13 +769,50 @@
 		"rewards": [],
 		"description": [
 			"",
+			[
+				"",
+				{
+					"text": "The taste of your enemies' blood keeps you running.",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nOverheal up to half your max health in absorption hearts from lifesteal.\nLifesteal will prioritize maxing out normal health before overhealing.\nOverheal decays at 1hp/s."
+				}
+			],
 			{
-				"text": "Overheal up to your max health in absorption hearts from lifesteal.",
-				"color": "dark_red"
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:beetroot_soup"
+			}
+		}
+	},
+	"bloodclot_2": {
+		"title": "Bloodclot II",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Your lust for vengeance knows no bounds.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\n+100% Max Overheal"
 			},
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,
@@ -783,6 +820,323 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:beetroot_soup"
+			}
+		}
+	},
+	"primacy": {
+		"title": "Primacy",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "The world heals too quickly. Scars must linger, pain must speak — only through excess and unrest can justice breathe again.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nLifesteal prioritizes maxing out overheal before healing actual health."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:netherite_upgrade_smithing_template"
+			}
+		}
+	},
+	"hemorrhage": {
+		"title": "Hemorrhage",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Dominion does not wait for patient hands. Justice is ephemeral. Best to take it now when the opportunity is ripe.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nYou can surge overheal (overheal with no cap) as long as the lifesteal amount is greater than current total overheal."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 8 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 8,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:health_boost"
+			}
+		}
+	},
+	"focus": {
+		"title": "Focus",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "No distractions.",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nPressing"
+				}
+			],
+			[
+				{
+					"color": "gray",
+					"text": " ["
+				},
+				{
+					"color": "yellow",
+					"keybind": "key.slimesurvival.primary_ability"
+				},
+				{
+					"color": "gray",
+					"text": "] "
+				}
+			],
+			[
+				"",
+				{
+					"text": "will activate Focus.\n\nFocus has a 30s cooldown and lasts 5 seconds with a 1 second charge-up for it to have any effect.\nDuring those 5 seconds and the charge-up time, if you take damage, stop using an item, or attack: focus will automatically deactivate.\n\nWhile Focus is active:\nHysteria and Momentum will not proc."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:night_vision"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "challenge"
+			}
+		}
+	},
+	"deflection": {
+		"title": "Deflection",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "You think those puny arrows do anything to me?",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nWhile Focus is active:\nProjectiles are automatically parried and ignored."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:shield"
+			}
+		}
+	},
+	"parried": {
+		"title": "Parried",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "You're a fool if you think I didn't see that coming.",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nYou now parry the attack that deactivated your focus, taking no damage from it and stunning your opponent for 2 seconds. Must be an immediate attack."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:iron_sword"
+			}
+		}
+	},
+	"clarity": {
+		"title": "Clarity",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "I said no distractions.",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nAll negative effects are removed while Focus is active."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 3 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:glass"
+			}
+		}
+	},
+	"clairvoyance": {
+		"title": "Clairvoyance",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "Justice is blind, I am not.",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nWhile Focus is active:\nAll enemies currently targeting you gain glowing."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:glowing"
+			}
+		}
+	},
+	"disconcern": {
+		"title": "Disconcern",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "Does this concern you?",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nWhile Focus is active:\nIgnore damage sources that aren't caused by a mob targeting you or a player."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:naga_courtyard_miniature_structure"
+			}
+		}
+	},
+	"solitude": {
+		"title": "Solitude",
+		"rewards": [],
+		"description": [
+			"",
+			[
+				"",
+				{
+					"text": "Finally, some peace and quiet.",
+					"color": "dark_red",
+					"italic": true
+				},
+				{
+					"text": "\n\nFocus duration lasts twice as long when there are no other players within 32 blocks of you."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:iron_bars"
 			}
 		}
 	}

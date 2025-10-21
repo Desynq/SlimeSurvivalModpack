@@ -334,20 +334,192 @@ const DunestriderSkills = new (class extends SkillManager {
 
 	public readonly BLOODCLOT_1 = new SkillDefinition(this.categoryId, "bloodclot_1")
 		.itemIcon("minecraft:beetroot_soup")
-		.addDescription({
-			"text": "Overheal up to your max health in absorption hearts from lifesteal.",
-			"color": "dark_red"
-		})
-		.cost(4)
+		.addDescription(["",
+			{
+				"text": "The taste of your enemies' blood keeps you running.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nOverheal up to half your max health in absorption hearts from lifesteal."
+					+ "\nLifesteal will prioritize maxing out normal health before overhealing."
+					+ "\nOverheal decays at 1hp/s.",
+			}
+		])
+		.cost(2)
 		.serialize(this.definitionsJson)
 		.findSkill()
 		.register(this.skills);
 
+	public readonly BLOODCLOT_2 = this.createSkill("bloodclot_2", def => def
+		.itemIcon("minecraft:beetroot_soup")
+		.addDescription({
+			"text": "Your lust for vengeance knows no bounds.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\n+100% Max Overheal"
+		})
+		.cost(4)
+		.flagPlanned()
+	);
+
+	public readonly PRIMACY = this.createSkill("primacy", def => def
+		.itemIcon("minecraft:netherite_upgrade_smithing_template")
+		.addDescription({
+			"text": "The world heals too quickly. Scars must linger, pain must speak — only through excess and unrest can justice breathe again.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nLifesteal prioritizes maxing out overheal before healing actual health.",
+		})
+		.cost(4)
+		.flagPlanned()
+	);
+
+	public readonly HEMORRHAGE = this.createSkill("hemorrhage", def => def
+		.effectIcon("minecraft:health_boost")
+		.addDescription({
+			"text": "Dominion does not wait for patient hands. Justice is ephemeral. Best to take it now when the opportunity is ripe.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nYou can surge overheal (overheal with no cap) as long as the lifesteal amount is greater than current total overheal."
+		})
+		.cost(8)
+		.flagPlanned()
+	);
+
+
+
+	public readonly FOCUS = this.createSkill("focus", def => def
+		.effectIcon("minecraft:night_vision")
+		.advancementFrame("challenge")
+		.addDescription(["",
+			{
+				"text": "No distractions.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nPressing"
+			}
+		])
+		.addKeybindDescription("key.slimesurvival.primary_ability")
+		.addDescription(["",
+			{
+				"text": "will activate Focus."
+					+ "\n\nFocus has a 30s cooldown and lasts 5 seconds with a 1 second charge-up for it to have any effect."
+
+					+ "\nDuring those 5 seconds and the charge-up time, if you take damage, stop using an item, or attack: focus will automatically deactivate."
+
+					+ "\n\nWhile Focus is active:\nHysteria and Momentum will not proc."
+			}
+		])
+		.cost(1)
+		.flagPlanned()
+	);
+
+	public readonly DEFLECTION = this.createSkill("deflection", def => def
+		.itemIcon("minecraft:shield")
+		.addDescription(["",
+			{
+				"text": "You think those puny arrows do anything to me?",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nWhile Focus is active:\nProjectiles are automatically parried and ignored."
+			}
+		])
+		.cost(2)
+		.flagPlanned()
+	);
+
+	public readonly PARRIED = this.createSkill("parried", def => def
+		.itemIcon("minecraft:iron_sword")
+		.addDescription(["",
+			{
+				"text": "You're a fool if you think I didn't see that coming.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nYou now parry the attack that deactivated your focus, taking no damage from it and stunning your opponent for 2 seconds. Must be an immediate attack."
+			}
+		])
+		.cost(4)
+		.flagPlanned()
+	);
+
+	public readonly CLARITY = this.createSkill("clarity", def => def
+		.itemIcon("minecraft:glass")
+		.addDescription(["",
+			{
+				"text": "I said no distractions.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nAll negative effects are removed while Focus is active."
+			}
+		])
+		.cost(3)
+		.flagPlanned()
+	);
+
+	public readonly CLAIRVOYANCE = this.createSkill("clairvoyance", def => def
+		.effectIcon("minecraft:glowing")
+		.addDescription(["",
+			{
+				"text": "Justice is blind, I am not.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nWhile Focus is active:\nAll enemies currently targeting you gain glowing."
+			}
+		])
+		.cost(1)
+		.flagPlanned()
+	);
+
+	public readonly DISCONCERN = this.createSkill("disconcern", def => def
+		.itemIcon("twilightforest:naga_courtyard_miniature_structure")
+		.addDescription(["",
+			{
+				"text": "Does this concern you?",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nWhile Focus is active:\nIgnore damage sources that aren't caused by a mob targeting you or a player."
+			}
+		])
+		.cost(4)
+		.flagPlanned()
+	);
+
+	public readonly SOLITUDE = this.createSkill("solitude", def => def
+		.itemIcon("minecraft:iron_bars")
+		.addDescription(["",
+			{
+				"text": "Finally, some peace and quiet.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nFocus duration lasts twice as long when there are no other players within 32 blocks of you."
+			}
+		])
+		.cost(2)
+		.flagPlanned()
+	);
+
 })().register();
-
-
-
-
 
 
 
