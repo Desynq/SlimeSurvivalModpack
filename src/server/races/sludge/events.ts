@@ -8,11 +8,13 @@ namespace SludgeEvents {
 	NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 		if (event.isCanceled()) return;
 
+		const player = event.entity;
+		if (!(player instanceof $ServerPlayer)) return;
+
 		const amount = event.amount;
 		if (amount <= 0) return;
 
-		const player = event.entity;
-		if (!(player instanceof $ServerPlayer)) return;
+		if (!event.source.is($DamageTypeTags.IS_FIRE as any)) return;
 
 		if (SludgeSkills.VOLATILE.isLockedFor(player)) return;
 

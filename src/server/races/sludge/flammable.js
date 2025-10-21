@@ -23,8 +23,7 @@ EntityEvents.afterHurt("minecraft:player", event => {
 		return;
 	}
 
-	const damageType = event.source.type().msgId();
-	if (["onFire", "inFire", "lava"].indexOf(damageType) === -1) {
+	if (!event.source.is($DamageTypeTags.IS_FIRE)) {
 		return;
 	}
 

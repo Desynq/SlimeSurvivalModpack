@@ -804,8 +804,12 @@
 		"description": [
 			"",
 			{
-				"color": "aqua",
+				"color": "gold",
 				"text": "Passively regenerate 1 health every 5 seconds at the cost of 1 hunger point."
+			},
+			{
+				"text": "\n\nMitosis does not work while on fire.",
+				"color": "red"
 			},
 			{
 				"color": "dark_green",
@@ -826,8 +830,12 @@
 		"description": [
 			"",
 			{
-				"color": "dark_red",
-				"text": "Mitosis now works until starvation.\n-50% hunger drain per mitosis tick."
+				"color": "gold",
+				"text": "Mitosis now works until starvation."
+			},
+			{
+				"text": "\n-50% hunger drain per mitosis tick.",
+				"color": "green"
 			},
 			{
 				"color": "dark_green",
@@ -848,8 +856,8 @@
 		"description": [
 			"",
 			{
-				"color": "aqua",
-				"text": "Mitosis now occurs every 4 seconds."
+				"text": "Mitosis now occurs every 4 seconds",
+				"color": "gold"
 			},
 			{
 				"color": "dark_green",
@@ -870,8 +878,8 @@
 		"description": [
 			"",
 			{
-				"color": "aqua",
-				"text": "Mitosis now occurs every 3 seconds."
+				"text": "Mitosis now occurs every 3 seconds",
+				"color": "gold"
 			},
 			{
 				"color": "dark_green",
@@ -892,8 +900,8 @@
 		"description": [
 			"",
 			{
-				"color": "aqua",
-				"text": "Mitosis now occurs every 2 seconds."
+				"text": "Mitosis now occurs every 2 seconds",
+				"color": "gold"
 			},
 			{
 				"color": "dark_green",
@@ -914,8 +922,8 @@
 		"description": [
 			"",
 			{
-				"color": "aqua",
-				"text": "Mitosis now occurs every second."
+				"text": "Mitosis now occurs every 1 second",
+				"color": "gold"
 			},
 			{
 				"color": "dark_green",
@@ -937,7 +945,7 @@
 			"",
 			{
 				"color": "green",
-				"text": "Motion stacks no longer reset when doing normal attacks."
+				"text": "Motion stacks no longer reset when doing normal attacks.\n\nInstead, you lose the damage modifier after landing a normal attack and regain it after doing a critical attack again."
 			},
 			{
 				"color": "dark_green",
@@ -1056,7 +1064,7 @@
 				"italic": true
 			},
 			{
-				"text": "\n\nWhen your attack damage is higher than your max health, you take extra damage."
+				"text": "\n\nWhen your attack damage is higher than your max health, you take extra damage from fire-related damage."
 			},
 			{
 				"text": "\ndamage *= damage / maxHealth",

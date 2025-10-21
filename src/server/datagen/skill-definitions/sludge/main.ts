@@ -375,8 +375,12 @@ const SludgeSkills = new (class extends SkillManager {
 	public readonly MITOSIS = new SkillDefinition(this.categoryId, "mitosis")
 		.effectIcon("minecraft:regeneration")
 		.addDescription({
-			"color": "aqua",
+			"color": "gold",
 			"text": "Passively regenerate 1 health every 5 seconds at the cost of 1 hunger point."
+		})
+		.addDescription({
+			"text": "\n\nMitosis does not work while on fire.",
+			"color": "red"
 		})
 		.cost(1)
 		.serialize(this.definitionsJson)
@@ -386,57 +390,34 @@ const SludgeSkills = new (class extends SkillManager {
 	public readonly APOPTOSIS = new SkillDefinition(this.categoryId, "apoptosis")
 		.effectIcon("minecraft:hunger")
 		.addDescription({
-			"color": "dark_red",
-			"text": "Mitosis now works until starvation.\n-50% hunger drain per mitosis tick."
+			"color": "gold",
+			"text": "Mitosis now works until starvation."
+		})
+		.addDescription({
+			"text": "\n-50% hunger drain per mitosis tick.",
+			"color": "green"
 		})
 		.cost(2)
 		.serialize(this.definitionsJson)
 		.toSkill("4yjkeqmp04gygc04")
 		.register(this.skills);
 
-	public readonly MITOTIC_ACCELERATION_1 = new SkillDefinition(this.categoryId, "mitotic_acceleration_1")
-		.itemIcon("minecraft:clock")
-		.addDescription({
-			"color": "aqua",
-			"text": "Mitosis now occurs every 4 seconds."
-		})
-		.cost(1)
-		.serialize(this.definitionsJson)
-		.toSkill("xj64dsjei37hvgax")
-		.register(this.skills);
+	public readonly MITOTIC_ACCELERATION_SKILLS = this.createTieredSkills("mitotic_acceleration", 4, (definition, tier) => {
+		const seconds = [4, 3, 2, 1][tier - 1];
+		const cost = [1, 2, 3, 4][tier - 1];
+		definition
+			.itemIcon("minecraft:clock")
+			.addDescription({
+				"text": `Mitosis now occurs every ${seconds} second${seconds !== 1 ? "s" : ""}`,
+				"color": "gold"
+			})
+			.cost(cost);
+	});
 
-	public readonly MITOTIC_ACCELERATION_2 = new SkillDefinition(this.categoryId, "mitotic_acceleration_2")
-		.itemIcon("minecraft:clock")
-		.addDescription({
-			"color": "aqua",
-			"text": "Mitosis now occurs every 3 seconds."
-		})
-		.cost(2)
-		.serialize(this.definitionsJson)
-		.toSkill("lsce7nkfd76wytmm")
-		.register(this.skills);
-
-	public readonly MITOTIC_ACCELERATION_3 = new SkillDefinition(this.categoryId, "mitotic_acceleration_3")
-		.itemIcon("minecraft:clock")
-		.addDescription({
-			"color": "aqua",
-			"text": "Mitosis now occurs every 2 seconds."
-		})
-		.cost(3)
-		.serialize(this.definitionsJson)
-		.toSkill("64ckkk2rx7hfvkqq")
-		.register(this.skills);
-
-	public readonly MITOTIC_ACCELERATION_4 = new SkillDefinition(this.categoryId, "mitotic_acceleration_4")
-		.itemIcon("minecraft:clock")
-		.addDescription({
-			"color": "aqua",
-			"text": "Mitosis now occurs every second."
-		})
-		.cost(4)
-		.serialize(this.definitionsJson)
-		.toSkill("y2fpcywmblqtu859")
-		.register(this.skills);
+	public readonly MITOTIC_ACCELERATION_1 = this.MITOTIC_ACCELERATION_SKILLS[0];
+	public readonly MITOTIC_ACCELERATION_2 = this.MITOTIC_ACCELERATION_SKILLS[1];
+	public readonly MITOTIC_ACCELERATION_3 = this.MITOTIC_ACCELERATION_SKILLS[2];
+	public readonly MITOTIC_ACCELERATION_4 = this.MITOTIC_ACCELERATION_SKILLS[3];
 
 
 
@@ -450,6 +431,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.addDescription({
 			"color": "green",
 			"text": "Motion stacks no longer reset when doing normal attacks."
+				+ "\n\nInstead, you lose the damage modifier after landing a normal attack and regain it after doing a critical attack again."
 		})
 		.cost(4)
 	);
@@ -501,7 +483,7 @@ const SludgeSkills = new (class extends SkillManager {
 			"italic": true
 		})
 		.addDescription({
-			"text": "\n\nWhen your attack damage is higher than your max health, you take extra damage."
+			"text": "\n\nWhen your attack damage is higher than your max health, you take extra damage from fire-related damage."
 		})
 		.addDescription({
 			"text": "\ndamage *= damage / maxHealth",
