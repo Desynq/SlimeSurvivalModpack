@@ -21,9 +21,10 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 	}
 
 	public override onIncomingDamage(entity: T, event: LivingIncomingDamageEvent_): void {
-		if (!event.source.is($TagKey.create($Registries.DAMAGE_TYPE, "minecraft:bypasses_invulnerability") as any) && !(event.source.actual instanceof $ServerPlayer)) {
-			event.setCanceled(true);
-		}
+		if (event.source.is($DamageTypeTags.BYPASSES_INVULNERABILITY as any)) return;
+		if (event.source.actual instanceof $ServerPlayer) return;
+
+		event.setCanceled(true);
 	}
 
 	public override onAfterHurt(boss: T, event: AfterLivingEntityHurtKubeEvent_): void {
@@ -257,7 +258,8 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 		if (attacker instanceof $ServerPlayer) {
 			CommandHelper.runCommandSilent(attacker.server, `scoreboard players reset ${attacker.username} rift_mage_damage`);
-			totalDamage += storage.getDouble(attacker.stringUUID);
+			// only reverting a percentage of player damage to stop the fight from becoming endless
+			totalDamage += storage.getDouble(attacker.stringUUID) * 0.95;
 			storage.remove(attacker.stringUUID);
 		}
 
