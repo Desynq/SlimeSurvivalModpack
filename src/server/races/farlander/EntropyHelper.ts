@@ -1,10 +1,6 @@
 class EntropyHelper {
-	public static isFromQuantumAttacker(victim: LivingEntity_, attacker: any): attacker is ServerPlayer_ {
-		if (!(attacker instanceof $ServerPlayer)) {
-			return false;
-		}
-
-		return SkillHelper.hasSkill(attacker, FarlanderSkills.QUANTUM_RENDING);
+	public static dealsEntropyDamage(player: ServerPlayer_): boolean {
+		return SkillHelper.hasSkill(player, FarlanderSkills.QUANTUM_RENDING);
 	}
 
 	public static isFarlander(entity: ServerPlayer_): boolean {
@@ -66,7 +62,7 @@ class EntropyHelper {
 		entity.persistentData.remove("lifetime_entropy_damage");
 	}
 
-	public static getEntropyPercentageFromAttacker(victim: LivingEntity_, attacker: Entity_): float {
+	public static getEntropyPercentFromAttacker(victim: LivingEntity_, attacker: Entity_): float {
 		const holder = SkillHelper.asPlayerWithSkillTier(attacker,
 			FarlanderSkills.QUANTUM_RENDING,
 			FarlanderSkills.QUANTUM_RENDING_2,

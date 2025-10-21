@@ -2,14 +2,20 @@
 
 namespace FarlanderEvents {
 
-	function isBlacklistedDamageSource(type: string): boolean {
+	function isBlacklistedDamageType(type: string): boolean {
 		const blacklistedDamageSources = ["genericKill", "slimesurvival.entropy_kill"];
 		return blacklistedDamageSources.includes(type);
 	}
 
+	function applyAbsorptionDamage(victim: LivingEntity_, damage: float) {
+		const newAbsorptionValue = victim.absorptionAmount - damage;
+		victim.setAbsorptionAmount(newAbsorptionValue);
+		return -Math.min(newAbsorptionValue, 0);
+	}
+
 	EntityEvents.beforeHurt(event => {
 		const victim = event.entity;
-		const attacker = event.source.actual;
+		const attacker = event.source.actual as Entity_ | null;
 
 		if (!(victim instanceof $LivingEntity)) {
 			return;
@@ -18,40 +24,54 @@ namespace FarlanderEvents {
 			return;
 		}
 
-		const attackerHasQuantumRending = EntropyHelper.isFromQuantumAttacker(victim, attacker);
-		const isFarlander = victim instanceof $ServerPlayer && EntropyHelper.isFarlander(victim);
-		if (!isFarlander && !attackerHasQuantumRending) {
+		const damageType = event.source.getType();
+
+		const entropicDamageType = damageType === "slimesurvival.entropy_damage";
+		const attackerDealsEntropyDamage = attacker instanceof $ServerPlayer && EntropyHelper.dealsEntropyDamage(attacker);
+		const victimIsFarlander = victim instanceof $ServerPlayer && EntropyHelper.isFarlander(victim);
+
+		if (!entropicDamageType && !victimIsFarlander && !attackerDealsEntropyDamage) {
 			return;
 		}
 
-		if (isBlacklistedDamageSource(event.source.getType())) return;
+		if (!entropicDamageType && isBlacklistedDamageType(damageType)) return;
 
-		let postAbsorptionDamage = applyAbsorptionDamage(victim, event.damage);
 
+		let leftoverDamage = applyAbsorptionDamage(victim, event.damage);
 		const holder = EntropyHolder.getOrCreate(victim);
 
-		let rendingPercentage = attackerHasQuantumRending
-			? EntropyHelper.getEntropyPercentageFromAttacker(victim, attacker)
-			: 0;
+		if (leftoverDamage <= 0) {
+			// no remaining damage to process, so we fall through to overriding damage
+		}
+		else if (entropicDamageType) {
+			holder.pushEntropyEntry(leftoverDamage, attacker);
+			leftoverDamage = 0;
+		}
+		else {
+			let rendingPercent = attackerDealsEntropyDamage
+				? EntropyHelper.getEntropyPercentFromAttacker(victim, attacker)
+				: 0;
 
-		if (rendingPercentage > 0) {
-			let rendingDamage = postAbsorptionDamage * rendingPercentage;
-			holder.pushEntropyEntry(rendingDamage, attacker);
-			postAbsorptionDamage -= rendingDamage;
+			if (rendingPercent > 0) {
+				let rendingDamage = leftoverDamage * rendingPercent;
+				holder.pushEntropyEntry(rendingDamage, attacker);
+				leftoverDamage -= rendingDamage;
+			}
+
+			// Farlanders convert remaining *non-entropic* damage into entropy
+			if (leftoverDamage > 0 && victimIsFarlander) {
+				holder.pushEntropyEntry(leftoverDamage, attacker);
+				leftoverDamage = 0;
+			}
 		}
 
-		if (isFarlander) {
-			holder.pushEntropyEntry(postAbsorptionDamage, attacker);
-			postAbsorptionDamage = 0;
-		}
-		event.setDamage(postAbsorptionDamage);
+		event.setDamage(leftoverDamage);
 	});
 
-	function applyAbsorptionDamage(victim: LivingEntity_, damage: float) {
-		const newAbsorptionValue = victim.absorptionAmount - damage;
-		victim.setAbsorptionAmount(newAbsorptionValue);
-		return -Math.min(newAbsorptionValue, 0);
-	}
+
+
+
+
 
 	NativeEvents.onEvent($EntityTickEvent$Pre, event => {
 		const entity = event.getEntity();

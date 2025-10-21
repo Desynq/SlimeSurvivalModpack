@@ -47,11 +47,12 @@ class EntropyHolder {
 		EntropyHolder.holders[uuid] = this;
 	}
 
+	/**
+	 * Silently ignores `damage <= 0`
+	 */
+	public pushEntropyEntry(damage: float, attacker?: Entity_ | null) {
+		if (damage <= 0) return;
 
-	public pushEntropyEntry(damage: float, attacker?: Entity_) {
-		if (damage <= 0) {
-			return;
-		}
 		this.entropyEntries.push(new EntropyEntry(
 			damage,
 			attacker != undefined ? attacker.stringUUID : undefined
@@ -108,18 +109,15 @@ class EntropyHolder {
 		if (entity.health <= 0) {
 			return;
 		}
-		let uncertaintyDamage;
+
+		let uncertaintyDamage: number;
 		let attacker = entry.getAttacker(entity.server);
-		if (attacker) {
-			if (!EntropyHelper.isFromQuantumAttacker(entity, attacker)) {
-				uncertaintyDamage = Math.random() * 2 * amount;
-			}
-			else {
-				let median = SkillHelper.hasSkill(attacker, FarlanderSkills.COHERENCE_1)
-					? 1.5
-					: 1.25;
-				uncertaintyDamage = MathHelper.medianBiasedRandom(0, 2.0, median) * amount;
-			}
+
+		if (attacker instanceof $ServerPlayer && EntropyHelper.dealsEntropyDamage(attacker)) {
+			let median = SkillHelper.hasSkill(attacker, FarlanderSkills.COHERENCE_1)
+				? 1.5
+				: 1.25;
+			uncertaintyDamage = MathHelper.medianBiasedRandom(0, 2.0, median) * amount;
 		}
 		else {
 			uncertaintyDamage = Math.random() * 2 * amount;
