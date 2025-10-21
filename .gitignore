@@ -15,6 +15,7 @@
 /dynamic-resource-pack-cache/
 /ftbbackups3/
 
+/kubejs/config/probe-settings.json
 /kubejs/documentation/
 /kubejs/client_scripts/
 /kubejs/server_scripts/
