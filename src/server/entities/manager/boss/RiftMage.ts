@@ -6,7 +6,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 	private readonly sfManager = new SoulFlareManager();
 
 	private readonly tsSoulFlare = new EntityTimestamp<T>("soul_flare");
-	private readonly tsLastInteraction = new EntityTimestamp<T>("last_interaction");
+	private readonly tsLastNonHurtTeleport = new EntityTimestamp<T>("last_interaction", 200);
 	private readonly tsSwapPlayers = new EntityTimestamp<T>("swap_players");
 
 	private readonly stepSizeFn = MathHelper.clampedSlopeIntercept(1.0, 0.5, 0.1, 2.0);
@@ -64,7 +64,9 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 		this.tickSoulFlareAbility(boss);
 
+		this.tryProxyTeleport(boss);
 		this.tryBoredomTeleport(boss);
+
 		this.updateSoulFlares(boss);
 	}
 
@@ -189,7 +191,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 
 	private hurtPlayerHitBySoulFlare(boss: T, player: ServerPlayer_): void {
 		if (!PlayerHelper.isSurvivalLike(player) || !player.isAlive() || player.stats.timeSinceDeath < 100) return;
-		EntropyHolder.getOrCreate(player).pushEntropyEntry(player.maxHealth * 1.25, boss);
+		EntropyHelper.attackWithEntropy(player, boss, player.maxHealth * 3.0);
 	}
 
 	private updateTarget(boss: T): void {
@@ -208,18 +210,27 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 	}
 
 	private tryBoredomTeleport(boss: T): void {
-		if (this.tsLastInteraction.tryUpdate(boss, 200)) {
+		if (this.tsLastNonHurtTeleport.tryUpdate(boss)) {
 			const target = boss.target;
 			if (!target) return;
-			playsound(boss.level, boss.eyePosition, "entity.enderman.teleport", "master", 1, 0.5);
 			EntityHelper.teleportRandDonut(boss, target.position(), 8, 16);
+			playsound(boss.level, boss.eyePosition, "entity.enderman.teleport", "master", 2, 0.5);
 		}
+	}
+
+	private tryProxyTeleport(boss: T): void {
+		const target = boss.target;
+		if (!target || target.distanceToEntity(boss) < 64) return;
+
+		EntityHelper.teleportRandDonut(boss, target.position(), 12, 32);
+		playsound(boss.level, boss.eyePosition, "entity.enderman.scream", "master", 4, 1);
+		this.tsLastNonHurtTeleport.update(boss);
 	}
 
 	public teleportAfterShootingBow(boss: T): void {
 		playsound(boss.level, boss.eyePosition, "entity.enderman.teleport", "master", 1, 0.5);
 		EntityHelper.teleportRandCircle(boss, boss.position(), 8);
-		this.tsLastInteraction.update(boss); // stop it from potentially doing a boredom teleport right after, although it would be funny
+		this.tsLastNonHurtTeleport.update(boss); // stop it from potentially doing a boredom teleport right after, although it would be funny
 	}
 
 	private recordDamage(boss: T, amount: number, attacker?: Entity_) {
@@ -265,30 +276,44 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends EntityManag
 	}
 })().register();
 
-EntityEvents.spawned(event => {
-	const entity = event.entity;
-	if (!(entity instanceof $Arrow)) return;
+namespace RiftMageEvents {
+	EntityEvents.spawned(event => {
+		const entity = event.entity;
+		if (!(entity instanceof $Arrow)) return;
 
-	const owner = entity.owner;
-	if (RiftMage.isCachedEntity(owner)) {
-		entity.setBaseDamage(10.0);
-		RiftMage.teleportAfterShootingBow(owner as any);
-	}
-});
+		const owner = entity.owner;
+		if (RiftMage.isCachedEntity(owner)) {
+			entity.setBaseDamage(10.0);
+			RiftMage.teleportAfterShootingBow(owner as any);
+		}
+	});
 
-NativeEvents.onEvent($EntityTickEvent$Post, event => {
-	const entity = event.entity;
-	if (entity instanceof $ShulkerBullet && entity.isAlive() && entity.tags.contains("rift_mage_bullet") && entity.tickCount >= 300) {
-		entity.discard();
+	function isRiftMageBullet(entity: unknown): entity is ShulkerBullet_ & Entity_ {
+		return entity instanceof $ShulkerBullet && entity.tags.contains("rift_mage_bullet");
 	}
-});
 
-EntityEvents.afterHurt("minecraft:player" as any, event => {
-	const player = event.entity as ServerPlayer_;
-	const immediate = event.source.immediate;
-	const attacker = event.source.actual;
-	if (immediate instanceof $Arrow && RiftMage.isCachedEntity(attacker)) {
-		LivingEntityHelper.addEffect(player, "cataclysm:stun", 20, 0, false, true, true, attacker);
-		RiftMage.spawnShulkerBullets(attacker as any);
-	}
-});
+	NativeEvents.onEvent($EntityTickEvent$Post, event => {
+		const entity = event.entity;
+		if (isRiftMageBullet(entity) && entity.isAlive() && entity.tickCount >= 300) {
+			entity.level.explode(entity, entity.x, entity.y, entity.z, 4, false, "none");
+			entity.discard();
+		}
+	});
+
+	NativeEvents.onEvent($EntityInvulnerabilityCheckEvent, event => {
+		const entity = event.entity;
+		if (event.source.is($DamageTypeTags.IS_EXPLOSION as any) && isRiftMageBullet(entity)) {
+			event.setInvulnerable(true);
+		}
+	});
+
+	EntityEvents.afterHurt("minecraft:player" as any, event => {
+		const player = event.entity as ServerPlayer_;
+		const immediate = event.source.immediate;
+		const attacker = event.source.actual;
+		if (immediate instanceof $Arrow && RiftMage.isCachedEntity(attacker)) {
+			LivingEntityHelper.addEffect(player, "cataclysm:stun", 20, 0, false, true, true, attacker);
+			RiftMage.spawnShulkerBullets(attacker as any);
+		}
+	});
+}
