@@ -56,3 +56,5 @@ const $ShulkerBullet: typeof import("net.minecraft.world.entity.projectile.Shulk
 
 // @ts-ignore
 const $Direction$Axis: typeof import("net.minecraft.core.Direction$Axis").$Direction$Axis = Java.loadClass("net.minecraft.core.Direction$Axis");
+
+const $DamageTypeTags: typeof import("net.minecraft.tags.DamageTypeTags").$DamageTypeTags = Java.loadClass("net.minecraft.tags.DamageTypeTags");
