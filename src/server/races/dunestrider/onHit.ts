@@ -47,13 +47,10 @@
 
 	EntityEvents.beforeHurt(event => {
 		let victim = event.getEntity();
-		if (!(victim instanceof $LivingEntity)) {
-			return;
-		}
+		if (!(victim instanceof $LivingEntity)) return;
+
 		let attacker = event.getSource().getActual();
-		if (!(attacker instanceof $ServerPlayer)) {
-			return;
-		}
+		if (!(attacker instanceof $ServerPlayer)) return;
 
 		if (victim.isBlocking()) return;
 		if (!event.getSource().isDirect()) return;
@@ -86,7 +83,7 @@
 
 		finalDmg *= DemeanSkill.getDamageModifier(attacker, victim);
 
-		FuranturSkill.onAttack(attacker, finalDmg);
+		FuranturSkill.onAttack(attacker, victim, finalDmg);
 
 		event.setDamage(finalDmg);
 	});

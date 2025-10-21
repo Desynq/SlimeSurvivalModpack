@@ -2,8 +2,14 @@
 
 namespace FuranturSkill {
 
-	export function onAttack(player: ServerPlayer_, damage: float): void {
+	function isLifestealable(victim: LivingEntity_) {
+		if (EntityHelper.isType(victim, "dummmmmmy:target_dummy") && victim.tickCount > 40) return false;
+		return true;
+	}
+
+	export function onAttack(player: ServerPlayer_, victim: LivingEntity_, damage: float): void {
 		if (!PlayerHelper.canHeal(player)) return;
+		if (!isLifestealable(victim)) return;
 
 		let furanturTier = SkillHelper.getSkillTier(player,
 			DunestriderSkills.FURANTUR_1,
