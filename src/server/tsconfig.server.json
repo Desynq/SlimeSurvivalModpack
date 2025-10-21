@@ -23,6 +23,7 @@
 		"./**/*.js",
 		"./**/*.d.ts",
 		"../../kubejs/types/**/*.d.ts",
+		"../types/**/*.d.ts",
 		"../../.probe/packages/generated-package/net.neoforged.neoforge.event.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
@@ -40,6 +41,5 @@
 		"../../.probe/server/generated-server/primitives.d.ts",
 		"../../.probe/server/generated-server/events.d.ts",
 		"../../.probe/server/generated-server/bindings.d.ts",
-		"../types/**/*.d.ts",
 	]
 }
