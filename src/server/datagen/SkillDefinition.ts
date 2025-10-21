@@ -3,7 +3,7 @@
 interface SkillData {
 	title: string;
 	rewards: object[];
-	description: any[];
+	description: (JsonComponent | JsonComponent[])[];
 	cost: integer;
 	icon?: any;
 	frame?: any;
@@ -11,6 +11,25 @@ interface SkillData {
 	required_spent_points?: integer;
 	required_skills?: integer;
 	size?: float;
+}
+
+type JsonComponent = JsonTextComponent | JsonKeybindComponent | string;
+
+type JsonTextComponent = {
+	text: string;
+	keybind?: never;
+} & JsonComponentStyle;
+
+type JsonKeybindComponent = {
+	keybind: string;
+	text?: never;
+} & JsonComponentStyle;
+
+interface JsonComponentStyle {
+	color?: string;
+	underlined?: boolean;
+	bold?: boolean;
+	italic?: boolean;
 }
 
 class SkillDefinition {
@@ -25,7 +44,7 @@ class SkillDefinition {
 		this.data = {
 			title: SkillDefinition.convertIdToTitle(definitionId),
 			rewards: [],
-			description: [""],
+			description: [""], // description[0] being an empty string stops unwanted style inheritance
 			cost: 0
 		};
 	}
@@ -167,7 +186,7 @@ class SkillDefinition {
 		return this;
 	}
 
-	public addDescription(description: any): this {
+	public addDescription(description: JsonComponent | JsonComponent[]): this {
 		this.data.description.push(description);
 		return this;
 	}
