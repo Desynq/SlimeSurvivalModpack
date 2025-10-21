@@ -297,15 +297,15 @@
 		"description": [
 			"",
 			{
-				"color": "green",
-				"text": "+10 Max Health"
+				"text": "+10 Max Health",
+				"color": "green"
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 1 point]"
+				"text": "\n\n[Cost: 2 points]"
 			}
 		],
-		"cost": 1,
+		"cost": 2,
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -328,8 +328,8 @@
 		"description": [
 			"",
 			{
-				"color": "green",
-				"text": "+10 Max Health"
+				"text": "+10 Max Health",
+				"color": "green"
 			},
 			{
 				"color": "dark_green",
@@ -359,8 +359,8 @@
 		"description": [
 			"",
 			{
-				"color": "green",
-				"text": "+10 Max Health"
+				"text": "+10 Max Health",
+				"color": "green"
 			},
 			{
 				"color": "dark_green",
@@ -368,6 +368,68 @@
 			}
 		],
 		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:health_boost"
+			}
+		}
+	},
+	"congealed_4": {
+		"title": "Congealed IV",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.max_health",
+					"value": 25,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			"",
+			{
+				"text": "+25 Max Health",
+				"color": "green"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 5 points]"
+			}
+		],
+		"cost": 5,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:health_boost"
+			}
+		}
+	},
+	"congealed_5": {
+		"title": "Congealed V",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.max_health",
+					"value": 25,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			"",
+			{
+				"text": "+25 Max Health",
+				"color": "green"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 5 points]"
+			}
+		],
+		"cost": 5,
 		"icon": {
 			"type": "effect",
 			"data": {

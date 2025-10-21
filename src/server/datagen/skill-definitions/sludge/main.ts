@@ -137,42 +137,25 @@ const SludgeSkills = new (class extends SkillManager {
 
 
 
+	public readonly CONGEALED_SKILLS = this.createTieredSkills("congealed", 5, (definition, tier) => {
+		const maxHealthBonus = [10, 10, 10, 25, 25][tier - 1];
+		const cost = [2, 2, 2, 5, 5][tier - 1];
+		definition
+			.effectIcon("minecraft:health_boost")
+			.addDescription({
+				"text": `+${maxHealthBonus} Max Health`,
+				"color": "green"
+			})
+			.cost(cost)
+			.addAttributeReward("minecraft:generic.max_health", maxHealthBonus, "addition");
+	});
 
+	public readonly CONGEALED_1 = this.CONGEALED_SKILLS[0];
+	public readonly CONGEALED_2 = this.CONGEALED_SKILLS[1];
+	public readonly CONGEALED_3 = this.CONGEALED_SKILLS[2];
+	public readonly CONGEALED_4 = this.CONGEALED_SKILLS[3];
+	public readonly CONGEALED_5 = this.CONGEALED_SKILLS[4];
 
-	public readonly CONGEALED_1 = new SkillDefinition(this.categoryId, "congealed_1")
-		.effectIcon("minecraft:health_boost")
-		.addDescription({
-			"color": "green",
-			"text": "+10 Max Health"
-		})
-		.cost(1)
-		.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
-		.serialize(this.definitionsJson)
-		.toSkill("7mb8epyl7aobm9ub")
-		.register(this.skills);
-
-	public readonly CONGEALED_2 = new SkillDefinition(this.categoryId, "congealed_2")
-		.effectIcon("minecraft:health_boost")
-		.addDescription({
-			"color": "green",
-			"text": "+10 Max Health"
-		})
-		.cost(2)
-		.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
-		.serialize(this.definitionsJson)
-		.toSkill("8r71o66i4ttue5nn")
-		.register(this.skills);
-
-	public readonly CONGEALED_3 = new SkillDefinition(this.categoryId, "congealed_3")
-		.effectIcon("minecraft:health_boost")
-		.addDescription({
-			"color": "green",
-			"text": "+10 Max Health"
-		})
-		.cost(2)
-		.addAttributeReward("minecraft:generic.max_health", 10.0, "addition")
-		.serializeIntoSkill(this.definitionsJson)
-		.register(this.skills);
 
 
 	public readonly CYTOPLASM_1 = new SkillDefinition(this.categoryId, "cytoplasm_1")
