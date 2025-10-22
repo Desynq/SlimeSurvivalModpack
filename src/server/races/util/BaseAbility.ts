@@ -7,11 +7,16 @@ interface IBaseAbilityUI {
 	displayCooldownWarning(player: ServerPlayer_): void;
 }
 
+/**
+ * Basic ability that can be subclassed to add special effects when the player presses the ability button
+ */
 abstract class BaseAbility {
 	protected abstract readonly cooldownController: TimestampController;
 	protected abstract readonly ui: IBaseAbilityUI;
 
-	// Hooks for subclasses
+	/* -------------------------------------------------------------------------- */
+	/*                               Subclass Hooks                               */
+	/* -------------------------------------------------------------------------- */
 	protected onActivate(player: ServerPlayer_): void {
 		this.cooldownController.reset(player);
 		this.ui.abilityEnabled(player);
