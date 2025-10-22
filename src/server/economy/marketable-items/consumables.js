@@ -24,5 +24,5 @@ new MarketableItem("totem", "minecraft:totem_of_undying")
 	.register();
 
 new MarketableItem("golden_carrot", "minecraft:golden_carrot")
-	.setSellPrice(20.00)
+	.setSellPrice(12.50)
 	.register();
