@@ -1,6 +1,6 @@
 // priority: 2
 
-class FocusUI implements IToggleableAbilityUI {
+class FocusAbilityUI implements IToggleableAbilityUI {
 	public constructor(
 		private readonly cooldown: TimestampController,
 		private readonly duration: TimestampController

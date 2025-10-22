@@ -18,7 +18,7 @@ const FocusAbility = new (class extends ToggleableAbility {
 		}
 	);
 
-	protected readonly ui = new FocusUI(this.cooldownController, this.durationController);
+	protected readonly ui = new FocusAbilityUI(this.cooldownController, this.durationController);
 
 	private readonly deactivationTick: Record<string, long | undefined> = {};
 

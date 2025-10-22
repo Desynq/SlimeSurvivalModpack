@@ -1,6 +1,6 @@
 
 
-namespace FocusEvents {
+namespace FocusAbilityEvents {
 	NativeEvents.onEvent($LivingEntityUseItemEvent$Finish, event => {
 		const entity = event.entity;
 		if (entity instanceof $ServerPlayer) {
