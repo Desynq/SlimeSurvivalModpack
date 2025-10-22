@@ -23,8 +23,9 @@ class FocusAbilityUI implements IToggleableAbilityUI {
 	}
 
 	public displayCooldown(player: ServerPlayer_): void {
-		const timeLeft = this.cooldown.getMax(player) - this.cooldown.getCurr(player);
-		ActionbarManager.addSimple(player, `Focus CD: ${TickHelper.toSeconds(player.server, timeLeft)}s`);
+		const ticksLeft = this.cooldown.getMax(player) - this.cooldown.getCurr(player);
+		const seconds = TickHelper.toSeconds(player.server, ticksLeft, 0);
+		ActionbarManager.addSimple(player, `Focus CD: ${seconds}s`);
 	}
 
 	public updateUI(player: ServerPlayer_): void {
