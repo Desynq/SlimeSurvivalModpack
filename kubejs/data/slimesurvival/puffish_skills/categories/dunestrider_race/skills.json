@@ -92,19 +92,19 @@
 	"rab5481jrf51h598": {
 		"definition": "scavenger",
 		"x": -32,
-		"y": -80,
+		"y": -96,
 		"root": true
 	},
 	"v8czm1qxdu3lke9r": {
 		"definition": "momentum",
 		"x": 32,
-		"y": -80,
+		"y": -96,
 		"root": true
 	},
 	"t5bnqz7lwxr3umke": {
 		"definition": "first_strike",
-		"x": 32,
-		"y": -112,
+		"x": 64,
+		"y": -128,
 		"root": false
 	},
 	"od48m4hf7r9le2mv": {
@@ -213,6 +213,12 @@
 		"definition": "deflection",
 		"x": -160,
 		"y": -32,
+		"root": false
+	},
+	"ur6ks3e26nbjcx4c": {
+		"definition": "resonance",
+		"x": 0,
+		"y": -96,
 		"root": false
 	}
 }

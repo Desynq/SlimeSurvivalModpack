@@ -13,6 +13,9 @@ class PlayerRaceHelper {
 		return race;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static getRaceWrapper(player: ServerPlayer_) {
 		switch (PlayerRaceHelper.getRace(player)) {
 			case Races.CHIMERA:

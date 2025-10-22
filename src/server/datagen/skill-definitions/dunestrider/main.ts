@@ -395,12 +395,31 @@ const DunestriderSkills = new (class extends SkillManager {
 
 
 
+	public readonly RESONANCE = this.createSkill("resonance", def => def
+		.effectIcon("minecraft:darkness")
+		.addDescription({
+			"text": "No lives wasted.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nDamage left over after killing an enemy goes to the damage you deal to the next enemy."
+				+ "\n• Decays after 5 seconds."
+		})
+		.cost(6)
+		.flagPlanned()
+	);
+
+
+	/* -------------------------------------------------------------------------- */
+	/*                             Focus Skill Branch                             */
+	/* -------------------------------------------------------------------------- */
 	public readonly FOCUS = this.createSkill("focus", def => def
-		.effectIcon("minecraft:night_vision")
+		.itemIcon("mowziesmobs:sol_visage")
 		.advancementFrame("challenge")
 		.addDescription(["",
 			{
-				"text": "No distractions.",
+				"text": "Use every moment of respite to spot their weaknesses and patterns.",
 				"color": "dark_red",
 				"italic": true
 			},
@@ -412,15 +431,19 @@ const DunestriderSkills = new (class extends SkillManager {
 		.addDescription(["",
 			{
 				"text": "will activate Focus."
-					+ "\n\nFocus has a 30s cooldown and lasts 5 seconds with a 1 second charge-up for it to have any effect."
+					+ "\n• 30s cooldown"
+					+ "\n• 1s charge-up time for ability to activate"
+					+ "\n• 5s duration"
 
-					+ "\nDuring those 5 seconds and the charge-up time, if you take damage, stop using an item, or attack: focus will automatically deactivate."
+					+ "\n\nWhile the ability is active or charging up:"
+					+ "\n• Focus will deactivate if you take damage, attack, or fully use or stop using any item."
 
-					+ "\n\nWhile Focus is active:\nHysteria and Momentum will not proc."
+					+ "\n\nWhile the ability is active:"
+					+ "\n• Hysteria and Momentum will not proc."
+					+ "\n• Normal attacks will always deal critical damage."
 			}
 		])
 		.cost(1)
-		.flagPlanned()
 	);
 
 	public readonly DEFLECTION = this.createSkill("deflection", def => def

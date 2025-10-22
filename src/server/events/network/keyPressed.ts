@@ -4,19 +4,24 @@
 namespace KeyPressedPacketListener {
 
 	function handlePrimaryAbilityKeyPress(player: ServerPlayer_) {
-		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
-		if (raceWrapper instanceof ChimeraPlayer) {
-			SanguineConvenantAbility.onPress(raceWrapper);
-		}
-		else if (raceWrapper instanceof FarlanderPlayer) {
-			QuantumRelativity.onPress(player);
+		switch (PlayerRaceHelper.getRace(player)) {
+			case Races.CHIMERA:
+				const raceWrapper = PlayerRaceHelper.getRaceWrapper(player) as ChimeraPlayer;
+				SanguineConvenantAbility.onPress(raceWrapper);
+				break;
+			case Races.FARLANDER:
+				QuantumRelativity.onPress(player);
+				break;
+			case Races.DUNESTRIDER:
+				FocusAbility.onPress(player);
 		}
 	}
 
 	function handleSecondaryAbilityKeyPress(player: ServerPlayer_) {
-		let raceWrapper = PlayerRaceHelper.getRaceWrapper(player);
-		if (raceWrapper instanceof FarlanderPlayer) {
-			HeatDeathAbility.onPress(player);
+		switch (PlayerRaceHelper.getRace(player)) {
+			case Races.FARLANDER:
+				HeatDeathAbility.onPress(player);
+				break;
 		}
 	}
 
@@ -24,8 +29,6 @@ namespace KeyPressedPacketListener {
 		switch (PlayerRaceHelper.getRace(player)) {
 			case Races.SLUDGE:
 				SludgeCytoplasm.CytoplasmDisabler.onPress(player);
-				break;
-			default:
 				break;
 		}
 	}

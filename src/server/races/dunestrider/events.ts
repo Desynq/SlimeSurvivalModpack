@@ -9,4 +9,36 @@ PlayerEvents.tick(event => {
 	if (DunestriderSkills.BLOODCLOT_1.isUnlockedFor(player)) {
 		BloodclotSkill.decayOverheal(player);
 	}
+
+	HysteriaSkill.tickHysteria(player);
+
+	if ((SkillHelper.hasSkill(player, DunestriderSkills.DEFT))) {
+		if (player.getBlockStateOn().getId() == "minecraft:sand") {
+			player.modifyAttribute($Attributes.MOVEMENT_SPEED, 'dunestridersandspeed', .5, $AttributeModifier$Operation.ADD_MULTIPLIED_TOTAL as any);
+		}
+		else {
+			player.modifyAttribute($Attributes.MOVEMENT_SPEED, 'dunestridersandspeed', 0, $AttributeModifier$Operation.ADD_MULTIPLIED_TOTAL as any);
+		}
+	}
+});
+
+
+EntityEvents.death(event => {
+	let player = event.getSource().getActual();
+	if (!(player instanceof $ServerPlayer)) return;
+
+	if (!(PlayerRaceHelper.isRace(player, Races.DUNESTRIDER))) return;
+
+	if ((SkillHelper.hasSkill(player, DunestriderSkills.HYSTERIA_3))) {
+		if (HysteriaSkill.hasMaxHysteria(player)) {
+			let extraSat = player.getSaturation() >= 10 ? 0 : player.getSaturation() + 1;
+			player.setSaturation(extraSat);
+		};
+	}
+
+	if ((SkillHelper.hasSkill(player, DunestriderSkills.FURANTUR_5))) {
+		let victimMaxHealth = event.getEntity().getMaxHealth();
+		let heal = victimMaxHealth * 0.020;
+		player.setHealth(player.getHealth() + heal);
+	};
 });

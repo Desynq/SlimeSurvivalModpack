@@ -89,21 +89,24 @@
 	});
 
 	EntityEvents.beforeHurt(event => {
-		let victim = event.getEntity();
-		if (!(victim instanceof $ServerPlayer)) {
-			return;
-		}
-		if (!(PlayerRaceHelper.isRace(victim, Races.DUNESTRIDER))) return;
+		const victim = event.getEntity();
+		if (!(victim instanceof $ServerPlayer)) return;
+
 		if (!(SkillHelper.hasSkill(victim, DunestriderSkills.MOMENTUM))) return;
+
+		if (FocusAbility.isActive(victim)) return;
+
 		if (!event.source.isDirect()) return;
-		let attacker = event.getSource().getActual();
+
+		const attacker = event.getSource().getActual();
 		if (!attacker) return;
+
 		if (!(TickHelper.hasTimestampElapsed(attacker, "dunestrider.momentum", 300))) return;
+
 		LivingEntityHelper.addEffect(victim, 'minecraft:slowness', 160, 0, false, true, true, attacker);
 		let dmg = event.getDamage();
 		dmg = dmg * 2.0;
 		event.setDamage(dmg);
-
 	});
 
 })();

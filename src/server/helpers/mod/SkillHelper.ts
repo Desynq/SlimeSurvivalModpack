@@ -63,4 +63,18 @@ class SkillHelper {
 		}
 		return 0;
 	}
+
+	/**
+	 * A faster variant of {@link getSkillTier} for strictly sequential skill trees.
+	 * 
+	 * Assumes each tier must be unlocked in order; results are unreliable if any tier is skipped.
+	 * Returns the index (1-based) of the highest unlocked skill, or 0 if none are unlocked.
+	 */
+	public static getSequentialSkillTier(player: ServerPlayer_, ...skills: Skill[]): integer {
+		for (let i = 0; i < skills.length; i++) {
+			if (skills[i].isLockedFor(player)) return i;
+		}
+		return skills.length;
+	}
+
 }

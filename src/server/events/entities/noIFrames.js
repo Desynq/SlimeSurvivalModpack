@@ -1,7 +1,5 @@
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent").$LivingKnockBackEvent } */
 let $LivingKnockBackEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent")
-/** @type {typeof import("net.neoforged.neoforge.event.entity.player.AttackEntityEvent").$AttackEntityEvent } */
-let $AttackEntityEvent = Java.loadClass("net.neoforged.neoforge.event.entity.player.AttackEntityEvent")
 
 const NoIFrames = {};
 

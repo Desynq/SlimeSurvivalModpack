@@ -883,6 +883,36 @@
 			}
 		}
 	},
+	"resonance": {
+		"title": "Resonance",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "No lives wasted.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nDamage left over after killing an enemy goes to the damage you deal to the next enemy.\n• Decays after 5 seconds."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 6 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 6,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:darkness"
+			}
+		}
+	},
 	"focus": {
 		"title": "Focus",
 		"rewards": [],
@@ -891,7 +921,7 @@
 			[
 				"",
 				{
-					"text": "No distractions.",
+					"text": "Use every moment of respite to spot their weaknesses and patterns.",
 					"color": "dark_red",
 					"italic": true
 				},
@@ -916,23 +946,19 @@
 			[
 				"",
 				{
-					"text": "will activate Focus.\n\nFocus has a 30s cooldown and lasts 5 seconds with a 1 second charge-up for it to have any effect.\nDuring those 5 seconds and the charge-up time, if you take damage, stop using an item, or attack: focus will automatically deactivate.\n\nWhile Focus is active:\nHysteria and Momentum will not proc."
+					"text": "will activate Focus.\n• 30s cooldown\n• 1s charge-up time for ability to activate\n• 5s duration\n\nWhile the ability is active or charging up:\n• Focus will deactivate if you take damage, attack, or fully use or stop using any item.\n\nWhile the ability is active:\n• Hysteria and Momentum will not proc.\n• Normal attacks will always deal critical damage."
 				}
 			],
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 1 point]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 1,
 		"icon": {
-			"type": "effect",
+			"type": "item",
 			"data": {
-				"effect": "minecraft:night_vision"
+				"item": "mowziesmobs:sol_visage"
 			}
 		},
 		"frame": {
