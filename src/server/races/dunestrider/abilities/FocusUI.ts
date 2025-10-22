@@ -7,7 +7,7 @@ class FocusUI implements IToggleableAbilityUI {
 	) { }
 
 	public abilityEnabled(player: ServerPlayer_): void {
-		playsoundAll(player.server, "minecraft:entity.zombie_villager.cure", "ambient", 2, 1);
+		playsoundAll(player.server, "minecraft:block.beacon.activate", "player", 2, 2);
 	}
 
 	public abilityDisabled(player: ServerPlayer_): void {
@@ -15,12 +15,16 @@ class FocusUI implements IToggleableAbilityUI {
 	}
 
 	public alertCooldownOver(player: ServerPlayer_): void {
-		playsound(player.level, player.position(), "minecraft:block.beacon.power_select", "player", 1, 2);
+		playsound(player.level, player.position(), "minecraft:block.beacon.power_select", "player", 2, 2);
+	}
+
+	public alertChargeOver(player: ServerPlayer_): void {
+		playsound(player.level, player.position(), "minecraft:item.trident.return", "player", 2, 0.5);
 	}
 
 	public displayCooldown(player: ServerPlayer_): void {
 		const timeLeft = this.cooldown.getMax(player) - this.cooldown.getCurr(player);
-		ActionbarManager.addSimple(player, `Focus CD: ${TickHelper.toSeconds(player.server, timeLeft)}`);
+		ActionbarManager.addSimple(player, `Focus CD: ${TickHelper.toSeconds(player.server, timeLeft)}s`);
 	}
 
 	public updateUI(player: ServerPlayer_): void {

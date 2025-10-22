@@ -7,14 +7,14 @@ const FocusAbility = new (class extends ToggleableAbility {
 	protected readonly cooldownController = new TimestampController(
 		"dunestrider.focus.cooldown",
 		(player) => {
-			return 20;
+			return 600;
 		}
 	);
 
 	protected readonly durationController = new TimestampController(
 		"dunestrider.focus.duration",
 		(player) => {
-			return 100 + this.getChargeTime(player);
+			return 100 + this.getMaxChargeTime(player);
 		}
 	);
 
@@ -47,6 +47,10 @@ const FocusAbility = new (class extends ToggleableAbility {
 			return false;
 		}
 
+		if (this.justFinishedCharging(player)) {
+			this.ui.alertChargeOver(player);
+		}
+
 		this.ui.updateUI(player);
 		return true;
 	}
@@ -67,14 +71,23 @@ const FocusAbility = new (class extends ToggleableAbility {
 
 
 	public isActive(player: ServerPlayer_): boolean {
-		return this.toggleController.isToggled(player) && this.durationController.getCurr(player) > this.getChargeTime(player);
+		return this.toggleController.isToggled(player) && !this.isCharging(player);
+	}
+
+	public isCharging(player: ServerPlayer_): boolean {
+		return this.toggleController.isToggled(player) && this.durationController.getCurr(player) < this.getMaxChargeTime(player);
+	}
+
+	public justFinishedCharging(player: ServerPlayer_): boolean {
+		return this.toggleController.isToggled(player) && this.durationController.getCurr(player) === this.getMaxChargeTime(player);
 	}
 
 	public isActiveOrCharging(player: ServerPlayer_): boolean {
+		// more performant than doing isActive() || isCharging()
 		return this.toggleController.isToggled(player);
 	}
 
-	private getChargeTime(player: ServerPlayer_): number {
+	private getMaxChargeTime(player: ServerPlayer_): number {
 		return 20;
 	}
 
