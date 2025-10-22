@@ -471,7 +471,8 @@ const DunestriderSkills = new (class extends SkillManager {
 				"italic": true
 			},
 			{
-				"text": "\n\nYou now parry the attack that deactivated your focus, taking no damage from it and stunning your opponent for 2 seconds. Must be an immediate attack."
+				"text": "\n\n  You now parry the attack that deactivated your Focus ability after it fully charged, taking no damage from it and stunning your opponent for 2 seconds."
+					+ "\n  Must be an immediate attack."
 			}
 		])
 		.cost(4)
@@ -539,6 +540,21 @@ const DunestriderSkills = new (class extends SkillManager {
 			}
 		])
 		.cost(2)
+		.flagPlanned()
+	);
+
+	public readonly CRITICAL = this.createSkill("critical", def => def
+		.itemIcon("twilightforest:exanimate_essence")
+		.addDescription({
+			"text": "Others laze around while you put the effort in even when not needed. That ends now.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nWhile Focus is active:"
+				+ "\n• Vanilla critical attacks deal 2.0x damage instead of 1.5x damage."
+		})
+		.cost(6)
 		.flagPlanned()
 	);
 

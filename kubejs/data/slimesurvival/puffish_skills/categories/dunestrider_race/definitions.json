@@ -1014,7 +1014,7 @@
 					"italic": true
 				},
 				{
-					"text": "\n\nYou now parry the attack that deactivated your focus, taking no damage from it and stunning your opponent for 2 seconds. Must be an immediate attack."
+					"text": "\n\n  You now parry the attack that deactivated your Focus ability after it fully charged, taking no damage from it and stunning your opponent for 2 seconds.\n  Must be an immediate attack."
 				}
 			],
 			{
@@ -1163,6 +1163,36 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:iron_bars"
+			}
+		}
+	},
+	"critical": {
+		"title": "Critical",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Others laze around while you put the effort in even when not needed. That ends now.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nWhile Focus is active:\n• Vanilla critical attacks deal 2.0x damage instead of 1.5x damage."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 6 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 6,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:exanimate_essence"
 			}
 		}
 	}
