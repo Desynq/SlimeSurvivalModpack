@@ -31,7 +31,9 @@ class FocusAbilityUI implements IToggleableAbilityUI {
 	public updateUI(player: ServerPlayer_): void {
 		const max = this.duration.getMax(player);
 		const curr = this.duration.getCurr(player);
-		ActionbarManager.addSimple(player, `Focus: ${max - curr}`);
+		const charging = FocusAbility.isCharging(player);
+		const text = `{"text":"Focus: ${max - curr}","color":"${charging ? "dark_gray" : "yellow"}"}`;
+		ActionbarManager.addMessage(player, text, 1);
 	}
 
 	public displayCooldownWarning(player: ServerPlayer_): void {
