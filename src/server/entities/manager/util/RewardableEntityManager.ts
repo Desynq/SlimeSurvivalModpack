@@ -18,6 +18,9 @@ abstract class RewardableEntityManager<T extends LivingEntity_> extends EntityMa
 
 	public override onDeath(entity: T, event: LivingEntityDeathKubeEvent_): void {
 		super.onDeath(entity, event);
-		this.rewarder.rewardContributors(entity);
+		if (event.source.getType() !== "genericKill") {
+			this.rewarder.rewardContributors(entity);
+			this.rewarder.resetContributors(entity);
+		}
 	}
 }
