@@ -79,7 +79,7 @@ const TheTenuem = new (class <T extends Phantom_ & Mob_> extends EntityManager<T
 		if (playerCount === this.lastScaleHealthPlayerCount[boss.stringUUID]) return;
 		this.lastScaleHealthPlayerCount[boss.stringUUID] = playerCount;
 
-		const newMaxHealth = Math.max(1, playerCount) * 5_000;
+		const newMaxHealth = Math.max(1, playerCount) * 10_000;
 		LivingEntityHelper.scaleHealth(boss as any, newMaxHealth);
 	}
 
