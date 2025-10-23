@@ -36,6 +36,10 @@ class BossRewarder<T extends LivingEntity_> {
 		return contributors;
 	}
 
+	public getContributorCount(boss: T): number {
+		return boss.persistentData.getCompound(this.KEY).size();
+	}
+
 	/**
 	 * @returns `true` if successfully rewarded at least one contributor.
 	 */
