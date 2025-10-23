@@ -7,7 +7,7 @@ const FocusAbility = new (class extends ToggleableAbility {
 	protected readonly cooldownController = new TimestampController(
 		"dunestrider.focus.cooldown",
 		(player) => {
-			return 600;
+			return 20;
 		}
 	);
 
@@ -49,6 +49,10 @@ const FocusAbility = new (class extends ToggleableAbility {
 
 		if (this.justFinishedCharging(player)) {
 			this.ui.alertChargeOver(player);
+		}
+
+		if (this.isActive(player)) {
+			LivingEntityHelper.addEffect(player, "minecraft:glowing", 20, 0, false, true, true, player);
 		}
 
 		this.ui.updateUI(player);
