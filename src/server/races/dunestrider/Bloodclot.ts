@@ -53,6 +53,21 @@ namespace BloodclotSkill {
 	}
 
 	function getMaxBloodclot(player: ServerPlayer_): number {
-		return player.maxHealth;
+		const tier = SkillHelper.getSequentialSkillTier(player,
+			DunestriderSkills.BLOODCLOT_1,
+			DunestriderSkills.BLOODCLOT_2
+		);
+		let factor: number;
+		switch (tier) {
+			case 1:
+				factor = 0.5;
+				break;
+			case 2:
+				factor = 1.0;
+				break;
+			default:
+				return 0.0;
+		}
+		return player.maxHealth * factor;
 	}
 }
