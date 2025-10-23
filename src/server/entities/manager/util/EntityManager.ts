@@ -64,6 +64,8 @@ abstract class EntityManager<T extends LivingEntity_> {
 
 	public onKill(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_): void { }
 
+	public onEntityMount(boss: T, event: EntityMountEvent_): void { }
+
 	private ensureEntityCacheLoaded(server: MinecraftServer_): void {
 		if (this.entityCache.count > 0) return;
 

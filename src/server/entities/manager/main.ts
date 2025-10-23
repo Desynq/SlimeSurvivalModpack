@@ -79,6 +79,11 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 	EntityDirector.eventHook(event.entity, event);
 });
 
+NativeEvents.onEvent($EntityMountEvent, event => {
+	const mounter = event.getEntityMounting();
+	EntityDirector.eventHook(mounter, event);
+});
+
 
 
 NativeEvents.onEvent($EntityTickEvent$Post, event => {

@@ -1,6 +1,8 @@
 
 
 const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableEntityManager<T> implements ITickableBoss<T> {
+	private readonly HEALTH_PER_PLAYER = 5000;
+
 	private readonly sfManager = new SoulFlareManager();
 
 	private readonly tsSoulFlare = new EntityTimestamp<T>("soul_flare");
@@ -46,11 +48,8 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableE
 		}
 	}
 
-	public override onDeath(boss: T, event: LivingEntityDeathKubeEvent_): void {
-		if (event.source.getType() !== "genericKill") {
-			this.rewarder.rewardContributors(boss);
-		}
-		this.rewarder.resetContributors(boss);
+	public override onEntityMount(boss: T, event: EntityMountEvent_): void {
+		event.setCanceled(true);
 	}
 
 	public onBossTick(boss: T): void {
@@ -70,8 +69,8 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableE
 	}
 
 	private scaleHealth(boss: T): void {
-		const playerCount = this.rewarder.getContributors(boss).length;
-		BossHelper.scaleHealthByPlayers(boss, 1000, playerCount);
+		const playerCount = this.rewarder.getContributorCount(boss);
+		BossHelper.scaleHealthByPlayers(boss, this.HEALTH_PER_PLAYER, playerCount);
 	}
 
 	private trySwapPlayers(boss: T): void {
@@ -240,36 +239,43 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableE
 			storage.putDouble(attacker.stringUUID, storage.getDouble(attacker.stringUUID) + amount);
 			CommandHelper.runCommandSilent(attacker.server, `scoreboard players add ${attacker.username} rift_mage_damage ${Math.floor(amount)}`);
 		}
-		else {
-			storage.putDouble("unknown", storage.getDouble("unknown") + amount);
-		}
 
 		boss.persistentData.put("damage_taken", storage);
 	}
 
-	private revertDamage(boss: T, attacker?: Entity_) {
-		const storage = boss.persistentData.getCompound("damage_taken");
-		if (storage.size() === 0) return;
+	private revertDamage(boss: T, player: ServerPlayer_) {
+		const uuid = player.stringUUID;
+		const takenDamageStorage = boss.persistentData.getCompound("damage_taken");
+		if (!takenDamageStorage.contains(uuid)) return; // player has not dealt damage, do not revert damage
 
-		let totalDamage = 0;
-		totalDamage += storage.getDouble("unknown");
-		storage.remove("unknown");
+		const totalPlayerDamage = takenDamageStorage.getAllKeys()
+			.stream()
+			.mapToDouble(key => takenDamageStorage.getDouble(key))
+			.sum();
 
-		if (attacker instanceof $ServerPlayer) {
-			CommandHelper.runCommandSilent(attacker.server, `scoreboard players reset ${attacker.username} rift_mage_damage`);
-			// only reverting a percentage of player damage to stop the fight from becoming endless
-			totalDamage += storage.getDouble(attacker.stringUUID) * 0.95;
-			storage.remove(attacker.stringUUID);
-		}
+		const playerDamage = takenDamageStorage.getDouble(uuid);
+		takenDamageStorage.remove(uuid);
+		boss.persistentData.put("damage_taken", takenDamageStorage);
 
-		if (storage.size() === 0) {
-			const miscDamage = boss.maxHealth - boss.health - totalDamage;
-			totalDamage += miscDamage;
-		}
+		const keptDamageStorage = boss.persistentData.getCompound("kept_damage");
+		const previousKeptDamage = keptDamageStorage.getDouble(uuid);
+		const keptDamage = playerDamage * 0.05 + previousKeptDamage;
+		keptDamageStorage.putDouble(uuid, keptDamage);
+		const totalKeptDamage = keptDamageStorage.getAllKeys()
+			.stream()
+			.mapToDouble(key => keptDamageStorage.getDouble(key))
+			.sum();
+		boss.persistentData.put("kept_damage", keptDamageStorage);
 
-		boss.persistentData.put("damage_taken", storage);
 
-		boss.health = Math.min(boss.maxHealth, boss.health + totalDamage);
+
+		CommandHelper.runCommandSilent(player.server, `scoreboard players set ${player.username} rift_mage_damage ${Math.ceil(keptDamage)}`);
+
+		const missingHealth = boss.maxHealth - boss.health;
+		const otherPlayersDamage = totalPlayerDamage - playerDamage;
+		const healAmount = missingHealth - otherPlayersDamage - totalKeptDamage;
+
+		boss.health = MathHelper.clamped(boss.health + healAmount, 0, boss.maxHealth);
 	}
 
 	private getDamage(boss: T, player: ServerPlayer_): number {

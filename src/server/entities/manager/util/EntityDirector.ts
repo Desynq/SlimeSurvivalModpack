@@ -69,6 +69,7 @@ class EntityDirector {
 		else if (event instanceof $LivingEntityDeathKubeEvent) manager.onDeath(boss, event);
 		else if (event instanceof $EntityLeaveLevelEvent) manager.onLeave(boss, event);
 		else if (event instanceof $LivingIncomingDamageEvent) manager.onIncomingDamage(boss, event);
+		else if (event instanceof $EntityMountEvent) manager.onEntityMount(boss, event);
 	}
 
 	public static pruneBossbars(server: MinecraftServer_) {
