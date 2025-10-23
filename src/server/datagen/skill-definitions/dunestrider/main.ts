@@ -459,7 +459,6 @@ const DunestriderSkills = new (class extends SkillManager {
 			}
 		])
 		.cost(2)
-		.flagPlanned()
 	);
 
 	public readonly PARRIED = this.createSkill("parried", def => def
@@ -476,7 +475,6 @@ const DunestriderSkills = new (class extends SkillManager {
 			}
 		])
 		.cost(4)
-		.flagPlanned()
 	);
 
 	public readonly CLARITY = this.createSkill("clarity", def => def
@@ -539,7 +537,7 @@ const DunestriderSkills = new (class extends SkillManager {
 				"text": "\n\nFocus duration lasts twice as long when there are no other players within 32 blocks of you."
 			}
 		])
-		.cost(2)
+		.cost(1)
 		.flagPlanned()
 	);
 
