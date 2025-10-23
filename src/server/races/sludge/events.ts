@@ -22,9 +22,8 @@ namespace SludgeEvents {
 		if (maxHealth <= 0) return;
 
 		const attackDamage = player.getAttributeValue($Attributes.ATTACK_DAMAGE);
-		if (attackDamage <= maxHealth) return;
 
-		const newAmount = amount * (attackDamage / maxHealth);
+		const newAmount = amount * (1 + attackDamage / maxHealth);
 		event.setAmount(newAmount);
 	});
 }
