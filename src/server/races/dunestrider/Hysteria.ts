@@ -26,18 +26,14 @@ namespace HysteriaSkill {
 		let baseAttackSpeed = player.getAttributeBaseValue($Attributes.ATTACK_SPEED);
 
 		let extraMoveSpeed = getMovementSpeedBuff(player.maxHealth, baseMoveSpeed, enemies);
+		const hasMaxMoveSpeed = extraMoveSpeed >= baseMoveSpeed;
+
 		let extraAttackSpeed = enemyCount * 0.25;
 
-		let capMoveSpeed = baseMoveSpeed * 2;
 		let capAttackSpeed = baseAttackSpeed * 2;
 
-		let hasMaxStackSpeed = false;
 		let hasMaxStackAttackSpeed = false;
 
-		if (extraMoveSpeed + baseMoveSpeed > capMoveSpeed) {
-			extraMoveSpeed = capMoveSpeed;
-			hasMaxStackSpeed = true;
-		}
 		if (extraAttackSpeed + baseAttackSpeed > capAttackSpeed) {
 			extraAttackSpeed = capAttackSpeed;
 			hasMaxStackAttackSpeed = true;
@@ -52,7 +48,7 @@ namespace HysteriaSkill {
 		}
 
 		if (hysteriaTier >= 3) {
-			if (hasMaxStackSpeed && hasMaxStackAttackSpeed) {
+			if (hasMaxMoveSpeed && hasMaxStackAttackSpeed) {
 				player.persistentData.putBoolean('dunestrider.hysteriamax', true);
 			}
 		}
@@ -82,10 +78,10 @@ namespace HysteriaSkill {
 	function getMovementSpeedBuff(playerMaxHealth: number, baseMoveSpeed: number, enemies: Mob_[]): number {
 		const count = enemies.length;
 		if (count === 0) return 0.0;
-		const average = enemies.reduce((sum, mob) => sum + mob.health, 0.0) / enemies.length;
+		const averageEnemyHealth = enemies.reduce((sum, mob) => sum + mob.health, 0.0) / enemies.length;
 		const factor = 20.0 / baseMoveSpeed;
-		const cap = baseMoveSpeed * 2.0;
-		const threat = average / playerMaxHealth * count;
+		const cap = baseMoveSpeed;
+		const threat = averageEnemyHealth / playerMaxHealth * count;
 
 		const value = threat / (factor + threat);
 		return MathHelper.clamped(value, 0.0, cap);
