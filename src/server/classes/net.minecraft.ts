@@ -58,3 +58,11 @@ const $ShulkerBullet: typeof import("net.minecraft.world.entity.projectile.Shulk
 const $Direction$Axis: typeof import("net.minecraft.core.Direction$Axis").$Direction$Axis = Java.loadClass("net.minecraft.core.Direction$Axis");
 
 const $DamageTypeTags: typeof import("net.minecraft.tags.DamageTypeTags").$DamageTypeTags = Java.loadClass("net.minecraft.tags.DamageTypeTags");
+
+type EntityHitResult_ = import("net.minecraft.world.phys.EntityHitResult").$EntityHitResult$$Original;
+const $EntityHitResult: typeof import("net.minecraft.world.phys.EntityHitResult").$EntityHitResult =
+	Java.loadClass("net.minecraft.world.phys.EntityHitResult");
+
+type AbstractArrow_ = import("net.minecraft.world.entity.projectile.AbstractArrow").$AbstractArrow$$Original;
+const $AbstractArrow: typeof import("net.minecraft.world.entity.projectile.AbstractArrow").$AbstractArrow =
+	Java.loadClass("net.minecraft.world.entity.projectile.AbstractArrow");

@@ -23,3 +23,7 @@ const $EntityInvulnerabilityCheckEvent: typeof import("net.neoforged.neoforge.ev
 
 const $AttackEntityEvent: typeof import("net.neoforged.neoforge.event.entity.player.AttackEntityEvent").$AttackEntityEvent =
 	Java.loadClass("net.neoforged.neoforge.event.entity.player.AttackEntityEvent");
+
+type EntityMountEvent_ = import("net.neoforged.neoforge.event.entity.EntityMountEvent").$EntityMountEvent;
+const $EntityMountEvent: typeof import("net.neoforged.neoforge.event.entity.EntityMountEvent").$EntityMountEvent =
+	Java.loadClass("net.neoforged.neoforge.event.entity.EntityMountEvent");
