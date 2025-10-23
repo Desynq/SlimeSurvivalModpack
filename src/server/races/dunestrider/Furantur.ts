@@ -2,11 +2,6 @@
 
 namespace FuranturSkill {
 
-	function isLifestealable(victim: LivingEntity_) {
-		if (EntityHelper.isType(victim, "dummmmmmy:target_dummy") && victim.tickCount > 40) return false;
-		return true;
-	}
-
 	export function onAttack(player: ServerPlayer_, victim: LivingEntity_, damage: float): void {
 		if (!PlayerHelper.canHeal(player)) return;
 		if (!isLifestealable(victim)) return;
@@ -28,6 +23,19 @@ namespace FuranturSkill {
 		healAmount -= healthToAdd;
 
 		BloodclotSkill.applyOverheal(player, healAmount);
+	}
+
+	export function onEntityDeath(player: ServerPlayer_, victim: LivingEntity_): void {
+		if (DunestriderSkills.FURANTUR_5.isLockedFor(player)) return;
+
+		let victimMaxHealth = victim.getMaxHealth();
+		let heal = victimMaxHealth * 0.20;
+		player.setHealth(player.getHealth() + heal);
+	}
+
+	function isLifestealable(victim: LivingEntity_) {
+		if (EntityHelper.isType(victim, "dummmmmmy:target_dummy") && victim.tickCount > 40) return false;
+		return true;
 	}
 
 	function getLifestealPercentage(furanturTier: integer, damage: float): number {

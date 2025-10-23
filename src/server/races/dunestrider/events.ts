@@ -33,12 +33,8 @@ EntityEvents.death(event => {
 		if (HysteriaSkill.hasMaxHysteria(player)) {
 			let extraSat = player.getSaturation() >= 10 ? 0 : player.getSaturation() + 1;
 			player.setSaturation(extraSat);
-		};
+		}
 	}
 
-	if ((SkillHelper.hasSkill(player, DunestriderSkills.FURANTUR_5))) {
-		let victimMaxHealth = event.getEntity().getMaxHealth();
-		let heal = victimMaxHealth * 0.020;
-		player.setHealth(player.getHealth() + heal);
-	};
+	FuranturSkill.onEntityDeath(player, event.getEntity());
 });
