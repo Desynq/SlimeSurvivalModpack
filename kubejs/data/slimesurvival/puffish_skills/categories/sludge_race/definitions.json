@@ -1,4 +1,38 @@
 {
+	"racism": {
+		"title": "Racism",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "You are the target of a wide spread global conspiracy theory to undermine tanks.",
+				"color": "dark_green",
+				"italic": true
+			},
+			{
+				"text": "\n\nAdmins hate you. Players hate you. Who doesn't hate you?\n• +500% chance to get nerfed whenever you become useful.",
+				"color": "red"
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "dummmmmmy:target_dummy"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
 	"flammable": {
 		"title": "Flammable",
 		"rewards": [

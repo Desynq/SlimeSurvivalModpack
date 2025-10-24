@@ -6,6 +6,21 @@ const SludgeSkills = new (class extends SkillManager {
 		super("slimesurvival:sludge_race");
 	}
 
+	public readonly RACISM = this.createSkill("racism", def => def
+		.itemIcon("dummmmmmy:target_dummy")
+		.addDescription({
+			"text": "You are the target of a wide spread global conspiracy theory to undermine tanks.",
+			"color": "dark_green",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nAdmins hate you. Players hate you. Who doesn't hate you?"
+				+ "\n• +500% chance to get nerfed whenever you become useful.",
+			"color": "red"
+		})
+		.rootSkill()
+	);
+
 	public readonly FLAMMABLE = new SkillDefinition(this.categoryId, "flammable")
 		.advancementFrame("goal")
 		.itemIcon("minecraft:flint_and_steel")
