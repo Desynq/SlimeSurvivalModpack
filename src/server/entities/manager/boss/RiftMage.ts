@@ -1,7 +1,7 @@
-
+// priority: 2
 
 const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableEntityManager<T> implements ITickableBoss<T> {
-	private readonly HEALTH_PER_PLAYER = 5000;
+	public readonly DEFAULT_MAX_HEALTH = 5000;
 
 	private readonly sfManager = new SoulFlareManager();
 
@@ -70,7 +70,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_> extends RewardableE
 
 	private scaleHealth(boss: T): void {
 		const playerCount = this.rewarder.getContributorCount(boss);
-		BossHelper.scaleHealthByPlayers(boss, this.HEALTH_PER_PLAYER, playerCount);
+		BossHelper.scaleHealthByPlayers(boss, this.DEFAULT_MAX_HEALTH, playerCount);
 	}
 
 	private trySwapPlayers(boss: T): void {

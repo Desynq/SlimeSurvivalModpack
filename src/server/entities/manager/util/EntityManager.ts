@@ -1,4 +1,4 @@
-// priority: 2
+// priority: 100
 
 abstract class EntityManager<T extends LivingEntity_> {
 	private entityCache: EntityCache<T> = new EntityCache();

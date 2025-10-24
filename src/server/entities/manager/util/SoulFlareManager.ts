@@ -1,4 +1,4 @@
-// priority: 2
+// priority: 100
 
 
 class SoulFlareManager {

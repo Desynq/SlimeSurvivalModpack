@@ -1,4 +1,4 @@
-// priority: 2
+// priority: 100
 
 /**
  * Deterministic linear projectile. Origin and target are immutable

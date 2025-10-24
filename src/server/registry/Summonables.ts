@@ -200,7 +200,6 @@ namespace Summonables {
 			}
 		],
 		CustomName: '{"color":"dark_purple","text":"Rift Mage"}',
-		Glowing: true,
 		HandItems: [
 			{
 				id: "minecraft:bow",
@@ -208,6 +207,6 @@ namespace Summonables {
 			}
 		]
 	})
-		.setMaxHealth(500.00)
+		.setMaxHealth(RiftMage.DEFAULT_MAX_HEALTH)
 		.setBoss();
 }
