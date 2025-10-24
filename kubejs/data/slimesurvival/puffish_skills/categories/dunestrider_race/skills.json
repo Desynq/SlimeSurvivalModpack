@@ -7,25 +7,25 @@
 	},
 	"3f9xq2v7b6p4z8rw": {
 		"definition": "rend_2",
-		"x": 32,
+		"x": 64,
 		"y": 0,
 		"root": false
 	},
 	"8v4xq1b7n2p6z3yt": {
 		"definition": "rend_3",
-		"x": 64,
+		"x": 128,
 		"y": 0,
 		"root": false
 	},
 	"7f2xq9v5b3p8z6lm": {
 		"definition": "rend_4",
-		"x": 96,
+		"x": 160,
 		"y": 0,
 		"root": false
 	},
 	"6b3xq8v2n1p7z4qs": {
 		"definition": "rend_5",
-		"x": 128,
+		"x": 192,
 		"y": 0,
 		"root": false
 	},
@@ -49,37 +49,37 @@
 	},
 	"2n8xq5v3b1p6z7wh": {
 		"definition": "demean_1",
-		"x": 64,
+		"x": 128,
 		"y": 32,
 		"root": false
 	},
 	"4k7xp2v9b3n6z1qy": {
 		"definition": "demean_2",
-		"x": 96,
+		"x": 160,
 		"y": 32,
 		"root": false
 	},
 	"1m8xq6v4b2p9z5wt": {
 		"definition": "demean_3",
-		"x": 128,
+		"x": 192,
 		"y": 32,
 		"root": false
 	},
 	"9b2xq7v5c4m8z1pl": {
 		"definition": "hysteria_1",
-		"x": 64,
+		"x": 128,
 		"y": -32,
 		"root": false
 	},
 	"q7v2b9x4p6z1m8rp": {
 		"definition": "hysteria_2",
-		"x": 96,
+		"x": 160,
 		"y": -32,
 		"root": false
 	},
 	"f3n6x8v2b1p7z4qs": {
 		"definition": "hysteria_3",
-		"x": 128,
+		"x": 192,
 		"y": -32,
 		"root": false
 	},
@@ -103,61 +103,61 @@
 	},
 	"t5bnqz7lwxr3umke": {
 		"definition": "first_strike",
-		"x": 64,
+		"x": 32,
 		"y": -128,
 		"root": false
 	},
 	"od48m4hf7r9le2mv": {
 		"definition": "heavenly_restriction",
-		"x": 192,
+		"x": 256,
 		"y": 0,
 		"root": false
 	},
 	"idFW1923jf01l3o6": {
 		"definition": "furantur_1",
-		"x": 256,
+		"x": 320,
 		"y": 0,
 		"root": false
 	},
 	"g7xq2n4mdbv5czlu": {
 		"definition": "furantur_2",
-		"x": 320,
+		"x": 384,
 		"y": -32,
 		"root": false
 	},
 	"r1kz8jwmq5tl2hce": {
 		"definition": "furantur_3",
-		"x": 384,
+		"x": 448,
 		"y": 0,
 		"root": false
 	},
 	"n9dfv3upxbz4eaym": {
 		"definition": "furantur_4",
-		"x": 320,
+		"x": 384,
 		"y": 32,
 		"root": false
 	},
 	"l2mpxq7wrn0cegti": {
 		"definition": "furantur_5",
-		"x": 320,
+		"x": 384,
 		"y": 0,
 		"root": false
 	},
 	"p21c56ddahgdhs87": {
 		"definition": "martyr",
-		"x": 64,
+		"x": 128,
 		"y": 64,
 		"root": false
 	},
 	"5umrj3x3ot05rrf6": {
 		"definition": "bloodclot_1",
-		"x": 256,
+		"x": 320,
 		"y": -64,
 		"root": false
 	},
 	"qr6bvijmndxtwjwm": {
 		"definition": "focus",
-		"x": -64,
+		"x": -96,
 		"y": 0,
 		"root": false
 	},
@@ -170,19 +170,19 @@
 	"yynm23kpk1k7pp2u": {
 		"definition": "clarity",
 		"x": -128,
-		"y": 64,
+		"y": 96,
 		"root": false
 	},
 	"3uul94cqmny01mpy": {
 		"definition": "clairvoyance",
 		"x": -160,
-		"y": 32,
+		"y": 64,
 		"root": false
 	},
 	"bex2nnru3g3wqkki": {
 		"definition": "disconcern",
 		"x": -128,
-		"y": -64,
+		"y": -96,
 		"root": false
 	},
 	"kwkog24kyzdzplqn": {
@@ -193,31 +193,67 @@
 	},
 	"8ge7cuvlc272q9uw": {
 		"definition": "bloodclot_2",
-		"x": 256,
-		"y": -128,
+		"x": 320,
+		"y": -96,
 		"root": false
 	},
 	"8isd9j70qi4617cc": {
 		"definition": "primacy",
-		"x": 224,
-		"y": -128,
+		"x": 288,
+		"y": -96,
 		"root": false
 	},
 	"wmh1bhhf67jp6fz8": {
 		"definition": "hemorrhage",
-		"x": 288,
-		"y": -128,
+		"x": 352,
+		"y": -96,
 		"root": false
 	},
 	"g5d0kaic7fp7w8y5": {
 		"definition": "deflection",
 		"x": -160,
-		"y": -32,
+		"y": -64,
 		"root": false
 	},
 	"ur6ks3e26nbjcx4c": {
 		"definition": "resonance",
 		"x": 0,
+		"y": -96,
+		"root": false
+	},
+	"voq73x3jzaj1c0id": {
+		"definition": "bifurcation",
+		"x": 288,
+		"y": -128,
+		"root": false
+	},
+	"cbl363wytm267q0j": {
+		"definition": "critical",
+		"x": -192,
+		"y": -32,
+		"root": false
+	},
+	"s4oz67jmv858uqij": {
+		"definition": "mental_streak",
+		"x": -192,
+		"y": 32,
+		"root": false
+	},
+	"p3ywr0h86udm960p": {
+		"definition": "ouroboros",
+		"x": 320,
+		"y": 64,
+		"root": false
+	},
+	"jb33cg5c3mavwuzn": {
+		"definition": "blitzkrieg",
+		"x": 128,
+		"y": -64,
+		"root": false
+	},
+	"ukb9g1j6jszkk8da": {
+		"definition": "judo",
+		"x": -192,
 		"y": -96,
 		"root": false
 	}

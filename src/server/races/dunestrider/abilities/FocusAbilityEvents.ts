@@ -42,7 +42,7 @@ namespace FocusAbilityEvents {
 
 		event.setCanceled(true);
 		FocusAbility.onDamageTaken(player); // deactivate since we're cancelling the event before it can reach LivingDamageEvent.Post
-		LivingEntityHelper.addEffect(immediate, "cataclysm:stun", 40, 0, false, true, true);
+		LivingEntityHelper.addEffect(immediate, "cataclysm:stun", 20, 0, false, true, true);
 		PlaysoundHelper.playsound(player.level, player.position(), "cataclysm:parry", "ambient", 1, 0.5);
 	});
 

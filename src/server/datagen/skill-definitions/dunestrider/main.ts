@@ -13,6 +13,9 @@ const DunestriderSkills = new (class extends SkillManager {
 		super("slimesurvival:dunestrider_race");
 	}
 
+	private readonly STYLE: JsonComponentStyle = { "color": "dark_red", "italic": true };
+
+
 	public readonly REND_1 = new SkillDefinition(this.categoryId, "rend_1")
 		.itemIcon("minecraft:cracked_stone_bricks")
 		.advancementFrame("goal")
@@ -26,7 +29,7 @@ const DunestriderSkills = new (class extends SkillManager {
 		.register(this.skills);
 
 	public readonly REND_2 = new SkillDefinition(this.categoryId, "rend_2")
-		.itemIcon("minecraft:cracked_stone_bricks")
+		.itemIcon("minecraft:cracked_deepslate_bricks")
 		.advancementFrame("task")
 		.addDescription({
 			"color": "red",
@@ -38,7 +41,7 @@ const DunestriderSkills = new (class extends SkillManager {
 		.register(this.skills);
 
 	public readonly REND_3 = new SkillDefinition(this.categoryId, "rend_3")
-		.itemIcon("minecraft:cracked_stone_bricks")
+		.itemIcon("minecraft:cracked_nether_bricks")
 		.advancementFrame("task")
 		.addDescription({
 			"color": "red",
@@ -50,7 +53,7 @@ const DunestriderSkills = new (class extends SkillManager {
 		.register(this.skills);
 
 	public readonly REND_4 = new SkillDefinition(this.categoryId, "rend_4")
-		.itemIcon("minecraft:cracked_deepslate_bricks")
+		.itemIcon("minecraft:cracked_polished_blackstone_bricks")
 		.advancementFrame("task")
 		.addDescription({
 			"color": "dark_red",
@@ -62,7 +65,7 @@ const DunestriderSkills = new (class extends SkillManager {
 		.register(this.skills);
 
 	public readonly REND_5 = new SkillDefinition(this.categoryId, "rend_5")
-		.itemIcon("minecraft:cracked_nether_bricks")
+		.itemIcon("twilightforest:cracked_castle_brick")
 		.advancementFrame("task")
 		.addDescription({
 			"color": "dark_red",
@@ -197,20 +200,19 @@ const DunestriderSkills = new (class extends SkillManager {
 		.toSkill("f3n6x8v2b1p7z4qs")
 		.register(this.skills);
 
-	public readonly BLITZKREIG = new SkillDefinition(this.categoryId, "blitzkreig")
+	public readonly BLITZKRIEG = this.createSkill("blitzkrieg", def => def
 		.itemIcon("cataclysm:burning_ashes")
 		.advancementFrame("task")
+		.addStyledDescription("Swift and decisive.", this.STYLE)
 		.addDescription({
-			"color": "yellow",
-			"text": "Swift and decisive.\n\n- Deal up to 2x damage based on how fast you're moving."
+			"text": "\n\n- Swing up to twice as fast based on how fast you are moving."
 		})
 		.cost(4)
-		.serialize(this.definitionsJson)
-		.toSkill("f3n6x8v2b1p7z4qs")
-		.register(this.skills);
+		.flagPlanned()
+	);
 
 	public readonly ROBINHOOD = new SkillDefinition(this.categoryId, "robinhood")
-		.itemIcon("minecraft:barrier")
+		.itemIcon("endermanoverhaul:badlands_hood")
 		.advancementFrame("goal")
 		.addDescription({
 			"color": "green",
@@ -315,6 +317,7 @@ const DunestriderSkills = new (class extends SkillManager {
 			"text": "Drink their blood.\n\n- Gain 10% lifesteal on-hit."
 		})
 		.cost(5)
+		.requiredSkills(2)
 		.serialize(this.definitionsJson)
 		.toSkill("n9dfv3upxbz4eaym")
 		.register(this.skills);
@@ -328,10 +331,29 @@ const DunestriderSkills = new (class extends SkillManager {
 			"text": "Something inside of you needs violence.\nYou don't dare disobey.\n\n- Heal for 20% of your enemies max hp on kill.\n15% lifesteal on-hit."
 		})
 		.cost(10)
+		.requiredSkills(4)
 		.serialize(this.definitionsJson)
 		.toSkill("l2mpxq7wrn0cegti")
 		.register(this.skills);
 
+	public readonly OUROBOROS = this.createSkill("ouroboros", def => def
+		.itemIcon("simplyswords:chompolotl")
+		.addDescription({
+			"text": "The serpent bites its tail, and the world mistakes it for suffering. But in truth, it's only feeding itself.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nDamage from yourself does not hurt you but still procs your skills."
+		})
+		.cost(4)
+		.flagPlanned()
+	);
+
+
+	/* -------------------------------------------------------------------------- */
+	/*                           Bloodclot Skill Branch                           */
+	/* -------------------------------------------------------------------------- */
 	public readonly BLOODCLOT_1 = new SkillDefinition(this.categoryId, "bloodclot_1")
 		.itemIcon("minecraft:beetroot_soup")
 		.addDescription(["",
@@ -379,6 +401,21 @@ const DunestriderSkills = new (class extends SkillManager {
 		.flagPlanned()
 	);
 
+	public readonly BIFURCATION = this.createSkill("bifurcation", def => def
+		.effectIcon("minecraft:wither")
+		.addDescription({
+			"text": "Healing has a time and place. Now is not the time.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nLifesteal will not heal both your overheal and normal health within the same attack."
+				+ "\n• Overheal must be previously full in order for an attack to heal your normal health."
+		})
+		.cost(2)
+		.flagPlanned()
+	);
+
 	public readonly HEMORRHAGE = this.createSkill("hemorrhage", def => def
 		.effectIcon("minecraft:health_boost")
 		.addDescription({
@@ -394,7 +431,9 @@ const DunestriderSkills = new (class extends SkillManager {
 	);
 
 
-
+	/* -------------------------------------------------------------------------- */
+	/*                           Resonance Skill Branch                           */
+	/* -------------------------------------------------------------------------- */
 	public readonly RESONANCE = this.createSkill("resonance", def => def
 		.effectIcon("minecraft:darkness")
 		.addDescription({
@@ -461,6 +500,17 @@ const DunestriderSkills = new (class extends SkillManager {
 		.cost(2)
 	);
 
+	public readonly JUDO = this.createSkill("judo", def => def
+		.itemIcon("minecraft:fire_charge")
+		.addStyledDescription("Return to sender. Use your own opponent's strength to overcome them.", this.STYLE)
+		.addDescription({
+			"text": "\n\nArrows deflected by your Focus gain the ability to stun for 2 seconds."
+				+ "\n• The stun bypasses invulnerability, the arrow only has to make contact and be perceived as incoming damage."
+		})
+		.cost(2)
+		.flagPlanned()
+	);
+
 	public readonly PARRIED = this.createSkill("parried", def => def
 		.itemIcon("minecraft:iron_sword")
 		.addDescription(["",
@@ -470,7 +520,7 @@ const DunestriderSkills = new (class extends SkillManager {
 				"italic": true
 			},
 			{
-				"text": "\n\n  You now parry the attack that deactivated your Focus ability after it fully charged, taking no damage from it and stunning your opponent for 2 seconds."
+				"text": "\n\n  You now parry the attack that deactivated your Focus ability after it fully charged, taking no damage from it and stunning your opponent for 1 second."
 					+ "\n  Must be an immediate attack."
 			}
 		])
@@ -481,7 +531,7 @@ const DunestriderSkills = new (class extends SkillManager {
 		.itemIcon("minecraft:glass")
 		.addDescription(["",
 			{
-				"text": "I said no distractions.",
+				"text": "No distractions.",
 				"color": "dark_red",
 				"italic": true
 			},
@@ -553,6 +603,20 @@ const DunestriderSkills = new (class extends SkillManager {
 				+ "\n• Vanilla critical attacks deal 2.0x damage instead of 1.5x damage."
 		})
 		.cost(6)
+		.flagPlanned()
+	);
+
+	public readonly MENTAL_STREAK = this.createSkill("mental_streak", def => def
+		.itemIcon("minecraft:clock")
+		.addDescription({
+			"text": "It just keeps making sense. I must pursue it.",
+			"color": "dark_red",
+			"italic": true
+		})
+		.addDescription({
+			"text": "\n\nFocus cooldown is halved if it deactivates without taking damage."
+		})
+		.cost(3)
 		.flagPlanned()
 	);
 

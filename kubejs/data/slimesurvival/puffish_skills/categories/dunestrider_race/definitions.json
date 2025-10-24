@@ -46,7 +46,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:cracked_stone_bricks"
+				"item": "minecraft:cracked_deepslate_bricks"
 			}
 		},
 		"frame": {
@@ -74,7 +74,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:cracked_stone_bricks"
+				"item": "minecraft:cracked_nether_bricks"
 			}
 		},
 		"frame": {
@@ -102,7 +102,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:cracked_deepslate_bricks"
+				"item": "minecraft:cracked_polished_blackstone_bricks"
 			}
 		},
 		"frame": {
@@ -130,7 +130,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:cracked_nether_bricks"
+				"item": "twilightforest:cracked_castle_brick"
 			}
 		},
 		"frame": {
@@ -441,18 +441,26 @@
 			}
 		}
 	},
-	"blitzkreig": {
-		"title": "Blitzkreig",
+	"blitzkrieg": {
+		"title": "Blitzkrieg",
 		"rewards": [],
 		"description": [
 			"",
 			{
-				"color": "yellow",
-				"text": "Swift and decisive.\n\n- Deal up to 2x damage based on how fast you're moving."
+				"text": "Swift and decisive.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\n- Swing up to twice as fast based on how fast you are moving."
 			},
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,
@@ -487,7 +495,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:barrier"
+				"item": "endermanoverhaul:badlands_hood"
 			}
 		},
 		"frame": {
@@ -720,6 +728,10 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 5 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Parent Skills Needed: 2]"
 			}
 		],
 		"cost": 5,
@@ -734,7 +746,8 @@
 			"data": {
 				"frame": "task"
 			}
-		}
+		},
+		"required_skills": 2
 	},
 	"furantur_5": {
 		"title": "Ares",
@@ -748,6 +761,10 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 10 points]"
+			},
+			{
+				"color": "red",
+				"text": "\n[Parent Skills Needed: 4]"
 			}
 		],
 		"cost": 10,
@@ -761,6 +778,37 @@
 			"type": "advancement",
 			"data": {
 				"frame": "challenge"
+			}
+		},
+		"required_skills": 4
+	},
+	"ouroboros": {
+		"title": "Ouroboros",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "The serpent bites its tail, and the world mistakes it for suffering. But in truth, it's only feeding itself.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nDamage from yourself does not hurt you but still procs your skills."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "simplyswords:chompolotl"
 			}
 		}
 	},
@@ -850,6 +898,36 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:netherite_upgrade_smithing_template"
+			}
+		}
+	},
+	"bifurcation": {
+		"title": "Bifurcation",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Healing has a time and place. Now is not the time.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nLifesteal will not heal both your overheal and normal health within the same attack.\n• Overheal must be previously full in order for an attack to heal your normal health."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "minecraft:wither"
 			}
 		}
 	},
@@ -997,6 +1075,36 @@
 			}
 		}
 	},
+	"judo": {
+		"title": "Judo",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Return to sender. Use your own opponent's strength to overcome them.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nArrows deflected by your Focus gain the ability to stun for 2 seconds.\n• The stun bypasses invulnerability, the arrow only has to make contact and be perceived as incoming damage."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:fire_charge"
+			}
+		}
+	},
 	"parried": {
 		"title": "Parried",
 		"rewards": [],
@@ -1010,7 +1118,7 @@
 					"italic": true
 				},
 				{
-					"text": "\n\n  You now parry the attack that deactivated your Focus ability after it fully charged, taking no damage from it and stunning your opponent for 2 seconds.\n  Must be an immediate attack."
+					"text": "\n\n  You now parry the attack that deactivated your Focus ability after it fully charged, taking no damage from it and stunning your opponent for 1 second.\n  Must be an immediate attack."
 				}
 			],
 			{
@@ -1034,7 +1142,7 @@
 			[
 				"",
 				{
-					"text": "I said no distractions.",
+					"text": "No distractions.",
 					"color": "dark_red",
 					"italic": true
 				},
@@ -1185,6 +1293,36 @@
 			"type": "item",
 			"data": {
 				"item": "twilightforest:exanimate_essence"
+			}
+		}
+	},
+	"mental_streak": {
+		"title": "Mental Streak",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "It just keeps making sense. I must pursue it.",
+				"color": "dark_red",
+				"italic": true
+			},
+			{
+				"text": "\n\nFocus cooldown is halved if it deactivates without taking damage."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 3 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:clock"
 			}
 		}
 	}

@@ -191,6 +191,11 @@ class SkillDefinition {
 		return this;
 	}
 
+	public addStyledDescription(text: string, style: JsonComponentStyle): this {
+		const description: JsonComponent = { text, ...style };
+		return this.addDescription(description);
+	}
+
 	public addKeybindDescription(key: string): this {
 		this.data.description.push([
 			{ color: "gray", text: " [" },
