@@ -857,10 +857,6 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 4 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,
@@ -887,10 +883,6 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 4 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,

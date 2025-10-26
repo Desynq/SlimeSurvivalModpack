@@ -15,22 +15,43 @@ namespace FuranturSkill {
 		);
 		if (furanturTier === 0) return;
 
-		const stealPercent = getLifestealPercentage(furanturTier, damage);
-		let healAmount = damage * stealPercent;
-
-		const healthToAdd = Math.min(healAmount, player.maxHealth - player.health);
-		player.setHealth(player.health + healthToAdd);
-		healAmount -= healthToAdd;
-
-		BloodclotSkill.applyOverheal(player, healAmount);
+		let healAmount = calculateHealAmount(damage, furanturTier);
+		applyHeal(player, healAmount);
 	}
 
 	export function onEntityDeath(player: ServerPlayer_, victim: LivingEntity_): void {
 		if (DunestriderSkills.FURANTUR_5.isLockedFor(player)) return;
 
 		let victimMaxHealth = victim.getMaxHealth();
-		let heal = victimMaxHealth * 0.20;
-		player.setHealth(player.getHealth() + heal);
+		let healAmount = victimMaxHealth * 0.20;
+		applyHeal(player, healAmount);
+	}
+
+
+
+	function calculateHealAmount(damage: float, furanturTier: integer): number {
+		const stealPercent = getLifestealPercentage(furanturTier, damage);
+		const healAmount = damage * stealPercent;
+		return healAmount;
+	}
+
+	function applyHeal(player: ServerPlayer_, healAmount: number): void {
+		const hasPrimacy = DunestriderSkills.PRIMACY.isUnlockedFor(player);
+		if (hasPrimacy) {
+			healAmount = BloodclotSkill.applyOverheal(player, healAmount);
+			applyHealthHeal(player, healAmount);
+		}
+		else {
+			healAmount = applyHealthHeal(player, healAmount);
+			BloodclotSkill.applyOverheal(player, healAmount);
+		}
+	}
+
+	function applyHealthHeal(player: ServerPlayer_, healAmount: number): number {
+		const healthToAdd = Math.min(healAmount, player.maxHealth - player.health);
+		player.setHealth(player.health + healthToAdd);
+		healAmount -= healthToAdd;
+		return healAmount;
 	}
 
 	function isLifestealable(victim: LivingEntity_) {

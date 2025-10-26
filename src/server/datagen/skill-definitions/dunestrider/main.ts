@@ -384,7 +384,6 @@ const DunestriderSkills = new (class extends SkillManager {
 			"text": "\n\n+100% Max Overheal"
 		})
 		.cost(4)
-		.flagPlanned()
 	);
 
 	public readonly PRIMACY = this.createSkill("primacy", def => def
@@ -398,7 +397,6 @@ const DunestriderSkills = new (class extends SkillManager {
 			"text": "\n\nLifesteal prioritizes maxing out overheal before healing actual health.",
 		})
 		.cost(4)
-		.flagPlanned()
 	);
 
 	public readonly BIFURCATION = this.createSkill("bifurcation", def => def
