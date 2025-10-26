@@ -29,7 +29,7 @@
 										{
 											"id": "slimesurvival:shaped_glass",
 											"type": "minecraft:generic.attack_damage",
-											"amount": 1,
+											"amount": 0.50,
 											"operation": "add_multiplied_total",
 											"slot": "head"
 										}
