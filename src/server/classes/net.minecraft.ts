@@ -66,3 +66,15 @@ const $EntityHitResult: typeof import("net.minecraft.world.phys.EntityHitResult"
 type AbstractArrow_ = import("net.minecraft.world.entity.projectile.AbstractArrow").$AbstractArrow$$Original;
 const $AbstractArrow: typeof import("net.minecraft.world.entity.projectile.AbstractArrow").$AbstractArrow =
 	Java.loadClass("net.minecraft.world.entity.projectile.AbstractArrow");
+
+type LootTable_ = import("net.minecraft.world.level.storage.loot.LootTable").$LootTable;
+type LootTableHolder_ = import("net.minecraft.core.Holder").$Holder<LootTable_>;
+
+const $LootParams$Builder: typeof import("net.minecraft.world.level.storage.loot.LootParams$Builder").$LootParams$Builder =
+	Java.loadClass("net.minecraft.world.level.storage.loot.LootParams$Builder");
+
+const $LootContextParams: typeof import("net.minecraft.world.level.storage.loot.parameters.LootContextParams").$LootContextParams =
+	Java.loadClass("net.minecraft.world.level.storage.loot.parameters.LootContextParams");
+
+const $LootContextParamSets: typeof import("net.minecraft.world.level.storage.loot.parameters.LootContextParamSets").$LootContextParamSets =
+	Java.loadClass("net.minecraft.world.level.storage.loot.parameters.LootContextParamSets");

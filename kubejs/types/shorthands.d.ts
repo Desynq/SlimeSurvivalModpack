@@ -14,8 +14,6 @@ type CustomBossEvent_ = import("net.minecraft.server.bossevents.CustomBossEvent"
 
 type EquipmentSlot_ = import("net.minecraft.world.entity.EquipmentSlot").$EquipmentSlot$$Original;
 
-type Holder_ = import("net.minecraft.core.Holder").$Holder$$Original;
-
 type Attribute_ = import("net.minecraft.world.entity.ai.attributes.Attribute").$Attribute$$Original;
 
 type AttributeModifier_ = import("net.minecraft.world.entity.ai.attributes.AttributeModifier").$AttributeModifier$$Original;
