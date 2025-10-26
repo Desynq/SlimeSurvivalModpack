@@ -76,13 +76,20 @@ class EntityDirector {
 		const bossbars = server.customBossEvents;
 
 		for (const bossbar of bossbars.getEvents().toArray() as CustomBossEvent_[]) {
-			const uuid = UUID.fromString(bossbar.textId.path);
-			const entity = server.getEntityByUUID(uuid.toString());
-			if (!EntityManager.isGenericBoss(entity) || (entity instanceof $Mob && TheHunger.isCachedEntity(entity) && !TheHunger.isBossbarHolder(entity as Mob_))) {
-				bossbar.removeAllPlayers();
-				bossbars.remove(bossbar);
-			}
+			if (bossbar.textId.namespace !== "boss") continue;
+
+			const entity = server.getEntityByUUID(bossbar.textId.path) as Entity_ | null;
+
+			const flag = entity && (EntityManager.isGenericBoss(entity) || this.hasGenericBossbar(entity));
+			if (flag) continue;
+
+			bossbar.removeAllPlayers();
+			bossbars.remove(bossbar);
 		}
+	}
+
+	public static hasGenericBossbar(entity: Entity_): boolean {
+		return EntityManagers.getManager(entity)?.hasGenericBossbar(entity) ?? false;
 	}
 
 	public static genericBossTick(boss: LivingEntity_): void {

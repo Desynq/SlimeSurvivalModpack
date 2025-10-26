@@ -25,6 +25,10 @@ abstract class EntityManager<T extends LivingEntity_> {
 		return this;
 	}
 
+	public hasGenericBossbar(entity: T): boolean {
+		return true;
+	}
+
 	public onSpawn(entity: T, event: EntitySpawnedKubeEvent_): void { }
 
 	public onDeath(entity: T, event: LivingEntityDeathKubeEvent_): void { }

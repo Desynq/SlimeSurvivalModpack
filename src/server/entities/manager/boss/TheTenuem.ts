@@ -1,11 +1,10 @@
 
 
-const TheTenuem = new (class <T extends Phantom_ & Mob_> extends EntityManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
+const TheTenuem = new (class <T extends Phantom_ & Mob_> extends RewardableEntityManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
 
 	public override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Phantom && entity.tags.contains("boss.tenuem");
 	}
-
 
 	public override onIncomingDamage(boss: T, event: LivingIncomingDamageEvent_): void {
 		if (["lightningBolt", "inFire", "onFire"].includes(event.source.getType())) {
@@ -20,8 +19,11 @@ const TheTenuem = new (class <T extends Phantom_ & Mob_> extends EntityManager<T
 	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
 		const bosses = this.getEntities(player.server);
 		for (const boss of bosses) {
-			const newHealth = MathHelper.clamped(boss.health + boss.maxHealth * 0.2, 0, boss.maxHealth);
-			tellOperators(player.server, `Healed boss to ${newHealth}`);
+			const healAmount = boss.maxHealth * 0.2;
+			for (const p of ServerHelper.getPlayers(player.server)) {
+				ActionbarManager.addMessage(p, `Boss healed: ${healAmount}`, 100, 100);
+			}
+			const newHealth = MathHelper.clamped(boss.health + healAmount, 0, boss.maxHealth);
 			boss.health = newHealth;
 		}
 	}

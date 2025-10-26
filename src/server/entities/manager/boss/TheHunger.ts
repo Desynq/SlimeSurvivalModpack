@@ -1,16 +1,18 @@
 
 
-
-// @ts-ignore
-const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implements ITickableBoss<T>, ICustomBossbar<T> {
+const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implements ITickableBoss<T> {
 	public readonly BOSS_ID = "minecraft:rabbit";
 	public readonly MOB_SEARCH_RANGE = 128;
 	public readonly MOB_AGGRO_RANGE = 16;
 	public readonly PLAYER_AGGRO_RANGE = 128;
 	public readonly SPAWN_CAP = 128;
 
-	protected override isEntity(entity: unknown): entity is T {
+	public override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Mob && entity.tags.contains("boss.the_hunger") && EntityHelper.isType(entity as any, this.BOSS_ID);
+	}
+
+	public override hasGenericBossbar(entity: T): boolean {
+		return false;
 	}
 
 	public getMaxHealth(server: MinecraftServer_): float {
@@ -69,6 +71,13 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 
 	public override onTickAll(server: MinecraftServer_, bosses: T[]): void {
 		TimeHelper.shiftTime(server, 6000);
+		this.updateBossbar(server);
+	}
+
+	public override onServerTick(server: MinecraftServer_): void {
+		if (this.getEntityCount(server) === 0) {
+
+		}
 	}
 
 	public override onKill(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_): void {
@@ -76,29 +85,25 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 		this.tryDuplicate(boss);
 	}
 
-	public onBossbarUpdate(boss: T): void {
-		if (!this.isBossbarHolder(boss)) return;
-
-		const server = boss.server;
+	private updateBossbar(server: MinecraftServer_): void {
 		const bossbarManager = server.customBossEvents;
 
-		const bossbarId = `boss:${boss.uuid.toString()}`;
+		const bossbarId = `boss:the_hunger`;
 
 		if (bossbarManager.get(bossbarId) == null) {
 			server.runCommandSilent(`bossbar add ${bossbarId} ""`);
 		}
 
-		const count = this.getEntities(boss.server).length;
+		const count = this.getEntityCount(server);
 
 		server.runCommandSilent(`bossbar set ${bossbarId} max ${count}`);
 		server.runCommandSilent(`bossbar set ${bossbarId} value ${count}`);
 
 		server.runCommandSilent(`bossbar set ${bossbarId} color red`);
-		server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${boss.username}"},{"color":"dark_red","text":": ${count} Scurge Left"}]`);
+		server.runCommandSilent(`bossbar set ${bossbarId} name [{"color":"dark_red","text":"The Hunger: ${count} Scurge Left"}]`);
 
-		server.runCommandSilent(`execute at ${boss.username} run bossbar set ${bossbarId} players @a[distance=0..]`);
+		server.runCommandSilent(`bossbar set ${bossbarId} players @a`);
 	}
-
 
 	private makeHyperAggressive(boss: T): void {
 		if (!boss.aggressive) {
