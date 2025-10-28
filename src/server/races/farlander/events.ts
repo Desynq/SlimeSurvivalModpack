@@ -15,24 +15,20 @@ namespace FarlanderEvents {
 
 	EntityEvents.beforeHurt(event => {
 		const victim = event.entity;
-		const attacker = event.source.actual as Entity_ | null;
+		const source = event.source;
+		const attacker = source.actual as Entity_ | null;
 
-		if (!(victim instanceof $LivingEntity)) {
-			return;
-		}
-		if (!EntropyHelper.canReceiveEntropy(victim)) {
-			return;
-		}
+		if (!(victim instanceof $LivingEntity)) return;
 
-		const damageType = event.source.getType();
+		if (!EntropyHelper.canReceiveEntropy(victim)) return;
 
-		const entropicDamageType = damageType === "slimesurvival.entropy_damage";
+		const damageType = source.getType();
+
+		const entropicDamageType = EntropyHelper.isEntropic(source);
 		const attackerDealsEntropyDamage = attacker instanceof $ServerPlayer && EntropyHelper.dealsEntropyDamage(attacker);
 		const victimIsFarlander = victim instanceof $ServerPlayer && EntropyHelper.isFarlander(victim);
 
-		if (!entropicDamageType && !victimIsFarlander && !attackerDealsEntropyDamage) {
-			return;
-		}
+		if (!entropicDamageType && !victimIsFarlander && !attackerDealsEntropyDamage) return;
 
 		if (!entropicDamageType && isBlacklistedDamageType(damageType)) return;
 

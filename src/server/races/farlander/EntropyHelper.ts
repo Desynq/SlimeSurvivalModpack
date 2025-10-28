@@ -81,11 +81,21 @@ class EntropyHelper {
 		}
 	}
 
-	public static attackWithEntropy(victim: LivingEntity_, attacker: LivingEntity_, amount: number): void {
-		const resourceKey = $ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy_attack");
-		const damageType = attacker.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow(resourceKey);
-		const source = new DamageSource(damageType, attacker as any, attacker as any);
+	public static attackWithEntropy(victim: LivingEntity_, attacker: LivingEntity_ | null, amount: number): boolean {
+		const source = this.asEntropyDamageSource(victim, attacker);
 
-		victim.attack(source, amount);
+		return victim.attack(source, amount);
+	}
+
+	public static asEntropyDamageSource(victim: LivingEntity_, attacker: LivingEntity_ | null): DamageSource_ {
+		const resourceKey = $ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy_attack");
+		const damageType = victim.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow(resourceKey);
+		const source = new DamageSource(damageType, attacker as Entity_, attacker as Entity_);
+		return source;
+	}
+
+	public static isEntropic(source: DamageSource_): boolean {
+		const damageType = source.getType();
+		return ["slimesurvival.entropy_damage", "slimesurvival.entropy_attack"].includes(damageType);
 	}
 }
