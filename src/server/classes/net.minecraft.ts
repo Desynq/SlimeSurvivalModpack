@@ -78,3 +78,10 @@ const $LootContextParams: typeof import("net.minecraft.world.level.storage.loot.
 
 const $LootContextParamSets: typeof import("net.minecraft.world.level.storage.loot.parameters.LootContextParamSets").$LootContextParamSets =
 	Java.loadClass("net.minecraft.world.level.storage.loot.parameters.LootContextParamSets");
+
+type MobEffect_ = import("net.minecraft.world.effect.MobEffect").$MobEffect;
+
+type MobEffectHolder_ = import("net.minecraft.core.Holder").$Holder<MobEffect_>;
+
+const $GameType: typeof import("net.minecraft.world.level.GameType").$GameType =
+	Java.loadClass("net.minecraft.world.level.GameType");
