@@ -8,7 +8,7 @@ namespace HysteriaSkill {
 		MOVE_SPEED_MOD.remove(player);
 		ATTACK_SPEED_MOD.remove(player);
 		if (hasMaxHysteria(player)) {
-			player.persistentData.putBoolean('dunestrider.hysteria.is_max', false);
+			setMaxHysteria(player, false);
 		}
 
 		if (FocusAbility.isActiveOrCharging(player)) return;
@@ -25,18 +25,20 @@ namespace HysteriaSkill {
 		let baseMoveSpeed = player.getAttributeBaseValue($Attributes.MOVEMENT_SPEED);
 		let baseAttackSpeed = player.getAttributeBaseValue($Attributes.ATTACK_SPEED);
 
-		let extraMoveSpeed = getMovementSpeedBuff(player.maxHealth, baseMoveSpeed, enemies);
+		const threat = getThreat(player);
+
+		let extraMoveSpeed = getMovementSpeedBuff(threat, baseMoveSpeed);
 		const hasMaxMoveSpeed = extraMoveSpeed >= baseMoveSpeed;
 
 		let extraAttackSpeed = enemyCount * 0.25;
 
 		let capAttackSpeed = baseAttackSpeed * 2;
 
-		let hasMaxStackAttackSpeed = false;
+		let hasMaxAttackSpeed = false;
 
 		if (extraAttackSpeed + baseAttackSpeed > capAttackSpeed) {
 			extraAttackSpeed = capAttackSpeed;
-			hasMaxStackAttackSpeed = true;
+			hasMaxAttackSpeed = true;
 		}
 
 		if (hysteriaTier >= 1) {
@@ -48,8 +50,8 @@ namespace HysteriaSkill {
 		}
 
 		if (hysteriaTier >= 3) {
-			if (hasMaxMoveSpeed && hasMaxStackAttackSpeed) {
-				player.persistentData.putBoolean('dunestrider.hysteriamax', true);
+			if (hasMaxMoveSpeed && hasMaxAttackSpeed) {
+				setMaxHysteria(player, true);
 			}
 		}
 	}
@@ -58,16 +60,12 @@ namespace HysteriaSkill {
 		return player.persistentData.getBoolean("dunestrider.hysteria.is_max");
 	}
 
-
+	function setMaxHysteria(player: ServerPlayer_, flag: boolean): void {
+		player.persistentData.putBoolean("dunestrider.hysteria.is_max", flag);
+	}
 
 	function isTargeting(mob: Mob_, player: ServerPlayer_): boolean {
 		return mob.getTarget() == player;
-	}
-
-	function targetedByNum(player: ServerPlayer_): integer {
-		let aabb = player.getBoundingBox().inflate(16, 16, 16);
-		// @ts-ignore
-		return player.level.getEntitiesOfClass($Mob, aabb, mob => isTargeting(mob, player)).size();
 	}
 
 	function getEnemies(player: ServerPlayer_): Mob_[] {
@@ -75,13 +73,40 @@ namespace HysteriaSkill {
 		return player.level.getEntitiesOfClass($Mob as any, aabb as any, (mob: Mob_) => isTargeting(mob, player)).toArray() as Mob_[];
 	}
 
-	function getMovementSpeedBuff(playerMaxHealth: number, baseMoveSpeed: number, enemies: Mob_[]): number {
-		const count = enemies.length;
-		if (count === 0) return 0.0;
-		const averageEnemyHealth = enemies.reduce((sum, mob) => sum + mob.health, 0.0) / enemies.length;
-		const factor = 20.0 / baseMoveSpeed;
+	function getThreat(player: ServerPlayer_): number {
+		const enemies = getEnemies(player);
+		const enemyCount = enemies.length;
+		if (enemyCount === 0) return 0.0;
+
+		const invHealth = 1.0 / player.maxHealth;
+		const cap = player.maxHealth * 5.0;
+		let sumSquares = 0.0;
+
+		for (const mob of enemies) {
+			const dmg = mob.getAttributeValue($Attributes.ATTACK_DAMAGE);
+			const threat = Math.min(dmg * invHealth, cap);
+			sumSquares += threat ** 2;
+		}
+
+		const rmsThreat = Math.sqrt(sumSquares / enemyCount);
+
+		return rmsThreat;
+	}
+
+	/**
+	 * Calculates the additive movement speed buff based on current threat level.
+	 *
+	 * The relationship follows `value = threat / (20 / baseMoveSpeed + threat)`,
+	 * producing smooth diminishing returns as threat increases.
+	 *
+	 * The resulting buff is clamped between `0` and `baseMoveSpeed`,
+	 * ensuring the total movement speed never exceeds double the base speed.
+	 */
+	function getMovementSpeedBuff(threat: number, baseMoveSpeed: number): number {
+		if (threat <= 0) return 0.0;
+
+		const factor = 5.0 / baseMoveSpeed;
 		const cap = baseMoveSpeed;
-		const threat = averageEnemyHealth / playerMaxHealth * count;
 
 		const value = threat / (factor + threat);
 		return MathHelper.clamped(value, 0.0, cap);
