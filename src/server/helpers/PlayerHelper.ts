@@ -7,6 +7,16 @@ namespace PlayerHelper {
 		return !player.creative && !player.spectator;
 	}
 
+	export function isAdventure(player: ServerPlayer_): boolean {
+		const gamemode = player.gameMode.gameModeForPlayer;
+		return gamemode === $GameType.ADVENTURE;
+	}
+
+	export function isSurvival(player: ServerPlayer_): boolean {
+		const gamemode = player.gameMode.gameModeForPlayer;
+		return gamemode === $GameType.SURVIVAL;
+	}
+
 	export function isOperator(player: ServerPlayer_): boolean {
 		return player.permissionLevel >= 2;
 	}
@@ -61,6 +71,14 @@ namespace PlayerHelper {
 
 		const saturationToAdd = Math.min(sateAmount, maxSaturation - saturation);
 		foodData.saturation = saturation + saturationToAdd;
+	}
+
+
+	export function give(player: ServerPlayer_, id: string, amount: integer = 1, nbt: string = "") {
+		if (amount > 6400) throw new Error(`Cannot give ${player.username} more than 6400 of ${id}`);
+
+		const command = `give ${player.username} ${id}${nbt} ${Math.floor(amount)}`;
+		CommandHelper.runCommandSilent(player.server, command);
 	}
 
 

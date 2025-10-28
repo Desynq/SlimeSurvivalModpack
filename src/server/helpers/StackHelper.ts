@@ -1,4 +1,4 @@
-
+// priority: 1000
 
 namespace StackHelper {
 
@@ -13,6 +13,12 @@ namespace StackHelper {
 		}
 		const stackId = customData.copyTag().getString("id");
 		return stackId === id;
+	}
+
+	export function getCustomId(stack: ItemStack_): string | undefined {
+		const tag = stack.getComponents()?.get($DataComponents.CUSTOM_DATA)?.copyTag();
+		if (!tag || !tag.contains("id", $Tag.TAG_STRING)) return undefined;
+		return tag.getString("id");
 	}
 
 	export function isCustomFlagSet(stack: unknown, id: string): stack is ItemStack_ {
