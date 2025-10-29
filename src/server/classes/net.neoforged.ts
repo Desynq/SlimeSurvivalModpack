@@ -30,3 +30,6 @@ const $EntityMountEvent: typeof import("net.neoforged.neoforge.event.entity.Enti
 
 const $MobEffectEvent$Expired: typeof import("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Expired").$MobEffectEvent$Expired =
 	Java.loadClass("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Expired");
+
+const $MobEffectEvent$Applicable: typeof import("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Applicable").$MobEffectEvent$Applicable =
+	Java.loadClass("net.neoforged.neoforge.event.entity.living.MobEffectEvent$Applicable");
