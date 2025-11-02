@@ -15,7 +15,7 @@ const HeatDeathAbility = new (class extends BaseAbility {
 		) { }
 
 		public abilityEnabled(player: ServerPlayer_): void {
-			playsoundAll(player.server, "entity.wither.death", "master", 1, 2);
+			PlaysoundHelper.playsound(player.level, player.position(), "entity.wither.spawn", "master", 1, 2);
 		}
 
 		public alertCooldownOver(player: ServerPlayer_): void {
@@ -75,9 +75,14 @@ const HeatDeathAbility = new (class extends BaseAbility {
 		if (!SkillHelper.hasSkill(player, FarlanderSkills.HEAT_DEATH)) {
 			return false;
 		}
+
+		// don't let players accidentally proc the ability after just dying
+		if (player.stats.timeSinceDeath < 20) return false;
+
 		if (!super.onPress(player)) {
 			return false;
 		}
+
 		this.onActivate(player);
 		return true;
 	}
