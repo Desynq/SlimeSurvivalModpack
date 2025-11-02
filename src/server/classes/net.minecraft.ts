@@ -85,3 +85,6 @@ type MobEffectHolder_ = import("net.minecraft.core.Holder").$Holder<MobEffect_>;
 
 const $GameType: typeof import("net.minecraft.world.level.GameType").$GameType =
 	Java.loadClass("net.minecraft.world.level.GameType");
+
+const $DoorBlock: typeof import("net.minecraft.world.level.block.DoorBlock").$DoorBlock =
+	Java.loadClass("net.minecraft.world.level.block.DoorBlock");
