@@ -5,11 +5,13 @@ namespace BeeQueenArmor {
 	PlayerEvents.tick(event => {
 		const player = event.getPlayer() as ServerPlayer_;
 		const armor = player.getArmorSlots();
-		let regenLevel = 0;
+		let piecesEquipped = 0;
 		armor.forEach(stack => {
-			regenLevel += StackHelper.isCustomFlagSet(stack, "bee_queen_armor") ? 1 : 0;
+			piecesEquipped += StackHelper.isCustomFlagSet(stack, "bee_queen_armor") ? 1 : 0;
 		});
-		if (regenLevel === 0) return;
-		LivingEntityHelper.applyEffectUntilExpired(player, "minecraft:regeneration", 100, 20, regenLevel - 1, false, true, true, player);
+		if (piecesEquipped === 0) return;
+		// const amplifier = piecesEquipped - 1;
+		const amplifier = Math.floor((piecesEquipped - 1) / 2);
+		LivingEntityHelper.applyEffectUntilExpired(player, "minecraft:regeneration", 100, 20, amplifier, false, true, true, player);
 	});
 }
