@@ -127,15 +127,15 @@ class EntropyHolder {
 	};
 
 	private dealEntropyDamage(victim: LivingEntity_, attacker: LivingEntity_ | null, amount: float) {
-		try {
-			victim.health -= amount;
-			EntropyHelper.incrementLifetimeEntropyDamage(victim, amount);
-			this.tryQuantumPredation(victim, attacker, amount);
+		EntropyHelper.incrementLifetimeEntropyDamage(victim, amount);
+		this.tryQuantumPredation(victim, attacker, amount);
 
-			if (victim.health <= 0) this.executeEntropyKill(victim, attacker);
+		const newHealth = victim.health - amount;
+		if (newHealth <= 0) {
+			this.executeEntropyKill(victim, attacker);
 		}
-		catch (error) {
-			tellError(victim.server, error);
+		else {
+			victim.health = newHealth;
 		}
 	}
 
@@ -152,10 +152,13 @@ class EntropyHolder {
 	}
 
 	private executeEntropyKill(entity: LivingEntity_, attacker: LivingEntity_ | null) {
-		entity.health = 1.0; // arbitrary health so the entity doesn't silently die
 		const rk = $ResourceKey.create($Registries.DAMAGE_TYPE, "slimesurvival:entropy_kill");
 		const entropyDmgType = entity.level.registryAccess().registryOrThrow($Registries.DAMAGE_TYPE).getHolderOrThrow(rk);
 		entity.attack(new DamageSource(entropyDmgType, attacker as any, attacker as any), 2 ** 31 - 1);
+
+		if (entity instanceof $ServerPlayer) {
+			PlaysoundHelper.playsound(entity.level, entity.position(), "entity.wither.death", "player", 2, 2);
+		}
 	}
 
 	public tick(holder: LivingEntity_) {
