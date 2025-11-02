@@ -7,7 +7,10 @@ interface RaceSwitchResult {
 
 class PlayerRaceHelper {
 
-	public static getRace(player: ServerPlayer_) {
+	/**
+	 * @returns The player's current race or the default race if they have no set race
+	 */
+	public static getRace(player: ServerPlayer_): Race {
 		const raceId = player.server.persistentData.getCompound("player_races").getString(player.stringUUID);
 		const race = Races.fromId(raceId) ?? Races.defaultRace();
 		return race;
