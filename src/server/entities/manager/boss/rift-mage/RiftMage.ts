@@ -4,7 +4,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_>
 	extends EntityTraits.CannotMount(RewardableEntityManager<LivingEntity_>)
 	implements ITickableBoss<T> {
 
-	public readonly DEFAULT_MAX_HEALTH = 5000;
+	public readonly DEFAULT_MAX_HEALTH = 2500;
 
 	private readonly sfManager = new SoulFlareManager();
 
