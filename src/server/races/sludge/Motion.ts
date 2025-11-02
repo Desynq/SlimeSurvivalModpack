@@ -29,7 +29,7 @@ namespace SludgeMotion {
 				return null;
 		}
 		const stacks = getMotion(player);
-		return (base * player.maxHealth) * stacks;
+		return (base * player.health) * stacks;
 	}
 
 	function getMotionDuration(player: ServerPlayer_): number {
@@ -123,7 +123,7 @@ namespace SludgeMotion {
 
 		if (getMotion(player) <= 0) return;
 
-		if (SkillHelper.hasSkill(player, SludgeSkills.INERTIA)) {
+		if (SkillHelper.hasSkill(player, SludgeSkills.ELASTICITY)) {
 			updateMotionTimestamp(player);
 		}
 	});

@@ -294,8 +294,8 @@
 			}
 		}
 	},
-	"inertia": {
-		"title": "Inertia",
+	"elasticity": {
+		"title": "Elasticity",
 		"rewards": [],
 		"description": [
 			"",
@@ -1185,5 +1185,24 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"inertia": {
+		"title": "Inertia",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "",
+				"color": "dark_green",
+				"italic": true
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:knightmetal_helmet"
+			}
+		}
 	}
 }

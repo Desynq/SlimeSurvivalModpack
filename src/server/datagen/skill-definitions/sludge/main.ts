@@ -140,7 +140,7 @@ const SludgeSkills = new (class extends SkillManager {
 		.serializeIntoSkill(this.definitionsJson)
 		.register(this.skills);
 
-	public readonly INERTIA = new SkillDefinition(this.categoryId, "inertia")
+	public readonly ELASTICITY = new SkillDefinition(this.categoryId, "elasticity")
 		.effectIcon("minecraft:absorption")
 		.addDescription({
 			"color": "green",
@@ -488,6 +488,15 @@ const SludgeSkills = new (class extends SkillManager {
 			"color": "dark_gray"
 		})
 		.rootSkill()
+	);
+
+	public readonly INERTIA = this.createSkill("inertia", def => def
+		.itemIcon("twilightforest:knightmetal_helmet")
+		.addDescription({
+			"text": "",
+			"color": "dark_green",
+			"italic": true
+		})
 	);
 
 
