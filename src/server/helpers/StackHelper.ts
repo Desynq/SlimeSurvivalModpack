@@ -30,6 +30,20 @@ namespace StackHelper {
 		return customData.copyTag().getBoolean(id);
 	}
 
+	export function getCustomInt(stack: ItemStack_, id: string): integer | undefined {
+		if (!(stack instanceof $ItemStack)) return undefined;
+
+		const customData = stack.getComponents()?.get($DataComponents.CUSTOM_DATA);
+		if (!customData) return undefined;
+
+		const tag = customData.copyTag();
+		if (!tag.contains(id, $Tag.TAG_INT)) return undefined;
+
+		return tag.getInt(id);
+	}
+
+
+
 	export function cloneComponents(sourceStack: ItemStack_, targetStack: ItemStack_) {
 		const patch = sourceStack.getComponentsPatch();
 		if (typeof patch === "function") {

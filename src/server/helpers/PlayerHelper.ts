@@ -82,6 +82,11 @@ namespace PlayerHelper {
 	}
 
 
+	export function teleportTo(player: ServerPlayer_, level: ServerLevel_, x: double, y: double, z: double, yaw: float, pitch: float): void {
+		player["teleportTo(net.minecraft.server.level.ServerLevel,double,double,double,float,float)"](level, x, y, z, yaw, pitch);
+	}
+
+
 
 	export const wasLastFallFlying = (function () {
 		const timestamps: Record<string, long | undefined> = {};
