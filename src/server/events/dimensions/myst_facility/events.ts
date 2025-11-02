@@ -3,7 +3,7 @@
 namespace MystFacilityEvents {
 
 	EntityEvents.checkSpawn(event => {
-		if (MystHelper.isMystLevel(event.level)) return;
+		if (!MystHelper.isMystLevel(event.level)) return;
 		if (event.type.toString() !== "NATURAL") return;
 		event.cancel();
 	});
