@@ -53,7 +53,8 @@ class EntityTimestamp<T extends Entity_> {
 	/**
 	 * Will always return `true` if timestamp has not been set
 	 */
-	public hasElapsed(entity: T, duration: long): boolean {
+	public hasElapsed(entity: T, duration?: long): boolean {
+		duration ??= this.defaultDuration;
 		const diff = this.getDiff(entity);
 		return diff === undefined || diff >= duration;
 	}
