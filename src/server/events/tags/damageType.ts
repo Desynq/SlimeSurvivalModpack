@@ -15,4 +15,10 @@ ServerEvents.tags("damage_type", event => {
 	].forEach(tag => {
 		event.add(tag as any, "slimesurvival:entropy_kill" as any);
 	});
+
+	[
+		"minecraft:bypasses_armor"
+	].forEach(tag => {
+		event.add(tag as any, "slimesurvival:entropy_attack" as any);
+	});
 });
