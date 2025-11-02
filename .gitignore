@@ -2,6 +2,8 @@
 /.probe/
 /cache/
 
+/armourers_workshop/
+
 /config/
 
 /coremods/
@@ -14,6 +16,7 @@
 /dynamic-data-pack-cache/
 /dynamic-resource-pack-cache/
 /ftbbackups3/
+/immersive_paintings_cache/
 
 /kubejs/config/probe-settings.json
 /kubejs/documentation/
