@@ -37,6 +37,10 @@
         "spark-modernfix/": true,
         "texturepacks/": true,
         "xaero/": true,
+        "armourers_workshop/": true,
+        "immersive_paintings_cache/": true,
+        "moddata/": true,
+        "schematics/": true,
         "XaeroWaypoints_BACKUP*/": true,
         "command_history.txt": true,
         "icon.png": true,
@@ -45,7 +49,7 @@
         "servers.dat": true,
         "servers.dat_old": true,
         "usercache.json": true,
-        "usernamecache.json": true
+        "usernamecache.json": true,
     },
     "eslint.validate": [
         "javascript",
