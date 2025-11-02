@@ -209,4 +209,91 @@ namespace Summonables {
 	})
 		.setMaxHealth(RiftMage.DEFAULT_MAX_HEALTH)
 		.setBoss();
+
+	export const HOG_RIDER = Summonable.create("hog_rider", "minecraft:hoglin", {
+		Passengers: [
+			{
+				id: "minecraft:piglin",
+				HandItems: [
+					{
+						id: "minecraft:crossbow",
+						count: 1,
+						components: {
+							"minecraft:enchantments": {
+								levels: {
+									"minecraft:power": 5,
+									"minecraft:piercing": 3
+								}
+							}
+						}
+					}
+				],
+				attributes: [
+					{
+						id: "minecraft:generic.armor",
+						base: 20
+					}
+				]
+			}
+		]
+	})
+		.setMaxHealth(100);
+
+	export const IGNITIUM = Summonable.create("ignitium", "cataclysm:ignis", {
+		attributes: [
+			{
+				id: "minecraft:generic.armor",
+				base: 100
+			},
+			{
+				id: "minecraft:generic.armor_toughness",
+				base: 10
+			},
+			{
+				id: "minecraft:generic.attack_damage",
+				base: 100
+			}
+		]
+	})
+		.setMaxHealth(50_000)
+		.setBoss("ignitium");
+
+	export const RIFT_KNIGHT = Summonable.create("rift_knight", "minecraft:wither_skeleton", {
+		CustomName: `"Rift Knight"`
+	})
+		.setHandItems("minecraft:netherite_axe")
+		.setArmorItems("minecraft:netherite_boots", "minecraft:netherite_leggings", "minecraft:netherite_chestplate", "minecraft:netherite_helmet")
+		.setMaxHealth(40)
+		.addAttribute("minecraft:generic.attack_damage", 20)
+		.addAttribute("minecraft:generic.movement_speed", 0.2);
+
+	export const RIFT_SCOUT = Summonable.create("rift_scout", "minecraft:wither_skeleton", {
+		CustomName: `"Rift Scout"`
+	})
+		.setHandItems("minecraft:bow")
+		.setArmorItems(undefined, undefined, undefined, "minecraft:netherite_helmet")
+		.setMaxHealth(100)
+		.addAttribute("minecraft:generic.attack_damage", 20)
+		.addAttribute("minecraft:generic.movement_speed", 0.4);
+
+	export const RIFT_PALADIN = Summonable.create("rift_paladin", "minecraft:wither_skeleton", {
+		CustomName: `"Rift Paladin"`
+	})
+		.setHandItems("minecraft:netherite_sword", "minecraft:shield")
+		.setArmorItems("minecraft:netherite_boots", "minecraft:netherite_leggings", "minecraft:netherite_chestplate", "minecraft:netherite_helmet")
+		.setMaxHealth(100)
+		.addAttribute("minecraft:generic.attack_damage", 100)
+		.addAttribute("minecraft:generic.movement_speed", 0.1);
+
+	export const RIFT_PALADINDROME = Summonable.create("rift_paladindrome", "minecraft:wither_skeleton", {
+		CustomName: `"Rift Palindrome"`,
+		Glowing: true
+	})
+		.setHandItems("minecraft:netherite_sword", "minecraft:netherite_sword")
+		.setArmorItems("minecraft:netherite_boots", "minecraft:netherite_leggings", "minecraft:netherite_chestplate", "minecraft:netherite_helmet")
+		.setMaxHealth(1001)
+		.addAttribute("minecraft:generic.attack_damage", 101)
+		.addAttribute("minecraft:generic.armor", 1)
+		.addAttribute("minecraft:generic.movement_speed", 0.2)
+		.setBoss("palindrome");
 }

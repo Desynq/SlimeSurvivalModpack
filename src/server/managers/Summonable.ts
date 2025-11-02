@@ -17,7 +17,7 @@ class SummonableRegistry {
 }
 
 class Summonable {
-	public static create(name: string, id: string, nbt: Record<string, any>): Summonable {
+	public static create(name: string, id: string, nbt: Record<string, any> = {}): Summonable {
 		const instance = new this(name, id, { ...nbt }); // shallow clone of nbt
 		SummonableRegistry.add(instance);
 		return instance;
@@ -30,27 +30,72 @@ class Summonable {
 	) { }
 
 	public setMaxHealth(health: number): this {
+		this.addAttribute("minecraft:generic.max_health", health);
+
+		// also set current health field
+		this.nbt.Health = health;
+
+		return this;
+	}
+
+	public addAttribute(id: string, base: double): this {
 		if (!Array.isArray(this.nbt.attributes)) {
 			this.nbt.attributes = [];
 		}
 
-		const newEntry = { id: "minecraft:generic.max_health", base: health };
+		const newEntry = { id, base };
 
 		// look for an existing entry
 		const index = this.nbt.attributes.findIndex(
-			(attr: any) => attr.id === "minecraft:generic.max_health"
+			(attr: any) => attr.id === id
 		);
 
 		if (index >= 0) {
 			// overwrite existing
 			this.nbt.attributes[index] = newEntry;
-		} else {
+		}
+		else {
 			// add new
 			this.nbt.attributes.push(newEntry);
 		}
 
-		// also set current health field
-		this.nbt.Health = health;
+		return this;
+	}
+
+	public setHandItems(mainhand?: string, offhand?: string): this {
+		const handItems: ({ id: string; count: integer; } | {})[] = [];
+		if (mainhand !== undefined) {
+			handItems.push({ id: mainhand, count: 1 });
+		}
+		else {
+			handItems.push({});
+		}
+
+		if (offhand !== undefined) {
+			handItems.push({ id: offhand, count: 1 });
+		}
+		else {
+			handItems.push({});
+		}
+
+		this.nbt.HandItems = handItems;
+
+		return this;
+	}
+
+	public setArmorItems(feet?: string, legs?: string, chest?: string, head?: string): this {
+		const armorItems: ({ id: string; count: integer; } | {})[] = [];
+
+		for (const piece of [feet, legs, chest, head]) {
+			if (piece === undefined) {
+				armorItems.push({});
+			}
+			else {
+				armorItems.push({ id: piece, count: 1 });
+			}
+		}
+
+		this.nbt.ArmorItems = armorItems;
 
 		return this;
 	}
@@ -81,7 +126,7 @@ class Summonable {
 	public getNode() {
 		return $Commands.literal(this.name)
 			.executes(context => {
-				this.spawn(context.source.level, context.source.position);
+				this.spawn(context.source.level as ServerLevel_, context.source.position);
 				return 1;
 			})
 			// @ts-ignore
@@ -89,7 +134,7 @@ class Summonable {
 				.executes(context => {
 					// @ts-ignore
 					for (let i = 0; i < $IntegerArgumentType.getInteger(context, "amount"); i++) {
-						this.spawn(context.source.level, context.source.position);
+						this.spawn(context.source.level as ServerLevel_, context.source.position);
 					}
 					return 1;
 				})
@@ -102,8 +147,7 @@ class Summonable {
 		const source = level.getServer().createCommandSourceStack().withLevel(level);
 		const tag: CompoundTag_ = $TagParser.parseTag(JSON.stringify(this.nbt));
 
-		const entity = $SummonCommand.createEntity(source, type, position, tag, randomizeProperties);
-		// BossDirector.tryAddBoss(entity);
+		const entity = $SummonCommand.createEntity(source, type, position as any, tag, randomizeProperties);
 		return entity;
 	}
 }
