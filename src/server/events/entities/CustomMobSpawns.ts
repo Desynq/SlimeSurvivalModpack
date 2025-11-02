@@ -40,7 +40,7 @@ namespace CustomMobSpawns {
 	]);
 
 	Object.keys(spawnTable).forEach(key => {
-		EntityEvents.checkSpawn(key, event => {
+		EntityEvents.checkSpawn(key as any, event => {
 			if (event.type.toString() !== "NATURAL") return;
 			const entity = event.getEntity();
 			const pos = entity.getPosition(0);
