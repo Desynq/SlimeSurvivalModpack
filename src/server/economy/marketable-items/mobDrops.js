@@ -89,7 +89,7 @@ new MarketableItem("magma_rotten_flesh", "rottencreatures:magma_rotten_flesh")
 	.register();
 
 new MarketableItem("armadillo_scute", "minecraft:armadillo_scute")
-	.setSellPrice(6)
+	.setSellPrice(5.00)
 	.register();
 
 new MarketableItem("glow_ink_sac", "minecraft:glow_ink_sac")
