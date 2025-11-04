@@ -1,3 +1,5 @@
+
+
 PlayerEvents.tick(event => {
 	const player = event.player;
 
@@ -7,10 +9,15 @@ PlayerEvents.tick(event => {
 	saveHunger();
 
 
-
 	function restoreHunger() {
-		player.foodLevel = player.persistentData.getFloat('food_level_last_tick');
-		player.saturation = player.persistentData.getFloat('saturation_last_tick');
+		const data = player.persistentData;
+		if (data.contains("food_level_last_tick", $Tag.TAG_FLOAT)) {
+			player.foodLevel = data.getFloat("food_level_last_tick");
+		}
+
+		if (data.contains("saturation_last_tick", $Tag.TAG_FLOAT)) {
+			player.saturation = data.getFloat("saturation_last_tick");
+		}
 	}
 
 	function saveHunger() {

@@ -54,6 +54,8 @@ namespace MystFacilityEvents {
 
 		const inStructureVoid = player.getInBlockState().is($Blocks.STRUCTURE_VOID);
 		if (inStructureVoid) whileInStructureVoid(player);
+
+
 	}
 
 

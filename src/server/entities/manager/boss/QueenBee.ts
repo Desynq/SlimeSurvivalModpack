@@ -1,10 +1,22 @@
 
+class QueenBeeRewarder extends BossRewarder<Bee_> {
+
+	protected override rewardPlayer(boss: Bee_, player: ServerPlayer_): void {
+		super.rewardPlayer(boss, player);
+		LootTableHelper.giveLoot(player, "slimesurvival:loot_bag/queen_bee");
+	}
+}
+
 // @ts-ignore
 const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITickableBoss<Bee_> {
 
 	protected override isEntity(entity: unknown): entity is Bee_ {
 		return entity instanceof $Bee && entity.tags.contains("boss.queen_bee");
 	}
+
+
+	private readonly DEFAULT_MAX_HEALTH = 300;
+	private readonly REGEN_AMOUNT = 150;
 
 
 	public isMinion(entity: unknown): entity is Bee_ {
@@ -87,7 +99,13 @@ const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITi
 		ParticleHelper.spawnCircle(boss.level as any, boss.x, boss.y + 4, boss.z, 32, 256, "falling_nectar", 1, false);
 	}
 
-	public onPlayerDeathOld(boss: Bee_, deadPlayer: ServerPlayer_): void {
+	public override onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
+		for (const boss of this.getEntities(player.server)) {
+			this.onPlayerDeath(boss, player);
+		}
+	}
+
+	private onPlayerDeath(boss: Bee_, deadPlayer: ServerPlayer_): void {
 		if (boss.isDeadOrDying()) return;
 
 		const deathPos = deadPlayer.position();
@@ -96,7 +114,7 @@ const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITi
 		const distSqr = bossPos.distanceToSqr(deathPos.x(), deathPos.y(), deathPos.z());
 
 		if (distSqr <= 32 ** 2) {
-			const regenAmount = 500;
+			const regenAmount = this.REGEN_AMOUNT;
 			tellOperators(boss.server, `Healing boss for ${regenAmount}`);
 
 			boss.health = Math.min(boss.maxHealth, boss.health + regenAmount);
@@ -147,7 +165,8 @@ const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITi
 	}
 
 	private getMaxMinions(boss: Bee_): integer {
-		return 16 + ((ServerHelper.getSurvivorCount(boss.server) - 1) * 8);
+		const playerCount = Math.max(1, this.rewarder.getContributorCount(boss) - 1);
+		return 16 + Math.floor(8 * Math.log2(playerCount));
 	}
 
 	private getMinionSpawnCooldownInterval(boss: Bee_): integer {
@@ -167,7 +186,7 @@ const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITi
 		const survivorCount = ServerHelper.getSurvivorCount(boss.server);
 
 		if (boss.health >= boss.maxHealth) {
-			const newMaxHealth = 1000 * Math.max(1, survivorCount);
+			const newMaxHealth = this.DEFAULT_MAX_HEALTH * Math.max(1, survivorCount);
 			if (newMaxHealth !== boss.maxHealth) {
 				boss.maxHealth = newMaxHealth;
 				boss.health = newMaxHealth;
@@ -229,7 +248,10 @@ const QueenBee = new (class extends RewardableEntityManager<Bee_> implements ITi
 		}
 		return newMinions;
 	}
-})().register();
+
+})(new QueenBeeRewarder(1)).register();
+
+
 
 NativeEvents.onEvent($BeeStingEvent, event => {
 	if (QueenBee.hasEntity()) {
@@ -251,8 +273,4 @@ NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
 	if (QueenBee.isCachedEntity(queenBee) && QueenBee.isBossImmune(queenBee as any)) {
 		event.setCanceled(true);
 	}
-});
-
-EntityEvents.death("minecraft:player" as any, event => {
-	QueenBee.getEntities(event.server).forEach(boss => QueenBee.onPlayerDeathOld(boss, event.entity as ServerPlayer_));
 });

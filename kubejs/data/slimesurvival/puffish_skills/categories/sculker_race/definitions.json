@@ -16,10 +16,6 @@
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -55,10 +51,6 @@
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -88,16 +80,11 @@
 				"italic": true
 			},
 			{
-				"text": "\n\nArmor is 33% more effective at reducing damage",
-				"color": "dark_aqua"
+				"text": "\n\nArmor is ≈25% better at reducing damage."
 			},
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -133,10 +120,6 @@
 			{
 				"color": "gold",
 				"text": "\n\n[Root Skill]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 0,
@@ -188,12 +171,188 @@
 	},
 	"chitin_1": {
 		"title": "Chitin I",
-		"rewards": [],
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor",
+					"value": 2,
+					"operation": "addition"
+				}
+			},
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor_toughness",
+					"value": 1,
+					"operation": "addition"
+				}
+			}
+		],
 		"description": [
 			"",
 			{
 				"text": "You naturally gain:\n+2 Armor\n+1 Armor Toughness",
 				"color": "dark_aqua"
+			},
+			{
+				"text": "\n\nPrevious chitin tiers not included",
+				"color": "red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"chitin_2": {
+		"title": "Chitin II",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor",
+					"value": 2,
+					"operation": "addition"
+				}
+			},
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor_toughness",
+					"value": 0,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+4 Armor\n+1 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"text": "\n\nPrevious chitin tiers not included",
+				"color": "red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"chitin_3": {
+		"title": "Chitin III",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor",
+					"value": 0,
+					"operation": "addition"
+				}
+			},
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor_toughness",
+					"value": 1,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+4 Armor\n+2 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"text": "\n\nPrevious chitin tiers not included",
+				"color": "red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 3 points]"
+			}
+		],
+		"cost": 3,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"chitin_4": {
+		"title": "Chitin IV",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor",
+					"value": 2,
+					"operation": "addition"
+				}
+			},
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor_toughness",
+					"value": 0,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+6 Armor\n+2 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"text": "\n\nPrevious chitin tiers not included",
+				"color": "red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:red_mushroom_block"
+			}
+		}
+	},
+	"experential": {
+		"title": "Experential",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Get your money up, and your fungi up.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\nYou can buy and sell experience at a 1:1 conversion rate."
 			},
 			{
 				"color": "dark_green",
@@ -208,85 +367,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:red_mushroom_block"
-			}
-		}
-	},
-	"chitin_2": {
-		"title": "Chitin II",
-		"rewards": [],
-		"description": [
-			"",
-			{
-				"text": "You naturally gain:\n+4 Armor\n+1 Armor Toughness",
-				"color": "dark_aqua"
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
-			}
-		],
-		"cost": 2,
-		"icon": {
-			"type": "item",
-			"data": {
-				"item": "minecraft:red_mushroom_block"
-			}
-		}
-	},
-	"chitin_3": {
-		"title": "Chitin III",
-		"rewards": [],
-		"description": [
-			"",
-			{
-				"text": "You naturally gain:\n+4 Armor\n+2 Armor Toughness",
-				"color": "dark_aqua"
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 3 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
-			}
-		],
-		"cost": 3,
-		"icon": {
-			"type": "item",
-			"data": {
-				"item": "minecraft:red_mushroom_block"
-			}
-		}
-	},
-	"chitin_4": {
-		"title": "Chitin IV",
-		"rewards": [],
-		"description": [
-			"",
-			{
-				"text": "You naturally gain:\n+6 Armor\n+2 Armor Toughness",
-				"color": "dark_aqua"
-			},
-			{
-				"color": "dark_green",
-				"text": "\n\n[Cost: 4 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
-			}
-		],
-		"cost": 4,
-		"icon": {
-			"type": "item",
-			"data": {
-				"item": "minecraft:red_mushroom_block"
+				"item": "minecraft:experience_bottle"
 			}
 		}
 	}

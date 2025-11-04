@@ -33,7 +33,7 @@ class ActionbarManager {
 	private static dedupe(uuid: string, id?: string): void {
 		if (id === undefined) return;
 
-		ArrayHelper.forEachSplice(this.getMessagesByUUID(uuid), message => {
+		ArrayHelper.forEachDeferredSplice(this.getMessagesByUUID(uuid), message => {
 			if (message.id === id) return "splice";
 		});
 	}
@@ -67,7 +67,7 @@ class ActionbarManager {
 	private static tickMessages(player: ServerPlayer_): void {
 		const messages = this.getMessages(player);
 
-		ArrayHelper.forEachSplice(messages, message => {
+		ArrayHelper.forEachDeferredSplice(messages, message => {
 			message.tick();
 			if (message.ticks < 0) return "splice";
 		});

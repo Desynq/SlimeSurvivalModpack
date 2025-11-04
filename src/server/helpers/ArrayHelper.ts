@@ -61,7 +61,7 @@ class ArrayHelper {
 	 * 
 	 * Avoid passing in an array with `null` values as they might unintentionally get pruned.
 	 */
-	public static forEachSplice<T>(
+	public static forEachDeferredSplice<T>(
 		array: T[],
 		callback: (item: T, index: number, arr: T[]) => SpliceAction
 	): void {

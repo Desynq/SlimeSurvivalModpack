@@ -16,7 +16,7 @@ const TheTenuem = new (class <T extends Phantom_ & Mob_> extends RewardableEntit
 		server.runCommandSilent(`weather thunder 1d`);
 	}
 
-	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
+	public override onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
 		const bosses = this.getEntities(player.server);
 		for (const boss of bosses) {
 			const healAmount = boss.maxHealth * 0.2;

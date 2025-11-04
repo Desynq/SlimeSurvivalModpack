@@ -46,7 +46,7 @@ namespace RepairLeather {
 	}
 
 	createArmorRepairRecipe("minecraft:leather", "minecraft:leather", 1 / 4);
-	createArmorRepairRecipe("minecraft:iron", "minecraft:iron_ingot", 1 / 8);
+	createArmorRepairRecipe("minecraft:iron", "minecraft:iron_ingot", 1 / 6);
 	createArmorRepairRecipe("minecraft:diamond", "minecraft:diamond", 1 / 4);
 	createArmorRepairRecipe("minecraft:netherite", "minecraft:netherite_scrap", 1 / 3);
 }

@@ -45,7 +45,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_>
 		TickHelper.forceUpdateTimestamp(boss, "last_hurt");
 	}
 
-	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
+	public override onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
 		for (const boss of this.getEntities(player.server)) {
 			this.revertDamage(boss, player);
 		}
@@ -169,7 +169,7 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_>
 		if (flares.length === 0) return;
 		const level = boss.level as any as ServerLevel_;
 
-		ArrayHelper.forEachSplice(flares, flare => {
+		ArrayHelper.forEachDeferredSplice(flares, flare => {
 			const oldPos = flare.getPos();
 			flare.tick(level);
 			const newPos = flare.getPos();

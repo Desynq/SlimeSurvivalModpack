@@ -46,7 +46,7 @@ const Draugrnaut = new (class <T extends Mob_> extends EntityManager<T> implemen
 		boss.discard();
 	}
 
-	public override onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
+	public override onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
 		this.getEntities(player.server).forEach(boss => {
 			const distance = boss.distanceToEntitySqr(player);
 			if (distance > 32) return;

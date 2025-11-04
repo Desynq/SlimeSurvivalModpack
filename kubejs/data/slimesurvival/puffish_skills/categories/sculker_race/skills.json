@@ -28,5 +28,35 @@
 		"x": 0,
 		"y": 128,
 		"root": false
+	},
+	"81x50bplfqz9m873": {
+		"definition": "experential",
+		"x": -128,
+		"y": 0,
+		"root": false
+	},
+	"nlcb1esffdzqnxsj": {
+		"definition": "chitin_1",
+		"x": 0,
+		"y": -128,
+		"root": false
+	},
+	"bodirjj5ub3o0hps": {
+		"definition": "chitin_2",
+		"x": 0,
+		"y": -192,
+		"root": false
+	},
+	"5romhjbafgjzlszm": {
+		"definition": "chitin_3",
+		"x": -64,
+		"y": -192,
+		"root": false
+	},
+	"335tknsbfxfu00hn": {
+		"definition": "chitin_4",
+		"x": -64,
+		"y": -128,
+		"root": false
 	}
 }

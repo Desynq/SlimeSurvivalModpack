@@ -35,6 +35,11 @@ class LivingEntityHelper {
 		entity.removeEffect(effect);
 	}
 
+	public static hasEffect(entity: LivingEntity_, id: string): boolean {
+		const effect = $BuiltInRegistries.MOB_EFFECT.getHolderOrThrow($ResourceKey.create($Registries.MOB_EFFECT, id));
+		return entity.hasEffect(effect);
+	}
+
 
 	public static scaleHealth(entity: LivingEntity_, newMaxHealth: number): void {
 		const oldMaxHealth = entity.maxHealth;

@@ -5,6 +5,9 @@ const SculkerSkills = new (class extends SkillManager {
 		super("slimesurvival:sculker_race");
 	}
 
+	private readonly STYLE: JsonComponentStyle = { "color": "dark_aqua", "italic": true };
+
+
 	public readonly BLIND = this.createSkill("blind", def => def
 		.effectIcon("minecraft:blindness")
 		.addDescription({
@@ -18,7 +21,6 @@ const SculkerSkills = new (class extends SkillManager {
 		})
 		.size(1.25)
 		.rootSkill()
-		.flagPlanned()
 	);
 
 	public readonly ECHOLOCATION = this.createSkill("echolocation", def => def
@@ -34,7 +36,6 @@ const SculkerSkills = new (class extends SkillManager {
 		})
 		.size(1.25)
 		.rootSkill()
-		.flagPlanned()
 	);
 
 	public readonly CHITINOUS = this.createSkill("chitinous", def => def
@@ -45,12 +46,10 @@ const SculkerSkills = new (class extends SkillManager {
 			"italic": true
 		})
 		.addDescription({
-			"text": "\n\nArmor is 33% more effective at reducing damage",
-			"color": "dark_aqua"
+			"text": "\n\nArmor is ≈25% better at reducing damage.",
 		})
 		.size(1.25)
 		.rootSkill()
-		.flagPlanned()
 	);
 
 	public readonly MYCELIC = this.createSkill("mycelic", def => def
@@ -66,7 +65,6 @@ const SculkerSkills = new (class extends SkillManager {
 		})
 		.size(1.25)
 		.rootSkill()
-		.flagPlanned()
 	);
 
 	public readonly APPRESSORIUM = this.createSkill("appressorium", def => def
@@ -86,22 +84,39 @@ const SculkerSkills = new (class extends SkillManager {
 
 
 
-	private createChitinSkill(tier: number, armor: number, toughness: number, cost: number): Skill {
-		return this.createSkill(`chitin_${tier}`, def => def
+	public readonly CHITIN_SKILLS = this.createTieredSkills("chitin", 4, (def, tier) => {
+		const armor = [2, 2, 0, 2];
+		const toughness = [1, 0, 1, 0];
+		const cost = [1, 2, 3, 4];
+
+		const i = tier - 1;
+		const totalArmor = armor.slice(0, i + 1).reduce((acc, value) => acc + value, 0);
+		const totalToughness = toughness.slice(0, i + 1).reduce((acc, value) => acc + value, 0);
+
+		def
 			.itemIcon("minecraft:red_mushroom_block")
 			.addDescription({
 				"text": "You naturally gain:"
-					+ `\n+${armor} Armor`
-					+ `\n+${toughness} Armor Toughness`,
+					+ `\n+${totalArmor} Armor`
+					+ `\n+${totalToughness} Armor Toughness`,
 				"color": "dark_aqua"
 			})
-			.cost(cost)
-			.flagPlanned()
-		);
-	}
+			.addDescription({
+				"text": "\n\nPrevious chitin tiers not included",
+				"color": "red"
+			})
+			.cost(cost[i])
+			.addAttributeReward("minecraft:generic.armor", armor[i], "addition")
+			.addAttributeReward("minecraft:generic.armor_toughness", toughness[i], "addition");
+	});
 
-	public readonly CHITIN_1 = this.createChitinSkill(1, 2, 1, 1);
-	public readonly CHITIN_2 = this.createChitinSkill(2, 4, 1, 2);
-	public readonly CHITIN_3 = this.createChitinSkill(3, 4, 2, 3);
-	public readonly CHITIN_4 = this.createChitinSkill(4, 6, 2, 4);
+	public readonly EXPERENTIAL = this.createSkill("experential", def => def
+		.itemIcon("minecraft:experience_bottle")
+		.addStyledDescription("Get your money up, and your fungi up.", this.STYLE)
+		.addDescription({
+			"text": "\nYou can buy and sell experience at a 1:1 conversion rate."
+		})
+		.cost(1)
+		.flagPlanned()
+	);
 })().register();

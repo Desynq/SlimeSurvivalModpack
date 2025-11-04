@@ -1,12 +1,12 @@
 //priority: 100
 new MarketableItem("raw_iron", "minecraft:raw_iron")
-	.setBuyPrice(2.50)
+	.setBuyPrice(5.00)
 	.register();
 
 new MarketableItem("raw_gold", "minecraft:raw_gold")
-	.setBuyPrice(7.50)
+	.setBuyPrice(10.00)
 	.register();
 
 new MarketableItem("raw_copper", "minecraft:raw_copper")
-	.setBuyPrice(1.25)
+	.setBuyPrice(2.50)
 	.register();

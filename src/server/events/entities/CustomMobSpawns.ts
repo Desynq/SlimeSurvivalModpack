@@ -22,7 +22,7 @@ namespace CustomMobSpawns {
 		// ['cataclysm:coralssus', 0.005],
 		// ['cataclysm:aptrgangr', 0.005],
 		['mowziesmobs:lantern', 5.00],
-		['minecraft:armadillo', 0.50],
+		// ['minecraft:armadillo', 0.50],
 		// ['cataclysm:kobolediator', 0.005],
 		['cataclysm:cindaria', 0.10],
 	]);

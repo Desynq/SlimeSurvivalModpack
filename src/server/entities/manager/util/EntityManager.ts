@@ -33,7 +33,7 @@ abstract class EntityManager<T extends LivingEntity_> {
 
 	public onDeath(entity: T, event: LivingEntityDeathKubeEvent_): void { }
 
-	public onPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void { }
+	public onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void { }
 
 	public onIncomingDamage(entity: T, event: LivingIncomingDamageEvent_): void { }
 

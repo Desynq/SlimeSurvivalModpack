@@ -1,0 +1,29 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:warped_fungus_on_a_stick",
+					"functions": [
+						{
+							"function": "minecraft:set_name",
+							"name": {
+								"text": "Queen Bee Loot Bag",
+								"color": "gold"
+							},
+							"target": "item_name"
+						},
+						{
+							"function": "minecraft:set_custom_data",
+							"tag": {
+								"id": "lootbag.queen_bee"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

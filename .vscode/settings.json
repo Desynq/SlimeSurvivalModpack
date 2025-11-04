@@ -49,7 +49,7 @@
         "servers.dat": true,
         "servers.dat_old": true,
         "usercache.json": true,
-        "usernamecache.json": true,
+        "usernamecache.json": true, // probejs lock
     },
     "eslint.validate": [
         "javascript",
