@@ -1,6 +1,6 @@
 //priority: 100
 new MarketableItem("tropical_fish", "minecraft:tropical_fish")
-	.setSellPrice(5.00)
+	.setSellPrice(25.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(100)
 	.register();
@@ -77,7 +77,7 @@ new MarketableItem("lacrima", "cataclysm:lacrima")
 	.register();
 
 new MarketableItem("pink_wool", "minecraft:pink_wool")
-	.setSellPrice(15.00)
+	.setSellPrice(10.00)
 	.register();
 
 new MarketableItem("frozen_rotten_flesh", "rottencreatures:frozen_rotten_flesh")
