@@ -85,8 +85,8 @@ const SculkerSkills = new (class extends SkillManager {
 
 
 	public readonly CHITIN_SKILLS = this.createTieredSkills("chitin", 4, (def, tier) => {
-		const armor = [2, 2, 0, 2];
-		const toughness = [1, 0, 1, 0];
+		const armor = [2, 2, 2, 2];
+		const toughness = [1, 1, 1, 1];
 		const cost = [1, 2, 3, 4];
 
 		const i = tier - 1;
@@ -114,9 +114,8 @@ const SculkerSkills = new (class extends SkillManager {
 		.itemIcon("minecraft:experience_bottle")
 		.addStyledDescription("Get your money up, and your fungi up.", this.STYLE)
 		.addDescription({
-			"text": "\nYou can buy and sell experience at a 1:1 conversion rate."
+			"text": "\nYou can sell experience at a 1:1 conversion rate."
 		})
 		.cost(1)
-		.flagPlanned()
 	);
 })().register();

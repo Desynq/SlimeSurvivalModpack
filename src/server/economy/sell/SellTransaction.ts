@@ -29,7 +29,7 @@ class SellTransaction {
 	private amountSold: number = 0;
 	private totalValue: number = 0;
 
-	public constructor(player: ServerPlayer_, mItem: MarketableItem | null, sellAmount?: number) {
+	public constructor(player: ServerPlayer_, mItem: MarketableItem | undefined, sellAmount?: number) {
 		this.player = player;
 		this.server = player.server;
 

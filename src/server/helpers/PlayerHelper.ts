@@ -87,6 +87,20 @@ namespace PlayerHelper {
 	}
 
 
+	export function getTotalXp(player: ServerPlayer_): integer {
+		const level = player.experienceLevel;
+		const progress = player.experienceProgress;
+		const total = getXpForLevel(level) + Math.round(progress * player.getXpNeededForNextLevel());
+		return total;
+	}
+
+	export function getXpForLevel(level: integer): integer {
+		if (level <= 16) return level * level + 6 * level;
+		if (level <= 31) return 2.5 * level * level - 40.5 * level + 360;
+		return 4.5 * level * level - 162.5 * level + 2220;
+	}
+
+
 
 	export const wasLastFallFlying = (function () {
 		const timestamps: Record<string, long | undefined> = {};

@@ -80,7 +80,7 @@ namespace RaceCommand {
 		return builder.buildFuture();
 	}
 
-	function setRace(player: ServerPlayer_, raceInput: string, context?: CommandExecutionContext): integer {
+	function setRace(player: ServerPlayer_, raceInput: string, context?: CommandExecutionContext_): integer {
 		const race = Races.fromId(raceInput);
 		if (race === undefined) return 0;
 
@@ -90,7 +90,7 @@ namespace RaceCommand {
 		return result.code === "SUCCESS" ? 1 : 0;
 	}
 
-	function giveRacePoints(player: ServerPlayer_, amount: integer, context?: CommandExecutionContext): integer {
+	function giveRacePoints(player: ServerPlayer_, amount: integer, context?: CommandExecutionContext_): integer {
 		PlayerRaceSkillHelper.addSkillPoint(player, amount);
 		if (context) {
 			const raceId = PlayerRaceHelper.getRace(player).getRaceId();

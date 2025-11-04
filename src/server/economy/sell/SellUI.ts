@@ -25,12 +25,31 @@ class SellUI {
 		);
 	}
 
-	public static outputError(player: ServerPlayer_, error: UnsellableItemError | InvalidSellQuantityError) {
+	public static outputXpReceipt(player: ServerPlayer_, receipt: SellXpReceipt): void {
+		const text = (msg: string) => Component.of(msg);
+		const yellow = (msg: string) => Component.yellow(msg);
+		const gold = (msg: string) => Component.gold(msg);
+
+		player.tell(
+			Component.gray("")
+				.append(text("Sold "))
+				.append(yellow(`${receipt.xpSold}`))
+				.append(text(" xp"))
+		);
+	}
+
+	public static outputError(player: ServerPlayer_, error: unknown) {
 		if (error instanceof UnsellableItemError) {
 			player.tell(Text.red("Item cannot be sold"));
 		}
 		else if (error instanceof InvalidSellQuantityError) {
 			player.tell(Text.red("Specified an incorrect sell quantity."));
+		}
+		else if (error instanceof InsufficientXpError) {
+			player.tell(Text.red("You do not have enough xp."));
+		}
+		else if (error instanceof NoExperentialSkillError) {
+			player.tell(Text.red("You must have the Experential skill in order to sell xp."));
 		}
 	}
 }

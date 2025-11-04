@@ -227,7 +227,7 @@
 				"type": "puffish_skills:attribute",
 				"data": {
 					"attribute": "minecraft:generic.armor_toughness",
-					"value": 0,
+					"value": 1,
 					"operation": "addition"
 				}
 			}
@@ -235,7 +235,7 @@
 		"description": [
 			"",
 			{
-				"text": "You naturally gain:\n+4 Armor\n+1 Armor Toughness",
+				"text": "You naturally gain:\n+4 Armor\n+2 Armor Toughness",
 				"color": "dark_aqua"
 			},
 			{
@@ -262,7 +262,7 @@
 				"type": "puffish_skills:attribute",
 				"data": {
 					"attribute": "minecraft:generic.armor",
-					"value": 0,
+					"value": 2,
 					"operation": "addition"
 				}
 			},
@@ -278,7 +278,7 @@
 		"description": [
 			"",
 			{
-				"text": "You naturally gain:\n+4 Armor\n+2 Armor Toughness",
+				"text": "You naturally gain:\n+6 Armor\n+3 Armor Toughness",
 				"color": "dark_aqua"
 			},
 			{
@@ -313,7 +313,7 @@
 				"type": "puffish_skills:attribute",
 				"data": {
 					"attribute": "minecraft:generic.armor_toughness",
-					"value": 0,
+					"value": 1,
 					"operation": "addition"
 				}
 			}
@@ -321,7 +321,7 @@
 		"description": [
 			"",
 			{
-				"text": "You naturally gain:\n+6 Armor\n+2 Armor Toughness",
+				"text": "You naturally gain:\n+8 Armor\n+4 Armor Toughness",
 				"color": "dark_aqua"
 			},
 			{
@@ -352,15 +352,11 @@
 				"italic": true
 			},
 			{
-				"text": "\nYou can buy and sell experience at a 1:1 conversion rate."
+				"text": "\nYou can sell experience at a 1:1 conversion rate."
 			},
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 1 point]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 1,

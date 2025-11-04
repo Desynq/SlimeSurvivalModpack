@@ -25,7 +25,7 @@ ServerEvents.commandRegistry(event => {
 
 	/**
 	 * 
-	 * @param {CommandExecutionContext} context 
+	 * @param {CommandExecutionContext_} context 
 	 */
 	function resolveBuyTransaction(context) {
 		const itemName = Arguments.STRING.getResult(context, "item");
@@ -42,7 +42,7 @@ ServerEvents.commandRegistry(event => {
 	}
 
 	/**
-	 * @param {CommandExecutionContext} context
+	 * @param {CommandExecutionContext_} context
 	 * @param {SuggestionsBuilder_} builder
 	 */
 	function suggestBuyableItem(context, builder) {

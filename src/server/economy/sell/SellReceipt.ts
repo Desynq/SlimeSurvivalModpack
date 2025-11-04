@@ -11,3 +11,12 @@ class SellReceipt {
 		public readonly newBalance: number
 	) { }
 }
+
+class SellXpReceipt {
+	public constructor(
+		public readonly player: ServerPlayer_,
+		public readonly xpSold: integer,
+		public readonly oldXp: integer,
+		public readonly newXp: integer
+	) { }
+}
