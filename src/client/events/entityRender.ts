@@ -33,16 +33,16 @@ namespace InvisibleRenderer {
 	// 	}
 	// });
 
-	// NativeEvents.onEvent($RenderLivingEvent$Pre, event => {
-	// 	const entity = event.getEntity();
-	// 	if (isInvisible(entity)) {
-	// 		event.getRenderer().shadowRadius = 0.0;
-	// 		event.setCanceled(true);
-	// 	}
-	// 	else {
-	// 		event.getRenderer().shadowRadius = 0.5;
-	// 	}
-	// });
+	NativeEvents.onEvent($RenderLivingEvent$Pre, event => {
+		const entity = event.getEntity();
+		if (isInvisible(entity)) {
+			event.getRenderer().shadowRadius = 0.0;
+			event.setCanceled(true);
+		}
+		else {
+			event.getRenderer().shadowRadius = 0.5;
+		}
+	});
 
 	NativeEvents.onEvent($RenderNameTagEvent, event => {
 		const entity = event.getEntity();
