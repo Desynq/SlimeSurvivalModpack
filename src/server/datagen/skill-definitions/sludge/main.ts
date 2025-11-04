@@ -154,7 +154,7 @@ const SludgeSkills = new (class extends SkillManager {
 
 	public readonly CONGEALED_SKILLS = this.createTieredSkills("congealed", 5, (definition, tier) => {
 		const maxHealthBonus = [10, 10, 10, 25, 25][tier - 1];
-		const cost = [2, 2, 2, 5, 5][tier - 1];
+		const cost = [1, 2, 2, 5, 5][tier - 1];
 		definition
 			.effectIcon("minecraft:health_boost")
 			.addDescription({

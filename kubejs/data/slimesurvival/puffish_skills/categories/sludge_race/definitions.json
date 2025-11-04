@@ -336,10 +336,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
+				"text": "\n\n[Cost: 1 point]"
 			}
 		],
-		"cost": 2,
+		"cost": 1,
 		"icon": {
 			"type": "effect",
 			"data": {
