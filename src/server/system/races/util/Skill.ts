@@ -9,7 +9,7 @@ class Skill {
 	public constructor(
 		private readonly categoryId: string,
 		private readonly skillId: string,
-		isDefault: boolean | null
+		isDefault?: boolean | null
 	) {
 		this.isDefaultSkill = typeof isDefault === 'boolean' ? isDefault : false;
 	}
