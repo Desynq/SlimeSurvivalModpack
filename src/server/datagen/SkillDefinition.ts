@@ -58,10 +58,10 @@ class SkillDefinition {
 			? parts.pop()
 			: undefined;
 
-		const name = parts.map(capitalize).join(" ");
+		const name = parts.map(StringHelper.capitalize).join(" ");
 
 		return numberPart
-			? `${name} ${toRoman(parseInt(numberPart, 10))}`
+			? `${name} ${StringHelper.toRoman(parseInt(numberPart, 10))}`
 			: name;
 	}
 

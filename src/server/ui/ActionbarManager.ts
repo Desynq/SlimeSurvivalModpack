@@ -41,6 +41,8 @@ class ActionbarManager {
 	private static addMessageByUUID(uuid: string, text: string, ticks: integer = 1, priority: integer = 0, id?: string): void {
 		this.dedupe(uuid, id);
 		const messages = this.getMessagesByUUID(uuid);
+
+		text = StringHelper.wrapIfNeeded(text);
 		const message = new ActionbarMessage(text, priority, ticks, id);
 
 		let insertIndex = messages.findIndex(m => m.priority > priority);
