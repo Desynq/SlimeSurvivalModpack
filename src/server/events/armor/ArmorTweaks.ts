@@ -2,7 +2,6 @@ let $LivingEquipmentChangeEvent: typeof import("net.neoforged.neoforge.event.ent
 
 let $BiConsumer: typeof import("java.util.function.BiConsumer").$BiConsumer = Java.loadClass("java.util.function.BiConsumer");
 let $EquipmentSlot$Type: typeof import("net.minecraft.world.entity.EquipmentSlot$Type").$EquipmentSlot$Type = Java.loadClass("net.minecraft.world.entity.EquipmentSlot$Type");
-let $ArmorHurtEvent: typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent = Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent");
 let $ArmorMaterials: typeof import("net.minecraft.world.item.ArmorMaterials").$ArmorMaterials = Java.loadClass("net.minecraft.world.item.ArmorMaterials");
 
 namespace ArmorTweaks {

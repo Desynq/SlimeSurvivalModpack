@@ -36,3 +36,12 @@ const $MobEffectEvent$Applicable: typeof import("net.neoforged.neoforge.event.en
 
 const $VanillaGameEvent: typeof import("net.neoforged.neoforge.event.VanillaGameEvent").$VanillaGameEvent =
 	Java.loadClass("net.neoforged.neoforge.event.VanillaGameEvent");
+
+const $MobDespawnEvent: typeof import("net.neoforged.neoforge.event.entity.living.MobDespawnEvent").$MobDespawnEvent =
+	Java.loadClass("net.neoforged.neoforge.event.entity.living.MobDespawnEvent");
+
+const $MobSpawnEvent: typeof import("net.neoforged.neoforge.event.entity.living.MobSpawnEvent").$MobSpawnEvent =
+	Java.loadClass("net.neoforged.neoforge.event.entity.living.MobSpawnEvent");
+
+const $ArmorHurtEvent: typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent =
+	Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent");
