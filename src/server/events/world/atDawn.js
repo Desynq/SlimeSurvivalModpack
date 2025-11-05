@@ -19,12 +19,12 @@ ServerEvents.tick(event => {
 	}
 
 	/**
-	 * @param {$Player_} player
+	 * @param {ServerPlayer_} player
 	 */
 	function broadcastDawn(player) {
-		player.tell(ConcatString(
-			"A new dawn rises.\n",
-			`All sold items have diminished by ${(percentageLost * 100).toFixed(2)}%.`
-		));
+		player.tell(
+			"A new dawn rises.\n"
+			+ `All sold items have diminished by ${(percentageLost * 100).toFixed(2)}%.`
+		);
 	}
 });
