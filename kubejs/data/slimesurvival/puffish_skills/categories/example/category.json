@@ -1,9 +1,9 @@
 {
-	"title": "Example",
+	"title": "Attribute Points",
 	"icon": {
 		"type": "item",
 		"data": {
-			"item": "iron_sword"
+			"item": "dummmmmmy:target_dummy"
 		}
 	},
 	"background": "textures/gui/advancements/backgrounds/stone.png"
