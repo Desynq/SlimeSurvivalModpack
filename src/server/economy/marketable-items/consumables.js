@@ -26,3 +26,7 @@ new MarketableItem("totem", "minecraft:totem_of_undying")
 new MarketableItem("golden_carrot", "minecraft:golden_carrot")
 	.setSellPrice(20.00)
 	.register();
+
+new MarketableItem("remnant_skull", "cataclysm:remnant_skull")
+	.setSellPrice(300.00)
+	.register();
