@@ -1,11 +1,9 @@
+// priority: 2
 
-
-namespace DefinitionsGenerator {
+namespace SkillsFileGenerator {
 
 	function write(id: string, json: Object): void {
-		const parts = id.split(":", 2);
-		const namespace = parts[0];
-		const path = parts[1];
+		const { namespace, path } = SkillHelper.splitCategoryId(id);
 		JsonIO.write(`kubejs/data/${namespace}/puffish_skills/categories/${path}/definitions.json`, json);
 	}
 

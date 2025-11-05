@@ -289,5 +289,96 @@
 				"frame": "task"
 			}
 		}
+	},
+	"toxophilite": {
+		"title": "Toxophilite",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Attribute points spent towards attack damage instead increase projectile damage."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:bow"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"pierce": {
+		"title": "Pierce",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Drawing your bow back for twice as long as a full charge makes the fired arrow partially ignore armor.\n\n• 50% of damage reduced by armor and armor toughness is brought back"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:block_and_chain"
+			}
+		}
+	},
+	"ballet": {
+		"title": "Ballet",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Your arrow does double damage if you manage at least a 360° rotation without breaking direction before firing your bow.\n\n• Rotation starts when you first draw the bow.\n• Changing spin direction at any point resets accumulated rotation.\n• Accumulated rotation can still reset even after hitting the 360° threshold"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "create_connected:crank_wheel"
+			}
+		}
+	},
+	"dropshot": {
+		"title": "Dropshot",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Your arrow does double damage if you fire your bow while falling."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:feather"
+			}
+		}
 	}
 }

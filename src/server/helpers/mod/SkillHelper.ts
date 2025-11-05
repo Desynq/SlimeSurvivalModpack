@@ -1,3 +1,5 @@
+// priority: 1000
+
 // @ts-ignore
 /** @type {typeof import("java.util.Optional").$Optional } */
 let $Optional = Java.loadClass("java.util.Optional");
@@ -13,6 +15,14 @@ interface SkillTierHolder {
 }
 
 class SkillHelper {
+
+	public static splitCategoryId(id: string) {
+		const parts = id.split(":", 2);
+		const namespace = parts[0];
+		const path = parts[1];
+		return { namespace, path };
+	}
+
 	private static getState(player: ServerPlayer_, skill: Skill) {
 		const maybeCategory = $SkillsAPI.getCategory(
 			$ResourceLocation.parse(skill.getCategoryId())
@@ -76,5 +86,4 @@ class SkillHelper {
 		}
 		return skills.length;
 	}
-
 }

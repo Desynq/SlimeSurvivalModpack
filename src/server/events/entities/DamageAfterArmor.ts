@@ -27,7 +27,7 @@ namespace DamageAfterArmor {
 		}
 	}
 
-	NativeEvents.onEvent($DamageAfterArmorEvent, event => {
+	NativeEvents.onEvent("highest", $DamageAfterArmorEvent, event => {
 		const entity = event.entity as LivingEntity_;
 		const armor = entity.getAttributeValue($Attributes.ARMOR);
 		const toughness = entity.getAttributeValue($Attributes.ARMOR_TOUGHNESS);

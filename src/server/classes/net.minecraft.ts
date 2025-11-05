@@ -88,3 +88,6 @@ const $GameType: typeof import("net.minecraft.world.level.GameType").$GameType =
 
 const $DoorBlock: typeof import("net.minecraft.world.level.block.DoorBlock").$DoorBlock =
 	Java.loadClass("net.minecraft.world.level.block.DoorBlock");
+
+const $Difficulty: typeof import("net.minecraft.world.Difficulty").$Difficulty =
+	Java.loadClass("net.minecraft.world.Difficulty");

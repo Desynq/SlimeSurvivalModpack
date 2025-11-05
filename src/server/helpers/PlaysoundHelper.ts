@@ -24,6 +24,34 @@ namespace PlaysoundHelper {
 		);
 	}
 
+	export function playsoundSelf(player: ServerPlayer_, position: Vec3_, sound: string, volumeType: string, volume: number, pitch: number): void {
+		CommandHelper.runCommandSilent(player.server,
+			`execute in ${player.level.dimension.toString()} positioned ${position.x()} ${position.y()} ${position.z()} run playsound ${sound} ${volumeType} ${player.username} ~ ~ ~ ${volume} ${pitch}`
+		);
+	}
+
+	/**
+	 * Plays the sound directly in front of the player
+	 */
+	export function playsoundAhead(player: ServerPlayer_, sound: string, volumeType: string, volume: number, pitch: number): void {
+		const eyePos = player.getEyePosition();
+		const lookVec = player.getLookAngle();
+		const soundPos = eyePos.add(lookVec.scale(1.0) as any);
+
+		playsound(player.level, soundPos, sound, volumeType, volume, pitch);
+	}
+
+	/**
+	 * Plays the sound directly in front of the player
+	 */
+	export function playsoundAheadSelf(player: ServerPlayer_, sound: string, volumeType: string, volume: number, pitch: number): void {
+		const eyePos = player.getEyePosition();
+		const lookVec = player.getLookAngle();
+		const soundPos = eyePos.add(lookVec.scale(1.0) as any);
+
+		playsoundSelf(player, soundPos, sound, volumeType, volume, pitch);
+	}
+
 	export function playsoundLevel(level: Level_, sound: string, volumeType: string, volume: number, pitch: number): void {
 		const dimension = level.dimension.toString();
 		CommandHelper.runCommandSilent(level.server,

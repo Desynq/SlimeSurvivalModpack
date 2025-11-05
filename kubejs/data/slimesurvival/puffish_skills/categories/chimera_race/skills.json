@@ -58,5 +58,23 @@
 		"x": 160,
 		"y": -96,
 		"root": false
+	},
+	"4bacp62a4z4vf5c9": {
+		"definition": "toxophilite",
+		"x": 0,
+		"y": 128,
+		"root": true
+	},
+	"vi6lzynjnsu9f8ax": {
+		"definition": "pierce",
+		"x": 0,
+		"y": 192,
+		"root": false
+	},
+	"ilov0z76fiefb27v": {
+		"definition": "ballet",
+		"x": -64,
+		"y": 160,
+		"root": false
 	}
 }

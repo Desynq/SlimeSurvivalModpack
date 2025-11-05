@@ -4,6 +4,8 @@ const ChimeraSkills = new (class extends SkillManager {
 		super("slimesurvival:chimera_race");
 	}
 
+	private readonly SNAKE_STYLE: JsonComponentStyle = { "color": "dark_green", "italic": true };
+
 	public readonly THE_LIONS_SHARE = new SkillDefinition(this.categoryId, "the_lions_share")
 		.title("The Lion's Share")
 		.itemIcon("minecraft:ocelot_spawn_egg")
@@ -141,4 +143,42 @@ const ChimeraSkills = new (class extends SkillManager {
 		.serialize(this.definitionsJson)
 		.toSkill("hzdfphadlqrhhv7a")
 		.register(this.skills);
+
+
+
+	public readonly TOXOPHILITE = this.createSkill("toxophilite", def => def
+		.itemIcon("minecraft:bow")
+		.addDescription({
+			"text": "Attribute points spent towards attack damage instead increase projectile damage."
+		})
+		.rootSkill()
+	);
+
+	public readonly PIERCE = this.createSkill("pierce", def => def
+		.itemIcon("twilightforest:block_and_chain")
+		.addDescription({
+			"text": "Drawing your bow back for twice as long as a full charge makes the fired arrow partially ignore armor."
+				+ "\n\n• 50% of damage reduced by armor and armor toughness is brought back"
+		})
+		.cost(2)
+	);
+
+	public readonly BALLET = this.createSkill("ballet", def => def
+		.itemIcon("create_connected:crank_wheel")
+		.addDescription({
+			"text": "Your arrow does double damage if you manage at least a 360° rotation without breaking direction before firing your bow."
+				+ "\n\n• Rotation starts when you first draw the bow."
+				+ "\n• Changing spin direction at any point resets accumulated rotation."
+				+ "\n• Accumulated rotation can still reset even after hitting the 360° threshold"
+		})
+		.cost(2)
+	);
+
+	public readonly DROPSHOT = this.createSkill("dropshot", def => def
+		.itemIcon("minecraft:feather")
+		.addDescription({
+			"text": "Your arrow does double damage if you fire your bow while falling."
+		})
+		.cost(2)
+	);
 })().register();
