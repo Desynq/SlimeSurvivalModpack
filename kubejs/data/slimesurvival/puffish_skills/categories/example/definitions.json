@@ -1,6 +1,7 @@
 {
 	"health": {
-		"title": "+5% Max Health",
+		"title": "+1 Constitution",
+		"description": "+5% Max Health",
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -19,7 +20,8 @@
 		]
 	},
 	"attack_damage": {
-		"title": "+5% Attack Damage",
+		"title": "+1 Strength",
+		"description": "+5% Attack Damage",
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -29,7 +31,8 @@
 		"rewards": []
 	},
 	"attack_speed": {
-		"title": "+2.5% Attack Speed",
+		"title": "+1 Dexterity",
+		"description": "+2.5% Attack Speed",
 		"icon": {
 			"type": "item",
 			"data": {
@@ -48,7 +51,8 @@
 		]
 	},
 	"movement_speed": {
-		"title": "+2.5% Movement Speed",
+		"title": "+1 Agility",
+		"description": "+2.5% Movement Speed",
 		"icon": {
 			"type": "effect",
 			"data": {
