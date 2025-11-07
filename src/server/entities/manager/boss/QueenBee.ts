@@ -7,7 +7,6 @@ class QueenBeeRewarder<T extends Bee_> extends BossRewarder<T> {
 	}
 }
 
-// @ts-ignore
 const QueenBee = new (class <T extends Bee_> extends RewardableEntityManager<T> implements ITickableBoss<T> {
 
 	private readonly DEFAULT_MAX_HEALTH = 5000;
@@ -24,7 +23,7 @@ const QueenBee = new (class <T extends Bee_> extends RewardableEntityManager<T> 
 	private readonly POISON_CLOUD_CHANCE = 0.25;
 	private readonly ENRAGED_TAG_KEY = "queen_bee.enraged";
 
-	protected override isEntity(entity: unknown): entity is T {
+	public override isEntity(entity: unknown): entity is T {
 		return entity instanceof $Bee && entity.tags.contains("boss.queen_bee");
 	}
 
