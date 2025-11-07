@@ -3,7 +3,7 @@ PlayerEvents.tick(event => {
 	/** @type {Player_ & ServerPlayer_} */
 	const player = event.player;
 
-	const race = PlayerRaceHelper.getRace(player);
+	const race = RaceHelper.getRace(player);
 	if (!SkillHelper.hasSkill(player, SludgeSkills.FLAMMABLE)) return;
 
 	if (player.isOnFire()) {

@@ -50,8 +50,10 @@ class EntityDirector {
 	}
 
 	public static hasCustomBossbar(entity: Entity_): boolean {
-		const manager = EntityManagers.getManager(entity);
-		return manager !== undefined && this.isCustomBossbarManager(manager);
+		for (const manager of EntityManagers.getManagers(entity)) {
+			if (this.isCustomBossbarManager(manager)) return true;
+		}
+		return false;
 	}
 
 	public static tryCacheEntity(boss: LivingEntity_): boolean {
@@ -62,14 +64,13 @@ class EntityDirector {
 	}
 
 	public static eventHook(boss: Entity_, event: any): void {
-		const manager = EntityManagers.getManager(boss);
-		if (!manager) return;
-
-		if (event instanceof $EntitySpawnedKubeEvent) manager.onSpawn(boss, event);
-		else if (event instanceof $LivingEntityDeathKubeEvent) manager.onDeath(boss, event);
-		else if (event instanceof $EntityLeaveLevelEvent) manager.onLeave(boss, event);
-		else if (event instanceof $LivingIncomingDamageEvent) manager.onIncomingDamage(boss, event);
-		else if (event instanceof $EntityMountEvent) manager.onEntityMount(boss, event);
+		for (const manager of EntityManagers.getManagers(boss)) {
+			if (event instanceof $EntitySpawnedKubeEvent) manager.onSpawn(boss, event);
+			else if (event instanceof $LivingEntityDeathKubeEvent) manager.onDeath(boss, event);
+			else if (event instanceof $EntityLeaveLevelEvent) manager.onLeave(boss, event);
+			else if (event instanceof $LivingIncomingDamageEvent) manager.onIncomingDamage(boss, event);
+			else if (event instanceof $EntityMountEvent) manager.onEntityMount(boss, event);
+		}
 	}
 
 	public static pruneBossbars(server: MinecraftServer_) {
@@ -80,8 +81,8 @@ class EntityDirector {
 
 			const entity = server.getEntityByUUID(bossbar.textId.path) as Entity_ | null;
 
-			const flag = entity && (EntityManager.isGenericBoss(entity) || this.hasGenericBossbar(entity));
-			if (flag) continue;
+			const hasEntityWithGenericBossbar = entity && (EntityManager.isGenericBoss(entity) || this.hasGenericBossbar(entity));
+			if (hasEntityWithGenericBossbar) continue;
 
 			bossbar.removeAllPlayers();
 			bossbars.remove(bossbar);
@@ -89,7 +90,10 @@ class EntityDirector {
 	}
 
 	public static hasGenericBossbar(entity: Entity_): boolean {
-		return EntityManagers.getManager(entity)?.hasGenericBossbar(entity) ?? false;
+		for (const manager of EntityManagers.getManagers(entity)) {
+			if (manager.hasGenericBossbar(entity)) return true;
+		}
+		return false;
 	}
 
 	public static genericBossTick(boss: LivingEntity_): void {
@@ -100,8 +104,8 @@ class EntityDirector {
 			TheHunter.tick(boss);
 		}
 
-		if (!this.hasCustomBossbar(boss)) {
-			this.createOrUpdateBossbar(boss);
+		if (this.hasGenericBossbar(boss)) {
+			this.createOrUpdateGenericBossbar(boss);
 		}
 	}
 
@@ -128,7 +132,7 @@ class EntityDirector {
 
 
 
-	private static createOrUpdateBossbar(boss: LivingEntity_): void {
+	private static createOrUpdateGenericBossbar(boss: LivingEntity_): void {
 		const server = boss.server;
 		const bossbarManager = server.customBossEvents;
 
@@ -142,7 +146,7 @@ class EntityDirector {
 		server.runCommandSilent(`bossbar set ${bossbarId} value ${Math.floor(boss.health)}`);
 
 		if (boss instanceof $ServerPlayer) {
-			this.updatePlayerBossbar(boss, bossbarId);
+			this.updateGenericPlayerBossbar(boss, bossbarId);
 		}
 		else {
 			server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${boss.username}"},{"color":"gray","text":" ${boss.health.toFixed(2)}/${boss.maxHealth.toFixed(2)}"}]`);
@@ -151,13 +155,15 @@ class EntityDirector {
 		server.runCommandSilent(`execute at ${boss.username} run bossbar set ${bossbarId} players @a[distance=0..]`);
 	}
 
-	private static updatePlayerBossbar(boss: ServerPlayer_, bossbarId: string): void {
-		const customName = boss.persistentData.getString("custom_name");
-		if (customName === "") {
-			boss.server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${boss.username}"},{"color":"gray","text":" ${boss.health.toFixed(2)}/${boss.maxHealth.toFixed(2)}"}]`);
+	private static updateGenericPlayerBossbar(boss: ServerPlayer_, bossbarId: string): void {
+		const data = boss.persistentData;
+
+		if (data.contains("custom_name", $Tag.TAG_STRING)) {
+			const customName = data.getString("custom_name");
+			boss.server.runCommandSilent(`bossbar set ${bossbarId} name [${customName},{"color":"gray","text":" ${boss.health.toFixed(2)}/${boss.maxHealth.toFixed(2)}"}]`);
 		}
 		else {
-			boss.server.runCommandSilent(`bossbar set ${bossbarId} name [${customName},{"color":"gray","text":" ${boss.health.toFixed(2)}/${boss.maxHealth.toFixed(2)}"}]`);
+			boss.server.runCommandSilent(`bossbar set ${bossbarId} name [{"selector":"${boss.username}"},{"color":"gray","text":" ${boss.health.toFixed(2)}/${boss.maxHealth.toFixed(2)}"}]`);
 		}
 	}
 }

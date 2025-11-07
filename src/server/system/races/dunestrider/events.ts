@@ -4,7 +4,7 @@
 
 PlayerEvents.tick(event => {
 	const player = event.player as ServerPlayer_;
-	if (!PlayerRaceHelper.isRace(player, Races.DUNESTRIDER)) return;
+	if (!RaceHelper.isRace(player, Races.DUNESTRIDER)) return;
 
 	if (DunestriderSkills.BLOODCLOT_1.isUnlockedFor(player)) {
 		BloodclotSkill.decayOverheal(player);
@@ -27,7 +27,7 @@ EntityEvents.death(event => {
 	let player = event.getSource().getActual();
 	if (!(player instanceof $ServerPlayer)) return;
 
-	if (!(PlayerRaceHelper.isRace(player, Races.DUNESTRIDER))) return;
+	if (!(RaceHelper.isRace(player, Races.DUNESTRIDER))) return;
 
 	if ((SkillHelper.hasSkill(player, DunestriderSkills.HYSTERIA_3))) {
 		if (HysteriaSkill.hasMaxHysteria(player)) {

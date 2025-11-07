@@ -44,7 +44,7 @@
 			return;
 		}
 		const { pet, owner } = pair;
-		const chimera = PlayerRaceHelper.getRaceWrapper(owner);
+		const chimera = RaceHelper.getRaceWrapper(owner);
 		if (!(chimera instanceof ChimeraPlayer)) {
 			return;
 		}

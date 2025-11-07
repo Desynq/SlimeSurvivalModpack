@@ -38,7 +38,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	public getJumpStrength(server: MinecraftServer_): double {
 		const count = Math.max(1, this.getEntityCount(server));
 		const ratio = Math.min(1, Math.log(count) / Math.log(this.SPAWN_CAP / 4));
-		const maxJumpStrength = 2.0;
+		const maxJumpStrength = 1.2;
 		const minJumpStrength = 0.4;
 
 		const result = maxJumpStrength - (maxJumpStrength - minJumpStrength) * ratio;
@@ -57,6 +57,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 
 		LivingEntityHelper.removeHarmfulEffects(boss as any);
 
+		this.eatCrops(boss);
 		this.eatNearbyItems(boss);
 	}
 
@@ -70,7 +71,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public override onTickAll(server: MinecraftServer_, bosses: T[]): void {
-		TimeHelper.shiftTime(server, 6000);
+		// TimeHelper.shiftTime(server, 6000);
 		this.updateBossbar(server);
 	}
 
@@ -125,6 +126,17 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 			playsound(level, item.position(), "entity.generic.eat", "master", 1, 0.5);
 			item.kill();
 		});
+	}
+
+	private eatCrops(boss: T): void {
+		const block = boss.blockStateOn;
+		if (!block["is(net.minecraft.tags.TagKey)"]("minecraft:crops" as any)) return;
+
+		const level = boss.level;
+		const pos = boss.getOnPos();
+
+		level.destroyBlock(pos as any, false, boss);
+		this.tryDuplicate(boss);
 	}
 
 	private readonly LIVING_ENTITY_CONDITION = $TargetingConditions.forCombat().selector((e: LivingEntity_) =>

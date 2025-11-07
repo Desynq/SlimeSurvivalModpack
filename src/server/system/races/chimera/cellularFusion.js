@@ -1,7 +1,7 @@
 NativeEvents.onEvent($MobEffectEvent$Added, event => {
 	let entity = event.getEntity();
 	if (!(entity instanceof $ServerPlayer)) return;
-	if (!PlayerRaceHelper.isRace(entity, Races.CHIMERA)) return;
+	if (!RaceHelper.isRace(entity, Races.CHIMERA)) return;
 	// if (!SkillHelper.hasSkill(entity, ChimeraSkills.CELLULAR_FUSION)) return;
 
 

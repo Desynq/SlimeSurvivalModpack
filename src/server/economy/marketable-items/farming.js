@@ -72,9 +72,17 @@ new MarketableItem("milk", "minecraft:milk_bucket")
 	.register();
 
 new MarketableItem("cake", "minecraft:cake")
-	.setSellPrice(200.00)
+	.setSellPrice(100.00)
 	.register();
 
 new MarketableItem("wheat_seeds", "minecraft:wheat_seeds")
 	.setSellPrice(0.01)
+	.register();
+
+new MarketableItem("cooked_chicken", "minecraft:cooked_chicken")
+	.setSellPrice(2.50)
+	.register();
+
+new MarketableItem("egg", "minecraft:egg")
+	.setSellPrice(0.05)
 	.register();

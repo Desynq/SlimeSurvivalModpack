@@ -2,7 +2,9 @@
 
 namespace Chimera.Events {
 
-	EntityEvents.spawned(event => {
+	NativeEvents.onEvent($EntityJoinLevelEvent, event => {
+		if (event.loadedFromDisk()) return;
+
 		const entity = event.entity;
 		if (!(entity instanceof $AbstractArrow)) return;
 
@@ -14,8 +16,8 @@ namespace Chimera.Events {
 
 
 	NativeEvents.onEvent($LivingEntityUseItemEvent$Stop, event => {
-		const player = event.entity;
-		if (!(player instanceof $ServerPlayer)) return;
+		const player = RaceHelper.narrowToRace(event.entity, Races.CHIMERA);
+		if (!player) return;
 
 		const stack = event.item;
 		if (stack.id.toString() !== "minecraft:bow") return;
@@ -29,8 +31,8 @@ namespace Chimera.Events {
 	});
 
 	NativeEvents.onEvent($LivingEntityUseItemEvent$Start, event => {
-		const player = event.entity;
-		if (!(player instanceof $ServerPlayer)) return;
+		const player = RaceHelper.narrowToRace(event.entity, Races.CHIMERA);
+		if (!player) return;
 
 		const stack = event.item;
 		if (stack.id.toString() !== "minecraft:bow") return;
@@ -41,7 +43,8 @@ namespace Chimera.Events {
 	});
 
 	PlayerEvents.tick(event => {
-		const player = event.player as ServerPlayer_;
+		const player = RaceHelper.narrowToRace(event.player, Races.CHIMERA);
+		if (!player) return;
 
 		const useStack = player.getUseItem() as ItemStack_ | null;
 		if (!useStack || useStack.id.toString() !== "minecraft:bow") return;
@@ -50,6 +53,14 @@ namespace Chimera.Events {
 		tickDrawingBow(player, useStack, duration);
 	});
 
+	NativeEvents.onEvent($LivingDamageEvent$Pre, event => {
+		const victim = event.entity;
+		const chimeraAttacker = RaceHelper.narrowToRace(event.source.actual, Races.CHIMERA);
+
+		if (chimeraAttacker) {
+			Timid.tryDecreaseBowDamage(chimeraAttacker, victim, event);
+		}
+	});
 
 	NativeEvents.onEvent("normal", $DamageAfterArmorEvent, event => {
 		const immediate = event.source.immediate as Entity_ | null;
@@ -65,8 +76,8 @@ namespace Chimera.Events {
 		const restoredDamage = (beforeArmorDamage - afterArmorDamage) * restorationModifier;
 		const finalDamage = afterArmorDamage + restoredDamage;
 
-		const owner = immediate.owner;
-		if (owner instanceof $ServerPlayer) {
+		const owner = RaceHelper.narrowToRace(immediate.owner, Races.CHIMERA);
+		if (owner) {
 			const text = `${beforeArmorDamage.toFixed(2)} -> ${afterArmorDamage.toFixed(2)} -> ${finalDamage.toFixed(2)}`;
 			ActionbarManager.addMessage(owner, text, 40);
 		}
@@ -89,11 +100,15 @@ namespace Chimera.Events {
 	}
 
 	function tickDrawingBow(player: ServerPlayer_, bow: ItemStack_, duration: integer): void {
+		if (ChimeraSkills.TOXOPHILITE.isUnlockedFor(player)) {
+			ToxophiliteSkill.applySlowdown(player);
+		}
+
 		if (ChimeraSkills.PIERCE.isUnlockedFor(player) && duration === PierceSkill.getDurationNeeded(player)) {
 			PierceSkill.notifyPierceReady(player);
 		}
 
-		if (BalletSkill.hasDeltaRotation(player)) {
+		if (ChimeraSkills.BALLET.isUnlockedFor(player)) {
 			const deltaYaw = BalletSkill.getDeltaYaw(player);
 			BalletSkill.addDeltaRotation(player, deltaYaw);
 

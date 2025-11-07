@@ -5,7 +5,7 @@ interface RaceSwitchResult {
 	code: "CANNOT_SWITCH_RACE" | "ALREADY_THIS_RACE" | "SUCCESS";
 }
 
-class PlayerRaceHelper {
+class RaceHelper {
 
 	/**
 	 * @returns The player's current race or the default race if they have no set race
@@ -20,7 +20,7 @@ class PlayerRaceHelper {
 	 * @deprecated
 	 */
 	public static getRaceWrapper(player: ServerPlayer_) {
-		switch (PlayerRaceHelper.getRace(player)) {
+		switch (RaceHelper.getRace(player)) {
 			case Races.CHIMERA:
 				return new ChimeraPlayer(player);
 			case Races.FARLANDER:
@@ -43,6 +43,12 @@ class PlayerRaceHelper {
 		return this.getRace(player) === race;
 	}
 
+	public static narrowToRace(entity: unknown, race: Race): ServerPlayer_ | undefined {
+		return entity instanceof $ServerPlayer && this.isRace(entity, race)
+			? entity
+			: undefined;
+	}
+
 	public static hasRace(player: ServerPlayer_) {
 		const race = this.getRace(player);
 		return race !== undefined && race !== Races.defaultRace();
@@ -57,7 +63,7 @@ class PlayerRaceHelper {
 
 	public static chooseRace(player: ServerPlayer_, chosenRace: Race, setByOperator: boolean = false): RaceSwitchResult {
 		const currentRace = this.getRace(player);
-		let canSwitchResult = PlayerRaceHelper.canSwitchRaceFrom(player, currentRace);
+		let canSwitchResult = RaceHelper.canSwitchRaceFrom(player, currentRace);
 		if (!setByOperator && !canSwitchResult.success) {
 			return canSwitchResult;
 		}

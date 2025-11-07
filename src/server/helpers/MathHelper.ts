@@ -73,4 +73,31 @@ class MathHelper {
 		const b = x1 - m * y1;
 		return (x: number) => this.clamped(m * x + b, yMin, yMax);
 	}
+
+
+
+	public static logRamp01(x: number, eps: number): number {
+		x = MathHelper.clamped(x, 0, 1);
+		if (Math.abs(eps) < 1e-8) return x;
+
+		return Math.log1p(eps * x) / Math.log1p(eps);
+	}
+
+	public static expRamp01(x: number, epsilon: number): number {
+		x = MathHelper.clamped(x, 0, 1);
+		if (Math.abs(epsilon) < 1e-8) {
+			return x;
+		}
+		else if (epsilon > 0) {
+			const base = 1 + epsilon;
+			const exp = base ** x;
+			return (exp - 1) / epsilon;
+		}
+		else {
+			epsilon = -epsilon;
+			const base = 1 + epsilon;
+			const exp = base ** (1 - x);
+			return 1 - (exp - 1) / epsilon;
+		}
+	}
 }

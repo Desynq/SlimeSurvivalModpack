@@ -296,7 +296,7 @@
 		"description": [
 			"",
 			{
-				"text": "Attribute points spent towards attack damage instead increase projectile damage."
+				"text": "Attribute points spent towards attack damage instead increase projectile damage.\n\nNo sprinting movement speed boost while drawing bow.\n\nCannot shoot bow unless fully drawn."
 			},
 			{
 				"color": "gold",
@@ -308,6 +308,34 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:bow"
+			}
+		},
+		"frame": {
+			"type": "advancement",
+			"data": {
+				"frame": "goal"
+			}
+		},
+		"required_points": 2147483647
+	},
+	"timid": {
+		"title": "Timid",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Bow damage decreases the closer your target is.\n\nStarts at 100% 16 blocks away.\n\nBottoms out at 25% at 0 blocks."
+			},
+			{
+				"color": "gold",
+				"text": "\n\n[Root Skill]"
+			}
+		],
+		"cost": 0,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:oak_leaves"
 			}
 		},
 		"frame": {
@@ -371,6 +399,10 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
 			}
 		],
 		"cost": 2,

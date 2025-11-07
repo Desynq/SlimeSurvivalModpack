@@ -14,6 +14,9 @@ function nukeBossbars(server: MinecraftServer_) {
 const EntityManagers = new EntityManagerRegistry();
 
 interface ITickableBoss<T extends LivingEntity_> {
+	/**
+	 * Called every tick for the entity if it's alive
+	 */
 	onBossTick(boss: T): void;
 }
 
@@ -47,16 +50,18 @@ EntityEvents.death(event => {
 	}
 
 	const attacker = event.source.actual;
-	if (attacker) {
-		EntityManagers.getManager(attacker)?.onKill(attacker, victim, event);
+	if (victim instanceof $LivingEntity && attacker) {
+		for (const manager of EntityManagers.getManagers(attacker)) {
+			manager.onKill(attacker, victim, event);
+		}
 	}
 });
 
 EntityEvents.afterHurt(event => {
-	const manager = EntityManagers.getManager(event.entity);
-	if (!manager) return;
-
-	manager.onAfterHurt(event.entity, event);
+	const entity = event.entity;
+	for (const manager of EntityManagers.getManagers(entity)) {
+		manager.onAfterHurt(entity, event);
+	}
 });
 
 

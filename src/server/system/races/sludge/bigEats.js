@@ -8,7 +8,7 @@ const BIG_EAT_MODIFIER_ID = $ResourceLocation.parse("slimesurvival:big_eat");
 // @ts-nocheck
 PlayerEvents.tick(e => {
 	let player = e.player
-	if (PlayerRaceHelper.getRace(player) != Races.SLUDGE) { return }
+	if (RaceHelper.getRace(player) != Races.SLUDGE) { return }
 	let sat = player.foodData.saturationLevel;
 	let value = player.absorptionAmount + sat;
 	let playerhp = player.getMaxHealth()

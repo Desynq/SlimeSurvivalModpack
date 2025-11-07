@@ -12,22 +12,22 @@ namespace Chimera.BalletSkill {
 		return wrapDegrees(to - from);
 	}
 
-	const deltaRotationDataKey = "chimera.ballet_skill.delta_rotation";
+	const DELTA_ROTATION_TAG_KEY = "chimera.ballet_skill.delta_rotation";
 
 	export function hasDeltaRotation(player: ServerPlayer_): boolean {
-		return player.persistentData.contains(deltaRotationDataKey, $Tag.TAG_FLOAT);
+		return player.persistentData.contains(DELTA_ROTATION_TAG_KEY, $Tag.TAG_FLOAT);
 	}
 
 	export function getDeltaRotation(player: ServerPlayer_): float {
-		return player.persistentData.getFloat(deltaRotationDataKey);
+		return player.persistentData.getFloat(DELTA_ROTATION_TAG_KEY);
 	}
 
 	function setDeltaRotation(player: ServerPlayer_, delta: float): void {
-		player.persistentData.putFloat(deltaRotationDataKey, delta);
+		player.persistentData.putFloat(DELTA_ROTATION_TAG_KEY, delta);
 	}
 
 	export function resetDeltaRotation(player: ServerPlayer_): void {
-		player.persistentData.remove(deltaRotationDataKey);
+		player.persistentData.remove(DELTA_ROTATION_TAG_KEY);
 		completedRotationTimestamp.remove(player);
 	}
 

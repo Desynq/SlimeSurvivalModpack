@@ -2,79 +2,91 @@
 	"p9wcqr8os2f6lncd": {
 		"definition": "the_lions_share",
 		"x": 0,
-		"y": 0,
+		"y": -96,
 		"root": true
 	},
 	"l3j9ppm6hiiypz3l": {
 		"definition": "wolf_packing",
 		"x": 0,
-		"y": -64,
+		"y": -160,
 		"root": false
 	},
 	"g6wrs6zee7l57gnv": {
 		"definition": "pack_marathon",
 		"x": -64,
-		"y": -64,
+		"y": -160,
 		"root": false
 	},
 	"454dhe0xb7uzqvlx": {
 		"definition": "fortitude_1",
 		"x": 64,
-		"y": 0,
+		"y": -96,
 		"root": false
 	},
 	"l8aprgz05mqjajqh": {
 		"definition": "fortitude_2",
 		"x": 128,
-		"y": 0,
+		"y": -96,
 		"root": false
 	},
 	"gcnl216n2wo0b8u5": {
 		"definition": "fortitude_3",
 		"x": 192,
-		"y": 0,
+		"y": -96,
 		"root": false
 	},
 	"53sa7a8z55jcy314": {
 		"definition": "sanguine_covenant",
 		"x": 128,
-		"y": -64,
+		"y": -160,
 		"root": false
 	},
 	"hzdfphadlqrhhv7a": {
 		"definition": "fall_protection",
 		"x": 64,
-		"y": 32,
+		"y": -32,
 		"root": false
 	},
 	"mdxmlh3ln8lruyo2": {
 		"definition": "covenant_restoration",
 		"x": 96,
-		"y": -96,
+		"y": -224,
 		"root": false
 	},
 	"i9m0vussyk8rd1fn": {
 		"definition": "perfect_covenant",
 		"x": 160,
-		"y": -96,
+		"y": -224,
 		"root": false
 	},
 	"4bacp62a4z4vf5c9": {
 		"definition": "toxophilite",
 		"x": 0,
-		"y": 128,
+		"y": 96,
 		"root": true
 	},
 	"vi6lzynjnsu9f8ax": {
 		"definition": "pierce",
 		"x": 0,
-		"y": 192,
+		"y": 160,
 		"root": false
 	},
 	"ilov0z76fiefb27v": {
 		"definition": "ballet",
 		"x": -64,
-		"y": 160,
+		"y": 128,
 		"root": false
+	},
+	"69ofjyrn8qie96lz": {
+		"definition": "dropshot",
+		"x": 64,
+		"y": 128,
+		"root": false
+	},
+	"svb0eqc4y03acegh": {
+		"definition": "timid",
+		"x": -96,
+		"y": 0,
+		"root": true
 	}
 }

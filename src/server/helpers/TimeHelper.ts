@@ -9,4 +9,15 @@ namespace TimeHelper {
 		server.overworld().setDayTime(newDayTime);
 		return newDayTime;
 	}
+
+	export function getTimeOfDay(level: Level_): integer {
+		const totalDayTime = level.getDayTime();
+		const timeOfDay = totalDayTime % 24000;
+
+		return timeOfDay;
+	}
+
+	export function getGlobalTimeOfDay(server: MinecraftServer_): integer {
+		return getTimeOfDay(server.overworld() as ServerLevel_);
+	}
 }

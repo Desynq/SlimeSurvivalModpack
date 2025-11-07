@@ -52,4 +52,12 @@ class LivingEntityHelper {
 		entity.maxHealth = newMaxHealth;
 		entity.health = newMaxHealth * healthPercent;
 	}
+
+	public static heal(entity: LivingEntity_, healAmount: float): void {
+		entity.health = MathHelper.clamped(entity.health + healAmount, 0, entity.maxHealth);
+	}
+
+	public static healPercent(entity: LivingEntity_, healPercent: float): void {
+		this.heal(entity, entity.maxHealth * healPercent);
+	}
 }

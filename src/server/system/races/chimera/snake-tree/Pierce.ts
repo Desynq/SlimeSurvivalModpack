@@ -26,6 +26,6 @@ namespace Chimera.PierceSkill {
 	}
 
 	export function notifyPierceReady(player: ServerPlayer_): void {
-		PlaysoundHelper.playsoundAhead(player, "block.beacon.activate", "player", 1, 2);
+		PlaysoundHelper.playsoundAhead(player, "item.crossbow.loading_middle", "player", 1, 1);
 	}
 }

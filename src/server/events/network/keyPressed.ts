@@ -4,9 +4,9 @@
 namespace KeyPressedPacketListener {
 
 	function handlePrimaryAbilityKeyPress(player: ServerPlayer_) {
-		switch (PlayerRaceHelper.getRace(player)) {
+		switch (RaceHelper.getRace(player)) {
 			case Races.CHIMERA:
-				const raceWrapper = PlayerRaceHelper.getRaceWrapper(player) as ChimeraPlayer;
+				const raceWrapper = RaceHelper.getRaceWrapper(player) as ChimeraPlayer;
 				SanguineConvenantAbility.onPress(raceWrapper);
 				break;
 			case Races.FARLANDER:
@@ -18,7 +18,7 @@ namespace KeyPressedPacketListener {
 	}
 
 	function handleSecondaryAbilityKeyPress(player: ServerPlayer_) {
-		switch (PlayerRaceHelper.getRace(player)) {
+		switch (RaceHelper.getRace(player)) {
 			case Races.FARLANDER:
 				HeatDeathAbility.onPress(player);
 				break;
@@ -26,7 +26,7 @@ namespace KeyPressedPacketListener {
 	}
 
 	function handleTertiaryAbilityKeyPress(player: ServerPlayer_) {
-		switch (PlayerRaceHelper.getRace(player)) {
+		switch (RaceHelper.getRace(player)) {
 			case Races.SLUDGE:
 				SludgeCytoplasm.CytoplasmDisabler.onPress(player);
 				break;

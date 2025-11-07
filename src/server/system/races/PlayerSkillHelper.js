@@ -49,6 +49,6 @@ PlayerRaceSkillHelper.unlockSkill = function(player, categoryId, skill) {
  * @param {integer} amount 
  */
 PlayerRaceSkillHelper.addSkillPoint = function(player, amount) {
-	const race = PlayerRaceHelper.getRace(player);
+	const race = RaceHelper.getRace(player);
 	CommandHelper.runCommandSilent(player.server, `puffish_skills experience add ${player.username} ${race.getSkillCategoryId()} ${amount}`);
 }

@@ -150,8 +150,23 @@ const ChimeraSkills = new (class extends SkillManager {
 		.itemIcon("minecraft:bow")
 		.addDescription({
 			"text": "Attribute points spent towards attack damage instead increase projectile damage."
+				+ "\n\nNo sprinting movement speed boost while drawing bow."
+				+ "\n\nCannot shoot bow unless fully drawn."
 		})
 		.rootSkill()
+	);
+
+	public readonly TIMID = this.createSkill("timid", def => {
+		const Constants = Chimera.Constants.Timid;
+		def
+			.itemIcon("minecraft:oak_leaves")
+			.addDescription({
+				"text": "Bow damage decreases the closer your target is."
+					+ `\n\nStarts at ${(Constants.MAX_DIST_MULT * 100).toFixed(0)}% ${Constants.MAX_DIST.toFixed(0)} blocks away.`
+					+ `\n\nBottoms out at ${(Constants.MIN_DIST_MULT * 100).toFixed(0)}% at ${Constants.MIN_DIST.toFixed(0)} blocks.`
+			})
+			.rootSkill();
+	}
 	);
 
 	public readonly PIERCE = this.createSkill("pierce", def => def
@@ -180,5 +195,6 @@ const ChimeraSkills = new (class extends SkillManager {
 			"text": "Your arrow does double damage if you fire your bow while falling."
 		})
 		.cost(2)
+		.flagPlanned()
 	);
 })().register();

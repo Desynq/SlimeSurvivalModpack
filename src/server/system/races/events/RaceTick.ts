@@ -4,13 +4,13 @@
 PlayerEvents.tick(event => {
 	const player = event.player as ServerPlayer_;
 
-	const playerRaceWrapper = PlayerRaceHelper.getRaceWrapper(player);
+	const playerRaceWrapper = RaceHelper.getRaceWrapper(player);
 	if (playerRaceWrapper instanceof ChimeraPlayer) {
 		new ChimeraTick(playerRaceWrapper);
 		SanguineConvenantAbility.onTick(playerRaceWrapper);
 	}
 
-	const race = PlayerRaceHelper.getRace(player);
+	const race = RaceHelper.getRace(player);
 	switch (race) {
 		case Races.FARLANDER:
 			QuantumRelativity.onTick(player);

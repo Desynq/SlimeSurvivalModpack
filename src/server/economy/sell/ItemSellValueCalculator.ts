@@ -30,7 +30,7 @@ class ItemSellValueCalculator {
 	}
 
 	private calculateDunestrider() {
-		if (!PlayerRaceHelper.isRace(this.player, Races.DUNESTRIDER)) return;
+		if (!RaceHelper.isRace(this.player, Races.DUNESTRIDER)) return;
 
 		if (SkillHelper.hasSkill(this.player, DunestriderSkills.SCAVENGER)) {
 			let scavengerItems = [
@@ -50,7 +50,7 @@ class ItemSellValueCalculator {
 	}
 
 	private calculateSludge() {
-		if (!PlayerRaceHelper.isRace(this.player, Races.SLUDGE)) return;
+		if (!RaceHelper.isRace(this.player, Races.SLUDGE)) return;
 
 		if (SkillHelper.hasSkill(this.player, SludgeSkills.NATURAL_ECONOMIST)) {
 			if (this.mItem.getItemId() === "minecraft:slime_ball") {

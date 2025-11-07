@@ -14,7 +14,7 @@ namespace RaceCommand {
 						const race = Races.fromId(Arguments.STRING.getResult(context, "race"));
 						if (race === undefined) return 1;
 
-						const result = PlayerRaceHelper.chooseRace(player, race);
+						const result = RaceHelper.chooseRace(player, race);
 						tellRaceSwitchResult(player, result, race);
 					}
 					catch (error) {
@@ -84,7 +84,7 @@ namespace RaceCommand {
 		const race = Races.fromId(raceInput);
 		if (race === undefined) return 0;
 
-		const result = PlayerRaceHelper.chooseRace(player, race, true);
+		const result = RaceHelper.chooseRace(player, race, true);
 		tellRaceSwitchResult(player, result, race);
 
 		return result.code === "SUCCESS" ? 1 : 0;
@@ -93,7 +93,7 @@ namespace RaceCommand {
 	function giveRacePoints(player: ServerPlayer_, amount: integer, context?: CommandExecutionContext_): integer {
 		PlayerRaceSkillHelper.addSkillPoint(player, amount);
 		if (context) {
-			const raceId = PlayerRaceHelper.getRace(player).getRaceId();
+			const raceId = RaceHelper.getRace(player).getRaceId();
 			context.source.sendSuccess(`Gave ${player.username} ${amount} ${raceId} skill points.`, true);
 		}
 		return 1;

@@ -45,3 +45,7 @@ const $MobSpawnEvent: typeof import("net.neoforged.neoforge.event.entity.living.
 
 const $ArmorHurtEvent: typeof import("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent").$ArmorHurtEvent =
 	Java.loadClass("net.neoforged.neoforge.event.entity.living.ArmorHurtEvent");
+
+type LivingDamageEvent$Post_ = import("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post").$LivingDamageEvent$Post;
+const $LivingDamageEvent$Post: typeof import("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post").$LivingDamageEvent$Post =
+	Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingDamageEvent$Post");

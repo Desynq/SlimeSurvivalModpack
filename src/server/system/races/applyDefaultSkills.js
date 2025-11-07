@@ -4,6 +4,6 @@ let $OnDatapackSyncEvent = Java.loadClass("net.neoforged.neoforge.event.OnDatapa
 NativeEvents.onEvent($OnDatapackSyncEvent, event => {
 	event.getPlayerList().getPlayers().forEach(player => {
 		// @ts-ignore
-		PlayerRaceSkillHelper.unlockDefaultRaceSkills(player, PlayerRaceHelper.getRace(player));
+		PlayerRaceSkillHelper.unlockDefaultRaceSkills(player, RaceHelper.getRace(player));
 	});
 });

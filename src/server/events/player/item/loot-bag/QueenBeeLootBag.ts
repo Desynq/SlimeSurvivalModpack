@@ -9,7 +9,7 @@ class QueenBeeLootBag extends LootBag {
 	public override open(player: ServerPlayer_): void {
 		PlaysoundHelper.playsound(player.level, player.position(), "entity.turtle.egg_break", "master", 1, 1);
 
-		if (Math.random() < 0.25) this.giveUnique(player);
+		if (Math.random() < 0.2) this.giveUnique(player);
 		PlayerHelper.give(player, "minecraft:honeycomb", MathHelper.randInt(8, 32));
 		PlayerHelper.give(player, "minecraft:honey_block", MathHelper.randInt(1, 4));
 		PlayerHelper.give(player, "slimesurvival:royal_jelly", MathHelper.randInt(5, 15));
