@@ -10,7 +10,7 @@ namespace Summonables {
 			count: 1
 		}
 	];
-	export const SLIMIFIED_ZOMBIE = Summonable.create("slimified_zombie", "minecraft:zombie", {
+	export const SLIMIFIED_ZOMBIE = SummonableBuilder.create("slimified_zombie", "minecraft:zombie", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -21,10 +21,11 @@ namespace Summonables {
 		ArmorItems: SLIMIFIED_ARMOR,
 		ArmorDropChances: [0.0, 0.0, 0.0, 1.0],
 		CustomName: '{"color":"dark_green","text":"Slimified Zombie"}'
-	});
-	SLIMIFIED_ZOMBIE.setMaxHealth(40.0);
+	})
+		.setMaxHealth(40.0)
+		.register();
 
-	export const SLIMIFIED_SKELETON = Summonable.create("slimified_skeleton", "minecraft:skeleton", {
+	export const SLIMIFIED_SKELETON = SummonableBuilder.create("slimified_skeleton", "minecraft:skeleton", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -41,10 +42,11 @@ namespace Summonables {
 			}
 		],
 		CustomName: '{"color":"dark_green","text":"Slimified Skeleton"}'
-	});
-	SLIMIFIED_SKELETON.setMaxHealth(40.0);
+	})
+		.setMaxHealth(40.0)
+		.register();
 
-	export const THE_COLOSSUS = Summonable.create("the_colossus", "minecraft:slime", {
+	export const THE_COLOSSUS = SummonableBuilder.create("the_colossus", "minecraft:slime", {
 		PersistenceRequired: true,
 		Size: 10,
 		attributes: [
@@ -62,10 +64,11 @@ namespace Summonables {
 			}
 		],
 		CustomName: '{"color":"dark_green","text":"Slimified Skeleton"}'
-	});
-	SLIMIFIED_SKELETON.setMaxHealth(40.0);
+	})
+		.setMaxHealth(40.0)
+		.register();
 
-	export const QUEEN_BEE = Summonable.create("queen_bee", "minecraft:bee", {
+	export const QUEEN_BEE = SummonableBuilder.create("queen_bee", "minecraft:bee", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -76,9 +79,10 @@ namespace Summonables {
 		CustomName: '{"color":"yellow","text":"The Queen Bee"}'
 	})
 		.setMaxHealth(1000.0)
-		.setBoss("queen_bee");
+		.setBoss("queen_bee")
+		.register();
 
-	export const THE_HUNGER = Summonable.create("the_hunger", "minecraft:rabbit", {
+	export const THE_HUNGER = SummonableBuilder.create("the_hunger", "minecraft:rabbit", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -99,9 +103,10 @@ namespace Summonables {
 		Glowing: true
 	})
 		.setMaxHealth(6.0)
-		.setBoss("the_hunger");
+		.setBoss("the_hunger")
+		.register();
 
-	export const THE_IMMORTAL = Summonable.create("the_immortal", "rottencreatures:immortal", {
+	export const THE_IMMORTAL = SummonableBuilder.create("the_immortal", "rottencreatures:immortal", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -117,9 +122,10 @@ namespace Summonables {
 		Glowing: true
 	})
 		.setMaxHealth(10000.00)
-		.setBoss("the_immortal");
+		.setBoss("the_immortal")
+		.register();
 
-	export const ZAPPY = Summonable.create("zappy", "rottencreatures:zap", {
+	export const ZAPPY = SummonableBuilder.create("zappy", "rottencreatures:zap", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -138,9 +144,10 @@ namespace Summonables {
 		CustomName: '{"color":"dark_aqua","text":"Zappy"}',
 		Glowing: true
 	})
-		.setMaxHealth(40.00);
+		.setMaxHealth(40.00)
+		.register();
 
-	export const TENUEM_BOSS = Summonable.create("tenuem_boss", "minecraft:phantom", {
+	export const TENUEM_BOSS = SummonableBuilder.create("tenuem_boss", "minecraft:phantom", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -156,9 +163,10 @@ namespace Summonables {
 		Glowing: true
 	})
 		.setMaxHealth(10_000.00)
-		.setBoss("tenuem");
+		.setBoss("tenuem")
+		.register();
 
-	export const TENUEM_MINION = Summonable.create("tenuem_minion", "minecraft:phantom", {
+	export const TENUEM_MINION = SummonableBuilder.create("tenuem_minion", "minecraft:phantom", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -169,11 +177,12 @@ namespace Summonables {
 		CustomName: '{"color":"dark_aqua","text":"Tenuem Minion"}'
 	})
 		.setMaxHealth(20.00)
-		.setCustomEntity("tenuem_minion");
+		.setCustomEntity("tenuem_minion")
+		.register();
 
 
 
-	export const RIFT_MAGE = Summonable.create("rift_mage", "minecraft:stray", {
+	export const RIFT_MAGE = SummonableBuilder.create("rift_mage", "minecraft:stray", {
 		PersistenceRequired: true,
 		attributes: [
 			{
@@ -208,9 +217,10 @@ namespace Summonables {
 		]
 	})
 		.setMaxHealth(RiftMage.DEFAULT_MAX_HEALTH)
-		.setBoss();
+		.setBoss()
+		.register();
 
-	export const HOG_RIDER = Summonable.create("hog_rider", "minecraft:hoglin", {
+	export const HOG_RIDER = SummonableBuilder.create("hog_rider", "minecraft:hoglin", {
 		Passengers: [
 			{
 				id: "minecraft:piglin",
@@ -237,9 +247,10 @@ namespace Summonables {
 			}
 		]
 	})
-		.setMaxHealth(100);
+		.setMaxHealth(100)
+		.register();
 
-	export const IGNITIUM = Summonable.create("ignitium", "cataclysm:ignis", {
+	export const IGNITIUM = SummonableBuilder.create("ignitium", "cataclysm:ignis", {
 		attributes: [
 			{
 				id: "minecraft:generic.armor",
@@ -256,36 +267,40 @@ namespace Summonables {
 		]
 	})
 		.setMaxHealth(50_000)
-		.setBoss("ignitium");
+		.setBoss("ignitium")
+		.register();
 
-	export const RIFT_KNIGHT = Summonable.create("rift_knight", "minecraft:wither_skeleton", {
+	export const RIFT_KNIGHT = SummonableBuilder.create("rift_knight", "minecraft:wither_skeleton", {
 		CustomName: `"Rift Knight"`
 	})
 		.setHandItems("minecraft:netherite_axe")
 		.setArmorItems("minecraft:netherite_boots", "minecraft:netherite_leggings", "minecraft:netherite_chestplate", "minecraft:netherite_helmet")
 		.setMaxHealth(40)
 		.addAttribute("minecraft:generic.attack_damage", 20)
-		.addAttribute("minecraft:generic.movement_speed", 0.2);
+		.addAttribute("minecraft:generic.movement_speed", 0.2)
+		.register();
 
-	export const RIFT_SCOUT = Summonable.create("rift_scout", "minecraft:wither_skeleton", {
+	export const RIFT_SCOUT = SummonableBuilder.create("rift_scout", "minecraft:wither_skeleton", {
 		CustomName: `"Rift Scout"`
 	})
 		.setHandItems("minecraft:bow")
 		.setArmorItems(undefined, undefined, undefined, "minecraft:netherite_helmet")
 		.setMaxHealth(100)
 		.addAttribute("minecraft:generic.attack_damage", 20)
-		.addAttribute("minecraft:generic.movement_speed", 0.4);
+		.addAttribute("minecraft:generic.movement_speed", 0.4)
+		.register();
 
-	export const RIFT_PALADIN = Summonable.create("rift_paladin", "minecraft:wither_skeleton", {
+	export const RIFT_PALADIN = SummonableBuilder.create("rift_paladin", "minecraft:wither_skeleton", {
 		CustomName: `"Rift Paladin"`
 	})
 		.setHandItems("minecraft:netherite_sword", "minecraft:shield")
 		.setArmorItems("minecraft:netherite_boots", "minecraft:netherite_leggings", "minecraft:netherite_chestplate", "minecraft:netherite_helmet")
 		.setMaxHealth(100)
 		.addAttribute("minecraft:generic.attack_damage", 100)
-		.addAttribute("minecraft:generic.movement_speed", 0.1);
+		.addAttribute("minecraft:generic.movement_speed", 0.1)
+		.register();
 
-	export const RIFT_PALADINDROME = Summonable.create("rift_paladindrome", "minecraft:wither_skeleton", {
+	export const RIFT_PALADINDROME = SummonableBuilder.create("rift_paladindrome", "minecraft:wither_skeleton", {
 		CustomName: `"Rift Palindrome"`,
 		Glowing: true
 	})
@@ -295,5 +310,6 @@ namespace Summonables {
 		.addAttribute("minecraft:generic.attack_damage", 101)
 		.addAttribute("minecraft:generic.armor", 1)
 		.addAttribute("minecraft:generic.movement_speed", 0.2)
-		.setBoss("palindrome");
+		.setBoss("palindrome")
+		.register();
 }

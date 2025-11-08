@@ -1,26 +1,10 @@
 // priority: 2
 
-class SummonableRegistry {
-	private static readonly all: Summonable[] = [];
+class SummonableBuilder {
 
-	public static add(instance: Summonable): void {
-		this.all.push(instance);
-	}
-
-	public static getAll(): Summonable[] {
-		return this.all;
-	}
-
-	public static forEach(fn: (s: Summonable) => void) {
-		this.all.forEach(fn);
-	}
-}
-
-class Summonable {
-	public static create(name: string, id: string, nbt: Record<string, any> = {}): Summonable {
-		const instance = new this(name, id, { ...nbt }); // shallow clone of nbt
-		SummonableRegistry.add(instance);
-		return instance;
+	public static create(name: string, id: string, nbt: Record<string, any> = {}): SummonableBuilder {
+		const builder = new this(name, id, { ...nbt }); // shallow clone of nbt
+		return builder;
 	}
 
 	private constructor(
@@ -123,31 +107,18 @@ class Summonable {
 		return this;
 	}
 
-	public getNode() {
-		return $Commands.literal(this.name)
-			.executes(context => {
-				this.spawn(context.source.level as ServerLevel_, context.source.position);
-				return 1;
-			})
-			// @ts-ignore
-			.then($Commands.argument("amount", $IntegerArgumentType.integer())
-				.executes(context => {
-					// @ts-ignore
-					for (let i = 0; i < $IntegerArgumentType.getInteger(context, "amount"); i++) {
-						this.spawn(context.source.level as ServerLevel_, context.source.position);
-					}
-					return 1;
-				})
-			);
+
+
+	/**
+	 * Returns a built `Summonable` and registers it so that it can be spawned with `/admin summon`
+	 */
+	public register(): Summonable {
+		const summonable = this.build();
+		SummonableRegistry.add(summonable);
+		return summonable;
 	}
 
-	public spawn(level: ServerLevel_, position: Vec3_, randomizeProperties: boolean = false): Entity_ {
-		const rk = $ResourceKey.create($Registries.ENTITY_TYPE, this.id);
-		const type = level.registryAccess().registryOrThrow($Registries.ENTITY_TYPE).getHolderOrThrow(rk);
-		const source = level.getServer().createCommandSourceStack().withLevel(level);
-		const tag: CompoundTag_ = $TagParser.parseTag(JSON.stringify(this.nbt));
-
-		const entity = $SummonCommand.createEntity(source, type, position as any, tag, randomizeProperties);
-		return entity;
+	public build(): Summonable {
+		return new Summonable(this.name, this.id, this.nbt);
 	}
 }
