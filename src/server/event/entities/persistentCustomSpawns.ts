@@ -1,7 +1,4 @@
 
-/** @type {typeof import("net.minecraft.world.entity.MobSpawnType").$MobSpawnType } */
-let $MobSpawnType = Java.loadClass("net.minecraft.world.entity.MobSpawnType");
-
 namespace PersistentCustomSpawnsManager {
 	const PERSISTENT_SPAWN_TYPES: import("net.minecraft.world.entity.MobSpawnType").$MobSpawnType[] = [$MobSpawnType.SPAWN_EGG, $MobSpawnType.SPAWNER, $MobSpawnType.TRIAL_SPAWNER];
 

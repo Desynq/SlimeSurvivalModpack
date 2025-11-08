@@ -91,3 +91,7 @@ const $DoorBlock: typeof import("net.minecraft.world.level.block.DoorBlock").$Do
 
 const $Difficulty: typeof import("net.minecraft.world.Difficulty").$Difficulty =
 	Java.loadClass("net.minecraft.world.Difficulty");
+
+type MobSpawnType_ = import("net.minecraft.world.entity.MobSpawnType").$MobSpawnType;
+const $MobSpawnType: typeof import("net.minecraft.world.entity.MobSpawnType").$MobSpawnType =
+	Java.loadClass("net.minecraft.world.entity.MobSpawnType");

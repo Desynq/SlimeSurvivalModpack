@@ -3,8 +3,8 @@
 class Summonable {
 
 	public constructor(
-		private readonly name: string,
-		private readonly id: string,
+		public readonly name: string,
+		public readonly id: string,
 		private readonly nbt: Record<string, any>
 	) { }
 

@@ -17,15 +17,6 @@ namespace CustomMobSpawns {
 		['rottencreatures:skeleton_lackey', 10.00],
 	]);
 
-	spawnTable["minecraft:slime"] = new Map([
-		['mowziesmobs:umvuthana_raptor', 0.20],
-		// ['cataclysm:coralssus', 0.005],
-		// ['cataclysm:aptrgangr', 0.005],
-		['mowziesmobs:lantern', 5.00],
-		// ['minecraft:armadillo', 0.50],
-		// ['cataclysm:kobolediator', 0.005],
-		['cataclysm:cindaria', 0.10],
-	]);
 	// cataclysm:koboleton
 	spawnTable["cataclysm:koboleton"] = new Map([
 		['cataclysm:kobolediator', 0.50],
@@ -80,12 +71,4 @@ namespace CustomMobSpawns {
 		candidates.sort(function (a, b) { return a[1] - b[1]; });
 		return candidates[0][0];
 	}
-}
-
-class SpawnTable {
-
-	public constructor(
-		private readonly defaultType: string,
-		private readonly maxWeight: number
-	) { }
 }
