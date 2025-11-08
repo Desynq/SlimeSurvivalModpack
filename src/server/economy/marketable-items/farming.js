@@ -68,7 +68,7 @@ new MarketableItem("sweet_berry", "minecraft:sweet_berries")
 	.register();
 
 new MarketableItem("milk", "minecraft:milk_bucket")
-	.setSellPrice(50.00)
+	.setSellPrice(20.00)
 	.register();
 
 new MarketableItem("cake", "minecraft:cake")
