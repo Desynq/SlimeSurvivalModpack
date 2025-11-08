@@ -1,13 +1,8 @@
+// priority: 1
 
-class QueenBeeRewarder<T extends Bee_> extends BossRewarder<T> {
-
-	protected override rewardPlayer(boss: T, player: ServerPlayer_): void {
-		super.rewardPlayer(boss, player);
-		LootTableHelper.giveLoot(player, "slimesurvival:items/loot_bag/queen_bee");
-	}
-}
-
-const QueenBee = new (class <T extends Bee_> extends RewardableEntityManager<T> implements ITickableBoss<T> {
+class QueenBeeManager<T extends Bee_>
+	extends EntityTraits.CannotMount(RewardableEntityManager<Bee_>)
+	implements ITickableBoss<T> {
 
 	private readonly DEFAULT_MAX_HEALTH = 5000;
 	private readonly REGEN_AMOUNT = 150;
@@ -42,7 +37,7 @@ const QueenBee = new (class <T extends Bee_> extends RewardableEntityManager<T> 
 		return minions.size() > 0;
 	}
 
-	public isBossImmune(boss: T): boolean {
+	public isInImmunityPhase(boss: T): boolean {
 		return this.areMinionsAlive(boss);
 	}
 
@@ -145,12 +140,7 @@ const QueenBee = new (class <T extends Bee_> extends RewardableEntityManager<T> 
 			return;
 		}
 
-		if (this.isQueenWithinDistance(minion)) {
-			minion.setGlowing(true);
-		}
-		else {
-			minion.setGlowing(false);
-		}
+		minion.setGlowing(true);
 	}
 
 	private getMinions(boss: T): Bee_[] {
@@ -318,28 +308,4 @@ const QueenBee = new (class <T extends Bee_> extends RewardableEntityManager<T> 
 		LivingEntityHelper.healPercent(boss, healPercent);
 	}
 
-})(new QueenBeeRewarder(1)).register();
-
-
-
-NativeEvents.onEvent($BeeStingEvent, event => {
-	if (QueenBee.hasEntity()) {
-		event.setCanStingAgain(true);
-	}
-});
-
-NativeEvents.onEvent($EntityTickEvent$Pre, event => {
-	const entity = event.entity;
-	if (QueenBee.isMinion(entity)) {
-		QueenBee.onMinionTick(entity);
-	}
-});
-
-NativeEvents.onEvent($LivingIncomingDamageEvent, event => {
-	if (event.source.getType() === "genericKill") return;
-	const queenBee = event.entity;
-
-	if (QueenBee.isCachedEntity(queenBee) && QueenBee.isBossImmune(queenBee as any)) {
-		event.setCanceled(true);
-	}
-});
+}
