@@ -30,7 +30,10 @@ namespace LevelHelper {
 		cond: (entity: T) => boolean,
 		limit: integer = Number.MAX_SAFE_INTEGER
 	): long {
-		const aabb = $AABB.ofSize(pos as any, distance, distance, distance);
+		const aabb = new $AABB(
+			pos.x() - distance, pos.y() - distance, pos.z() - distance,
+			pos.x() + distance, pos.y() + distance, pos.z() + distance
+		);
 		const list = level.getEntitiesOfClass(clazz as any, aabb as any);
 		let count = 0;
 		for (let i = 0; i < list.size(); i++) {

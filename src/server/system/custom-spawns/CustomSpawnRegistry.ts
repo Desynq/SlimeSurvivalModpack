@@ -6,6 +6,8 @@ class CustomSpawnRegistry {
 
 	public static readonly INSTANCE = new CustomSpawnRegistry();
 
+	private constructor() { }
+
 	private readonly overrides: Record<string, SpawnTable> = {};
 
 	public setOverride(entityId: string, spawnTable: SpawnTable): CustomSpawnRegistry {
@@ -21,9 +23,15 @@ class CustomSpawnRegistry {
 		}
 	}
 
+	private allowedSpawnTypes: MobSpawnType_[] = [
+		$MobSpawnType.NATURAL,
+		$MobSpawnType.CHUNK_GENERATION,
+		$MobSpawnType.SPAWN_EGG
+	];
+
 	private register(entityId: string, spawnTable: SpawnTable): void {
 		EntityEvents.checkSpawn(entityId as any, event => {
-			if (event.type === $MobSpawnType.COMMAND) return; // avoids continually
+			if (this.allowedSpawnTypes.indexOf(event.type) === -1) return;
 
 			const entity = event.getEntity();
 			const pos = entity.position();

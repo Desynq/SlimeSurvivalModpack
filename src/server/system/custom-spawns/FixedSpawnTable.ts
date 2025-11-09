@@ -41,9 +41,23 @@ class FixedSpawnTable extends SpawnTable {
 			return this;
 		}
 
-		public addCappedEntry(id: string, chance: Percent, distance: double, cap: integer, tag: string): this {
-			const summonable = new Summonable(id, id, { Tags: [tag] });
+		public addCappedEntry(id: string, chance: Percent, cap: integer, distance: double = 128.0, tag: string = id): this {
+			tag = tag.replace(":", ".");
+			const nbt = {
+				Tags: [
+					tag
+				]
+			};
+
+			const summonable = new Summonable(id, id, nbt);
 			const entry = new CappedSpawnEntry(summonable, chance, distance, tag, cap);
+			this.addRawEntry(entry);
+			return this;
+		}
+
+		public addDespawnableEntry(id: string, chance: Percent): this {
+			const summonable = new Summonable(id, id, { Tags: ["despawnable"] });
+			const entry = new FixedSpawnEntry(summonable, chance);
 			this.addRawEntry(entry);
 			return this;
 		}

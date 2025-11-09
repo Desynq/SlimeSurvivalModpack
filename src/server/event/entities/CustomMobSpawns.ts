@@ -17,12 +17,6 @@ namespace CustomMobSpawns {
 		['rottencreatures:skeleton_lackey', 10.00],
 	]);
 
-	// cataclysm:koboleton
-	spawnTable["cataclysm:koboleton"] = new Map([
-		['cataclysm:kobolediator', 0.50],
-		['cataclysm:modern_remnant', 25.00]
-	]);
-
 	spawnTable["minecraft:pig"] = new Map([
 		['mutantmonsters:spider_pig', 0.50]
 	]);

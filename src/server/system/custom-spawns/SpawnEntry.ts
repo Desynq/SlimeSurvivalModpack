@@ -46,7 +46,7 @@ class CappedSpawnEntry extends SpawnEntry {
 
 	public override getChance(event: CheckLivingEntitySpawnKubeEvent_): Percent {
 		const cond = (entity: LivingEntity_) => entity.tags.contains(this.tag);
-		const count = LevelHelper.countEntities(event.level as ServerLevel_, event.entity.pos as any, this.distance, $LivingEntity, cond, this.cap);
+		const count = LevelHelper.countEntities(event.level as ServerLevel_, event.entity.position() as any, this.distance, $LivingEntity, cond, this.cap);
 
 		if (count >= this.cap) {
 			return 0.0;
