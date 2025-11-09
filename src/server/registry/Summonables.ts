@@ -79,6 +79,7 @@ namespace Summonables {
 		CustomName: '{"color":"yellow","text":"The Queen Bee"}'
 	})
 		.setMaxHealth(1000.0)
+		.addAttribute("minecraft:generic.attack_damage", 20)
 		.setBoss("queen_bee")
 		.register();
 
