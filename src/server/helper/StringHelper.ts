@@ -35,4 +35,11 @@ namespace StringHelper {
 		const escaped = str.replace(/"/g, '\\"');
 		return `"${escaped}"`;
 	}
+
+	export function sanitizeControlChars(text: string): string {
+		return text
+			.replace(/\r/g, "\n")
+			.replace(/\t/g, "")
+			.replace(/\n+/g, "\n");
+	}
 }
