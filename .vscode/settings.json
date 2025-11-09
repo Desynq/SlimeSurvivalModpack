@@ -23,6 +23,7 @@
         "downloads/": true,
         "dynamic-data-pack-cache/": true,
         "dynamic-resource-pack-cache/": true,
+        "ESM/": true,
         "ftbbackups3/": true,
         "kiwipacks/": true,
         "local/": true,
