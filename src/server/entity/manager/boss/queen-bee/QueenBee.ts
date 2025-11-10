@@ -112,7 +112,17 @@ class QueenBeeManager<T extends Bee_>
 
 		if (boss.isLeashed()) boss.dropLeash(true, false);
 
-		ParticleHelper.spawnCircle(boss.level as any, boss.x, boss.y + 4, boss.z, 32, 256, "falling_nectar", 1, false);
+		ParticleHelper.spawnCircle(
+			boss.level as ServerLevel_,
+			boss.x + Math.random() - 0.5,
+			boss.y + 4,
+			boss.z + Math.random() - 0.5,
+			32,
+			256,
+			"falling_nectar",
+			1,
+			false
+		);
 	}
 
 	public override onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
@@ -240,8 +250,25 @@ class QueenBeeManager<T extends Bee_>
 		LivingEntityHelper.scaleHealth(boss, newMaxHealth);
 	}
 
+	private isContributorSpawnNearBoss(boss: T, distance: double = 64): boolean {
+		const contributors = this.rewarder.getContributors(boss);
+		const sharedSpawnPos = boss.level.getSharedSpawnPos();
+
+		for (const contributor of contributors) {
+			const spawnPos = contributor.getRespawnPosition() ?? sharedSpawnPos;
+			const bossPos = boss.position();
+
+			if (!spawnPos) continue;
+
+			const dist = spawnPos.getCenter().distanceTo(bossPos as any);
+			if (dist < distance) return true;
+		}
+
+		return false;
+	}
+
 	private tryPassiveRegen(boss: T): void {
-		if (this.hasParticipants(boss)) return;
+		if (!this.isContributorSpawnNearBoss(boss) && this.hasParticipants(boss)) return;
 
 		const tickRate = TickHelper.getDefaultTickRate(boss.server);
 		let healAmount = (1 / 600) * boss.maxHealth / tickRate;
