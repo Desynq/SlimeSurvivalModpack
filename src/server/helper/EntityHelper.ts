@@ -129,6 +129,39 @@ namespace EntityHelper {
 
 	export function getNearbySurvivors(entity: Entity_, range: double): ServerPlayer_[] {
 		const aabb = entity.boundingBox.inflate(range);
-		return entity.level.getEntitiesOfClass($ServerPlayer as any, aabb as any, (player: ServerPlayer_) => PlayerHelper.isSurvivalLike(player)).toArray();
+		return entity.level.getEntitiesOfClass(
+			$ServerPlayer as any,
+			aabb as any,
+			(player: ServerPlayer_) => PlayerHelper.isSurvivalLike(player)
+		).toArray();
+	}
+
+
+
+	export function isEntityInFOV(sourceEntity: Entity_, entity: Entity_, fov: number = 90): boolean {
+		const sourcePos = sourceEntity.eyePosition;
+		const entityPos = entity.eyePosition;
+
+		const lookVec = sourceEntity.getLookAngle();
+
+		const toEntity = entityPos.subtract(sourcePos as any).normalize();
+
+		const dot = lookVec.dot(toEntity as any);
+
+		const halfFov = fov / 2;
+		const threshold = Math.cos((halfFov * Math.PI) / 180.0);
+
+		if (dot < threshold) return false; // outside angular cone
+
+		const context = new $ClipContext(
+			sourcePos as any,
+			entityPos as any,
+			"collider",
+			"none",
+			sourceEntity
+		);
+		const hit = sourceEntity.level.clip(context);
+
+		return hit.getType() === $HitResult$Type.MISS;
 	}
 }
