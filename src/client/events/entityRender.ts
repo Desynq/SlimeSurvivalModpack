@@ -1,10 +1,16 @@
 
 
-namespace InvisibleRenderer {
+namespace EntityRenderHandler {
 	let invisiblesPacket: CompoundTag_ | undefined;
 
 	NetworkEvents.dataReceived("invisible_entities", event => {
 		invisiblesPacket = event.data;
+	});
+
+	let glowingPacket: CompoundTag_ | undefined;
+
+	NetworkEvents.dataReceived("glowing_entities", event => {
+		glowingPacket = event.data;
 	});
 
 	function isInvisible(entity: Entity_): boolean {
@@ -19,6 +25,12 @@ namespace InvisibleRenderer {
 		}
 	}
 
+	function isGlowing(entity: Entity_): boolean {
+		const glowing = glowingPacket?.getBoolean(entity.stringUUID) ?? false;
+
+		return glowing;
+	}
+
 	NativeEvents.onEvent($IsInvisibleEvent, event => {
 		const entity = event.getEntity();
 		if (isInvisible(entity)) {
@@ -26,12 +38,12 @@ namespace InvisibleRenderer {
 		}
 	});
 
-	// NativeEvents.onEvent($IsGlowingEvent, event => {
-	// 	const entity = event.getEntity();
-	// 	if (entity instanceof $LivingEntity && isInvisible(entity)) {
-	// 		event.setGlowing(true);
-	// 	}
-	// });
+	NativeEvents.onEvent($IsGlowingEvent, event => {
+		const entity = event.getEntity();
+		if (isGlowing(entity)) {
+			event.setGlowing(true);
+		}
+	});
 
 	NativeEvents.onEvent($RenderLivingEvent$Pre, event => {
 		const entity = event.getEntity();
