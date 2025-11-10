@@ -4,8 +4,8 @@ class MobEffectApplicator {
 
 	private constructor(
 		public readonly effectId: string,
-		public readonly duration: integer,
-		public readonly amplifier: integer,
+		public readonly duration: integer = 0,
+		public readonly amplifier: integer = 0,
 		public readonly ambient: boolean = false,
 		public readonly visible: boolean = true,
 		public readonly showIcon: boolean = true,
@@ -13,7 +13,7 @@ class MobEffectApplicator {
 	) { }
 
 	public static of(effectId: string): MobEffectApplicator {
-		return new MobEffectApplicator(effectId, 0, 0);
+		return new MobEffectApplicator(effectId);
 	}
 
 	private withRulesObj(rules: MobEffectRules): MobEffectApplicator {
@@ -24,21 +24,40 @@ class MobEffectApplicator {
 		return this.withRulesObj(new MobEffectRules(minDuration, maxDuration, minAmplifier, maxAmplifier));
 	}
 
-	public withDuration(duration: integer): MobEffectApplicator {
-		duration = this.rules.clampDuration(duration);
+	public withDuration(ticks: integer): MobEffectApplicator {
+		ticks = this.rules.clampDuration(ticks);
 
-		return new MobEffectApplicator(this.effectId, duration, this.amplifier, this.ambient, this.visible, this.showIcon);
+		return new MobEffectApplicator(this.effectId, ticks, this.amplifier, this.ambient, this.visible, this.showIcon, this.rules);
 	}
 
 	public withAmplifier(amplifier: integer): MobEffectApplicator {
 		amplifier = this.rules.clampAmplifier(amplifier);
+		return this.copy({ amplifier });
+	}
 
-		return new MobEffectApplicator(this.effectId, this.duration, amplifier, this.ambient, this.visible, this.showIcon);
+	public withAmbience(ambient: boolean): MobEffectApplicator {
+		return new MobEffectApplicator(this.effectId, this.duration, this.amplifier, ambient, this.visible, this.showIcon, this.rules);
+	}
+
+	public withVisibility(visible?: boolean, showIcon?: boolean): MobEffectApplicator {
+		return new MobEffectApplicator(this.effectId, this.duration, this.amplifier, this.ambient, visible ?? this.visible, showIcon ?? this.showIcon, this.rules);
 	}
 
 	public apply(entity: LivingEntity_, source?: Entity_): this {
 		LivingEntityHelper.addEffect(entity, this.effectId, this.duration, this.amplifier, this.ambient, this.visible, this.showIcon, source);
 		return this;
+	}
+
+	private copy(changes: Partial<MobEffectApplicator>): MobEffectApplicator {
+		return new MobEffectApplicator(
+			changes.effectId ?? this.effectId,
+			changes.duration ?? this.duration,
+			changes.amplifier ?? this.amplifier,
+			changes.ambient ?? this.ambient,
+			changes.visible ?? this.visible,
+			changes.showIcon ?? this.showIcon,
+			changes.rules ?? this.rules
+		);
 	}
 }
 
