@@ -324,7 +324,7 @@
 		"description": [
 			"",
 			{
-				"text": "Bow damage decreases the closer your target is.\n\nStarts at 100% 16 blocks away.\n\nBottoms out at 25% at 0 blocks."
+				"text": "Your damage decreases the closer your target is.\n\nStarts at 100% 16 blocks away.\n\nBottoms out at 25% at 0 blocks."
 			},
 			{
 				"color": "gold",
@@ -333,9 +333,9 @@
 		],
 		"cost": 0,
 		"icon": {
-			"type": "item",
+			"type": "effect",
 			"data": {
-				"item": "minecraft:oak_leaves"
+				"effect": "minecraft:weaving"
 			}
 		},
 		"frame": {
@@ -345,6 +345,29 @@
 			}
 		},
 		"required_points": 2147483647
+	},
+	"sneak_attack": {
+		"title": "Sneak Attack",
+		"rewards": [],
+		"description": [
+			"",
+			"Your arrows stun enemies that aren't targeting you for 1 second.",
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "cataclysm:stun"
+			}
+		}
 	},
 	"pierce": {
 		"title": "Pierce",

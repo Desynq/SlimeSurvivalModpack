@@ -159,15 +159,25 @@ const ChimeraSkills = new (class extends SkillManager {
 	public readonly TIMID = this.createSkill("timid", def => {
 		const Constants = Chimera.Constants.Timid;
 		def
-			.itemIcon("minecraft:oak_leaves")
+			.effectIcon("minecraft:weaving")
 			.addDescription({
-				"text": "Bow damage decreases the closer your target is."
+				"text": "Your damage decreases the closer your target is."
 					+ `\n\nStarts at ${(Constants.MAX_DIST_MULT * 100).toFixed(0)}% ${Constants.MAX_DIST.toFixed(0)} blocks away.`
 					+ `\n\nBottoms out at ${(Constants.MIN_DIST_MULT * 100).toFixed(0)}% at ${Constants.MIN_DIST.toFixed(0)} blocks.`
 			})
 			.rootSkill();
 	}
 	);
+
+	public readonly SNEAK_ATTACK = this.createSkill("sneak_attack", def => def
+		.effectIcon("cataclysm:stun")
+		.addDescription("Your arrows stun enemies that aren't targeting you for 1 second.")
+		.cost(2)
+		.flagPlanned()
+	);
+
+
+
 
 	public readonly PIERCE = this.createSkill("pierce", def => def
 		.itemIcon("twilightforest:block_and_chain")
