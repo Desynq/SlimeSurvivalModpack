@@ -26,13 +26,13 @@ new MarketableItem("bread", "minecraft:bread")
 	.register();
 
 new MarketableItem("honey_bottle", "minecraft:honey_bottle")
-	.setSellPrice(150.0)
+	.setSellPrice(25.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(50)
 	.register();
 
 new MarketableItem("honeycomb", "minecraft:honeycomb")
-	.setSellPrice(20.0)
+	.setSellPrice(25.00)
 	.setCompoundingRate(0.5)
 	.setCompoundingPeriod(100)
 	.register();

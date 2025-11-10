@@ -95,3 +95,7 @@ new MarketableItem("armadillo_scute", "minecraft:armadillo_scute")
 new MarketableItem("glow_ink_sac", "minecraft:glow_ink_sac")
 	.setSellPrice(10.00)
 	.register();
+
+new MarketableItem("royal_jelly", "slimesurvival:royal_jelly")
+	.setSellPrice(50.00)
+	.register();
