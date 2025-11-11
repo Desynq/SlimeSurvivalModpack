@@ -1,4 +1,4 @@
-// priority: 2
+// priority: 11
 
 class TenuemLootBag extends LootBag {
 

@@ -1,4 +1,4 @@
-// priority: 3
+// priority: 100
 
 abstract class LootBag {
 

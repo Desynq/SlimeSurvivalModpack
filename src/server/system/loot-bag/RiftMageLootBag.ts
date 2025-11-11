@@ -1,24 +1,25 @@
 // priority: 11
 
-class QueenBeeLootBag extends LootBag {
+
+
+class RiftMageLootBag extends LootBag {
 
 	public constructor() {
-		super("queen_bee");
+		super("rift_mage");
 	}
 
 	public override open(player: ServerPlayer_): void {
 		PlaysoundHelper.playsound(player.level, player.position(), "entity.turtle.egg_break", "master", 1, 1);
 
 		if (Math.random() < 0.1) this.giveUnique(player);
-		PlayerHelper.give(player, "minecraft:honeycomb", MathHelper.randInt(8, 32));
-		PlayerHelper.give(player, "minecraft:honey_block", MathHelper.randInt(1, 4));
-		PlayerHelper.give(player, "slimesurvival:royal_jelly", MathHelper.randInt(5, 15));
+		PlayerHelper.give(player, "minecraft:ender_pearl", MathHelper.randInt(8, 16));
+		PlayerHelper.give(player, "minecraft:shulker_shell", MathHelper.randInt(1, 4));
 	}
 
 	private readonly UNIQUES = [
-		"simplyswords:waxweaver",
-		"simplyswords:wickpiercer",
-		"simplyswords:hiveheart"
+		"twilightforest:ender_bow",
+		"simplyswords:watcher_claymore",
+		"simplyswords:watching_warglaive"
 	];
 
 	private giveUnique(player: ServerPlayer_): void {

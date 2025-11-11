@@ -1,10 +1,11 @@
-// priority: 1
+// priority: 10
 
 class LootBags {
 	private static readonly LOOT_BAGS: Record<string, LootBag | undefined> = {};
 
-	public static readonly TENUEM_LOOT_BAG = this.register(new TenuemLootBag());
-	public static readonly QUEEN_BEE_LOOT_BAG = this.register(new QueenBeeLootBag());
+	public static readonly TENUEM = this.register(new TenuemLootBag());
+	public static readonly QUEEN_BEE = this.register(new QueenBeeLootBag());
+	public static readonly RIFT_MAGE = this.register(new RiftMageLootBag());
 
 	/**
 	 * Clears the stack if successfully opened

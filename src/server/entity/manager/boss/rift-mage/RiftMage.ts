@@ -1,6 +1,6 @@
 // priority: 2
 
-const RiftMage = new (class <T extends Mob_ & LivingEntity_>
+class RiftMageManager<T extends Mob_ & LivingEntity_>
 	extends EntityTraits.CannotMount(RewardableEntityManager<LivingEntity_>)
 	implements ITickableBoss<T> {
 
@@ -281,4 +281,6 @@ const RiftMage = new (class <T extends Mob_ & LivingEntity_>
 		const storage = boss.persistentData.getCompound("damage_taken");
 		return storage.getDouble(player.stringUUID);
 	}
-})().register();
+}
+
+const RiftMage = new RiftMageManager(new LootBagRewarder(1, LootBags.RIFT_MAGE)).register();
