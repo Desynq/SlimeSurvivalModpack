@@ -2,7 +2,7 @@
 
 namespace MystKeycardHandler {
 
-	BlockEvents.rightClicked("minecraft:iron_door" as any, event => {
+	BlockEvents.rightClicked(event => {
 		const blockWrapper = event.block;
 		const blockState = blockWrapper.getBlockState();
 		const doorBlock = blockWrapper.getBlock();
