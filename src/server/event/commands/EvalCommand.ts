@@ -25,8 +25,25 @@ ServerEvents.commandRegistry(event => {
 
 			let result = fn(source.server, player);
 
-			if (result != undefined) {
-				player.tell(String(result));
+			let message: string | undefined;
+			if (Array.isArray(result)) {
+				message = result.join("\n");
+			}
+			else if (StringHelper.needsStringify(result)) {
+				try {
+					message = JSON.stringify(result, null, 2);
+				}
+				catch (err) {
+					const msg = err instanceof Error ? err.message : String(err);
+					message = `[Unserializable Object: ${msg}]`;
+				}
+			}
+			else if (result != undefined) {
+				message = String(result);
+			}
+
+			if (message !== undefined) {
+				player.tell(message);
 			}
 		}
 		catch (error) {
