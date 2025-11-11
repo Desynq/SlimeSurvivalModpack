@@ -17,7 +17,7 @@ namespace SkillNetwork {
 		for (const player of players) {
 			let packet: CompoundTag_;
 
-			const blind = SculkerSkills.BLIND.isUnlockedFor(player) && PlayerHelper.isSurvivalLike(player);
+			const blind = SculkerSkills.BLIND.isUnlockedFor(player) && !player.creative;
 			if (blind) {
 				packet = sculkerPacket.copy();
 				packet.putBoolean(player.stringUUID, true); // blind players should be able to see themselves
