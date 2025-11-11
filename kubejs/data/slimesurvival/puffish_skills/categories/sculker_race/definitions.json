@@ -155,10 +155,6 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 4 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 4,
@@ -208,7 +204,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:red_mushroom_block"
+				"item": "leather_chestplate"
 			}
 		}
 	},
@@ -251,7 +247,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:red_mushroom_block"
+				"item": "chainmail_chestplate"
 			}
 		}
 	},
@@ -294,7 +290,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:red_mushroom_block"
+				"item": "iron_chestplate"
 			}
 		}
 	},
@@ -337,7 +333,50 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:red_mushroom_block"
+				"item": "diamond_chestplate"
+			}
+		}
+	},
+	"chitin_5": {
+		"title": "Chitin V",
+		"rewards": [
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor",
+					"value": 2,
+					"operation": "addition"
+				}
+			},
+			{
+				"type": "puffish_skills:attribute",
+				"data": {
+					"attribute": "minecraft:generic.armor_toughness",
+					"value": 1,
+					"operation": "addition"
+				}
+			}
+		],
+		"description": [
+			"",
+			{
+				"text": "You naturally gain:\n+10 Armor\n+5 Armor Toughness",
+				"color": "dark_aqua"
+			},
+			{
+				"text": "\n\nPrevious chitin tiers not included",
+				"color": "red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 5 points]"
+			}
+		],
+		"cost": 5,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "netherite_chestplate"
 			}
 		}
 	},
@@ -364,6 +403,148 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:experience_bottle"
+			}
+		}
+	},
+	"rooting": {
+		"title": "Rooting",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We focus our energy beneath us.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nGain +100% Armor and +100% Armor Toughness while rooting.\n\nRooting requires you to be crouching on the ground with nothing in your mainhand and either nothing in your offhand or a shield.\n\nAdditionally, you cannot be holding down WASD or Jump."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:liveroot"
+			}
+		}
+	},
+	"rooted": {
+		"title": "Rooted",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Good luck moving us...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nGain +50% Knockback Resistance and the Rooted effect while rooting."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:root_strand"
+			}
+		}
+	},
+	"grapple": {
+		"title": "Grapple",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Found you!",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nWhen attacking an unpinged enemy, they become stunned for 1 second and pinged for 3 seconds."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "cataclysm:stun"
+			}
+		}
+	},
+	"leer": {
+		"title": "Leer",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We see you...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nPinged enemies glow."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "cataclysm:cursed_eye"
+			}
+		}
+	},
+	"echo_1": {
+		"title": "Echo I",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Good luck hiding...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nEcholocation now pings enemies for 2 seconds."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:echo_shard"
 			}
 		}
 	}

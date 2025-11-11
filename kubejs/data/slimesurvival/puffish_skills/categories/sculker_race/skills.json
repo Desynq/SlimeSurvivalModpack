@@ -44,19 +44,55 @@
 	"bodirjj5ub3o0hps": {
 		"definition": "chitin_2",
 		"x": 0,
-		"y": -192,
+		"y": -160,
 		"root": false
 	},
 	"5romhjbafgjzlszm": {
 		"definition": "chitin_3",
-		"x": -64,
+		"x": 0,
 		"y": -192,
 		"root": false
 	},
 	"335tknsbfxfu00hn": {
 		"definition": "chitin_4",
+		"x": 0,
+		"y": -224,
+		"root": false
+	},
+	"7vok6bdbo11zhd0d": {
+		"definition": "rooting",
 		"x": -64,
-		"y": -128,
+		"y": 96,
+		"root": false
+	},
+	"kfll1fsr9k9q65wa": {
+		"definition": "grapple",
+		"x": 128,
+		"y": 0,
+		"root": false
+	},
+	"vlyhalb94vw5c37t": {
+		"definition": "echo_1",
+		"x": 96,
+		"y": -64,
+		"root": false
+	},
+	"fosvkxvjodf92yir": {
+		"definition": "leer",
+		"x": 96,
+		"y": 64,
+		"root": false
+	},
+	"esavilehpyft62k0": {
+		"definition": "rooted",
+		"x": -128,
+		"y": 128,
+		"root": false
+	},
+	"oenee43uzow08mhy": {
+		"definition": "chitin_5",
+		"x": 0,
+		"y": -256,
 		"root": false
 	}
 }

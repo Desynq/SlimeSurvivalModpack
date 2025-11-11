@@ -79,22 +79,23 @@ const SculkerSkills = new (class extends SkillManager {
 			"color": "dark_aqua"
 		})
 		.cost(4)
-		.flagPlanned()
 	);
 
 
 
-	public readonly CHITIN_SKILLS = this.createTieredSkills("chitin", 4, (def, tier) => {
-		const armor = [2, 2, 2, 2];
-		const toughness = [1, 1, 1, 1];
-		const cost = [1, 2, 3, 4];
+	public readonly CHITIN_SKILLS = this.createTieredSkills("chitin", 5, (def, tier) => {
+		const armor = [2, 2, 2, 2, 2];
+		const toughness = [1, 1, 1, 1, 1];
+		const cost = [1, 2, 3, 4, 5];
+		const icons = ["leather", "chainmail", "iron", "diamond", "netherite"]
+			.map(id => id + "_chestplate");
 
 		const i = tier - 1;
 		const totalArmor = armor.slice(0, i + 1).reduce((acc, value) => acc + value, 0);
 		const totalToughness = toughness.slice(0, i + 1).reduce((acc, value) => acc + value, 0);
 
 		def
-			.itemIcon("minecraft:red_mushroom_block")
+			.itemIcon(icons[i])
 			.addDescription({
 				"text": "You naturally gain:"
 					+ `\n+${totalArmor} Armor`
@@ -117,5 +118,56 @@ const SculkerSkills = new (class extends SkillManager {
 			"text": "\nYou can sell experience at a 1:1 conversion rate."
 		})
 		.cost(1)
+	);
+
+
+	public readonly ROOTING = this.createSkill("rooting", def => def
+		.itemIcon("twilightforest:liveroot")
+		.addStyledDescription("We focus our energy beneath us.", this.STYLE)
+		.addDescription({
+			"text": "\n\nGain +100% Armor and +100% Armor Toughness while rooting."
+				+ "\n\nRooting requires you to be crouching on the ground with nothing in your mainhand and either nothing in your offhand or a shield."
+				+ "\n\nAdditionally, you cannot be holding down WASD or Jump."
+		})
+		.cost(4)
+	);
+
+	public readonly ROOTED = this.createSkill("rooted", def => def
+		.itemIcon("twilightforest:root_strand")
+		.addStyledDescription("Good luck moving us...", this.STYLE)
+		.addDescription({
+			"text": "\n\nGain +50% Knockback Resistance and the Rooted effect while rooting."
+		})
+		.cost(2)
+	);
+
+	public readonly GRAPPLE = this.createSkill("grapple", def => def
+		.effectIcon("cataclysm:stun")
+		.addStyledDescription("Found you!", this.STYLE)
+		.addDescription({
+			"text": "\n\nWhen attacking an unpinged enemy, they become stunned for 1 second and pinged for 3 seconds."
+		})
+		.cost(2)
+		.flagPlanned()
+	);
+
+	public readonly LEER = this.createSkill("leer", def => def
+		.itemIcon("cataclysm:cursed_eye")
+		.addStyledDescription("We see you...", this.STYLE)
+		.addDescription({
+			"text": "\n\nPinged enemies glow."
+		})
+		.cost(2)
+		.flagPlanned()
+	);
+
+	public readonly ECHO_1 = this.createSkill("echo_1", def => def
+		.itemIcon("minecraft:echo_shard")
+		.addStyledDescription("Good luck hiding...", this.STYLE)
+		.addDescription({
+			"text": "\n\nEcholocation now pings enemies for 2 seconds."
+		})
+		.cost(1)
+		.flagPlanned()
 	);
 })().register();

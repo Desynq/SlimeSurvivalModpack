@@ -29,10 +29,16 @@ namespace Sculker.Events {
 			const distance = player.distanceToEntity(entity);
 			if (distance > 64) continue;
 
-			const duration = 20;
+			const duration = Pinged.getEcholocationPingDuration(player);
 
 			LivingEntityHelper.addEffect(entity, "slimesurvival:pinged", duration, 0, false, false, false, player);
 		}
+	});
+
+	PlayerEvents.tick(event => {
+		const player = event.player as ServerPlayer_;
+
+		Sculker.Rooting.tick(player);
 	});
 
 	function isSculker(entity: unknown): entity is ServerPlayer_ {
