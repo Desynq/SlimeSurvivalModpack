@@ -82,7 +82,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	public override onKill(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_): void {
-		boss.health = Math.min(boss.maxHealth, boss.health + victim.maxHealth);
+		LivingEntityHelper.heal(boss, victim.maxHealth);
 		this.tryDuplicate(boss);
 	}
 
@@ -136,6 +136,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 		const pos = boss.getOnPos();
 
 		level.destroyBlock(pos as any, false, boss);
+		LivingEntityHelper.heal(boss, 20.0);
 		this.tryDuplicate(boss);
 	}
 
@@ -205,12 +206,12 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 	}
 
 	private tryDuplicate(boss: T): boolean {
-		if (boss.health < boss.maxHealth) return false;
-
 		const count = this.getEntityCount(boss.server);
 		if (count >= this.SPAWN_CAP) return false;
 
-		const entity = Summonables.THE_HUNGER.spawn(boss.level as any, boss.position());
+		const entity = Summonables.THE_HUNGER.spawn(boss.level as any, boss.position()) as T;
+		this.updateHealth(entity);
+		entity.health = boss.health;
 		return true;
 	}
 })().register();
