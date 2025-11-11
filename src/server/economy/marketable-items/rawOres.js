@@ -10,3 +10,7 @@ new MarketableItem("raw_gold", "minecraft:raw_gold")
 new MarketableItem("raw_copper", "minecraft:raw_copper")
 	.setBuyPrice(2.50)
 	.register();
+
+new MarketableItem("raw_zinc", "create:raw_zinc")
+	.setBuyPrice(1000.00)
+	.register()
