@@ -45,4 +45,11 @@ namespace LevelHelper {
 		}
 		return count;
 	}
+
+
+	export function setPDGamerule(level: ServerLevel_, id: string, value: boolean | integer | "clear!"): void {
+		const dimension = level.dimension.toString();
+		const command = `execute in ${dimension} run pdgamerule ${id} ${value}`;
+		level.runCommandSilent(command);
+	}
 }

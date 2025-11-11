@@ -1,7 +1,7 @@
 
 
-class CommandHelper {
-	public static runCommandSilent(ctx: MinecraftServer_ | Level_, command: string, debug?: boolean) {
+namespace CommandHelper {
+	export function runCommandSilent(ctx: MinecraftServer_ | Level_, command: string, debug?: boolean) {
 		if (debug) {
 			const server = ctx instanceof $Level ? ctx.server : ctx;
 			tellOperators(server, command);
@@ -9,7 +9,7 @@ class CommandHelper {
 		ctx.runCommandSilent(command);
 	}
 
-	public static getNarrowedSuggestions(builder: SuggestionsBuilder_, array: string[]) {
+	export function getNarrowedSuggestions(builder: SuggestionsBuilder_, array: string[]) {
 		const remaining = builder.getRemaining().toLowerCase();
 		array.forEach(name => {
 			if (name.toLowerCase().startsWith(remaining)) {
@@ -19,7 +19,7 @@ class CommandHelper {
 		return builder;
 	}
 
-	public static sandbox(context, fn) {
+	export function sandbox(context: CommandExecutionContext_, fn: Function) {
 		try {
 			fn();
 		}

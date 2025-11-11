@@ -42,4 +42,19 @@ namespace StringHelper {
 			.replace(/\t/g, "")
 			.replace(/\n+/g, "\n");
 	}
+
+
+
+	export function needsStringify(value: any): boolean {
+		if (value === null || value === undefined) return false;
+		const type = typeof value;
+		if (type !== "object") return false;
+
+		if (typeof (value as any).toString === "function") {
+			const str = value.toString();
+			if (str !== "[object Object]") return false;
+		}
+
+		return true;
+	}
 }
