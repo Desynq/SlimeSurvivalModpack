@@ -38,7 +38,7 @@ namespace Chimera.BalletSkill {
 
 		const jitterThreshold = 1.5;
 		// seed a new delta if player meaningfully changes spin direction
-		if (prevDelta !== 0 && Math.sign(prevDelta) !== Math.sign(delta) && Math.abs(delta) > jitterThreshold) {
+		if (hasChangedDirection(prevDelta, delta) && !hasRotationProtected(player)) {
 			if (hasCompletedRotation(player)) {
 				PlaysoundHelper.playsoundAheadSelf(player, "entity.blaze.death", "player", 1, 2);
 			}
@@ -48,6 +48,19 @@ namespace Chimera.BalletSkill {
 		else {
 			setDeltaRotation(player, prevDelta + delta);
 		}
+	}
+
+	function hasChangedDirection(prevDelta: float, delta: float): boolean {
+		const jitterThreshold = 1.5;
+
+		const changedDirection = prevDelta !== 0 && Math.sign(prevDelta) !== Math.sign(delta);
+		const notJitter = Math.abs(delta) > jitterThreshold;
+
+		return changedDirection && notJitter;
+	}
+
+	function hasRotationProtected(player: ServerPlayer_): boolean {
+		return hasCompletedRotation(player) && ChimeraSkills.GEARSHIFT.isUnlockedFor(player);
 	}
 
 

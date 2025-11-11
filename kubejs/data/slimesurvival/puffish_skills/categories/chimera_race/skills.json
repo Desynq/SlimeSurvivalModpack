@@ -88,5 +88,17 @@
 		"x": -96,
 		"y": 0,
 		"root": true
+	},
+	"5qk8afed9zro5hvb": {
+		"definition": "gearshift",
+		"x": -64,
+		"y": 192,
+		"root": false
+	},
+	"lhb4w9qkb8mgqjhk": {
+		"definition": "sneak_attack",
+		"x": -160,
+		"y": 0,
+		"root": false
 	}
 }

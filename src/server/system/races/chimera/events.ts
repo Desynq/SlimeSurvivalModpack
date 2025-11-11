@@ -9,8 +9,9 @@ namespace Chimera.Events {
 		if (!(entity instanceof $AbstractArrow)) return;
 
 		const owner = entity.owner;
-		if (owner instanceof $ServerPlayer) {
-			shotArrow(owner, entity);
+		const chimeraOwner = RaceHelper.narrowToRace(owner, Races.CHIMERA);
+		if (chimeraOwner) {
+			shotArrow(chimeraOwner, entity);
 		}
 	});
 
@@ -85,18 +86,20 @@ namespace Chimera.Events {
 		event.setFinalDamage(finalDamage);
 	});
 
-	function shotArrow(owner: ServerPlayer_, arrow: AbstractArrow_): void {
-		if (ChimeraSkills.TOXOPHILITE.isUnlockedFor(owner)) {
-			ToxophiliteSkill.applyBoost(owner, arrow);
+	function shotArrow(chimera: ServerPlayer_, arrow: AbstractArrow_): void {
+		if (ChimeraSkills.TOXOPHILITE.isUnlockedFor(chimera)) {
+			ToxophiliteSkill.applyBoost(chimera, arrow);
 		}
 
-		if (PierceSkill.isPierceActive(owner)) {
+		if (PierceSkill.isPierceActive(chimera)) {
 			PierceSkill.setPierce(arrow);
 		}
 
-		if (BalletSkill.isBalletActive(owner)) {
+		if (BalletSkill.isBalletActive(chimera)) {
 			arrow.baseDamage *= 2;
 		}
+
+		DropshotSkill.onShoot(chimera, arrow);
 	}
 
 	function tickDrawingBow(player: ServerPlayer_, bow: ItemStack_, duration: integer): void {

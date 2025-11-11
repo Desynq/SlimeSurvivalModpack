@@ -351,17 +351,17 @@
 		"rewards": [],
 		"description": [
 			"",
-			"Your arrows stun enemies that aren't targeting you for 1 second.",
+			"Your attacks stun enemies for 1 second if they aren't targeting a player.",
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
+				"text": "\n\n[Cost: 4 points]"
 			},
 			{
 				"color": "yellow",
 				"text": "\n[Planned]"
 			}
 		],
-		"cost": 2,
+		"cost": 4,
 		"icon": {
 			"type": "effect",
 			"data": {
@@ -411,6 +411,27 @@
 			}
 		}
 	},
+	"gearshift": {
+		"title": "Gearshift",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Accumulated rotation is no longer reset after switching direction after rotating for 360° in one direction."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "create:gearshift"
+			}
+		}
+	},
 	"dropshot": {
 		"title": "Dropshot",
 		"rewards": [],
@@ -421,14 +442,10 @@
 			},
 			{
 				"color": "dark_green",
-				"text": "\n\n[Cost: 2 points]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
+				"text": "\n\n[Cost: 4 points]"
 			}
 		],
-		"cost": 2,
+		"cost": 4,
 		"icon": {
 			"type": "item",
 			"data": {

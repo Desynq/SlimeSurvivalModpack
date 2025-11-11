@@ -171,8 +171,8 @@ const ChimeraSkills = new (class extends SkillManager {
 
 	public readonly SNEAK_ATTACK = this.createSkill("sneak_attack", def => def
 		.effectIcon("cataclysm:stun")
-		.addDescription("Your arrows stun enemies that aren't targeting you for 1 second.")
-		.cost(2)
+		.addDescription("Your attacks stun enemies for 1 second if they aren't targeting a player.")
+		.cost(4)
 		.flagPlanned()
 	);
 
@@ -199,12 +199,19 @@ const ChimeraSkills = new (class extends SkillManager {
 		.cost(2)
 	);
 
+	public readonly GEARSHIFT = this.createSkill("gearshift", def => def
+		.itemIcon("create:gearshift")
+		.addDescription({
+			"text": "Accumulated rotation is no longer reset after switching direction after rotating for 360° in one direction."
+		})
+		.cost(4)
+	);
+
 	public readonly DROPSHOT = this.createSkill("dropshot", def => def
 		.itemIcon("minecraft:feather")
 		.addDescription({
 			"text": "Your arrow does double damage if you fire your bow while falling."
 		})
-		.cost(2)
-		.flagPlanned()
+		.cost(4)
 	);
 })().register();
