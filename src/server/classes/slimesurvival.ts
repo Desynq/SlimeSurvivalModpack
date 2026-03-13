@@ -1,4 +1,5 @@
 // @ts-nocheck
+// priority: 10000
 
 const $TaskScheduler: typeof import("io.github.desynq.slimesurvival.util.TaskScheduler").$TaskScheduler =
 	Java.loadClass("io.github.desynq.slimesurvival.util.TaskScheduler");
