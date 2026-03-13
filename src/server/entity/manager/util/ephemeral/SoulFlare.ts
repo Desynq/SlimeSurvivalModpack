@@ -5,9 +5,6 @@
  */
 class SoulFlare {
 
-	/**
-	 * @returns `undefined` if origin and target occupy the exact same position
-	 */
 	public static spawn(origin: Entity_, target: Entity_, distance: number, stepSize: double): SoulFlare {
 		const ox = origin.x;
 		const oy = origin.y + origin.eyeHeight * 0.5;
