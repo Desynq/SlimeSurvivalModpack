@@ -5,12 +5,17 @@ class ServerHelper {
 		return server.playerList.players.toArray();
 	}
 
-	public static numberOfNonOperators(server: MinecraftServer_) {
+	public static numberOfNonOperators(server: MinecraftServer_): long {
 		return server.playerList.players
 			.stream()
 			.filter(p => !PlayerHelper.isOperator(p))
 			.count();
 	}
+
+	public static shouldPauseWorld(server: MinecraftServer_): boolean {
+		return this.numberOfNonOperators(server) === 0;
+	}
+
 
 	public static getSurvivors(server: MinecraftServer_): ServerPlayer_[] {
 		return server.getPlayerList().getPlayers()
