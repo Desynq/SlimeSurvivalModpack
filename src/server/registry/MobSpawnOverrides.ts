@@ -11,7 +11,7 @@ namespace MobSpawnOverrides {
 		)
 		.setOverride("cataclysm:koboleton", new FixedSpawnTable.Builder()
 			.addEntry("cataclysm:kobolediator", 0.005)
-			.addCappedEntry("cataclysm:modern_remnant", 0.25, 4)
+			.addCappedEntry("cataclysm:modern_remnant", 0.10, 4)
 			.build()
 		)
 		.registerAll();
