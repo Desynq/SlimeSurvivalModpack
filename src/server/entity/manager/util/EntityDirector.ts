@@ -81,7 +81,7 @@ class EntityDirector {
 
 			const entity = server.getEntityByUUID(bossbar.textId.path) as Entity_ | null;
 
-			const hasEntityWithGenericBossbar = entity && (EntityManager.isGenericBoss(entity) || this.hasGenericBossbar(entity));
+			const hasEntityWithGenericBossbar = entity && (EntityManager.isGenericBoss(entity) || this.hasManagerWithGenericBossbar(entity));
 			if (hasEntityWithGenericBossbar) continue;
 
 			bossbar.removeAllPlayers();
@@ -89,11 +89,29 @@ class EntityDirector {
 		}
 	}
 
-	public static hasGenericBossbar(entity: Entity_): boolean {
+	public static hasManagerWithGenericBossbar(entity: Entity_): boolean {
 		for (const manager of EntityManagers.getManagers(entity)) {
 			if (manager.hasGenericBossbar(entity)) return true;
 		}
+
 		return false;
+	}
+
+	public static shouldShowGenericBossbar(entity: Entity_): boolean {
+
+		if (!EntityManager.isGenericBoss(entity)) {
+			return false;
+		}
+
+		for (const manager of EntityManagers.getManagers(entity)) {
+			// if any manager declines having a generic bossbar,
+			// then the entity should not have a generic bossbar at all
+			if (!manager.hasGenericBossbar(entity)) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public static genericBossTick(boss: LivingEntity_): void {
@@ -104,7 +122,7 @@ class EntityDirector {
 			TheHunter.tick(boss);
 		}
 
-		if (this.hasGenericBossbar(boss)) {
+		if (this.shouldShowGenericBossbar(boss)) {
 			this.createOrUpdateGenericBossbar(boss);
 		}
 	}
