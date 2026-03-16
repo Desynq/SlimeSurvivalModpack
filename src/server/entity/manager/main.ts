@@ -1,7 +1,7 @@
 // priority: 1
 
-/** In case something goes horribly wrong, call this using `/eval "nukeBossbars(source.server)"`.
- * 
+/**
+ * In case something goes horribly wrong, call this using `/eval "nukeBossbars(source.server)"`.
  */
 function nukeBossbars(server: MinecraftServer_) {
 	const bossEvents = server.getCustomBossEvents();
