@@ -2,6 +2,13 @@
 
 namespace StackHelper {
 
+
+	export function isUnbreakable(stack: ItemStack_): boolean {
+		return stack.maxDamage <= 0
+			|| stack.getComponents()?.has($DataComponents.UNBREAKABLE);
+	}
+
+
 	export function isCustomItem(stack: ItemStack_, id: string) {
 		const components = stack.getComponents();
 		if (components == null) {

@@ -6,6 +6,11 @@ let $ArmorMaterials: typeof import("net.minecraft.world.item.ArmorMaterials").$A
 
 namespace ArmorTweaks {
 
+	function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
+		const item = stack.getItem();
+		return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
+	}
+
 
 	NativeEvents.onEvent($ArmorHurtEvent, event => {
 		const player = event.entity instanceof $ServerPlayer ? event.entity : null;
@@ -16,6 +21,8 @@ namespace ArmorTweaks {
 		event.armorMap.forEach((slot, entry) => {
 			let stack = entry.armorItemStack;
 			if (!(stack.getItem() instanceof $ArmorItem)) return;
+
+			if (StackHelper.isUnbreakable(stack)) return;
 
 			let damageLeft = stack.maxDamage - stack.damageValue;
 			let cap = Math.floor(stack.maxDamage * 0.05);
@@ -38,11 +45,6 @@ namespace ArmorTweaks {
 			}
 		});
 	});
-
-	function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
-		const item = stack.getItem();
-		return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
-	}
 
 	NativeEvents.onEvent($LivingEquipmentChangeEvent, event => {
 		let player = event.entity;
