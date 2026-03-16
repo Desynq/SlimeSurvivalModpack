@@ -60,5 +60,7 @@ PlayerEvents.loggedIn(e => {
 });
 
 PlayerEvents.loggedOut(e => {
-	idleWorldSystem.evaluate(e.server);
+	delay(e.server, 1, () => {
+		idleWorldSystem.evaluate(e.server);
+	});
 });
