@@ -52,3 +52,6 @@ const $EntityTeleportEvent$EnderPearl = Java.loadClass("net.neoforged.neoforge.e
 
 /** @type {typeof import("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Finish").$LivingEntityUseItemEvent$Finish} */
 const $LivingEntityUseItemEvent$Finish = Java.loadClass("net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent$Finish");
+
+/** @type {typeof import("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock").$PlayerInteractEvent$RightClickBlock} */
+const $PlayerInteractEvent$RightClickBlock = Java.loadClass("net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock");

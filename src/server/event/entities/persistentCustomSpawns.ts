@@ -5,11 +5,18 @@ namespace PersistentCustomSpawnsManager {
 	NativeEvents.onEvent($MobDespawnEvent, event => {
 		const mob = event.entity as Mob_;
 
+		if (mob.tags.contains("despawnable")) {
+			// TODO: steal vanilla source implementation from checkDespawn()
+			event.setResult("deny");
+			return;
+		}
+
 		if (mob.persistenceRequired || mob.requiresCustomPersistence()) return;
 
 		const spawnType = mob.spawnType;
 		if (event.level.getDifficulty() !== $Difficulty.PEACEFUL && PERSISTENT_SPAWN_TYPES.indexOf(spawnType) !== -1) {
 			event.setResult("deny");
+			return;
 		}
 	});
 }
