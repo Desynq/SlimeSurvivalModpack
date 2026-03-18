@@ -21,3 +21,5 @@ type Bee_ = Mob_ & import("net.minecraft.world.entity.animal.Bee").$Bee$$Origina
 
 type Player_ = LivingEntity_ & import("net.minecraft.world.entity.player.Player").$Player$$Original;
 type ServerPlayer_ = Player_ & import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original;
+
+type LevelBlock_ = import("dev.latvian.mods.kubejs.level.LevelBlock").$LevelBlock$$Original;
