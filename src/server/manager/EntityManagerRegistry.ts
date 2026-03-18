@@ -14,4 +14,13 @@ class EntityManagerRegistry {
 	public getManagers(entity: Entity_): EntityManager<any>[] {
 		return this.registry[entity.stringUUID] ??= [];
 	}
+
+	public isManaged(entity: Entity_): boolean {
+		const managers = this.getManagers(entity);
+		for (const manager of managers) {
+			if (manager.isCachedEntity(entity)) return true;
+		}
+
+		return false;
+	}
 }
