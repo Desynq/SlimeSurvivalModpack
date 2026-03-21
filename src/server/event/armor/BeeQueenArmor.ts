@@ -61,20 +61,20 @@ namespace CustomArmors {
 		}
 	}
 
+	const axolotlHealCooldown = new EntityTimestamp<ServerPlayer_>("axolotl_armor.heal_cooldown");
+
 	function tickAxolotlArmor(player: ServerPlayer_, equipped: ArmorEquipped): void {
 		if (equipped.axolotl === 0) return;
+		if (!player.alive) return;
 
-		const amplifier = Math.floor((equipped.axolotl - 1) / 2);
-		LivingEntityHelper.applyEffectUntilExpired(
-			player,
-			"minecraft:regeneration",
-			100,
-			20,
-			amplifier,
-			false,
-			false,
-			true,
-			player
-		);
+		if (player.health >= player.maxHealth) return;
+
+		const cooldown = 40 / equipped.axolotl;
+		if (axolotlHealCooldown.tryReject(player, cooldown)) return;
+
+		const factor = MathHelper.clamped(1 - player.health / player.maxHealth, 0, 1);
+
+		const healValue = MathHelper.lerp(0, 1, factor);
+		player.heal(healValue);
 	}
 }

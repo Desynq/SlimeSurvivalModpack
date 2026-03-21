@@ -97,4 +97,12 @@ class EntityTimestamp<T extends Entity_> {
 		}
 		return false;
 	}
+
+	/**
+	 * Tries to update the timestamp if it has elapsed.
+	 * @returns `true` if the timestamp hasn't elapsed, `false` otherwise.
+	 */
+	public tryReject(entity: T, duration?: long): boolean {
+		return !this.tryUpdate(entity, duration);
+	}
 }
