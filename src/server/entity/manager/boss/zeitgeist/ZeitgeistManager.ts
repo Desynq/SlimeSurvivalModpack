@@ -2,7 +2,7 @@
 
 
 interface ZeitgeistData {
-	lastHealths: Map_<string, number>;
+	lastHealths: Map_<string, { health: number; }>;
 }
 
 class ZeitgeistManager<T extends LivingEntity_>
@@ -49,7 +49,7 @@ class ZeitgeistManager<T extends LivingEntity_>
 		let data = this.dataMap.get(boss.stringUUID) as ZeitgeistData | null;
 		if (data === null) {
 			data = {
-				lastHealths: new $HashMap<string, number>()
+				lastHealths: new $HashMap<string, { health: number; }>()
 			};
 
 			this.dataMap.put(boss.stringUUID, data);

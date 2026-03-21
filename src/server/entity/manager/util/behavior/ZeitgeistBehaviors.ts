@@ -11,7 +11,7 @@ class MimicHealBehavior<
 	public constructor(
 		private readonly deps: {
 			getPlayers(boss: T): ServerPlayer_[];
-			getBossData(boss: T): { lastHealths: Map_<string, number>; };
+			getBossData(boss: T): { lastHealths: Map_<string, { health: number; }>; };
 		}
 	) {
 		super();
@@ -43,25 +43,25 @@ class MimicHealBehavior<
 		boss.heal(healAmount);
 	}
 
-	private calcHealing(players: ServerPlayer_[], lastHealths: Map_<string, number>): {
-		healths: Map_<string, number>;
+	private calcHealing(players: ServerPlayer_[], lastHealths: Map_<string, { health: number; }>): {
+		healths: Map_<string, { health: number; }>;
 		totalHealing: number;
 	} {
 		let totalHealing = 0;
-		const healths = new $HashMap<string, number>();
+		const healths = new $HashMap<string, { health: number; }>();
 
 		for (const player of players) {
 			if (!player.alive) continue;
 
 			const currHealth = player.health;
-			const prevHealth = lastHealths.get(player.stringUUID) as number | null;
+			const prevHealth = (lastHealths.get(player.stringUUID) as { health: number; } | null)?.health;
 
-			if (prevHealth !== null) {
+			if (prevHealth !== undefined) {
 				const healthGained = Math.max(0, currHealth - prevHealth);
 				totalHealing += healthGained;
 			}
 
-			healths.put(player.stringUUID, currHealth);
+			healths.put(player.stringUUID, { health: currHealth });
 		}
 
 		return {

@@ -68,16 +68,12 @@ class HealOnPlayerDeathBehavior<
 	}
 
 	private calcDeathDistance(player: ServerPlayer_, boss: T): number {
-		const deathLoc = unwrapOptional(player.lastDeathLocation);
-
-		if (!deathLoc) {
-			return Number.MAX_VALUE; // realistically shouldn't happen but you never know
-		}
-
-		if (!deathLoc.dimension().location().equals(boss.level.dimension)) {
+		if (!player.level.dimension.equals(boss.level.dimension)) {
 			return Number.MAX_VALUE;
 		}
 
-		return deathLoc.pos().center.distanceTo(boss.pos);
+		// const dist = deathLoc.pos().center.distanceTo(boss.pos);
+		const dist = player.position().distanceTo(boss.position() as any);
+		return dist;
 	}
 }

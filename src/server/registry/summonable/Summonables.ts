@@ -315,12 +315,12 @@ namespace Summonables {
 		.register();
 
 
-	export const ZEITGEIST: Summonable = SummonableBuilder.create("zeitgeist", "rottencreatures:zap", {
+	export const ZEITGEIST: Summonable = SummonableBuilder.create("zeitgeist", "cataclysm:hippocamtus", {
 		CustomName: `"The Zeitgeist"`,
 		Glowing: true,
 	})
 		.setBoss("zeitgeist")
-		.setMaxHealth(500)
+		.setMaxHealth(1000)
 		.addAttribute("minecraft:generic.attack_damage", 10)
 		.addAttribute("minecraft:generic.armor", 10)
 		.addAttribute("minecraft:generic.movement_speed", 0.3)
