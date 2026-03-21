@@ -5,6 +5,8 @@
   - 10000: Class loading
   - 1000: Utility
 
+- A subclass must have a lower priority than their superclass
+
 
 
 Credits:
