@@ -50,7 +50,7 @@
         "servers.dat": true,
         "servers.dat_old": true,
         "usercache.json": true,
-        "usernamecache.json": true, // probejs lock
+        "usernamecache.json": true
     },
     "eslint.validate": [
         "javascript",
@@ -62,6 +62,5 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.disableAutomaticTypeAcquisition": true,
-    "typescript.validate.enable": true,
-    "typescript.surveys.enabled": false
+    "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

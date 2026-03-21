@@ -25,7 +25,7 @@ namespace LeatherArmorValueTweak {
 	}
 
 	function isCustomLeatherArmor(stack: ItemStack_) {
-		return StackHelper.isCustomFlagSet(stack, "bee_queen_armor");
+		return StackHelper.isCustomFlagSet(stack, "custom_armor");
 	}
 
 	function getDamageAdjustedBonusValue(stack: ItemStack_, slot: EquipmentSlot_, attribute: Holder_<Attribute_>, modifier: AttributeModifier_) {

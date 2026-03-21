@@ -1,8 +1,6 @@
 // priority: 1000
 
 // @ts-ignore
-/** @type {typeof import("java.util.Optional").$Optional } */
-let $Optional = Java.loadClass("java.util.Optional");
 /** @type {typeof import("net.puffish.skillsmod.api.Skill$State").$Skill$State } */
 let $Skill$State = Java.loadClass("net.puffish.skillsmod.api.Skill$State");
 //@ts-ignore

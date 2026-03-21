@@ -70,7 +70,7 @@ const TheHunger = new (class <T extends Mob_> extends EntityManager<T> implement
 		}
 	}
 
-	public override onTickAll(server: MinecraftServer_, bosses: T[]): void {
+	public override tickAll(server: MinecraftServer_, bosses: T[]): void {
 		// TimeHelper.shiftTime(server, 6000);
 		this.updateBossbar(server);
 	}

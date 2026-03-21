@@ -313,4 +313,16 @@ namespace Summonables {
 		.addAttribute("minecraft:generic.movement_speed", 0.2)
 		.setBoss("palindrome")
 		.register();
+
+
+	export const ZEITGEIST: Summonable = SummonableBuilder.create("zeitgeist", "rottencreatures:zap", {
+		CustomName: `"The Zeitgeist"`,
+		Glowing: true,
+	})
+		.setBoss("zeitgeist")
+		.setMaxHealth(500)
+		.addAttribute("minecraft:generic.attack_damage", 10)
+		.addAttribute("minecraft:generic.armor", 10)
+		.addAttribute("minecraft:generic.movement_speed", 0.3)
+		.register();
 }

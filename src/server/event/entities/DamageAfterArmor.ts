@@ -1,7 +1,8 @@
 // @ts-ignore
-type DamageAfterArmorEvent_ = import("io.github.desynq.slimesurvival.event.DamageAfterArmorEvent").$DamageAfterArmorEvent$$Original;
+type DamageAfterArmorEvent_ = import("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent").$DamageAfterArmorEvent$$Original;
 // @ts-ignore
-const $DamageAfterArmorEvent: typeof import("io.github.desynq.slimesurvival.event.DamageAfterArmorEvent").$DamageAfterArmorEvent = Java.loadClass("io.github.desynq.slimesurvival.event.DamageAfterArmorEvent");
+const $DamageAfterArmorEvent: typeof import("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent").$DamageAfterArmorEvent =
+	Java.loadClass("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent");
 
 
 namespace DamageAfterArmor {

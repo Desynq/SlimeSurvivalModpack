@@ -3,6 +3,9 @@
 abstract class EntityManager<T extends LivingEntity_> {
 	private entityCache: EntityCache<T> = new EntityCache();
 
+	public constructor() {
+	}
+
 	/**
 	 * TODO: Move this to a static helper
 	 */
@@ -47,7 +50,7 @@ abstract class EntityManager<T extends LivingEntity_> {
 	/**
 	 * Only runs if `bosses.length > 0`
 	 */
-	public onTickAll(server: MinecraftServer_, bosses: T[]) { }
+	public tickAll(server: MinecraftServer_, bosses: T[]) { }
 
 	/**
 	 * Called after the entity cache has a boss added or removed.

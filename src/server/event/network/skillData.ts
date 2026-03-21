@@ -19,6 +19,7 @@ namespace SkillNetwork {
 
 			const blind = SculkerSkills.BLIND.isUnlockedFor(player) && !player.creative;
 			if (blind) {
+				// @ts-expect-error
 				packet = sculkerPacket.copy();
 				packet.putBoolean(player.stringUUID, true); // blind players should be able to see themselves
 			}

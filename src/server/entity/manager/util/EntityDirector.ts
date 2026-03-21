@@ -135,7 +135,7 @@ class EntityDirector {
 			if (manager.getEntityCount(server) === 0) continue;
 
 			const bosses = manager.getEntities(server);
-			manager.onTickAll(server, bosses);
+			manager.tickAll(server, bosses);
 
 			const isTickable = this.isTickManager(manager);
 			const hasCustomBossbar = this.isCustomBossbarManager(manager);

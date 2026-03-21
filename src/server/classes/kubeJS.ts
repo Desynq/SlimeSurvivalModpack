@@ -14,3 +14,7 @@ type AfterLivingEntityHurtKubeEvent_ = import("dev.latvian.mods.kubejs.entity.Af
 const $AfterLivingEntityHurtKubeEvent = Java.loadClass("dev.latvian.mods.kubejs.entity.AfterLivingEntityHurtKubeEvent");
 
 type CheckLivingEntitySpawnKubeEvent_ = import("dev.latvian.mods.kubejs.entity.CheckLivingEntitySpawnKubeEvent").$CheckLivingEntitySpawnKubeEvent;
+
+
+const $ItemStack$$Type: import("net.minecraft.world.item.ItemStack").$ItemStack$$Type =
+	Java.loadClass("net.minecraft.world.item.ItemStack");

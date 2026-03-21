@@ -12,7 +12,7 @@ const TheTenuem = new (class <T extends Phantom_ & Mob_> extends RewardableEntit
 		}
 	}
 
-	public override onTickAll(server: MinecraftServer_, bosses: T[]): void {
+	public override tickAll(server: MinecraftServer_, bosses: T[]): void {
 		server.runCommandSilent(`weather thunder 1d`);
 	}
 

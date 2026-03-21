@@ -13,3 +13,8 @@ namespace SkillsFileGenerator {
 
 	SkillManager.INSTANCES.forEach(manager => writeFromManager(manager));
 }
+
+
+for (const item of CustomItems.ITEMS) {
+	item.writeLootTable();
+}
