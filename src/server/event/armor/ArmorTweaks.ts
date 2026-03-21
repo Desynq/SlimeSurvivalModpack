@@ -8,7 +8,9 @@ namespace ArmorTweaks {
 
 	function isArmorMaterialLeather(stack: import("net.minecraft.world.item.ItemStack").$ItemStack$$Original): boolean {
 		const item = stack.getItem();
-		return item instanceof $ArmorItem && item.getMaterial() === $ArmorMaterials.LEATHER;
+		return item instanceof $ArmorItem
+			&& item.getMaterial() === $ArmorMaterials.LEATHER
+			&& !StackHelper.isCustomFlagSet(stack, "custom_armor");
 	}
 
 
