@@ -5,6 +5,7 @@
 interface ArmorEquipped {
 	queenBee: number;
 	axolotl: number;
+	turtle: number;
 }
 
 namespace CustomArmors {
@@ -15,22 +16,26 @@ namespace CustomArmors {
 		const equipped = calcArmorEquipped(player);
 		tickQueenBeeArmor(player, equipped);
 		tickAxolotlArmor(player, equipped);
+		tickTurtleArmor(player, equipped);
 	});
 
 	const armorTypes = [
 		"queenBee",
-		"axolotl"
+		"axolotl",
+		"turtle"
 	] as const;
 
 	const flagMap = {
 		queenBee: "bee_queen_armor",
-		axolotl: "axolotl_armor"
-	};
+		axolotl: "axolotl_armor",
+		turtle: "turtle_armor"
+	} as const;
 
 	function calcArmorEquipped(player: ServerPlayer_): ArmorEquipped {
 		const equipped: ArmorEquipped = {
 			queenBee: 0,
-			axolotl: 0
+			axolotl: 0,
+			turtle: 0
 		};
 
 		const armor = player.getArmorSlots();
@@ -74,7 +79,41 @@ namespace CustomArmors {
 
 		const factor = MathHelper.clamped(1 - player.health / player.maxHealth, 0, 1);
 
-		const healValue = MathHelper.lerp(0, 1, factor);
+		const healValue = MathHelper.lerp(0, player.maxHealth * 0.05, factor);
 		player.heal(healValue);
+	}
+
+
+	function tickTurtleArmor(player: ServerPlayer_, equipped: ArmorEquipped): void {
+		if (equipped.turtle > 0 && player.crouching && player.onGround()) {
+
+			const slowAmp = [0, 1, 2, 3][equipped.turtle - 1] ?? 3;
+
+			LivingEntityHelper.addEffect(
+				player,
+				"minecraft:slowness",
+				39,
+				slowAmp,
+				false,
+				true,
+				true,
+				player
+			);
+
+			const resAmp = [null, 0, 0, 1][equipped.turtle - 1] ?? null;
+
+			if (resAmp !== null) {
+				LivingEntityHelper.addEffect(
+					player,
+					"minecraft:resistance",
+					19,
+					resAmp,
+					false,
+					true,
+					true,
+					player
+				);
+			}
+		}
 	}
 }

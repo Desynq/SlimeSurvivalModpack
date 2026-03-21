@@ -1,4 +1,4 @@
-// priority: 1000
+// priority: 900
 
 
 
@@ -34,6 +34,7 @@ class CustomItem {
 		LootJS.lootTables(e => {
 			e.create(this.lootPath).createPool(pool => {
 				pool.addEntry(
+					// @ts-ignore
 					LootEntry.of(this.id).jsonFunction({
 						function: "minecraft:set_components",
 						components: this.components
@@ -43,18 +44,20 @@ class CustomItem {
 		});
 	}
 
-	public addShapedRecipe(pattern: string[], key: Record<string, Ingredient | Ingredient[]>): this {
+	public addShapedRecipe(key: Record<string, Ingredient | Ingredient[]>, ...patterns: string[][]): this {
 		ServerEvents.recipes(e => {
-			e.custom({
-				type: "minecraft:crafting_shaped",
-				key,
-				pattern,
-				result: {
-					id: this.id,
-					count: 1,
-					components: this.components
-				}
-			});
+			for (const pattern of patterns) {
+				e.custom({
+					type: "minecraft:crafting_shaped",
+					key,
+					pattern: pattern,
+					result: {
+						id: this.id,
+						count: 1,
+						components: this.components
+					}
+				});
+			}
 		});
 
 		return this;
@@ -126,7 +129,7 @@ namespace CustomItems {
 				components: this.componentizer({ type, display, maxDamage, armor, pattern, slot })
 			})
 				.pushOnto(ITEMS)
-				.addShapedRecipe(pattern, this.key);
+				.addShapedRecipe(this.key, pattern);
 		}
 	}
 
@@ -151,6 +154,7 @@ namespace CustomItems {
 			},
 			"minecraft:max_damage": maxDamage,
 			"minecraft:custom_data": {
+				custom_armor: true,
 				axolotl_armor: true
 			},
 			"minecraft:attribute_modifiers": {
@@ -159,6 +163,13 @@ namespace CustomItems {
 						type: "minecraft:generic.armor",
 						operation: "add_value",
 						amount: armor,
+						id: `slimesurvival:armor.${type}`,
+						slot
+					},
+					{
+						type: "minecraft:generic.max_health",
+						operation: "add_multiplied_base",
+						amount: 0.125,
 						id: `slimesurvival:armor.${type}`,
 						slot
 					}
@@ -170,7 +181,7 @@ namespace CustomItems {
 	axolotl.create({
 		type: "helmet",
 		display: "Helmet",
-		maxDamage: 165,
+		maxDamage: 500,
 		armor: 2,
 		pattern: [
 			"000",
@@ -180,7 +191,7 @@ namespace CustomItems {
 	axolotl.create({
 		type: "chestplate",
 		display: "Chestplate",
-		maxDamage: 240,
+		maxDamage: 800,
 		armor: 6,
 		pattern: [
 			"0 0",
@@ -191,7 +202,7 @@ namespace CustomItems {
 	axolotl.create({
 		type: "leggings",
 		display: "Leggings",
-		maxDamage: 225,
+		maxDamage: 700,
 		armor: 5,
 		pattern: [
 			"000",
@@ -202,11 +213,129 @@ namespace CustomItems {
 	axolotl.create({
 		type: "boots",
 		display: "Boots",
-		maxDamage: 195,
+		maxDamage: 400,
 		armor: 2,
 		pattern: [
 			"0 0",
 			"0 0"
 		]
+	});
+
+	const ARMOR = ["helmet", "chestplate", "leggings", "boots"] as const;
+
+	zipRecord({
+		baseItem: [
+			"minecraft:leather_helmet",
+			"minecraft:leather_chestplate",
+			"minecraft:leather_leggings",
+			"minecraft:leather_boots"
+		],
+		lootPath: ARMOR.map(a => "turtle_" + a),
+		display: [
+			"Helmet",
+			"Chestplate",
+			"Leggings",
+			"Boots"
+		],
+		maxDamage: [
+			1000,
+			1600,
+			1400,
+			800
+		],
+		armor: [
+			3,
+			8,
+			6,
+			3
+		],
+		slot: [
+			"head",
+			"chest",
+			"legs",
+			"feet"
+		],
+		type: ARMOR,
+		pattern: [
+			[
+				"000",
+				"010"
+			],
+			[
+				"010",
+				"000",
+				"000"
+			],
+			[
+				"000",
+				"010",
+				"0 0"
+			],
+			[
+				[
+					"0 0",
+					"010"
+				],
+				[
+					"010",
+					"0 0"
+				]
+			]
+		]
+	}, ({ baseItem, lootPath, display, maxDamage, armor, slot, type, pattern }) => {
+		const key = {
+			0: {
+				item: "minecraft:turtle_scute"
+			},
+			1: {
+				item: "minecraft:leather"
+			}
+		};
+		const item = new CustomItem({
+			id: baseItem,
+			lootPath,
+			components: {
+				"minecraft:item_name": `{"color":"#46BD49","text":"Turtle ${display}"}`,
+				"minecraft:dyed_color": {
+					rgb: 4635977
+				},
+				"minecraft:max_damage": maxDamage,
+				"minecraft:custom_data": {
+					custom_armor: true,
+					turtle_armor: true
+				},
+				"minecraft:attribute_modifiers": {
+					modifiers: [
+						{
+							type: "minecraft:generic.armor",
+							operation: "add_value",
+							amount: armor,
+							id: `slimesurvival:armor.${type}`,
+							slot
+						},
+						{
+							type: "minecraft:generic.armor_toughness",
+							operation: "add_value",
+							amount: 2,
+							id: `slimesurvival:armor.${type}`,
+							slot
+						},
+						{
+							type: "minecraft:generic.knockback_resistance",
+							operation: "add_value",
+							amount: 0.125,
+							id: `slimesurvival:armor.${type}`,
+							slot
+						}
+					]
+				}
+			}
+		});
+
+		item.addShapedRecipe(key, ...ArrayHelper.to2D(pattern));
+
+		item.pushOnto(ITEMS);
+
+		return item;
 	});
 }
