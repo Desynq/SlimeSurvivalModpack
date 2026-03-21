@@ -1,0 +1,13 @@
+{
+	"type": "create:sandpaper_polishing",
+	"ingredients": [
+		{
+			"tag": "minecraft:sand"
+		}
+	],
+	"results": [
+		{
+			"id": "minecraft:quartz"
+		}
+	]
+}

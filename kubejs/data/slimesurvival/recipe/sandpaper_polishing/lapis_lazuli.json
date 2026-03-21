@@ -1,0 +1,13 @@
+{
+	"type": "create:sandpaper_polishing",
+	"ingredients": [
+		{
+			"item": "cataclysm:lacrima"
+		}
+	],
+	"results": [
+		{
+			"id": "minecraft:lapis_lazuli"
+		}
+	]
+}
