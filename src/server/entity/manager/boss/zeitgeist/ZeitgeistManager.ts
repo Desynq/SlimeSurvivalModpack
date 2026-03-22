@@ -30,7 +30,7 @@ class ZeitgeistManager<T extends LivingEntity_>
 				getEntities: (server) => this.getEntities(server),
 				calcHeal: (boss, pd, event) => {
 					if (pd.distance > this.BOSS_EVENT_RANGE) return null;
-					return pd.player.maxHealth;
+					return boss.maxHealth * 0.1;
 				}
 			})
 		);
