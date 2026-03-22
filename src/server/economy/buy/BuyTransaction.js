@@ -38,7 +38,10 @@ BuyTransaction.prototype.buyItem = function() {
 	this.totalCost = this.itemCost * this.buyAmount;
 	this.startingBalance = PlayerMoney.get(this.server, this.playerUuid);
 	if (this.totalCost > this.startingBalance) {
-		this.player.tell(Text.red("You are broke; get more money."));
+		this.player.tell(Text.red(
+			`Transaction declined. ${this.buyAmount} units cost $${MoneyManager.toDollarString(this.totalCost)}.`
+			+ ` You have $${MoneyManager.toDollarString(this.startingBalance)}.`
+		));
 		this.cancel = true;
 		return;
 	}
