@@ -31,7 +31,8 @@ namespace SlowerLooting {
 		const block = event.block;
 
 		if (!canOpen(player, block)) {
-			ActionbarManager.setSimple(player, `{"color":"red","text":"Cannot open loot chest while being targeted!"}`, 20);
+			const text = `{"color":"red","text":"Cannot open loot chest while being targeted!"}`;
+			ActionbarManager.addMessage(player, text, 20, 0, 'slower-looting');
 			event.cancel();
 			return;
 		}
