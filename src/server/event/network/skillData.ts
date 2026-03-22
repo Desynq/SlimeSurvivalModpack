@@ -35,13 +35,29 @@ namespace SkillNetwork {
 		return InvisibleMan.isCachedEntity(player);
 	}
 
-	function createSculkerPacket(server: MinecraftServer_): CompoundTag_ {
-		const isVisible = (entity: LivingEntity_) => entity instanceof $LivingEntity && (
-			LivingEntityHelper.hasEffect(entity, "slimesurvival:pinged")
-			|| entity.glowing
-		);
+	function isVisibleToSculker(entity: Entity_): boolean {
+		if (!(entity instanceof $LivingEntity)) return true;
 
-		const visibileEntities = server.entities.filter(isVisible as any).toArray() as LivingEntity_[];
+		if (LivingEntityHelper.hasEffect(entity, "slimesurvival:pinged")) return true;
+
+		if (isEntityGlowing(entity)) return true;
+
+		return false;
+	}
+
+	function isEntityGlowing(entity: LivingEntity_): boolean {
+		if (!entity.glowing) return false;
+
+		const hasEffect = LivingEntityHelper.hasEffect(entity, "mincraft:glowing");
+
+		// boss with default glow doesn't count
+		if (!hasEffect && entity.tags.contains("boss.zeitgeist")) return false;
+
+		return true;
+	}
+
+	function createSculkerPacket(server: MinecraftServer_): CompoundTag_ {
+		const visibileEntities = server.entities.filter(isVisibleToSculker as any).toArray() as LivingEntity_[];
 
 		const packet = new $CompoundTag();
 		packet.putBoolean("__inverted__", true);
