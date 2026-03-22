@@ -12,5 +12,5 @@ new MarketableItem("raw_copper", "minecraft:raw_copper")
 	.register();
 
 new MarketableItem("raw_zinc", "create:raw_zinc")
-	.setBuyPrice(1000.00)
+	.setBuyPrice(1000000.00)
 	.register()
