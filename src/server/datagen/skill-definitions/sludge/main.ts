@@ -490,14 +490,14 @@ const SludgeSkills = new (class extends SkillManager {
 		.rootSkill()
 	);
 
-	public readonly INERTIA = this.createSkill("inertia", def => def
-		.itemIcon("twilightforest:knightmetal_helmet")
-		.addDescription({
-			"text": "",
-			"color": "dark_green",
-			"italic": true
-		})
-	);
+	// public readonly INERTIA = this.createSkill("inertia", def => def
+	// 	.itemIcon("twilightforest:knightmetal_helmet")
+	// 	.addDescription({
+	// 		"text": "",
+	// 		"color": "dark_green",
+	// 		"italic": true
+	// 	})
+	// );
 
 
 })().register();
