@@ -9,6 +9,8 @@ abstract class BehavioralEntityManager<T extends LivingEntity_>
 		tickAll: new EventBus<(server: MinecraftServer_, bosses: T[]) => void>(),
 		killEntity: new EventBus<(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_) => void>(),
 		playerDeath: new EventBus<(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_) => void>(),
+		afterHurt: new EventBus<(boss: T, event: AfterLivingEntityHurtKubeEvent_) => void>(),
+		death: new EventBus<(entity: T, event: LivingEntityDeathKubeEvent_) => void>()
 	};
 
 	private readonly behaviors = new $LinkedHashSet<Behavior<this>>();
@@ -47,5 +49,15 @@ abstract class BehavioralEntityManager<T extends LivingEntity_>
 	public override onGlobalPlayerDeath(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_): void {
 		super.onGlobalPlayerDeath(player, event);
 		this.events.playerDeath.emit(player, event);
+	}
+
+	public override onAfterHurt(boss: T, event: AfterLivingEntityHurtKubeEvent_): void {
+		super.onAfterHurt(boss, event);
+		this.events.afterHurt.emit(boss, event);
+	}
+
+	public override onDeath(entity: T, event: LivingEntityDeathKubeEvent_): void {
+		super.onDeath(entity, event);
+		this.events.death.emit(entity, event);
 	}
 }

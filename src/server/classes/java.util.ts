@@ -13,6 +13,9 @@ const $HashSet: typeof import("java.util.HashSet").$HashSet =
 const $LinkedHashSet: typeof import("java.util.LinkedHashSet").$LinkedHashSet =
 	Java.loadClass("java.util.LinkedHashSet");
 
+const $LinkedHashMap: typeof import("java.util.LinkedHashMap").$LinkedHashMap =
+	Java.loadClass("java.util.LinkedHashMap");
+
 
 type Set_<E> = import("java.util.Set").$Set<E>;
 

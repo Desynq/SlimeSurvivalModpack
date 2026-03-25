@@ -7,6 +7,8 @@ class LootBags {
 	public static readonly QUEEN_BEE = this.register(new QueenBeeLootBag());
 	public static readonly RIFT_MAGE = this.register(new RiftMageLootBag());
 
+	public static readonly ZEITGEIST = this.register(new ZeitgeistLootBag());
+
 	/**
 	 * Clears the stack if successfully opened
 	 * @param stack accepts any stack as it tries to resolve it to a loot bag at runtime

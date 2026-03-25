@@ -1,39 +1,62 @@
 // priority: 1000
 
-class EntityTimestamp<T extends Entity_> {
+interface PersistentDataHolder {
+	get persistentData(): CompoundTag_;
+}
+
+class Timestamp<T extends PersistentDataHolder> {
+	protected readonly id: string;
+	protected readonly defaultDuration: number;
+	protected readonly getGameTime: (holder: T) => number;
 
 	public constructor(
-		private readonly id: string,
-		private readonly defaultDuration: number = 1
-	) { }
-
-	public get(entity: T): long {
-		return entity.persistentData.getLong(this.id);
+		{ id, defaultDuration = 1, getGameTime }: {
+			id: string,
+			defaultDuration: number,
+			getGameTime: (holder: T) => number;
+		}
+	) {
+		this.id = id;
+		this.defaultDuration = defaultDuration;
+		this.getGameTime = getGameTime;
 	}
 
-	public has(entity: T): boolean {
-		return entity.persistentData.contains(this.id);
+	/**
+	 * @returns defaults to `0` if holder does not have timestamp
+	 */
+	public get(holder: T): long {
+		return holder.persistentData.getLong(this.id);
 	}
 
-	public update(entity: T, time?: long): void {
-		const value = time ?? TickHelper.getGameTime(entity.server);
-		entity.persistentData.putLong(this.id, value);
+	public getOrDefault<U>(holder: T, fallback: U): long | U {
+		return this.has(holder)
+			? this.get(holder)
+			: fallback;
 	}
 
-	public remove(entity: T): void {
-		entity.persistentData.remove(this.id);
+	public has(holder: T): boolean {
+		return holder.persistentData.contains(this.id);
 	}
 
-	public reset(entity: T): void {
-		this.update(entity, $Long.MIN_VALUE);
+	public update(holder: T, time?: long): void {
+		const value = time ?? this.getGameTime(holder);
+		holder.persistentData.putLong(this.id, value);
 	}
 
-	public setBefore(entity: T, time: long): void {
-		this.update(entity, TickHelper.getGameTime(entity.server) - time);
+	public remove(holder: T): void {
+		holder.persistentData.remove(this.id);
 	}
 
-	public setAfter(entity: T, time: long): void {
-		this.update(entity, TickHelper.getGameTime(entity.server) + time);
+	public reset(holder: T): void {
+		this.update(holder, $Long.MIN_VALUE);
+	}
+
+	public setBefore(holder: T, time: long): void {
+		this.update(holder, this.getGameTime(holder) - time);
+	}
+
+	public setAfter(holder: T, time: long): void {
+		this.update(holder, this.getGameTime(holder) + time);
 	}
 
 
@@ -41,9 +64,9 @@ class EntityTimestamp<T extends Entity_> {
 	/**
 	 * @returns Time since timestamp was last set
 	 */
-	public getDiff(entity: T): long | undefined {
-		if (this.has(entity)) {
-			return TickHelper.getGameTime(entity.server) - this.get(entity);
+	public getDiff(holder: T): long | undefined {
+		if (this.has(holder)) {
+			return this.getGameTime(holder) - this.get(holder);
 		}
 		else {
 			return undefined;
@@ -53,25 +76,25 @@ class EntityTimestamp<T extends Entity_> {
 	/**
 	 * Will always return `true` if timestamp has not been set
 	 */
-	public hasElapsed(entity: T, duration?: long): boolean {
+	public hasElapsed(holder: T, duration?: long): boolean {
 		duration ??= this.defaultDuration;
-		const diff = this.getDiff(entity);
+		const diff = this.getDiff(holder);
 		return diff === undefined || diff >= duration;
 	}
 
-	public hasJustElapsed(entity: T, duration: long): boolean {
-		return this.getDiff(entity) === duration;
+	public hasJustElapsed(holder: T, duration: long): boolean {
+		return this.getDiff(holder) === duration;
 	}
 
-	public getElapsedTime(entity: T, duration: long): long | undefined {
-		const diff = this.getDiff(entity);
+	public getElapsedTime(holder: T, duration: long): long | undefined {
+		const diff = this.getDiff(holder);
 		return diff === undefined
 			? undefined
 			: diff - duration;
 	}
 
-	public getRemaining(entity: T, duration: long): long | undefined {
-		const diff = this.getDiff(entity);
+	public getRemaining(holder: T, duration: long): long | undefined {
+		const diff = this.getDiff(holder);
 		return diff === undefined
 			? undefined
 			: duration - diff;
@@ -80,8 +103,8 @@ class EntityTimestamp<T extends Entity_> {
 	/**
 	 * Also returns `true` if timestamp has not been set
 	 */
-	public hasElapsedPast(entity: T, duration: long, timeAfter: long): boolean {
-		const elapsed = this.getElapsedTime(entity, duration);
+	public hasElapsedPast(holder: T, duration: long, timeAfter: long): boolean {
+		const elapsed = this.getElapsedTime(holder, duration);
 		return elapsed === undefined || elapsed >= timeAfter;
 	}
 
@@ -89,10 +112,10 @@ class EntityTimestamp<T extends Entity_> {
 	 * Tries to update the timestamp if it has elapsed.
 	 * @returns `true` if timestamp has elapsed, `false` otherwise.
 	 */
-	public tryUpdate(entity: T, duration?: long): boolean {
+	public tryUpdate(holder: T, duration?: long): boolean {
 		if (duration === undefined) duration = this.defaultDuration;
-		if (this.hasElapsed(entity, duration)) {
-			this.update(entity);
+		if (this.hasElapsed(holder, duration)) {
+			this.update(holder);
 			return true;
 		}
 		return false;
@@ -102,7 +125,35 @@ class EntityTimestamp<T extends Entity_> {
 	 * Tries to update the timestamp if it has elapsed.
 	 * @returns `true` if the timestamp hasn't elapsed, `false` otherwise.
 	 */
-	public tryReject(entity: T, duration?: long): boolean {
-		return !this.tryUpdate(entity, duration);
+	public tryReject(holder: T, duration?: long): boolean {
+		return !this.tryUpdate(holder, duration);
+	}
+}
+
+class EntityTimestamp<T extends Entity_ = Entity_> extends Timestamp<T> {
+
+	public constructor(
+		id: string,
+		defaultDuration: number = 1
+	) {
+		super({
+			id,
+			defaultDuration,
+			getGameTime: (entity: T) => TickHelper.getGameTime(entity.server)
+		});
+	}
+}
+
+class ServerTimestamp<T extends MinecraftServer_ = MinecraftServer_> extends Timestamp<T> {
+
+	public constructor(
+		id: string,
+		defaultDuration: number = 1
+	) {
+		super({
+			id,
+			defaultDuration,
+			getGameTime: (server: T) => TickHelper.getGameTime(server)
+		});
 	}
 }

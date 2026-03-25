@@ -95,3 +95,10 @@ const $Difficulty: typeof import("net.minecraft.world.Difficulty").$Difficulty =
 type MobSpawnType_ = import("net.minecraft.world.entity.MobSpawnType").$MobSpawnType;
 const $MobSpawnType: typeof import("net.minecraft.world.entity.MobSpawnType").$MobSpawnType =
 	Java.loadClass("net.minecraft.world.entity.MobSpawnType");
+
+
+type BlockPos_ = import("net.minecraft.core.BlockPos").$BlockPos;
+
+type ConduitBlockEntity_ = import("net.minecraft.world.level.block.entity.ConduitBlockEntity").$ConduitBlockEntity;
+const $ConduitBlockEntity: typeof import("net.minecraft.world.level.block.entity.ConduitBlockEntity").$ConduitBlockEntity =
+	Java.loadClass("net.minecraft.world.level.block.entity.ConduitBlockEntity");

@@ -32,7 +32,14 @@ class ZeitgeistManager<T extends LivingEntity_>
 					if (pd.distance > this.BOSS_EVENT_RANGE) return null;
 					return boss.maxHealth * 0.1;
 				}
-			})
+			}),
+			new TeleportOnHitBehavior({
+				calcTp: (boss) => {
+					if (boss.inWater) return null;
+					return { radius: 16 };
+				}
+			}),
+			new RewardBehavior(new LootBagRewarder(1, LootBags.ZEITGEIST))
 		);
 	}
 

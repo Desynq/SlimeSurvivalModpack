@@ -1,6 +1,6 @@
 // priority: 100
 
-class BossRewarder<T extends LivingEntity_> {
+class BossRewarder<T extends LivingEntity_ = LivingEntity_> {
 
 	private readonly KEY = "contributors";
 

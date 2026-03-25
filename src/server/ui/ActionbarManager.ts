@@ -5,13 +5,13 @@ PlayerEvents.tick(event => {
 });
 
 
-class ActionbarMessage {
+class ActionbarMessageInstance {
 
 	public constructor(
 		public readonly text: string,
 		public readonly priority: integer,
 		public ticks: number,
-		public readonly id?: string,
+		public readonly id?: string | symbol,
 	) { }
 
 	public tick(): void {
@@ -20,17 +20,17 @@ class ActionbarMessage {
 }
 
 class ActionbarManager {
-	private static messages: Record<string, ActionbarMessage[]> = {};
+	private static messages: Record<string, ActionbarMessageInstance[]> = {};
 
-	private static getMessagesByUUID(uuid: string): ActionbarMessage[] {
+	private static getMessagesByUUID(uuid: string): ActionbarMessageInstance[] {
 		return this.messages[uuid] ??= [];
 	}
 
-	private static getMessages(player: ServerPlayer_): ActionbarMessage[] {
+	private static getMessages(player: ServerPlayer_): ActionbarMessageInstance[] {
 		return this.getMessagesByUUID(player.stringUUID);
 	}
 
-	private static dedupe(uuid: string, id?: string): void {
+	private static dedupe(uuid: string, id?: string | symbol): void {
 		if (id === undefined) return;
 
 		ArrayHelper.forEachDeferredSplice(this.getMessagesByUUID(uuid), message => {
@@ -38,12 +38,12 @@ class ActionbarManager {
 		});
 	}
 
-	private static addMessageByUUID(uuid: string, text: string, ticks: integer = 1, priority: integer = 0, id?: string): void {
+	private static addMessageByUUID(uuid: string, text: string, ticks: integer = 1, priority: integer = 0, id?: string | symbol): void {
 		this.dedupe(uuid, id);
 		const messages = this.getMessagesByUUID(uuid);
 
 		text = StringHelper.wrapIfNeeded(text);
-		const message = new ActionbarMessage(text, priority, ticks, id);
+		const message = new ActionbarMessageInstance(text, priority, ticks, id);
 
 		let insertIndex = messages.findIndex(m => m.priority > priority);
 		if (insertIndex === -1) {
@@ -54,15 +54,25 @@ class ActionbarManager {
 		}
 	}
 
-	public static addMessage(player: ServerPlayer_, text: string, ticks: integer = 1, priority: integer = 0, id?: string): void {
+	public static addMessage(player: ServerPlayer_, text: string, ticks: integer = 1, priority: integer = 0, id?: string | symbol): void {
 		this.addMessageByUUID(player.stringUUID, text, ticks, priority, id);
 	}
 
-	private static containsByUUID(uuid: string, id: string): boolean {
+	public static addMsg({ player, text, ticks = 1, priority = 0, id }: {
+		player: ServerPlayer_,
+		text: string,
+		ticks?: integer,
+		priority?: integer,
+		id?: string | symbol;
+	}): void {
+		this.addMessageByUUID(player.stringUUID, text, ticks, priority, id);
+	}
+
+	private static containsByUUID(uuid: string, id: string | symbol): boolean {
 		return this.getMessagesByUUID(uuid).some(message => message.id === id);
 	}
 
-	public static contains(player: ServerPlayer_, id: string): boolean {
+	public static contains(player: ServerPlayer_, id: string | symbol): boolean {
 		return this.containsByUUID(player.stringUUID, id);
 	}
 
@@ -87,7 +97,7 @@ class ActionbarManager {
 			return;
 		}
 
-		const concat = messages.map(message => message.text).join(`, " ",`);
+		const concat = messages.map(m => m.text).join(`, "\\n",`);
 		CommandHelper.runCommandSilent(server, `title ${username} actionbar ["", ${concat}]`);
 	}
 

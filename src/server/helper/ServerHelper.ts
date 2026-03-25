@@ -28,6 +28,10 @@ class ServerHelper {
 		return this.getSurvivors(server).length;
 	}
 
+
+
+
+
 	public static setGamerule(server: MinecraftServer_, id: string, value: boolean | integer): void {
 		const command = `gamerule ${id} ${value}`;
 		server.runCommandSilent(command);

@@ -20,6 +20,7 @@ interface IBehavioralEntityManager<T extends LivingEntity_> {
 		tickAll: EventBusSubscriber<(server: MinecraftServer_, bosses: T[]) => void>;
 		killEntity: EventBusSubscriber<(boss: T, victim: LivingEntity_, event: LivingEntityDeathKubeEvent_) => void>;
 		playerDeath: EventBusSubscriber<(player: ServerPlayer_, event: LivingEntityDeathKubeEvent_) => void>;
+		afterHurt: EventBusSubscriber<(boss: T, event: AfterLivingEntityHurtKubeEvent_) => void>;
+		death: EventBusSubscriber<(entity: T, event: LivingEntityDeathKubeEvent_) => void>;
 	}>;
 }
-

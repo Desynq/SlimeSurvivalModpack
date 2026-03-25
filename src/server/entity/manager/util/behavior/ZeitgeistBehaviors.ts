@@ -70,3 +70,31 @@ class MimicHealBehavior<
 		};
 	}
 }
+
+class TeleportOnHitBehavior<
+	T extends LivingEntity_,
+	M extends IBehavioralEntityManager<T>
+> extends Behavior<M> {
+
+	public constructor(
+		private readonly deps: {
+			calcTp(boss: T, event: AfterLivingEntityHurtKubeEvent_): { radius: number; } | null;
+		}
+	) {
+		super();
+	}
+
+	public override register(): void {
+		this.manager.events.afterHurt.add((boss, event) => {
+			if (!boss.alive) return;
+
+			const result = this.deps.calcTp(boss, event);
+			if (!result) return;
+
+			playsound(boss.level, boss.eyePosition, "entity.enderman.teleport", "master", 1, 2);
+			EntityHelper.teleportRandCircle(boss, boss.position(), result.radius);
+			// stun so that it doesn't immediately attack players
+			// LivingEntityHelper.addEffect(boss, "cataclysm:stun", 20, 0, false, false, false);
+		});
+	}
+}
