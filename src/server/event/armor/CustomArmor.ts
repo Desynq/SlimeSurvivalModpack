@@ -92,7 +92,7 @@ namespace CustomArmors {
 			LivingEntityHelper.addEffect(
 				player,
 				"minecraft:slowness",
-				39,
+				19,
 				slowAmp,
 				false,
 				true,
