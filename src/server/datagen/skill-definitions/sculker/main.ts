@@ -157,8 +157,7 @@ const SculkerSkills = new (class extends SkillManager {
 		.addDescription({
 			"text": "\n\nPinged enemies glow."
 		})
-		.cost(2)
-		.flagPlanned()
+		.cost(1)
 	);
 
 	public readonly ECHO_1 = this.createSkill("echo_1", def => def
