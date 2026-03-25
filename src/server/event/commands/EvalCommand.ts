@@ -14,14 +14,63 @@ ServerEvents.commandRegistry(event => {
 
 
 
+	function compileEval(code: string) {
+
+		code = code.trim();
+
+		try {
+			return new Function(
+				"server",
+				"player",
+				`return (${code});`
+			);
+		}
+		catch { }
+
+		const idx = code.lastIndexOf(";");
+
+		if (idx !== -1) {
+
+			const before =
+				code.substring(0, idx);
+
+			let after =
+				code.substring(idx + 1).trim();
+
+			if (!after) {
+				return new Function(
+					"server",
+					"player",
+					before
+				);
+			}
+
+			if (after) {
+
+				return new Function(
+					"server",
+					"player",
+					`
+				${before};
+				return (${after});
+				`
+				);
+			}
+		}
+
+		return new Function(
+			"server",
+			"player",
+			code
+		);
+	}
+
 	function evaluateCommand(source: CommandSourceStack_, code: string): integer {
 		const player = source.getPlayer();
 		try {
 			console.log(code);
 
-			const wrappedCode = code.trim().startsWith("return") ? code : `return (${code})`;
-			const fn: (server: MinecraftServer_, player: ServerPlayer_) => any =
-				eval(`(server, player) => { ${wrappedCode} }`);
+			const fn = compileEval(code);
 
 			let result = fn(source.server, player);
 
