@@ -1,3 +1,5 @@
+// priority: 1
+
 type AttributeHolder_ = import("net.minecraft.core.Holder").$Holder$$Original<import("net.minecraft.world.entity.ai.attributes.Attribute").$Attribute$$Original>;
 type AttributeModifierOperation_ = import("net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation").$AttributeModifier$Operation$$Type;
 
