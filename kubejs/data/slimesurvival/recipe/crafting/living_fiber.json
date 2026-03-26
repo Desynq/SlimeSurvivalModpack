@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"0": {
+			"item": "minecraft:string"
+		},
+		"1": {
+			"item": "twilightforest:liveroot"
+		}
+	},
+	"pattern": [
+		"000",
+		"010",
+		"000"
+	],
+	"result": {
+		"count": 1,
+		"id": "slimesurvival:living_fiber"
+	}
+}

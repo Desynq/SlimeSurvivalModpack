@@ -164,4 +164,16 @@ namespace EntityHelper {
 
 		return hit.getType() === $HitResult$Type.MISS;
 	}
+
+
+
+	export function isInVoxelCylinder(entity: Entity_, cx: long, cz: long, radius: integer, minY?: number, maxY?: number): boolean {
+		const dx = entity.blockX - cx;
+		const dz = entity.blockZ - cz;
+
+		if (minY !== undefined && entity.blockY < minY) return false;
+		if (maxY !== undefined && entity.blockY > maxY) return false;
+
+		return dx * dx + dz * dz <= radius * radius;
+	}
 }

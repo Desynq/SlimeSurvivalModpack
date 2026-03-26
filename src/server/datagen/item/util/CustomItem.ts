@@ -1,28 +1,49 @@
 // priority: 900
 
 
+type DataComponentValue =
+	| string
+	| number
+	| boolean
+	| string[]
+	| number[]
+	| boolean[]
+	| DataComponent
+	| DataComponent[];
+
+interface DataComponent {
+	[key: string]: DataComponentValue;
+}
 
 type Ingredient = { item: string; } | { tag: string; };
 
 class CustomItem {
 	private readonly lootPath: string;
 	public readonly id: string;
-	public readonly components: Record<string, any>;
+	public readonly components: DataComponent;
+	public readonly customId?: string;
 
 	public constructor(
 		{
 			id,
+			lootPath,
 			components = {},
-			lootPath
+			customId
 		}: {
 			id: string;
-			components: Record<string, any>;
 			lootPath: string;
+			components?: DataComponent;
+			customId?: string;
 		}
 	) {
 		this.id = id;
 		this.components = components;
 		this.lootPath = "slimesurvival:item/" + lootPath;
+
+		this.customId = customId;
+		if (customId !== undefined) {
+			RecordHelper.getOrCreate(this.components, "minecraft:custom_data")["id"] = customId;
+		}
 	}
 
 	public pushOnto(arr: CustomItem[]): this {
@@ -62,10 +83,69 @@ class CustomItem {
 
 		return this;
 	}
+
+	public whileEquippedIn(slot: $EquipmentSlot$$Type, handler: (player: ServerPlayer_, stack: ItemStack_) => void): this {
+		if (this.customId === undefined) throw new Error("Cannot check for an item with no custom id");
+
+		CustomItems.subscribe(slot, this.customId, handler);
+
+		return this;
+	}
 }
 
 namespace CustomItems {
-	export const ITEMS: CustomItem[] = [];
+	export const CUSTOM_ITEMS: CustomItem[] = [];
+
+
+	type ItemHandler = (player: ServerPlayer_, stack: ItemStack_) => void;
+
+	export const SLOT_BUSES = new Map<$EquipmentSlot$$Type, Map<string, ItemHandler[]>>();
+
+	export function subscribe(
+		slot: $EquipmentSlot$$Type,
+		customId: string,
+		handler: ItemHandler
+	): void {
+		let slotBus = SLOT_BUSES.get(slot);
+
+		if (!slotBus) {
+			slotBus = new Map();
+			SLOT_BUSES.set(slot, slotBus);
+		}
+
+		let handlers = slotBus.get(customId);
+
+		if (!handlers) {
+			handlers = [];
+			slotBus.set(customId, handlers);
+		}
+
+		handlers.push(handler);
+	}
+
+	PlayerEvents.tick(event => {
+		const player = event.player as ServerPlayer_;
+
+		SLOT_BUSES.forEach((slotBus, slot) => {
+			const stack = player.getItemBySlot(slot);
+
+			const id = StackHelper.getCustomId(stack);
+
+			if (!id) return;
+
+			// necessary due to Map not coercing Java String to JS string
+			const handlers = slotBus.get("" + id);
+
+			if (!handlers) return;
+
+			for (const handler of handlers) {
+				handler(player, stack);
+			}
+		});
+	});
+
+
+
 
 
 	interface BaseItems {
@@ -128,7 +208,7 @@ namespace CustomItems {
 				lootPath: `${this.baseLootPath}_${type}`,
 				components: this.componentizer({ type, display, maxDamage, armor, pattern, slot })
 			})
-				.pushOnto(ITEMS)
+				.pushOnto(CUSTOM_ITEMS)
 				.addShapedRecipe(this.key, pattern);
 		}
 	}
@@ -334,7 +414,94 @@ namespace CustomItems {
 
 		item.addShapedRecipe(key, ...ArrayHelper.to2D(pattern));
 
-		item.pushOnto(ITEMS);
+		item.pushOnto(CUSTOM_ITEMS);
+
+		return item;
+	});
+
+	zipRecord({
+		baseItem: [
+			"minecraft:leather_helmet",
+			"minecraft:leather_chestplate",
+			"minecraft:leather_leggings",
+			"minecraft:leather_boots"
+		],
+		lootPath: ARMOR.map(a => "living_" + a),
+		display: ["Helmet", "Chestplate", "Leggings", "Boots"],
+		maxDamage: [500, 800, 700, 400],
+		armor: [3, 8, 6, 3],
+		slot: ["head", "chest", "legs", "feet"],
+		type: ARMOR,
+		pattern: [
+			[
+				"000",
+				"0 0"
+			],
+			[
+				"0 0",
+				"000",
+				"000"
+			],
+			[
+				"000",
+				"0 0",
+				"0 0"
+			],
+			[
+				"0 0",
+				"0 0"
+			]
+		]
+	}, ({ baseItem, lootPath, display, maxDamage, armor, slot, type, pattern }) => {
+		const key = {
+			0: {
+				item: "slimesurvival:living_fiber"
+			}
+		};
+		const item = new CustomItem({
+			id: baseItem,
+			lootPath,
+			components: {
+				"minecraft:item_name": `{"color":"#007700","text":"Living ${display}"}`,
+				"minecraft:dyed_color": {
+					rgb: 4635977
+				},
+				"minecraft:max_damage": maxDamage,
+				"minecraft:custom_data": {
+					custom_armor: true,
+					no_unbreaking_tome: true,
+					no_durability_unequip: true,
+					living_armor: true
+				},
+				"minecraft:attribute_modifiers": {
+					modifiers: [
+						{
+							type: "minecraft:generic.armor",
+							operation: "add_value",
+							amount: armor,
+							id: `minecraft:armor.${slot}`,
+							slot
+						},
+						{
+							type: "minecraft:generic.armor_toughness",
+							operation: "add_value",
+							amount: 4,
+							id: `minecraft:armor.${slot}`,
+							slot
+						},
+						{
+							type: "slimesurvival:movement_drag_coefficient",
+							operation: "add_multiplied_base",
+							amount: 0.25,
+							id: `minecraft:armor.${slot}`,
+							slot
+						}
+					]
+				}
+			}
+		})
+			.addShapedRecipe(key, ...ArrayHelper.to2D(pattern))
+			.pushOnto(CUSTOM_ITEMS);
 
 		return item;
 	});

@@ -24,10 +24,12 @@ namespace ObjectHelper {
 	};
 
 	export function fromEntries<K extends string | number | symbol, V>(entries: [K, V][]) {
-		const obj = {} as Record<K, V>;
+		const obj = Object.create(null) as Record<K, V>;
+
 		for (const [key, value] of entries) {
 			obj[key] = value;
 		}
+
 		return obj;
 	}
 }

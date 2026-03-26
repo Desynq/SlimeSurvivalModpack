@@ -2,11 +2,6 @@
 
 
 
-interface ArmorEquipped {
-	queenBee: number;
-	axolotl: number;
-	turtle: number;
-}
 
 namespace CustomArmors {
 
@@ -17,26 +12,29 @@ namespace CustomArmors {
 		tickQueenBeeArmor(player, equipped);
 		tickAxolotlArmor(player, equipped);
 		tickTurtleArmor(player, equipped);
+		tickLivingArmor(player, equipped);
 	});
 
 	const armorTypes = [
 		"queenBee",
 		"axolotl",
-		"turtle"
+		"turtle",
+		"living"
 	] as const;
 
 	const flagMap = {
 		queenBee: "bee_queen_armor",
 		axolotl: "axolotl_armor",
-		turtle: "turtle_armor"
+		turtle: "turtle_armor",
+		living: "living_armor"
 	} as const;
 
+	type ArmorEquipped = Record<keyof typeof flagMap, number>;
+
 	function calcArmorEquipped(player: ServerPlayer_): ArmorEquipped {
-		const equipped: ArmorEquipped = {
-			queenBee: 0,
-			axolotl: 0,
-			turtle: 0
-		};
+		const equipped = ObjectHelper.fromEntries(
+			Object.keys(flagMap).map(k => [k, 0])
+		) as ArmorEquipped;
 
 		const armor = player.getArmorSlots();
 		armor.forEach(stack => {
@@ -85,35 +83,40 @@ namespace CustomArmors {
 
 
 	function tickTurtleArmor(player: ServerPlayer_, equipped: ArmorEquipped): void {
-		if (equipped.turtle > 0 && player.crouching && player.onGround()) {
+		if (equipped.turtle <= 0) return;
+		const crouchingOnGround = player.crouching && player.onGround();
+		if (!crouchingOnGround) return;
 
-			const slowAmp = [0, 1, 2, 3][equipped.turtle - 1] ?? 3;
+		const slowAmp = [0, 1, 2, 3][equipped.turtle - 1] ?? 3;
 
+		LivingEntityHelper.addEffect(
+			player,
+			"minecraft:slowness",
+			19,
+			slowAmp,
+			false,
+			true,
+			true,
+			player
+		);
+
+		const resAmp = [null, 0, 0, 1][equipped.turtle - 1] ?? null;
+
+		if (resAmp !== null) {
 			LivingEntityHelper.addEffect(
 				player,
-				"minecraft:slowness",
+				"minecraft:resistance",
 				19,
-				slowAmp,
+				resAmp,
 				false,
 				true,
 				true,
 				player
 			);
-
-			const resAmp = [null, 0, 0, 1][equipped.turtle - 1] ?? null;
-
-			if (resAmp !== null) {
-				LivingEntityHelper.addEffect(
-					player,
-					"minecraft:resistance",
-					19,
-					resAmp,
-					false,
-					true,
-					true,
-					player
-				);
-			}
 		}
+	}
+
+	function tickLivingArmor(player: ServerPlayer_, equipped: ArmorEquipped): void {
+
 	}
 }

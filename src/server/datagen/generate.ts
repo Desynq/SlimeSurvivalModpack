@@ -15,6 +15,6 @@ namespace SkillsFileGenerator {
 }
 
 
-for (const item of CustomItems.ITEMS) {
+for (const item of CustomItems.CUSTOM_ITEMS) {
 	item.writeLootTable();
 }
