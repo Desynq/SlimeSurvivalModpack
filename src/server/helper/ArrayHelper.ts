@@ -100,4 +100,20 @@ namespace ArrayHelper {
 	export function to2D<T>(arr: T[] | T[][]): T[][] {
 		return is2D(arr) ? arr : [arr];
 	}
+
+
+
+	export function lerpList(first: number, last: number, length: number): number[] {
+		if (length < 2) throw new Error("Length must be >= 2");
+
+		const result: number[] = [];
+		const step = 1 / (length - 1);
+
+		for (let i = 0; i < length; i++) {
+			const factor = step * i;
+			result.push(MathHelper.lerp(first, last, factor));
+		}
+
+		return result;
+	}
 }
