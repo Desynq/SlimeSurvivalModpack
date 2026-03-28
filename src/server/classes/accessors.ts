@@ -10,6 +10,7 @@ type ListTag_ = import("net.minecraft.nbt.ListTag").$ListTag;
 const $ListTag: typeof import("net.minecraft.nbt.ListTag").$ListTag =
 	Java.loadClass("net.minecraft.nbt.ListTag");
 
+// @ts-ignore
 const $GameRules: typeof import("net.minecraft.world.level.GameRules").$GameRules =
 	Java.loadClass("net.minecraft.world.level.GameRules");
 

@@ -22,6 +22,13 @@ declare module "net.minecraft.world.entity.LivingEntity" {
 	}
 }
 
+declare module "net.minecraft.world.entity.Mob" {
+	interface $Mob extends $LivingEntity {
+		lookAt(...args: any[]): any;
+		startRiding(...args: any[]): any;
+	}
+}
+
 // Patch Player overrides
 declare module "net.minecraft.world.entity.player.Player" {
 	interface $Player extends $LivingEntity {

@@ -26,7 +26,6 @@
 		"../types/**/*.d.ts",
 		"../../.probe/packages/generated-package/net.neoforged.neoforge.event.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.world.entity.d.ts",
-		"../../.probe/packages/generated-package/net.minecraft.world.level.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.world.item.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.world.phys.d.ts",
 		"../../.probe/packages/generated-package/net.minecraft.core.d.ts",
