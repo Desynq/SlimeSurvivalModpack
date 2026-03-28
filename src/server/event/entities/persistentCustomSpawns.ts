@@ -19,4 +19,31 @@ namespace PersistentCustomSpawnsManager {
 			return;
 		}
 	});
+
+	const pendingRemoval = new Set<string>();
+
+	NativeEvents.onEvent($EntityLeaveLevelEvent, event => {
+		const entity = event.entity;
+
+		if (isDespawnOnLeave(entity)) {
+			pendingRemoval.add(entity.stringUUID);
+		}
+	});
+
+	ServerEvents.tick(event => {
+		pendingRemoval.forEach(uuid => {
+			const entity = event.server.getEntityByUUID(uuid);
+			if (entity && !entity.removed) {
+				entity.remove("discarded");
+			}
+		});
+		pendingRemoval.clear();
+	});
+
+	function isDespawnOnLeave(entity: Entity_): boolean {
+		if (!(entity instanceof $Mob)) return false;
+		const type = EntityHelper.getType(entity);
+
+		return type === "cataclysm:cindaria" && !entity.requiresCustomPersistence();
+	}
 }

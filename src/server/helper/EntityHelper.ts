@@ -14,8 +14,17 @@ namespace EntityHelper {
 	}
 
 
+	export function getType(entity: Entity_): string {
+		return $BuiltInRegistries.ENTITY_TYPE.getKey(entity.getEntityType()).toString();
+	}
+
 	export function isType(entity: Entity_, type: string): boolean {
 		return $BuiltInRegistries.ENTITY_TYPE.getKey(entity.getEntityType()).toString() === type;
+	}
+
+	export function isTypes(entity: Entity_, ...types: string[]): boolean {
+		const type = $BuiltInRegistries.ENTITY_TYPE.getKey(entity.getEntityType()).toString();
+		return types.includes(type);
 	}
 
 	/**
