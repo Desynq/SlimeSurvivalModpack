@@ -44,5 +44,5 @@ namespace CustomItems {
 				true
 			);
 		})
-		.pushOnto(CUSTOM_ITEMS);
+		.register(ITEM_REGISTRY);
 }

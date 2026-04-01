@@ -44,12 +44,29 @@ namespace ArrayHelper {
 	}
 
 
+	/* -------------------------------- Mutation -------------------------------- */
+
 	export function forEachRight<T>(array: T[], callback: (item: T, index: number, arr: T[]) => SpliceAction): void {
 		for (let i = array.length - 1; i >= 0; i--) {
 			const action = callback(array[i], i, array);
 			if (action === "splice") array.splice(i, 1);
 			else if (action === "break") return;
 		}
+	}
+
+	export function filterInPlace<T>(arr: T[], keep: (value: T, index: number, array: T[]) => boolean): T[] {
+		let write = 0;
+		for (let read = 0; read < arr.length; read++) {
+			const value = arr[read];
+
+			if (keep(value, read, arr)) {
+				arr[write] = value;
+				write++;
+			}
+		}
+
+		arr.length = write;
+		return arr;
 	}
 
 	/**

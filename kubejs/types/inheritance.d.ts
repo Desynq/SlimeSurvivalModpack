@@ -4,6 +4,14 @@ declare module "net.minecraft.world.entity.Entity" {
 	}
 }
 
+declare module "net.minecraft.world.entity.item.ItemEntity" {
+	interface $ItemEntity extends $Entity {
+		attackable(...args: any[]): any;
+		updateFluidHeightAndDoFluidPushing(...args: any[]): any;
+		attack(...args: any[]): any;
+	}
+}
+
 declare module "net.minecraft.world.entity.LivingEntity" {
 	interface $LivingEntity extends $Entity {
 		eat(...args: any[]): any;

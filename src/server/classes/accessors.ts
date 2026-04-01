@@ -23,6 +23,8 @@ const $ServerReloadedEvent: typeof import("net.blay09.mods.balm.api.event.server
 	Java.loadClass("net.blay09.mods.balm.api.event.server.ServerReloadedEvent");
 
 // @ts-expect-error
+type MobEffectInstance_ = import("net.minecraft.world.effect.MobEffectInstance").$MobEffectInstance;
+// @ts-expect-error
 const $MobEffectInstance: typeof import("net.minecraft.world.effect.MobEffectInstance").$MobEffectInstance =
 	Java.loadClass("net.minecraft.world.effect.MobEffectInstance");
 

@@ -16,6 +16,14 @@ class MobEffectApplicator {
 		return new MobEffectApplicator(effectId);
 	}
 
+	/**
+	 * @returns Whether the entity has the effect id. Accepts any amplifier.
+	 */
+	public has(entity: LivingEntity_): boolean {
+		return LivingEntityHelper.hasEffect(entity, this.effectId);
+	}
+
+
 	private withRulesObj(rules: MobEffectRules): MobEffectApplicator {
 		return new MobEffectApplicator(this.effectId, this.duration, this.amplifier, this.ambient, this.visible, this.showIcon, rules);
 	}

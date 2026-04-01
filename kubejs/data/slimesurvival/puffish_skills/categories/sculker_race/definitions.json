@@ -530,6 +530,32 @@
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 1 point]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:echo_shard"
+			}
+		}
+	},
+	"nourishment": {
+		"title": "Nourishment",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We do not stand on the mycelium, we stand inside of it.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nGain hunger and saturation while standing still on mycelium for more than one second."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
 			},
 			{
 				"color": "yellow",
@@ -540,7 +566,7 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:echo_shard"
+				"item": "farmersdelight:mushroom_rice"
 			}
 		}
 	}

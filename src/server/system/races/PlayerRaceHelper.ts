@@ -75,4 +75,19 @@ class RaceHelper {
 		this.setRace(player, chosenRace);
 		return { success: true, code: "SUCCESS" };
 	}
+
+
+
+	public static spyRaceSkills(player: ServerPlayer_): string {
+		const race = this.getRace(player);
+		const skills = RaceSkills.getFrom(race);
+
+		const strings: string[] = [];
+		for (const skill of skills) {
+			const unlocked = skill.isUnlockedFor(player);
+			strings.push(`${skill.getDefinitionId()}: ${unlocked ? "true" : "false"}`);
+		}
+
+		return strings.join("\n");
+	}
 }

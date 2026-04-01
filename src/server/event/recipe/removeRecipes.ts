@@ -6,7 +6,8 @@ namespace RemoveRecipes {
 		"create:crafting/materials/andesite_alloy",
 		"create:crafting/kinetics/water_wheel",
 		"create:crafting/kinetics/encased_fan",
-		"dndesires:crafting/industrial_fan"
+		"dndesires:crafting/industrial_fan",
+		"tacz:gun_smith_table"
 	];
 
 	ServerEvents.recipes(event => {

@@ -27,7 +27,7 @@ namespace SkillsFileIO {
 			const definition = skillEntryJson["definition"];
 			if (definition !== definitionId) continue;
 
-			const skill = new Skill(categoryId, skillId);
+			const skill = new Skill(definitionId, categoryId, skillId);
 			skills.push(skill);
 		}
 		return skills;

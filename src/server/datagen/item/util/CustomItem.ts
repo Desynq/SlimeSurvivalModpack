@@ -17,7 +17,11 @@ interface DataComponent {
 
 type Ingredient = { item: string; } | { tag: string; };
 
-class CustomItem {
+interface RegisteredCustomItem {
+	writeLootTable(): void;
+}
+
+class CustomItem implements RegisteredCustomItem {
 	private readonly lootPath: string;
 	public readonly id: string;
 	public readonly components: DataComponent;
@@ -46,7 +50,7 @@ class CustomItem {
 		}
 	}
 
-	public pushOnto(arr: CustomItem[]): this {
+	public register(arr: Pushable<RegisteredCustomItem>): this {
 		arr.push(this);
 		return this;
 	}
@@ -94,7 +98,7 @@ class CustomItem {
 }
 
 namespace CustomItems {
-	export const CUSTOM_ITEMS: CustomItem[] = [];
+	export const ITEM_REGISTRY: RegisteredCustomItem[] = [];
 
 
 	type ItemHandler = (player: ServerPlayer_, stack: ItemStack_) => void;
@@ -208,8 +212,8 @@ namespace CustomItems {
 				lootPath: `${this.baseLootPath}_${type}`,
 				components: this.componentizer({ type, display, maxDamage, armor, pattern, slot })
 			})
-				.pushOnto(CUSTOM_ITEMS)
-				.addShapedRecipe(this.key, pattern);
+				.addShapedRecipe(this.key, pattern)
+				.register(ITEM_REGISTRY);
 		}
 	}
 
@@ -301,7 +305,7 @@ namespace CustomItems {
 		]
 	});
 
-	const ARMOR = ["helmet", "chestplate", "leggings", "boots"] as const;
+	export const ARMOR = ["helmet", "chestplate", "leggings", "boots"] as const;
 
 	zipRecord({
 		baseItem: [
@@ -414,94 +418,7 @@ namespace CustomItems {
 
 		item.addShapedRecipe(key, ...ArrayHelper.to2D(pattern));
 
-		item.pushOnto(CUSTOM_ITEMS);
-
-		return item;
-	});
-
-	zipRecord({
-		baseItem: [
-			"minecraft:leather_helmet",
-			"minecraft:leather_chestplate",
-			"minecraft:leather_leggings",
-			"minecraft:leather_boots"
-		],
-		lootPath: ARMOR.map(a => "living_" + a),
-		display: ["Helmet", "Chestplate", "Leggings", "Boots"],
-		maxDamage: [500, 800, 700, 400],
-		armor: [3, 8, 6, 3],
-		slot: ["head", "chest", "legs", "feet"],
-		type: ARMOR,
-		pattern: [
-			[
-				"000",
-				"0 0"
-			],
-			[
-				"0 0",
-				"000",
-				"000"
-			],
-			[
-				"000",
-				"0 0",
-				"0 0"
-			],
-			[
-				"0 0",
-				"0 0"
-			]
-		]
-	}, ({ baseItem, lootPath, display, maxDamage, armor, slot, type, pattern }) => {
-		const key = {
-			0: {
-				item: "slimesurvival:living_fiber"
-			}
-		};
-		const item = new CustomItem({
-			id: baseItem,
-			lootPath,
-			components: {
-				"minecraft:item_name": `{"color":"#007700","text":"Living ${display}"}`,
-				"minecraft:dyed_color": {
-					rgb: 4635977
-				},
-				"minecraft:max_damage": maxDamage,
-				"minecraft:custom_data": {
-					custom_armor: true,
-					no_unbreaking_tome: true,
-					no_durability_unequip: true,
-					living_armor: true
-				},
-				"minecraft:attribute_modifiers": {
-					modifiers: [
-						{
-							type: "minecraft:generic.armor",
-							operation: "add_value",
-							amount: armor,
-							id: `minecraft:armor.${slot}`,
-							slot
-						},
-						{
-							type: "minecraft:generic.armor_toughness",
-							operation: "add_value",
-							amount: 4,
-							id: `minecraft:armor.${slot}`,
-							slot
-						},
-						{
-							type: "slimesurvival:movement_drag_coefficient",
-							operation: "add_multiplied_base",
-							amount: 0.25,
-							id: `minecraft:armor.${slot}`,
-							slot
-						}
-					]
-				}
-			}
-		})
-			.addShapedRecipe(key, ...ArrayHelper.to2D(pattern))
-			.pushOnto(CUSTOM_ITEMS);
+		item.register(ITEM_REGISTRY);
 
 		return item;
 	});

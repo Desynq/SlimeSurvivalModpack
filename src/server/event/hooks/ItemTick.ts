@@ -7,7 +7,7 @@ namespace ItemTick {
 		if (!(entity instanceof $ItemEntity)) return;
 
 		if (isChlorineGasGrenade(entity)) {
-			new ChlorineGasGrenadeTick(entity);
+			ChlorineGasGrenadeImpl.tick(entity);
 		}
 		else if (entity.onGround() && UnbreakingTome.isUnbreakingTome(entity)) {
 			UnbreakingTome.tick(entity);

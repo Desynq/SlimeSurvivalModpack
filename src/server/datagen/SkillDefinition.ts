@@ -80,7 +80,7 @@ class SkillDefinition {
 	}
 
 	public toSkill(skillId: string): Skill {
-		const skill = new Skill(this.categoryId, skillId, this.isRoot ?? false);
+		const skill = new Skill(this.definitionId, this.categoryId, skillId, this.isRoot ?? false);
 		return skill;
 	}
 

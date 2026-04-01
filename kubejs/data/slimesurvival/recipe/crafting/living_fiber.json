@@ -6,12 +6,15 @@
 		},
 		"1": {
 			"item": "twilightforest:liveroot"
+		},
+		"2": {
+			"item": "minecraft:vine"
 		}
 	},
 	"pattern": [
-		"000",
-		"010",
-		"000"
+		"020",
+		"212",
+		"020"
 	],
 	"result": {
 		"count": 1,

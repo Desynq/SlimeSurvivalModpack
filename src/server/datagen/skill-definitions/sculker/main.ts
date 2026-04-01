@@ -167,6 +167,15 @@ const SculkerSkills = new (class extends SkillManager {
 			"text": "\n\nEcholocation now pings enemies for 2 seconds."
 		})
 		.cost(1)
+	);
+
+	public readonly NOURISHMENT = this.createSkill("nourishment", def => def
+		.itemIcon("farmersdelight:mushroom_rice")
+		.addStyledDescription("We do not stand on the mycelium, we stand inside of it.", this.STYLE)
+		.addDescription({
+			"text": "\n\nGain hunger and saturation while standing still on mycelium for more than one second."
+		})
+		.cost(1)
 		.flagPlanned()
 	);
 })().register();

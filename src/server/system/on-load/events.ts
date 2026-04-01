@@ -7,7 +7,8 @@ namespace OnLoadHook {
 		onLoad(event.server);
 	});
 
-	function onLoad(server: MinecraftServer_) {
+	function onLoad(server: MinecraftServer_ | null) {
+		if (server === null) return;
 		OnLoadManager.INSTANCE.onLoad(server);
 	}
 }
