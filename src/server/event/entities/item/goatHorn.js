@@ -19,7 +19,7 @@ NativeEvents.onEvent($PlayerInteractEvent$RightClickItem, event => {
 	const instrumentId = instrumentComp.getKey().location();
 	switch (instrumentId) {
 		case "minecraft:seek_goat_horn":
-			if (!player.crouching) {
+			if (!player.shiftKeyDown) {
 				applyGoatHornEffect(player);
 				break;
 			}
