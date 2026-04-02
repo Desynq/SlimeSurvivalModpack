@@ -7,7 +7,9 @@ namespace RemoveRecipes {
 		"create:crafting/kinetics/water_wheel",
 		"create:crafting/kinetics/encased_fan",
 		"dndesires:crafting/industrial_fan",
-		"tacz:gun_smith_table"
+		"tacz:gun_smith_table",
+		"tacz:attachment_workbench",
+		"tacz:ammo_workbench"
 	];
 
 	ServerEvents.recipes(event => {
