@@ -1,37 +1,40 @@
 
+
 namespace Sculker.Events {
 
 	NativeEvents.onEvent($LivingDamageEvent$Pre, event => {
-		const victim = event.entity;
-		if (isSculker(victim)) {
-			sculkerBeforeHurt(victim, event);
-		}
+		try {
+			const victim = event.entity;
+			if (isSculker(victim)) {
+				sculkerBeforeHurt(victim, event);
+			}
 
-		const attacker = event.source.actual as Entity_ | null;
-		if (isSculker(attacker)) {
-			attackedBySculker(victim, attacker, event);
+			const attacker = event.source.actual as Entity_ | null;
+			if (isSculker(attacker)) {
+				attackedBySculker(victim, attacker, event);
+			}
+		}
+		catch (e) {
+			console.error(e);
 		}
 	});
 
 	NativeEvents.onEvent($VanillaGameEvent, event => {
-		const entity = event.cause as Entity_ | null;
-		const flag = entity instanceof $LivingEntity;
-		if (!flag) return;
+		try {
+			const entity = event.cause as Entity_ | null;
+			const flag = entity instanceof $LivingEntity;
+			if (!flag) return;
 
-		const gameEvent = event.vanillaEvent;
-		if (entity.steppingCarefully && gameEvent.isTag("minecraft:ignore_vibrations_sneaking")) return;
+			const gameEvent = event.vanillaEvent;
+			if (ignoreSound(entity, gameEvent)) return;
 
-		const players = event.level.players.toArray() as ServerPlayer_[];
-		for (const player of players) {
-			if (entity === player) continue;
-			if (!RaceHelper.isRace(player, Races.SCULKER)) continue;
-
-			const distance = player.distanceToEntity(entity);
-			if (distance > 64) continue;
-
-			const duration = Pinged.getEcholocationPingDuration(player);
-
-			LivingEntityHelper.addEffect(entity, "slimesurvival:pinged", duration, 0, false, false, false, player);
+			const players = event.level.players.toArray() as ServerPlayer_[];
+			for (const player of players) {
+				Sculker.Pinged.tryPing(entity, player, event.eventPosition, gameEvent);
+			}
+		}
+		catch (e) {
+			console.error(e);
 		}
 	});
 
@@ -40,6 +43,25 @@ namespace Sculker.Events {
 
 		Sculker.Rooting.tick(player);
 	});
+
+
+	function ignoreSound(entity: LivingEntity_, gameEvent: GameEvent_): boolean {
+		const id = gameEvent.getRegisteredName();
+
+		switch (id) {
+			case "minecraft:projectile_shoot":
+				return false;
+		}
+
+		if (entity.steppingCarefully && gameEvent.isTag("minecraft:ignore_vibrations_sneaking")) {
+			return true;
+		}
+
+		return false;
+	}
+
+
+
 
 	function isSculker(entity: unknown): entity is ServerPlayer_ {
 		return entity instanceof $ServerPlayer && RaceHelper.isRace(entity, Races.SCULKER);

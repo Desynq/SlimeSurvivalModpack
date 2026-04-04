@@ -1,0 +1,1 @@
+type DamageAfterArmorEvent_ = import("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent").$DamageAfterArmorEvent$$Original;

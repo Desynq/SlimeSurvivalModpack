@@ -5,9 +5,9 @@ interface PersistentDataHolder {
 }
 
 class Timestamp<T extends PersistentDataHolder> {
-	protected readonly id: string;
-	protected readonly defaultDuration: number;
-	protected readonly getGameTime: (holder: T) => number;
+	public readonly id: string;
+	public readonly defaultDuration: number;
+	public readonly getGameTime: (holder: T) => number;
 
 	public constructor(
 		{ id, defaultDuration = 1, getGameTime }: {
@@ -21,6 +21,10 @@ class Timestamp<T extends PersistentDataHolder> {
 		this.getGameTime = getGameTime;
 	}
 
+	public resolve(holder: T): ResolvedTimestamp<T> {
+		return new ResolvedTimestamp(this, holder);
+	}
+
 	/**
 	 * @returns defaults to `0` if holder does not have timestamp
 	 */
@@ -28,14 +32,14 @@ class Timestamp<T extends PersistentDataHolder> {
 		return holder.persistentData.getLong(this.id);
 	}
 
+	public has(holder: T): boolean {
+		return holder.persistentData.contains(this.id);
+	}
+
 	public getOrDefault<U>(holder: T, fallback: U): long | U {
 		return this.has(holder)
 			? this.get(holder)
 			: fallback;
-	}
-
-	public has(holder: T): boolean {
-		return holder.persistentData.contains(this.id);
 	}
 
 	public update(holder: T, time?: long): void {
@@ -127,33 +131,5 @@ class Timestamp<T extends PersistentDataHolder> {
 	 */
 	public tryReject(holder: T, duration?: long): boolean {
 		return !this.tryUpdate(holder, duration);
-	}
-}
-
-class EntityTimestamp<T extends Entity_ = Entity_> extends Timestamp<T> {
-
-	public constructor(
-		id: string,
-		defaultDuration: number = 1
-	) {
-		super({
-			id,
-			defaultDuration,
-			getGameTime: (entity: T) => TickHelper.getGameTime(entity.server)
-		});
-	}
-}
-
-class ServerTimestamp<T extends MinecraftServer_ = MinecraftServer_> extends Timestamp<T> {
-
-	public constructor(
-		id: string,
-		defaultDuration: number = 1
-	) {
-		super({
-			id,
-			defaultDuration,
-			getGameTime: (server: T) => TickHelper.getGameTime(server)
-		});
 	}
 }

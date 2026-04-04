@@ -2,7 +2,7 @@
 
 abstract class SpawnEntry {
 
-	public abstract getSummonable(event: CheckLivingEntitySpawnKubeEvent_): Summonable;
+	public abstract getSummonable(event: CheckLivingEntitySpawnKubeEvent_): Summonable | undefined | "cancel";
 
 	public abstract getChance(event: CheckLivingEntitySpawnKubeEvent_): Percent;
 }
@@ -10,18 +10,36 @@ abstract class SpawnEntry {
 class FixedSpawnEntry extends SpawnEntry {
 
 	public constructor(
-		private readonly summonable: Summonable,
+		private readonly summonable: Summonable | "cancel",
 		private readonly chance: Percent
 	) {
 		super();
 	}
 
-	public getSummonable(): Summonable {
+	public getSummonable(): Summonable | "cancel" {
 		return this.summonable;
 	}
 
 	public getChance(): Percent {
 		return this.chance;
+	}
+}
+
+class SpawnTableEntry extends SpawnEntry {
+
+	public constructor(
+		private readonly table: SpawnTable,
+		private readonly predicate: (event: CheckLivingEntitySpawnKubeEvent_) => number
+	) {
+		super();
+	}
+
+	public override getSummonable(event: CheckLivingEntitySpawnKubeEvent_): Summonable | undefined | "cancel" {
+		return this.table.roll(event);
+	}
+
+	public override getChance(event: CheckLivingEntitySpawnKubeEvent_): Percent {
+		return this.predicate(event);
 	}
 }
 

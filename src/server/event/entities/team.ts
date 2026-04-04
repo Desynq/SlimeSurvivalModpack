@@ -1,7 +1,7 @@
 
 
 
-EntityEventsExt.tick(({ entity, server }) => {
+EntityEventsExt.onTick(({ entity, server }) => {
 	if (!entity.monster) return;
 
 	CommandHelper.runCommandSilent(server,

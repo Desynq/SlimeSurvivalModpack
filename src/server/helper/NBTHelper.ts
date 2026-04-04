@@ -17,6 +17,11 @@ namespace NBTHelper {
 		return tag.getString(key);
 	}
 
+	export function getCompoundOrNull(tag: CompoundTag_, key: string): CompoundTag_ | null {
+		if (!tag.contains(key, $Tag.TAG_COMPOUND)) return null;
+		return tag.getCompound(key);
+	}
+
 	export function getListOrNull(tag: CompoundTag_, key: string): ListTag_ | null {
 		if (!tag.contains(key, $Tag.TAG_LIST)) return null;
 		return tag.get(key) as any;

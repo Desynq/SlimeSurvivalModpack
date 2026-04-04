@@ -21,6 +21,15 @@ namespace StringHelper {
 		return result;
 	}
 
+	/**
+	 * @example toPercent(0.50123, 2) -> 50.12
+	 */
+	export function toPercent(number: number, decimals: number): string {
+		if (decimals < 0) throw new Error(`toPercent decimals must be >= 0. decimals = ${decimals}`);
+
+		return (number * 100).toFixed(decimals);
+	}
+
 	export function wrapIfNeeded(input: string): string {
 		const str = input.trim();
 		if (str.length >= 2) {

@@ -80,7 +80,8 @@
 				"italic": true
 			},
 			{
-				"text": "\n\nArmor is ≈25% better at reducing damage."
+				"text": "\n\nArmor is better at reducing damage.\n* 5 = -25.0% vs -20.0%\n* 10 = -40.0% vs -33.3%\n* 15 = -50.0% vs -42.9%\n* 20 = -57.1% vs -50.0%\n* 30 = -66.7% vs -60.0%\n* 40 = -72.7% vs -66.7%",
+				"color": "green"
 			},
 			{
 				"color": "gold",
@@ -540,6 +541,66 @@
 			}
 		}
 	},
+	"autotroph": {
+		"title": "Autotroph",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We eat what others cannot eat.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nImmune to Hunger I"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "farmersdelight:organic_compost"
+			}
+		}
+	},
+	"hypertrophy": {
+		"title": "Hypertrophy",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We eating good tonight",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nGain one point of armor toughness for every two points of saturation when at full hunger."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "farmersdelight:mushroom_rice"
+			}
+		}
+	},
 	"nourishment": {
 		"title": "Nourishment",
 		"rewards": [],
@@ -566,7 +627,72 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "farmersdelight:mushroom_rice"
+				"item": "minecraft:mushroom_stew"
+			}
+		}
+	},
+	"en_root": {
+		"title": "En Root",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We be rolling",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nCombat rolls recover twice as fast when on the ground for more than 3 seconds."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 1 point]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "farmersdelight:kelp_roll_slice"
+			}
+		}
+	},
+	"dense": {
+		"title": "Dense",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We're tough to crack, slow to move.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nEach point of armor toughness reduces damage by 1.0 instead of 0.5.",
+				"color": "green"
+			},
+			{
+				"text": "\n\nArmor decreases movement speed.\n* 10 = -20.000%\n* 20 = -33.333%\n* 30 = -42.857%\n* 40 = -50.000%",
+				"color": "dark_red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:shroomlight"
 			}
 		}
 	}

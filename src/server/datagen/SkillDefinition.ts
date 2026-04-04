@@ -1,6 +1,6 @@
 // priority: 1000
 
-interface SkillData {
+interface SkillDefinitionData {
 	title: string;
 	rewards: object[];
 	description: (JsonComponent | JsonComponent[])[];
@@ -35,7 +35,7 @@ interface JsonComponentStyle {
 class SkillDefinition {
 	private categoryId: string;
 	private definitionId: string;
-	private data: SkillData;
+	private data: SkillDefinitionData;
 	private isRoot?: boolean;
 
 	public constructor(categoryId: string, definitionId: string) {
@@ -79,12 +79,12 @@ class SkillDefinition {
 		return this;
 	}
 
-	public toSkill(skillId: string): Skill {
-		const skill = new Skill(this.definitionId, this.categoryId, skillId, this.isRoot ?? false);
+	public toSkill<D extends SkillData = EmptySkillData>(skillId: string, data?: D): Skill<D> {
+		const skill = new Skill(this.definitionId, this.categoryId, skillId, this.isRoot ?? false, (data ?? {}) as D);
 		return skill;
 	}
 
-	public findSkill(): Skill {
+	public findSkill<D extends SkillData = EmptySkillData>(data?: D): Skill<D> {
 		const category = this.categoryId.split(":")[1];
 		const json = JsonIO.read(
 			`kubejs/data/slimesurvival/puffish_skills/categories/${category}/skills.json`
@@ -94,17 +94,17 @@ class SkillDefinition {
 		);
 		if (match) {
 			const [id] = match;
-			return this.toSkill(id);
+			return this.toSkill(id, data);
 		} else {
 			console.warn(
 				`Could not find skill for definition: ${this.definitionId} in category: ${this.categoryId}`
 			);
-			return this.toSkill("");
+			return this.toSkill("", data);
 		}
 	}
 
-	public serializeIntoSkill(json: any): Skill {
-		return this.serialize(json).findSkill();
+	public serializeIntoSkill<D extends SkillData = EmptySkillData>(json: any, data?: D): Skill<D> {
+		return this.serialize(json).findSkill(data);
 	}
 
 	public title(title: string): this {

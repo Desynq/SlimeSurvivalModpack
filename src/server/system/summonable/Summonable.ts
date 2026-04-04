@@ -1,6 +1,10 @@
 // priority: 2
 
-class Summonable {
+interface ISummonable {
+	spawn(level: ServerLevel_, position: Vec3_, randomizeProperties: boolean): Entity_;
+}
+
+class Summonable implements ISummonable {
 
 	public constructor(
 		public readonly name: string,

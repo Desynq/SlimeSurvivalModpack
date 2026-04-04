@@ -23,3 +23,7 @@ type Player_ = LivingEntity_ & import("net.minecraft.world.entity.player.Player"
 type ServerPlayer_ = Player_ & import("net.minecraft.server.level.ServerPlayer").$ServerPlayer$$Original;
 
 type LevelBlock_ = import("dev.latvian.mods.kubejs.level.LevelBlock").$LevelBlock$$Original;
+
+
+
+type GameEvent_ = import("net.minecraft.core.Holder").$Holder<import("net.minecraft.world.level.gameevent.GameEvent").$GameEvent>;

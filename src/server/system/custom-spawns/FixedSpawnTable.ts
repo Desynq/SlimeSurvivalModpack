@@ -41,6 +41,18 @@ class FixedSpawnTable extends SpawnTable {
 			return this;
 		}
 
+		public addCancel(chance: Percent): this {
+			const entry = new FixedSpawnEntry("cancel", chance);
+			this.addRawEntry(entry);
+			return this;
+		}
+
+		public addTable(table: SpawnTable, predicate: (event: CheckLivingEntitySpawnKubeEvent_) => number): this {
+			const entry = new SpawnTableEntry(table, predicate);
+			this.addRawEntry(entry);
+			return this;
+		}
+
 		public addCappedEntry(id: string, chance: Percent, cap: integer, distance: double = 128.0, tag: string = id): this {
 			tag = tag.replace(":", ".");
 			const nbt = {

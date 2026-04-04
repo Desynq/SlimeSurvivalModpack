@@ -6,7 +6,7 @@ abstract class SkillManager {
 	public static readonly INSTANCES: SkillManager[] = [];
 
 	public readonly definitionsJson: Object = {};
-	public readonly skills: Skill[] = [];
+	public readonly skills: Skill<any>[] = [];
 
 	public constructor(
 		public readonly categoryId: string
@@ -16,6 +16,12 @@ abstract class SkillManager {
 		const def = new SkillDefinition(this.categoryId, id);
 		decorate(def);
 		return def.serializeIntoSkill(this.definitionsJson).register(this.skills);
+	}
+
+	protected createDataSkill<D extends SkillData>(id: string, data: D, decorate: (def: SkillDefinition, data: Readonly<D>) => void): Skill<D> {
+		const def = new SkillDefinition(this.categoryId, id);
+		decorate(def, data);
+		return def.serializeIntoSkill(this.definitionsJson, data).register(this.skills);
 	}
 
 	protected createTieredSkills(baseId: string, tiers: integer, decorate: (def: SkillDefinition, tier: integer, prevSkills: Skill[]) => void): Skill[] {

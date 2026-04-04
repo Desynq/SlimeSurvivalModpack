@@ -38,19 +38,25 @@ const SculkerSkills = new (class extends SkillManager {
 		.rootSkill()
 	);
 
-	public readonly CHITINOUS = this.createSkill("chitinous", def => def
-		.itemIcon("minecraft:popped_chorus_fruit")
-		.addDescription({
-			"text": "That tickles...",
-			"color": "dark_aqua",
-			"italic": true
-		})
-		.addDescription({
-			"text": "\n\nArmor is ≈25% better at reducing damage.",
-		})
-		.size(1.25)
-		.rootSkill()
-	);
+	public readonly CHITINOUS = this.createDataSkill("chitinous", {
+		armorFactor: 15
+	}, (def, data) => {
+		const calc = (a: number, b: number): string => StringHelper.toPercent(1 - b / (a + b), 1);
+		return def
+			.itemIcon("minecraft:popped_chorus_fruit")
+			.addDescription({
+				"text": "That tickles...",
+				"color": "dark_aqua",
+				"italic": true
+			})
+			.addDescription({
+				"text": "\n\nArmor is better at reducing damage."
+					+ [5, 10, 15, 20, 30, 40].map(a => `\n* ${a} = -${calc(a, data.armorFactor)}% vs -${calc(a, 20)}%`).join(""),
+				"color": "green"
+			})
+			.size(1.25)
+			.rootSkill();
+	});
 
 	public readonly MYCELIC = this.createSkill("mycelic", def => def
 		.itemIcon("minecraft:mycelium")
@@ -169,8 +175,28 @@ const SculkerSkills = new (class extends SkillManager {
 		.cost(1)
 	);
 
-	public readonly NOURISHMENT = this.createSkill("nourishment", def => def
+	public readonly AUTOTROPH = this.createSkill("autotroph", def => def
+		.itemIcon("farmersdelight:organic_compost")
+		.addStyledDescription("We eat what others cannot eat.", this.STYLE)
+		.addDescription({
+			"text": "\n\nImmune to Hunger I"
+		})
+		.cost(1)
+		.flagPlanned()
+	);
+
+	public readonly HYPERTROPHY = this.createSkill("hypertrophy", def => def
 		.itemIcon("farmersdelight:mushroom_rice")
+		.addStyledDescription("We eating good tonight", this.STYLE)
+		.addDescription({
+			"text": "\n\nGain one point of armor toughness for every two points of saturation when at full hunger."
+		})
+		.cost(2)
+		.flagPlanned()
+	);
+
+	public readonly NOURISHMENT = this.createSkill("nourishment", def => def
+		.itemIcon("minecraft:mushroom_stew")
 		.addStyledDescription("We do not stand on the mycelium, we stand inside of it.", this.STYLE)
 		.addDescription({
 			"text": "\n\nGain hunger and saturation while standing still on mycelium for more than one second."
@@ -178,4 +204,37 @@ const SculkerSkills = new (class extends SkillManager {
 		.cost(1)
 		.flagPlanned()
 	);
+
+	public readonly EN_ROOT = this.createSkill("en_root", def => def
+		.itemIcon("farmersdelight:kelp_roll_slice")
+		.addStyledDescription("We be rolling", this.STYLE)
+		.addDescription({
+			"text": "\n\nCombat rolls recover twice as fast when on the ground for more than 3 seconds."
+		})
+		.cost(1)
+		.flagPlanned()
+	);
+
+	public readonly DENSE = this.createDataSkill("dense", {
+		k: 40
+	}, (def, data) => {
+		const falloff = (armor: number): string => {
+			const percent = MathHelper.rationalFalloff(armor, data.k);
+			return `${armor} = -${StringHelper.toPercent(1 - percent, 3)}%`;
+		};
+		return def
+			.itemIcon("minecraft:shroomlight")
+			.addStyledDescription("We're tough to crack, slow to move.", this.STYLE)
+			.addDescription({
+				"text": "\n\nEach point of armor toughness reduces damage by 1.0 instead of 0.5.",
+				"color": "green"
+			})
+			.addDescription({
+				"text": "\n\nArmor decreases movement speed."
+					+ [10, 20, 30, 40].map(a => `\n* ${falloff(a)}`).join(""),
+				"color": "dark_red"
+			})
+			.cost(2)
+			.flagPlanned();
+	});
 })().register();

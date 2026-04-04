@@ -6,7 +6,7 @@ abstract class SpawnTable {
 
 	protected abstract getDefaultEntry(event: CheckLivingEntitySpawnKubeEvent_): SpawnEntry | undefined;
 
-	public roll(event: CheckLivingEntitySpawnKubeEvent_): Summonable | undefined {
+	public roll(event: CheckLivingEntitySpawnKubeEvent_): Summonable | undefined | "cancel" {
 		const entries = this.getEntries(event);
 		const chances = entries.map(entry => entry.getChance(event));
 		const total = Math.max(1.0, chances.reduce((acc, chance) => acc + chance, 0));

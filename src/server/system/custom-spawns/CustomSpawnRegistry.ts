@@ -39,8 +39,13 @@ class CustomSpawnRegistry {
 
 			const summonable = spawnTable.roll(event);
 			if (summonable) {
-				summonable?.spawn(level, pos, false);
-				event.cancel();
+				if (summonable === "cancel") {
+					event.cancel();
+				}
+				else {
+					summonable?.spawn(level, pos, false);
+					event.cancel();
+				}
 			}
 		});
 	}

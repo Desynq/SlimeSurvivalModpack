@@ -26,7 +26,7 @@
 	"5neo38owj7eror4r": {
 		"definition": "appressorium",
 		"x": 0,
-		"y": 128,
+		"y": 192,
 		"root": false
 	},
 	"81x50bplfqz9m873": {
@@ -62,7 +62,7 @@
 	"7vok6bdbo11zhd0d": {
 		"definition": "rooting",
 		"x": -64,
-		"y": 96,
+		"y": 160,
 		"root": false
 	},
 	"kfll1fsr9k9q65wa": {
@@ -85,14 +85,44 @@
 	},
 	"esavilehpyft62k0": {
 		"definition": "rooted",
-		"x": -128,
-		"y": 128,
+		"x": -64,
+		"y": 224,
 		"root": false
 	},
 	"oenee43uzow08mhy": {
 		"definition": "chitin_5",
 		"x": 0,
 		"y": -256,
+		"root": false
+	},
+	"d2i1p6xoglpyvuut": {
+		"definition": "autotroph",
+		"x": -32,
+		"y": -128,
+		"root": false
+	},
+	"6uczaasm2fsrcps4": {
+		"definition": "hypertrophy",
+		"x": -64,
+		"y": -192,
+		"root": false
+	},
+	"bf9k14z1yubov7j3": {
+		"definition": "nourishment",
+		"x": 64,
+		"y": 160,
+		"root": false
+	},
+	"gfy7itbetnb5b17q": {
+		"definition": "en_root",
+		"x": -96,
+		"y": 128,
+		"root": false
+	},
+	"y8sw3q33kq5thovx": {
+		"definition": "dense",
+		"x": 32,
+		"y": -128,
 		"root": false
 	}
 }

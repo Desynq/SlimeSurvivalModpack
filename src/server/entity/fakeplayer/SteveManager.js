@@ -9,10 +9,10 @@ const BOT_USERNAMES = ["Steve", "Alex", "Bot0", "Bot1", "Bot2", "Bot3", "Bot4", 
  * @param {MinecraftServer_} server 
  */
 SteveManager.allTick = function(server) {
-	BOT_USERNAMES.forEach(username => {
+	for (const username of BOT_USERNAMES) {
 		SteveManager.username = username;
 		SteveManager.tick(server)
-	});
+	}
 }
 
 /** @type {string} */

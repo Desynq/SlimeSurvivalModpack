@@ -1,32 +1,9 @@
-// @ts-ignore
-type DamageAfterArmorEvent_ = import("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent").$DamageAfterArmorEvent$$Original;
-// @ts-ignore
+// @ts-expect-error
 const $DamageAfterArmorEvent: typeof import("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent").$DamageAfterArmorEvent =
 	Java.loadClass("io.github.desynq.slimesurvival.common.event.DamageAfterArmorEvent");
 
 
 namespace DamageAfterArmor {
-
-	function getToughnessFactor(entity: LivingEntity_, damage: number, event: DamageAfterArmorEvent_): number {
-		if (entity instanceof $ServerPlayer) {
-			return 0.5;
-		}
-		else {
-			return 1.0;
-		}
-	}
-
-	function getArmorFactor(entity: LivingEntity_, damage: number, event: DamageAfterArmorEvent_): number {
-		if (entity instanceof $ServerPlayer) {
-			if (SculkerSkills.CHITINOUS.isUnlockedFor(entity)) {
-				return 15;
-			}
-			return 20;
-		}
-		else {
-			return 20;
-		}
-	}
 
 	NativeEvents.onEvent("highest", $DamageAfterArmorEvent, event => {
 		const entity = event.entity as LivingEntity_;
@@ -35,9 +12,9 @@ namespace DamageAfterArmor {
 
 		let damage = event.getOriginalDamage();
 
-		const armorFactor = getArmorFactor(entity, damage, event);
+		const armorFactor = ArmorHelper.getArmorFactor(entity, damage, event);
 
-		const toughnessFactor = getToughnessFactor(entity, damage, event);
+		const toughnessFactor = ArmorHelper.getToughnessFactor(entity, damage, event);
 
 		if (damage > 1) {
 			damage -= Math.min(damage - 1, toughness * toughnessFactor);
