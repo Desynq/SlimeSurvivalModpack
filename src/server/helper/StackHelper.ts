@@ -3,6 +3,10 @@
 namespace StackHelper {
 
 
+	export function isTag(stack: ItemStack_, tag: string): boolean {
+		return stack["is(net.minecraft.tags.TagKey)"](tag);
+	}
+
 	export function isUnbreakable(stack: ItemStack_): boolean {
 		return stack.maxDamage <= 0
 			|| stack.getComponents()?.has($DataComponents.UNBREAKABLE);

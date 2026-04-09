@@ -36,13 +36,17 @@ class ActionbarMessage {
 		}
 	}
 
-	public show(player: ServerPlayer_, text?: string): void {
+	public show(player: ServerPlayer_, text?: string, ticks?: integer): void {
 		ActionbarManager.addMsg({
 			player,
 			text: text ?? this.text ?? "undefined text",
-			ticks: this.ticks,
+			ticks: ticks ?? this.ticks,
 			priority: this.priority,
 			id: this.id ?? undefined
 		});
 	}
+
+	public static DEBUG = new ActionbarMessage({
+		ticks: 40
+	});
 }

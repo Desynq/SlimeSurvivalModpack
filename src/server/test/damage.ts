@@ -28,7 +28,7 @@ namespace DamageTest {
 		store.total += damage;
 
 		msg.show(player,
-			`${damage.toFixed(2)} (${store.total}) ${type}`
+			`${damage.toFixed(2)} (${store.total.toFixed(2)}) ${type}`
 		);
 		lastDmgTs.update();
 	});

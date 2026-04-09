@@ -68,9 +68,28 @@ class ResolvedTimestamp<T extends PersistentDataHolder> {
 		}
 	}
 
+	/**
+	 * Whether delta time is at or over the default duration of the timestamp
+	 */
 	public get elapsed(): boolean {
 		const delta = this.delta;
 		return delta === undefined || delta >= this.defaultDuration;
+	}
+
+	/**
+	 * Sets the timestamp to be elapsed if it is not already elapsed
+	 * 
+	 * Works by setting the timestamp to a point where it would be elapsed (sets it back in time)
+	 * @returns `true` if the timestamp was successfully elapsed
+	 */
+	public elapse(duration?: long): boolean {
+		duration ??= this.defaultDuration;
+		if (this.hasElapsed(duration)) {
+			return false;
+		}
+
+		this.setBefore(duration);
+		return true;
 	}
 
 	public hasElapsed(duration?: long): boolean {

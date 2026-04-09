@@ -6,11 +6,12 @@ namespace Sculker.Pinged {
 		.withVisibility(false, false);
 
 	export function getDuration(sculker: ServerPlayer_): integer {
-		if (SculkerSkills.ECHO_1.isUnlockedFor(sculker)) {
-			return 40;
+		const skill = SkillHelper.getHighestTier(sculker, SculkerSkills.ECHO_SKILLS);
+		if (skill === null) {
+			return 20;
 		}
 
-		return 20;
+		return skill.data.ticks;
 	}
 
 	export function getMaxDist(sculker: ServerPlayer_, entity: LivingEntity_, gameEvent: GameEvent_): number {
@@ -46,12 +47,12 @@ namespace Sculker.Pinged {
 		return Math.max(minDelay, delayTicks);
 	}
 
-	export function tryPing(entity: LivingEntity_, player: ServerPlayer_, origin: Vec3_, gameEvent: GameEvent_): void {
-		if (entity === player) return;
+	export function tryPing(victim: LivingEntity_, player: ServerPlayer_, origin: Vec3_, gameEvent: GameEvent_): void {
+		if (victim === player) return;
 		if (SculkerSkills.ECHOLOCATION.isLockedFor(player)) return;
 
-		const dist = player.distanceToEntity(entity);
-		const maxDist = Pinged.getMaxDist(player, entity, gameEvent);
+		const dist = player.distanceToEntity(victim);
+		const maxDist = Pinged.getMaxDist(player, victim, gameEvent);
 		if (dist > maxDist) return;
 
 		const duration = Pinged.getDuration(player);
@@ -67,12 +68,23 @@ namespace Sculker.Pinged {
 			},
 			arrival_in_ticks: pingDelay
 		};
+
+		const tagged: ServerPlayer_[] = [];
+		for (const p of player.level.players as ServerPlayer_[]) {
+			if (p === victim || (p.shiftKeyDown && SculkerSkills.ECHOLOCATION.isUnlockedFor(p))) {
+				p.tags.add("ping_visible");
+				tagged.push(p);
+			}
+		}
 		CommandHelper.runCommandSilent(player.level,
-			`particle minecraft:vibration${JSON.stringify(vibrationConfig)} ${origin.x()} ${origin.y()} ${origin.z()} 0.1 0.1 0.1 0 1 force @a[distance=0..]`
+			`particle minecraft:vibration${JSON.stringify(vibrationConfig)} ${origin.x()} ${origin.y()} ${origin.z()} 0.1 0.1 0.1 0 1 force @a[tag=ping_visible]`
 		);
+		for (const p of tagged) {
+			p.tags.remove("ping_visible");
+		}
 
 		delay(player.server, pingDelay, () => {
-			pingEffect.withDuration(duration).apply(entity, player);
+			pingEffect.withDuration(duration).apply(victim, player);
 		});
 	}
 }

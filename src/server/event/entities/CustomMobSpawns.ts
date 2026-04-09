@@ -1,3 +1,4 @@
+// ignored: true
 
 namespace CustomMobSpawns {
 	const spawnTable = {};

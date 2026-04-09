@@ -6,3 +6,7 @@ function hasNoNull<T extends object>(
 
 	return !Object.values(obj).some(v => v === null);
 }
+
+function exhaustiveSwitch(value: never): never {
+	throw new Error(`Non-exhaustive match: ${value}`);
+}

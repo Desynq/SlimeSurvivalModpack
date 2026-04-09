@@ -116,7 +116,7 @@
 			},
 			{
 				"text": "\n\nYou take double damage while not on the ground.",
-				"color": "dark_aqua"
+				"color": "dark_red"
 			},
 			{
 				"color": "gold",
@@ -459,6 +459,32 @@
 			}
 		}
 	},
+	"quickroot": {
+		"title": "Quickroot",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Part of us will move, the other part, not so much...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nRooting now can activate with any item in your mainhand or offhand (Quickrooting).\n\nQuickrooting won't grant armor toughness nor proc Rooted."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:sugar"
+			}
+		}
+	},
 	"grapple": {
 		"title": "Grapple",
 		"rewards": [],
@@ -526,7 +552,7 @@
 				"italic": true
 			},
 			{
-				"text": "\n\nEcholocation now pings enemies for 2 seconds."
+				"text": "\n\nEcholocation now pings enemies for 2 seconds"
 			},
 			{
 				"color": "dark_green",
@@ -534,6 +560,58 @@
 			}
 		],
 		"cost": 1,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:echo_shard"
+			}
+		}
+	},
+	"echo_2": {
+		"title": "Echo II",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Good luck hiding...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nEcholocation now pings enemies for 3 seconds"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:echo_shard"
+			}
+		}
+	},
+	"echo_3": {
+		"title": "Echo III",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Good luck hiding...",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nEcholocation now pings enemies for 4 seconds"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
 		"icon": {
 			"type": "item",
 			"data": {
@@ -601,33 +679,90 @@
 			}
 		}
 	},
-	"nourishment": {
-		"title": "Nourishment",
+	"rootstep": {
+		"title": "Rootstep",
 		"rewards": [],
 		"description": [
 			"",
 			{
-				"text": "We do not stand on the mycelium, we stand inside of it.",
+				"text": "We climb slowly, never leaving the ground.",
 				"color": "dark_aqua",
 				"italic": true
 			},
 			{
-				"text": "\n\nGain hunger and saturation while standing still on mycelium for more than one second."
+				"text": "\n\nStep height increases by 0.5 while actively crouching"
 			},
 			{
 				"color": "dark_green",
 				"text": "\n\n[Cost: 1 point]"
-			},
-			{
-				"color": "yellow",
-				"text": "\n[Planned]"
 			}
 		],
 		"cost": 1,
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "minecraft:mushroom_stew"
+				"item": "createdeco:zinc_catwalk_stairs"
+			}
+		}
+	},
+	"rootfall": {
+		"title": "Rootfall",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "We stay connected even through small falls.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nStill counted as being on the ground as long as you haven't fallen further than 1 block or stayed off the ground for more than 0.25 seconds.\n\nOnly affects Nourishment and Mycelic."
+			},
+			{
+				"text": "\n\nNourishment takes 2 seconds longer to activate",
+				"color": "dark_red"
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "minecraft:feather"
+			}
+		}
+	},
+	"nourishment": {
+		"title": "Nourishment",
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Brother, we crave nitrogen.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			[
+				{
+					"text": "\n\nGain Nourishment effect when standing on a sculkable block."
+				},
+				{
+					"text": "\n\nTakes 3 seconds to activate."
+				}
+			],
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 2 points]"
+			}
+		],
+		"cost": 2,
+		"icon": {
+			"type": "effect",
+			"data": {
+				"effect": "farmersdelight:nourishment"
 			}
 		}
 	},
@@ -642,7 +777,7 @@
 				"italic": true
 			},
 			{
-				"text": "\n\nCombat rolls recover twice as fast when on the ground for more than 3 seconds."
+				"text": "\n\nCombat rolls recover twice as fast when nourished."
 			},
 			{
 				"color": "dark_green",
@@ -693,6 +828,60 @@
 			"type": "item",
 			"data": {
 				"item": "minecraft:shroomlight"
+			}
+		}
+	},
+	"fungal_expansion": {
+		"title": {
+			"text": "Fungal Expansion",
+			"color": "gold",
+			"bold": true
+		},
+		"rewards": [],
+		"description": [
+			"",
+			{
+				"text": "Throughout Agartha and Earth, We alone are fungal.",
+				"color": "dark_aqua",
+				"italic": true
+			},
+			{
+				"text": "\n\nPressing"
+			},
+			[
+				{
+					"color": "gray",
+					"text": " ["
+				},
+				{
+					"color": "yellow",
+					"keybind": "key.slimesurvival.tertiary_ability"
+				},
+				{
+					"color": "gray",
+					"text": "] "
+				}
+			],
+			{
+				"text": "will activate an area of effect field around the user."
+			},
+			{
+				"text": "\n\nAbility requires full hunger in order to activate.\n\nAbility will remain active until hunger falls below 6.\n\nUser and all players within field will gain Hunger II, and Darkness.\n\nAll living entities except for the user will be pinged within the field.\n\nDefault radius: 32 blocks."
+			},
+			{
+				"color": "dark_green",
+				"text": "\n\n[Cost: 4 points]"
+			},
+			{
+				"color": "yellow",
+				"text": "\n[Planned]"
+			}
+		],
+		"cost": 4,
+		"icon": {
+			"type": "item",
+			"data": {
+				"item": "twilightforest:minoshroom_trophy"
 			}
 		}
 	}

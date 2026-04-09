@@ -41,7 +41,11 @@ namespace Sculker.Events {
 	PlayerEvents.tick(event => {
 		const player = event.player as ServerPlayer_;
 
+		Sculker.Rootfall.tick(player);
+
 		Sculker.Rooting.tick(player);
+		Sculker.Nourishment.tick(player);
+		Sculker.Rootstep.tickRootstep(player);
 	});
 
 
@@ -68,7 +72,7 @@ namespace Sculker.Events {
 	}
 
 	function sculkerBeforeHurt(player: ServerPlayer_, event: LivingDamageEvent$Pre_): void {
-		if (!player.onGround() && SculkerSkills.MYCELIC.isUnlockedFor(player)) {
+		if (!Sculker.Rootfall.isActiveOrOnGround(player) && SculkerSkills.MYCELIC.isUnlockedFor(player)) {
 			event.newDamage *= 2.0;
 		}
 	}
@@ -76,8 +80,6 @@ namespace Sculker.Events {
 	function attackedBySculker(victim: Entity_, attacker: ServerPlayer_, event: LivingDamageEvent$Pre_): void {
 		if (victim.onGround() && SculkerSkills.APPRESSORIUM.isUnlockedFor(attacker)) {
 			event.newDamage *= 2.0;
-		}
-		else {
 		}
 	}
 }

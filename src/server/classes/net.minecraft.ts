@@ -102,3 +102,7 @@ type BlockPos_ = import("net.minecraft.core.BlockPos").$BlockPos;
 type ConduitBlockEntity_ = import("net.minecraft.world.level.block.entity.ConduitBlockEntity").$ConduitBlockEntity;
 const $ConduitBlockEntity: typeof import("net.minecraft.world.level.block.entity.ConduitBlockEntity").$ConduitBlockEntity =
 	Java.loadClass("net.minecraft.world.level.block.entity.ConduitBlockEntity");
+
+
+const $BlockPos: typeof import("net.minecraft.core.BlockPos").$BlockPos =
+	Java.loadClass("net.minecraft.core.BlockPos");

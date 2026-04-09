@@ -1,128 +1,164 @@
 {
 	"f4zbb4qulaqpmjjr": {
 		"definition": "blind",
-		"x": -64,
-		"y": 0,
+		"x": -192,
+		"y": 64,
 		"root": true
 	},
 	"zbh51l6opa6wl4iv": {
 		"definition": "echolocation",
-		"x": 64,
-		"y": 0,
+		"x": 192,
+		"y": 64,
 		"root": true
 	},
 	"nnh4903hobep8apv": {
 		"definition": "chitinous",
 		"x": 0,
-		"y": -64,
+		"y": 64,
 		"root": true
 	},
 	"6241iwnckv6vz62a": {
 		"definition": "mycelic",
 		"x": 0,
-		"y": 64,
+		"y": -128,
 		"root": true
 	},
 	"5neo38owj7eror4r": {
 		"definition": "appressorium",
-		"x": 0,
-		"y": 192,
+		"x": 160,
+		"y": -64,
 		"root": false
 	},
 	"81x50bplfqz9m873": {
 		"definition": "experential",
-		"x": -128,
-		"y": 0,
+		"x": -192,
+		"y": 128,
 		"root": false
 	},
 	"nlcb1esffdzqnxsj": {
 		"definition": "chitin_1",
 		"x": 0,
-		"y": -128,
+		"y": 128,
 		"root": false
 	},
 	"bodirjj5ub3o0hps": {
 		"definition": "chitin_2",
 		"x": 0,
-		"y": -160,
+		"y": 160,
 		"root": false
 	},
 	"5romhjbafgjzlszm": {
 		"definition": "chitin_3",
 		"x": 0,
-		"y": -192,
+		"y": 192,
 		"root": false
 	},
 	"335tknsbfxfu00hn": {
 		"definition": "chitin_4",
 		"x": 0,
-		"y": -224,
+		"y": 224,
 		"root": false
 	},
 	"7vok6bdbo11zhd0d": {
 		"definition": "rooting",
-		"x": -64,
-		"y": 160,
+		"x": -160,
+		"y": -64,
 		"root": false
 	},
 	"kfll1fsr9k9q65wa": {
 		"definition": "grapple",
 		"x": 128,
-		"y": 0,
+		"y": 128,
 		"root": false
 	},
 	"vlyhalb94vw5c37t": {
 		"definition": "echo_1",
-		"x": 96,
-		"y": -64,
+		"x": 192,
+		"y": 128,
 		"root": false
 	},
 	"fosvkxvjodf92yir": {
 		"definition": "leer",
-		"x": 96,
-		"y": 64,
+		"x": 256,
+		"y": 128,
 		"root": false
 	},
 	"esavilehpyft62k0": {
 		"definition": "rooted",
-		"x": -64,
-		"y": 224,
+		"x": -128,
+		"y": 0,
 		"root": false
 	},
 	"oenee43uzow08mhy": {
 		"definition": "chitin_5",
 		"x": 0,
-		"y": -256,
+		"y": 256,
 		"root": false
 	},
 	"d2i1p6xoglpyvuut": {
 		"definition": "autotroph",
-		"x": -32,
-		"y": -128,
+		"x": -64,
+		"y": 128,
 		"root": false
 	},
 	"6uczaasm2fsrcps4": {
 		"definition": "hypertrophy",
 		"x": -64,
-		"y": -192,
+		"y": 192,
 		"root": false
 	},
 	"bf9k14z1yubov7j3": {
 		"definition": "nourishment",
 		"x": 64,
-		"y": 160,
+		"y": -64,
 		"root": false
 	},
 	"gfy7itbetnb5b17q": {
 		"definition": "en_root",
-		"x": -96,
-		"y": 128,
+		"x": 64,
+		"y": 0,
 		"root": false
 	},
 	"y8sw3q33kq5thovx": {
 		"definition": "dense",
-		"x": 32,
-		"y": -128,
+		"x": 64,
+		"y": 128,
+		"root": false
+	},
+	"ljm3nuv0lw96muyo": {
+		"definition": "echo_2",
+		"x": 192,
+		"y": 160,
+		"root": false
+	},
+	"3auxc467oynapm26": {
+		"definition": "echo_3",
+		"x": 192,
+		"y": 192,
+		"root": false
+	},
+	"lzv1xgdo3cll1qru": {
+		"definition": "fungal_expansion",
+		"x": 0,
+		"y": -192,
+		"root": false
+	},
+	"8nfffa8taaelc69h": {
+		"definition": "quickroot",
+		"x": -192,
+		"y": 0,
+		"root": false
+	},
+	"uapt59dkt7d02n6i": {
+		"definition": "rootstep",
+		"x": -64,
+		"y": -64,
+		"root": false
+	},
+	"hnyijb8xz9zbovon": {
+		"definition": "rootfall",
+		"x": -64,
+		"y": 0,
 		"root": false
 	}
 }

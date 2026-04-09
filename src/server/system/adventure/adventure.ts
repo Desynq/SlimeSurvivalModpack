@@ -215,7 +215,7 @@ namespace AdventureHandler {
 				adventureEffect.apply(player);
 			}
 
-			const hasAdventureEffect = adventureEffect.has(player);
+			const hasAdventureEffect = adventureEffect.hasSameId(player);
 
 			if (hasAdventureEffect && PlayerHelper.isSurvival(player)) {
 				player.setGameMode("adventure");

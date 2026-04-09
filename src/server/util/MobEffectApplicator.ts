@@ -2,7 +2,7 @@
 
 class MobEffectApplicator {
 
-	private constructor(
+	protected constructor(
 		public readonly effectId: string,
 		public readonly duration: integer = 0,
 		public readonly amplifier: integer = 0,
@@ -19,12 +19,37 @@ class MobEffectApplicator {
 	/**
 	 * @returns Whether the entity has the effect id. Accepts any amplifier.
 	 */
-	public has(entity: LivingEntity_): boolean {
+	public hasSameId(entity: LivingEntity_): boolean {
 		return LivingEntityHelper.hasEffect(entity, this.effectId);
 	}
 
+	public hasSameAmplifier(entity: LivingEntity_): boolean {
+		const effect = LivingEntityHelper.getEffect(entity, this.effectId);
+		return effect?.amplifier === this.amplifier;
+	}
 
-	private withRulesObj(rules: MobEffectRules): MobEffectApplicator {
+	/**
+	 * @returns `true` if the player has an effect with the same id and amplifier with a duration less than or equal to the applicator's duration
+	 */
+	public hasExact(entity: LivingEntity_): boolean {
+		const effect = LivingEntityHelper.getEffect(entity, this.effectId);
+		return effect && effect.amplifier === this.amplifier && effect.duration <= this.duration;
+	}
+
+	/**
+	 * Removes the effect if its duration is less than or equal to the configured duration and amplifier is the same
+	 */
+	public remove(entity: LivingEntity_, maxDuration?: number): boolean {
+		maxDuration ??= this.duration;
+		const effect = LivingEntityHelper.getEffect(entity, this.effectId);
+		if (effect === null || effect.duration > maxDuration || effect.amplifier !== this.amplifier) return false;
+
+		LivingEntityHelper.removeEffect(entity, this.effectId);
+		return true;
+	}
+
+
+	protected withRulesObj(rules: MobEffectRules): MobEffectApplicator {
 		return new MobEffectApplicator(this.effectId, this.duration, this.amplifier, this.ambient, this.visible, this.showIcon, rules);
 	}
 
@@ -32,10 +57,9 @@ class MobEffectApplicator {
 		return this.withRulesObj(new MobEffectRules(minDuration, maxDuration, minAmplifier, maxAmplifier));
 	}
 
-	public withDuration(ticks: integer): MobEffectApplicator {
-		ticks = this.rules.clampDuration(ticks);
-
-		return new MobEffectApplicator(this.effectId, ticks, this.amplifier, this.ambient, this.visible, this.showIcon, this.rules);
+	public withDuration(duration: integer): MobEffectApplicator {
+		duration = this.rules.clampDuration(duration);
+		return this.copy({ duration });
 	}
 
 	public withAmplifier(amplifier: integer): MobEffectApplicator {
@@ -56,7 +80,7 @@ class MobEffectApplicator {
 		return this;
 	}
 
-	private copy(changes: Partial<MobEffectApplicator>): MobEffectApplicator {
+	protected copy(changes: Partial<MobEffectApplicator>): MobEffectApplicator {
 		return new MobEffectApplicator(
 			changes.effectId ?? this.effectId,
 			changes.duration ?? this.duration,

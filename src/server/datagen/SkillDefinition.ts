@@ -1,7 +1,7 @@
 // priority: 1000
 
 interface SkillDefinitionData {
-	title: string;
+	title: (JsonComponent | JsonComponent[]);
 	rewards: object[];
 	description: (JsonComponent | JsonComponent[])[];
 	cost: integer;
@@ -107,7 +107,7 @@ class SkillDefinition {
 		return this.serialize(json).findSkill(data);
 	}
 
-	public title(title: string): this {
+	public title(title: JsonComponent | JsonComponent[]): this {
 		this.data.title = title;
 		return this;
 	}

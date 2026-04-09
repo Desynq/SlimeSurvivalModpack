@@ -30,6 +30,31 @@ namespace StringHelper {
 		return (number * 100).toFixed(decimals);
 	}
 
+	export function upToFixed(x: number, decimals: number): string {
+		if (decimals < 0) throw new Error(`upToFixed decimals must be >= 0. decimals = ${decimals}`);
+
+		const factor = 10 ** decimals;
+		const rounded = Math.round(x * factor) / factor;
+
+		return rounded.toFixed(decimals).replace(/\.?0+$/, "");
+	}
+
+	/**
+	 * @example toSeconds(20) -> "1 second"
+	 * @example toSeconds(30) -> "2.5 seconds"
+	 */
+	export function toSeconds(ticks: integer): string {
+		const seconds = ticks / 20;
+		return `${upToFixed(seconds, 2)} second${seconds === 1 ? "" : "s"}`;
+	}
+
+	export function formatUnit(value: number, unit: string, decimals: integer = 2): string {
+		return `${upToFixed(value, decimals)} ${unit}${value === 1 ? "" : "s"}`;
+	}
+
+
+
+
 	export function wrapIfNeeded(input: string): string {
 		const str = input.trim();
 		if (str.length >= 2) {

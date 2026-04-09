@@ -49,4 +49,23 @@ class Skill<D extends SkillData = EmptySkillData> {
 	public isLockedFor(player: unknown): boolean {
 		return !SkillHelper.hasSkill(player, this);
 	}
+
+	public get(player: unknown): this | null {
+		return this.isUnlockedFor(player) ? this : null;
+	}
+
+	public ifUnlocked(player: unknown): this | null;
+	public ifUnlocked<R>(player: unknown, fn: (skill: this) => R): R | null;
+	public ifUnlocked<R>(player: unknown, fn?: (skill: this) => R): R | this | null {
+
+		if (this.isLockedFor(player)) {
+			return null;
+		}
+
+		if (fn) {
+			return fn(this);
+		}
+
+		return this;
+	}
 }

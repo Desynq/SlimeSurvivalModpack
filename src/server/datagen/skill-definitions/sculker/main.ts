@@ -42,7 +42,7 @@ const SculkerSkills = new (class extends SkillManager {
 		armorFactor: 15
 	}, (def, data) => {
 		const calc = (a: number, b: number): string => StringHelper.toPercent(1 - b / (a + b), 1);
-		return def
+		def
 			.itemIcon("minecraft:popped_chorus_fruit")
 			.addDescription({
 				"text": "That tickles...",
@@ -67,7 +67,7 @@ const SculkerSkills = new (class extends SkillManager {
 		})
 		.addDescription({
 			"text": "\n\nYou take double damage while not on the ground.",
-			"color": "dark_aqua"
+			"color": "dark_red"
 		})
 		.size(1.25)
 		.rootSkill()
@@ -147,6 +147,16 @@ const SculkerSkills = new (class extends SkillManager {
 		.cost(2)
 	);
 
+	public readonly QUICKROOT = this.createSkill("quickroot", def => def
+		.itemIcon("minecraft:sugar")
+		.addStyledDescription("Part of us will move, the other part, not so much...", this.STYLE)
+		.addDescription({
+			"text": "\n\nRooting now can activate with any item in your mainhand or offhand (Quickrooting)."
+				+ "\n\nQuickrooting won't grant armor toughness nor proc Rooted."
+		})
+		.cost(4)
+	);
+
 	public readonly GRAPPLE = this.createSkill("grapple", def => def
 		.effectIcon("cataclysm:stun")
 		.addStyledDescription("Found you!", this.STYLE)
@@ -166,14 +176,19 @@ const SculkerSkills = new (class extends SkillManager {
 		.cost(1)
 	);
 
-	public readonly ECHO_1 = this.createSkill("echo_1", def => def
-		.itemIcon("minecraft:echo_shard")
-		.addStyledDescription("Good luck hiding...", this.STYLE)
-		.addDescription({
-			"text": "\n\nEcholocation now pings enemies for 2 seconds."
-		})
-		.cost(1)
-	);
+	public readonly ECHO_SKILLS = this.createTieredDataSkills("echo", [
+		{ ticks: 40, cost: 1 },
+		{ ticks: 60, cost: 2 },
+		{ ticks: 80, cost: 2 }
+	], (def, tier, data) => {
+		const seconds: string = StringHelper.upToFixed(data.ticks / 20, 2);
+		def.itemIcon("minecraft:echo_shard")
+			.addStyledDescription("Good luck hiding...", this.STYLE)
+			.addDescription({
+				"text": `\n\nEcholocation now pings enemies for ${seconds} seconds`
+			})
+			.cost(data.cost);
+	});
 
 	public readonly AUTOTROPH = this.createSkill("autotroph", def => def
 		.itemIcon("farmersdelight:organic_compost")
@@ -195,21 +210,55 @@ const SculkerSkills = new (class extends SkillManager {
 		.flagPlanned()
 	);
 
-	public readonly NOURISHMENT = this.createSkill("nourishment", def => def
-		.itemIcon("minecraft:mushroom_stew")
-		.addStyledDescription("We do not stand on the mycelium, we stand inside of it.", this.STYLE)
+	public readonly ROOTSTEP = this.createSkill("rootstep", def => def
+		.itemIcon("createdeco:zinc_catwalk_stairs")
+		.addStyledDescription("We climb slowly, never leaving the ground.", this.STYLE)
 		.addDescription({
-			"text": "\n\nGain hunger and saturation while standing still on mycelium for more than one second."
+			"text": "\n\nStep height increases by 0.5 while actively crouching"
 		})
 		.cost(1)
-		.flagPlanned()
+	);
+
+	public readonly ROOTFALL = this.createDataSkill("rootfall", {
+		maxFallDist: 1,
+		graceTicks: 5,
+		nourishmentRecoveryTicks: 40
+	}, (def, data) => def
+		.itemIcon("minecraft:feather")
+		.addStyledDescription("We stay connected even through small falls.", this.STYLE)
+		.addDescription({
+			"text": `\n\nStill counted as being on the ground as long as you haven't fallen further than ${StringHelper.formatUnit(data.maxFallDist, "block")}`
+				+ ` or stayed off the ground for more than ${StringHelper.toSeconds(data.graceTicks)}.`
+				+ "\n\nOnly affects Nourishment and Mycelic."
+		})
+		.addDescription({
+			"text": `\n\nNourishment takes ${StringHelper.toSeconds(data.nourishmentRecoveryTicks)} longer to activate`,
+			"color": "dark_red"
+		})
+		.cost(2)
+	);
+
+	public readonly NOURISHMENT = this.createDataSkill("nourishment", {
+		recovery: 60
+	}, (def, data) => def
+		.effectIcon("farmersdelight:nourishment")
+		.addStyledDescription("Brother, we crave nitrogen.", this.STYLE)
+		.addDescription([
+			{
+				"text": "\n\nGain Nourishment effect when standing on a sculkable block."
+			},
+			{
+				"text": `\n\nTakes ${StringHelper.toSeconds(data.recovery)} to activate.`
+			}
+		])
+		.cost(2)
 	);
 
 	public readonly EN_ROOT = this.createSkill("en_root", def => def
 		.itemIcon("farmersdelight:kelp_roll_slice")
 		.addStyledDescription("We be rolling", this.STYLE)
 		.addDescription({
-			"text": "\n\nCombat rolls recover twice as fast when on the ground for more than 3 seconds."
+			"text": "\n\nCombat rolls recover twice as fast when nourished."
 		})
 		.cost(1)
 		.flagPlanned()
@@ -222,7 +271,7 @@ const SculkerSkills = new (class extends SkillManager {
 			const percent = MathHelper.rationalFalloff(armor, data.k);
 			return `${armor} = -${StringHelper.toPercent(1 - percent, 3)}%`;
 		};
-		return def
+		def
 			.itemIcon("minecraft:shroomlight")
 			.addStyledDescription("We're tough to crack, slow to move.", this.STYLE)
 			.addDescription({
@@ -235,6 +284,34 @@ const SculkerSkills = new (class extends SkillManager {
 				"color": "dark_red"
 			})
 			.cost(2)
+			.flagPlanned();
+	});
+
+	public readonly FUNGAL_EXPANSION = this.createDataSkill("fungal_expansion", {
+		radius: 32
+	}, (def, data) => {
+		def.itemIcon("twilightforest:minoshroom_trophy")
+			.title({
+				text: "Fungal Expansion",
+				color: "gold",
+				bold: true
+			})
+			.addStyledDescription("Throughout Agartha and Earth, We alone are fungal.", this.STYLE)
+			.addDescription({
+				"text": "\n\nPressing"
+			})
+			.addKeybindDescription("key.slimesurvival.tertiary_ability")
+			.addDescription({
+				"text": "will activate an area of effect field around the user."
+			})
+			.addDescription({
+				"text": `\n\nAbility requires full hunger in order to activate.`
+					+ `\n\nAbility will remain active until hunger falls below 6.`
+					+ `\n\nUser and all players within field will gain Hunger II, and Darkness.`
+					+ `\n\nAll living entities except for the user will be pinged within the field.`
+					+ `\n\nDefault radius: ${data.radius} blocks.`
+			})
+			.cost(4)
 			.flagPlanned();
 	});
 })().register();

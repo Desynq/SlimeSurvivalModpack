@@ -84,4 +84,32 @@ class SkillHelper {
 		}
 		return skills.length;
 	}
+
+
+
+	public static getHighestTier<const S extends readonly Skill<SkillData>[]>(
+		player: ServerPlayer_,
+		skills: S
+	): S[number] | null;
+	public static getHighestTier<const S extends readonly Skill<SkillData>[]>(
+		player: ServerPlayer_,
+		...skills: S
+	): S[number] | null;
+	public static getHighestTier<const S extends readonly Skill<SkillData>[]>(
+		player: ServerPlayer_,
+		...skillsOrArray: [S] | S
+	): S[number] | null {
+
+		const skills = skillsOrArray.length === 1 && Array.isArray(skillsOrArray[0])
+			? skillsOrArray[0] as S
+			: skillsOrArray as S;
+
+		let prevSkill: Skill<any> | null = null;
+		for (let i = 0; i < skills.length; i++) {
+			const skill = skills[i];
+			if (skill.isLockedFor(player)) return prevSkill;
+			prevSkill = skill;
+		}
+		return prevSkill as S[number] | null;
+	}
 }

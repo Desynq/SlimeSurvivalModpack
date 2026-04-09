@@ -19,25 +19,37 @@ namespace Sculker.Rooting {
 
 		if (SculkerSkills.ROOTING.isLockedFor(player)) return;
 
-		if (!canRoot(player)) return;
-
-		armorModifier.add(player);
-		toughnessModifier.add(player);
-
-		if (SculkerSkills.ROOTED.isUnlockedFor(player)) {
-			kbResistModifier.add(player);
-			rootedEffect.apply(player);
+		const rootType = getRootType(player);
+		switch (rootType) {
+			case "none":
+				return;
+			case "normal":
+				armorModifier.add(player);
+				toughnessModifier.add(player);
+				if (SculkerSkills.ROOTED.isUnlockedFor(player)) {
+					kbResistModifier.add(player);
+					rootedEffect.apply(player);
+				}
+				break;
+			case "quickroot":
+				armorModifier.add(player);
+				break;
+			default: exhaustiveSwitch(rootType);
 		}
+
+		$BuiltInRegistries.BLOCK.getTag;
+		player.blockStateOn.is("");
 	}
 
-	/**
-	 * Assumes player already has the Rooting skill
-	 */
-	function canRoot(player: ServerPlayer_): boolean {
-		return player.crouching
-			&& player.onGround()
-			&& player.mainHandItem.isEmpty()
-			&& (player.offHandItem.isEmpty() || player.offHandItem.id.toString() === "minecraft:shield")
-			&& !KeybindHelper.isMoving(player);
+	type RootType = "none" | "normal" | "quickroot";
+
+	function getRootType(player: ServerPlayer_): RootType {
+		if (!(player.crouching && player.shiftKeyDown && !KeybindHelper.isMoving(player))) return "none";
+
+		if (player.mainHandItem.isEmpty() && (player.offHandItem.isEmpty() || StackHelper.isTag(player.offhandItem, "c:tools/shields"))) return "normal";
+
+		if (SculkerSkills.QUICKROOT.isUnlockedFor(player)) return "quickroot";
+
+		return "none";
 	}
 }
